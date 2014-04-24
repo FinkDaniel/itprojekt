@@ -12,16 +12,16 @@ public class TestUser {
 	public static void main(String[] args){
 	
 		
-		User a = new User();
-		a.setVorname("'Daniel'");
-		a.setNachname("'Fink'");
-		a.setNickname("'FinkD'");
-		UserMapper.userMapper().insert(a);
+		User u = new User();
+		u.setVorname("'Patrick'");
+		u.setNachname("'Prell'");
+		u.setNickname("'Preller'");
+		UserMapper.userMapper().update(u);
 		
-		Pinnwand b = new Pinnwand();
-		b.getOwnerID();
-		PinnwandMapper.pinnwandMapper().insert(b);
-		
+		Pinnwand p = new Pinnwand();
+		p.getOwnerID();
+		PinnwandMapper.pinnwandMapper().insert(p);
+			
 		
 }
 			
