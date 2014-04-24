@@ -68,12 +68,12 @@ public class PinnwandMapper {
           + " ORDER BY id");
 
             while (rs.next()) {
-        Pinnwand a = new Pinnwand();
-        a.setId(rs.getInt("id"));
-        a.setOwnerID(rs.getInt("owner"));
+        Pinnwand p = new Pinnwand();
+        p.setId(rs.getInt("id"));
+        p.setOwnerID(rs.getInt("owner"));
 
        
-        result.addElement(a);
+        result.addElement(p);
       }
     }
     catch (SQLException e2) {
@@ -97,12 +97,12 @@ public class PinnwandMapper {
 
       
       while (rs.next()) {
-    	Pinnwand a = new Pinnwand();
-        a.setId(rs.getInt("id"));
-        a.setOwnerID(rs.getInt("owner"));
+    	Pinnwand p = new Pinnwand();
+        p.setId(rs.getInt("id"));
+        p.setOwnerID(rs.getInt("owner"));
 
         
-        result.addElement(a);
+        result.addElement(p);
       }
     }
     catch (SQLException e2) {
@@ -121,7 +121,7 @@ public class PinnwandMapper {
   }
 
  
-  public Pinnwand insert(Pinnwand a) {
+  public Pinnwand insert(Pinnwand p) {
     Connection con = LocalDBConnection.connection();
 
     try {
@@ -134,13 +134,13 @@ public class PinnwandMapper {
     
       if (rs.next()) {
        
-        a.setId(rs.getInt("maxid") + 1);
+        p.setId(rs.getInt("maxid") + 1);
 
         stmt = con.createStatement();
 
         
         stmt.executeUpdate("INSERT INTO pinnwand (id, owner) " + "VALUES ("
-            + a.getId() + "," + a.getId() + ")");
+            + p.getId() + "," + p.getId() + ")");
       }
     }
     catch (SQLException e2) {
@@ -148,18 +148,18 @@ public class PinnwandMapper {
     }
 
    
-    return a;
+    return p;
   }
 
  
-  public Pinnwand update(Pinnwand a) {
+  public Pinnwand update(Pinnwand p) {
     Connection con = LocalDBConnection.connection();
 
     try {
       Statement stmt = con.createStatement();
 
-      stmt.executeUpdate("UPDATE pinnwand " + "SET owner=\"" + a.getId()
-          + "\" " + "WHERE id=" + a.getId());
+      stmt.executeUpdate("UPDATE pinnwand " + "SET owner=\"" + p.getId()
+          + "\" " + "WHERE id=" + p.getId());
 
     }
     catch (SQLException e2) {
@@ -167,16 +167,16 @@ public class PinnwandMapper {
     }
 
    
-    return a;
+    return p;
   }
 
-  public void delete(Pinnwand a) {
+  public void delete(Pinnwand p) {
     Connection con = LocalDBConnection.connection();
 
     try {
       Statement stmt = con.createStatement();
 
-      stmt.executeUpdate("DELETE FROM pinnwand " + "WHERE id=" + a.getId());
+      stmt.executeUpdate("DELETE FROM pinnwand " + "WHERE id=" + p.getId());
 
     }
     catch (SQLException e2) {
@@ -185,13 +185,13 @@ public class PinnwandMapper {
   }
 
   
-  public void deletePinnwandOf(User c) {
+  public void deletePinnwandOf(User u) {
     Connection con = LocalDBConnection.connection();
 
     try {
       Statement stmt = con.createStatement();
 
-      stmt.executeUpdate("DELETE FROM pinnwand " + "WHERE owner=" + c.getId());
+      stmt.executeUpdate("DELETE FROM pinnwand " + "WHERE owner=" + u.getId());
 
     }
     catch (SQLException e2) {
@@ -200,9 +200,9 @@ public class PinnwandMapper {
   }
 
  
-  public User getOwner(User a) {
+  public User getOwner(User u) {
    
-	  return UserMapper.userMapper().findByKey(a.getId());
+	  return UserMapper.userMapper().findByKey(u.getId());
   }
 
 }

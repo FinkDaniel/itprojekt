@@ -46,13 +46,13 @@ private static UserMapper userMapper = null;
      
       if (rs.next()) {
      
-        User c = new User();
-        c.setId(rs.getInt("id"));
-        c.setVorname(rs.getString("vorname"));
-        c.setNachname(rs.getString("nachname"));
-        c.setNickname(rs.getString("nickname"));
+        User u = new User();
+        u.setId(rs.getInt("id"));
+        u.setVorname(rs.getString("vorname"));
+        u.setNachname(rs.getString("nachname"));
+        u.setNickname(rs.getString("nickname"));
 
-        return c;
+        return u;
       }
     }
     catch (SQLException e) {
@@ -73,12 +73,12 @@ private static UserMapper userMapper = null;
       ResultSet rs = stmt.executeQuery("SELECT id, vorname, nachname, nickname "
           + "FROM users " + "ORDER BY lastName");
       while (rs.next()) {
-        User c = new User();
-        c.setId(rs.getInt("id"));
-        c.setVorname(rs.getString("vorname"));
-        c.setNachname(rs.getString("nachname"));
-        c.setNickname(rs.getString("nickanme"));
-        result.addElement(c);
+        User u = new User();
+        u.setId(rs.getInt("id"));
+        u.setVorname(rs.getString("vorname"));
+        u.setNachname(rs.getString("nachname"));
+        u.setNickname(rs.getString("nickanme"));
+        result.addElement(u);
       }
     }
     catch (SQLException e) {
@@ -98,11 +98,11 @@ private static UserMapper userMapper = null;
       ResultSet rs = stmt.executeQuery("SELECT id, vorname, nachname, nickname "
               + "FROM users " + "ORDER BY lastName");
       while (rs.next()) {
-        User c = new User();
-        c.setId(rs.getInt("id"));
-        c.setVorname(rs.getString("firstName"));
-        c.setNachname(rs.getString("lastName"));
-        result.addElement(c);
+        User u = new User();
+        u.setId(rs.getInt("id"));
+        u.setVorname(rs.getString("firstName"));
+        u.setNachname(rs.getString("lastName"));
+        result.addElement(u);
       }
     }
     catch (SQLException e) {
@@ -112,7 +112,7 @@ private static UserMapper userMapper = null;
   }
 
  
-  public User insert(User c) {
+  public User insert(User u) {
     Connection con = LocalDBConnection.connection();
     try {
       Statement stmt = con.createStatement();
@@ -121,55 +121,51 @@ private static UserMapper userMapper = null;
           + "FROM users ");
       if (rs.next()) {
         
-        c.setId(rs.getInt("maxid") + 1);
+        u.setId(rs.getInt("maxid") + 1);
 
         stmt = con.createStatement();
         stmt.executeUpdate ("INSERT INTO users (id, vorname, nachname, nickname) "
-            + "VALUES (" + c.getId() + "," + c.getVorname() + ","
-            + c.getNachname() +  "," + c.getNickname()+ ")");
+            + "VALUES (" + u.getId() + "," + u.getVorname() + ","
+            + u.getNachname() +  "," + u.getNickname()+ ")");
            }
     }
     catch (SQLException e) {
       e.printStackTrace();
     }
-    return c;
+    return u;
     }
 
   
-  public User update(User c) {
+  public User update(User u) {
     Connection con = LocalDBConnection.connection();
 
     try {
       Statement stmt = con.createStatement();
 
       stmt.executeUpdate("UPDATE users " + "SET vorname=\""
-          + c.getVorname() + "\", " + "nachname=\"" + c.getNachname() + "\" , " + "nickname=\"" + c.getNickname() + "\" "
-          + "WHERE id=" + c.getId());
+          + u.getVorname() + "\", " + "nachname=\"" + u.getNachname() + "\" , " + "nickname=\"" + u.getNickname() + "\" "
+          + "WHERE id=" + u.getId());
     }
     catch (SQLException e) {
       e.printStackTrace();
     }
-    return c;
+    return u;
   }
 
   
-  public void delete(User c) {
+  public void delete(User u) {
     Connection con = LocalDBConnection.connection();
     try {
       Statement stmt = con.createStatement();
-      stmt.executeUpdate("DELETE FROM users " + "WHERE id=" + c.getId());
+      stmt.executeUpdate("DELETE FROM users " + "WHERE id=" + u.getId());
     }
     catch (SQLException e) {
       e.printStackTrace();
     }
   }
 
-  public Vector<Pinnwand> getPinnwandOf(User c) {
-	    /*
-	     * Wir bedienen uns hier einfach des AccountMapper. Diesem geben wir einfach
-	     * den in dem Customer-Objekt enthaltenen Primärschlüssel.Der CustomerMapper
-	     * löst uns dann diese ID in eine Reihe von Konto-Objekten auf.
-	     */
-	    return PinnwandMapper.pinnwandMapper().findByOwner(c);
+  public Vector<Pinnwand> getPinnwandOf(User u) {
+	   
+	    return PinnwandMapper.pinnwandMapper().findByOwner(u);
 	  }
 	}
