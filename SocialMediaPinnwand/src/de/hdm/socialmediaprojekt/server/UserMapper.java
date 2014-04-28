@@ -40,8 +40,8 @@ private static UserMapper userMapper = null;
 
  
       ResultSet rs = stmt
-          .executeQuery("SELECT Uid, vorname, nachname, nichkname FROM users "
-              + "WHERE Uid=" + id + " ORDER BY lastName");
+          .executeQuery("SELECT id, vorname, nachname, nickname FROM users "
+              + "WHERE Uid=" + id + " ORDER BY nachname");
 
      
       if (rs.next()) {
@@ -71,13 +71,15 @@ private static UserMapper userMapper = null;
       Statement stmt = con.createStatement();
 
       ResultSet rs = stmt.executeQuery("SELECT id, vorname, nachname, nickname "
-          + "FROM users " + "ORDER BY lastName");
+          + "FROM users " + "ORDER BY nachname");
       while (rs.next()) {
         User u = new User();
         u.setId(rs.getInt("id"));
         u.setVorname(rs.getString("vorname"));
         u.setNachname(rs.getString("nachname"));
-        u.setNickname(rs.getString("nickanme"));
+
+        u.setNickname(rs.getString("nickname"));
+
         result.addElement(u);
       }
     }
@@ -96,7 +98,7 @@ private static UserMapper userMapper = null;
       Statement stmt = con.createStatement();
 
       ResultSet rs = stmt.executeQuery("SELECT id, vorname, nachname, nickname "
-              + "FROM users " + "ORDER BY lastName");
+              + "FROM users " + "ORDER BY nachname");
       while (rs.next()) {
         User u = new User();
         u.setId(rs.getInt("id"));
@@ -124,6 +126,8 @@ private static UserMapper userMapper = null;
         u.setId(rs.getInt("maxid") + 1);
 
         stmt = con.createStatement();
+
+
         stmt.executeUpdate ("INSERT INTO users (id, vorname, nachname, nickname) "
             + "VALUES (" + u.getId() + "," + u.getVorname() + ","
             + u.getNachname() +  "," + u.getNickname()+ ")");

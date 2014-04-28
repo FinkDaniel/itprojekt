@@ -13,16 +13,28 @@ public class TestUser {
 	
 		
 		User u = new User();
-		u.setVorname("'Patrick'");
-		u.setNachname("'Prell'");
-		u.setNickname("'Preller'");
-		UserMapper.userMapper().update(u);
+
+		u.setVorname("'Test'");
+		u.setNachname("'Peter'");
+		u.setNickname("'Maier'");
+		UserMapper.userMapper().insert(u);
+
+		
+
 		
 		Pinnwand p = new Pinnwand();
 		p.getOwnerID();
 		PinnwandMapper.pinnwandMapper().insert(p);
 			
-		
+
+		System.out.println("User-ID:"+ u.getId()
+							+ "\nVorname:"+ u.getVorname()
+							+ "\nNachname:"+ u.getNachname()
+							+ "\nNickname:"+ u.getNickname()
+							+ "\nPinnwandnummer: "+p.getId());
+							
+						
+
 }
 			
 	}

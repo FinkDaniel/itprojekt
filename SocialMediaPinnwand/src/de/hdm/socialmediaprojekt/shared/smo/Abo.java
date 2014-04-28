@@ -33,8 +33,13 @@ public class Abo extends SMObject {
   }
 
    public String toString() {
-    return super.toString() + "von Pinnwand-ID: #" + this.sourcePinnwandID
-        + "an Pinnwand-ID: #" + this.targetPinnwandID;
+
+    return super.toString() + "Der Nutzer mit der Pinnwand-ID: #" + this.sourcePinnwandID 
+    	+ "hat die Pinnwand mit der Pinnwand-ID: #" + this.targetPinnwandID + "aboniert";
+        
+
+ 
+
   }
 
 }

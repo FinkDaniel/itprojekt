@@ -35,14 +35,15 @@ public class BeitragMapper {
 
      
       ResultSet rs = stmt
-          .executeQuery("SELECT id, sourceUser, eintrag FROM beitrag "
+
+          .executeQuery("SELECT id, sourceUser, beitrag FROM beitrag "
               + "WHERE id=" + id + " ORDER BY sourceUser");
 
       if (rs.next()) {
        
         Beitrag b = new Beitrag();
         b.setId(rs.getInt("id"));
-        b.setBeitrag(rs.getString("eintrag"));
+        b.setBeitrag(rs.getString("beitrag"));
         b.setSourceUserID(rs.getInt("sourceUser"));
 
         return b;
@@ -64,13 +65,13 @@ public class BeitragMapper {
     try {
       Statement stmt = con.createStatement();
 
-      ResultSet rs = stmt.executeQuery("SELECT id, sourceUser, eintrag "
+      ResultSet rs = stmt.executeQuery("SELECT id, sourceUser, beitrag "
           + "FROM beitrag " + "ORDER BY sourceUser");
 
         while (rs.next()) {
         Beitrag b = new Beitrag();
         b.setId(rs.getInt("id"));
-        b.setBeitrag(rs.getString("eintrag"));
+        b.setBeitrag(rs.getString("beitrag"));
         b.setSourceUserID(rs.getInt("sourceUser"));
 
        
@@ -92,15 +93,15 @@ public class BeitragMapper {
     try {
       Statement stmt = con.createStatement();
 
-      ResultSet rs = stmt.executeQuery("SELECT id, sourceUser, eintrag "
-          + "FROM beitrag " + "WHERE sourceUser LIKE '" + sourceID
-          + "' ORDER BY sourceUser");
+      ResultSet rs = stmt.executeQuery("SELECT id, sourceUser, beitrag "
+          + "FROM beitrag " + "WHERE sourceUser" + sourceID
+          + "ORDER BY sourceUser");
 
       
       while (rs.next()) {
         Beitrag b = new Beitrag();
         b.setId(rs.getInt("id"));
-        b.setBeitrag(rs.getString("eintrag"));
+        b.setBeitrag(rs.getString("beitrag"));
         b.setSourceUserID(rs.getInt("sourceID"));
       
         result.addElement(b);
@@ -113,6 +114,36 @@ public class BeitragMapper {
     return result;
   }
 
+  public Vector<Beitrag> findByBeitrag(String beitrag) {
+	    Connection con = LocalDBConnection.connection();
+	    Vector<Beitrag> result = new Vector<Beitrag>();
+
+	    try {
+	      Statement stmt = con.createStatement();
+
+	      ResultSet rs = stmt.executeQuery("SELECT id, sourceUser, beitrag FROM beitrag "
+	              + "WHERE sourceUser=" + beitrag + " ORDER BY id");
+	    		  
+//	    		  ("SELECT id, sourceUser, beitrag "
+//	          + "FROM beitrag " + "WHERE sourceUser" + id
+//	          + "ORDER BY id");
+
+      
+	      while (rs.next()) {
+	        Beitrag b = new Beitrag();
+	        b.setId(rs.getInt("id"));
+	        b.setBeitrag(rs.getString("beitrag"));
+	        b.setSourceUserID(rs.getInt("sourceID"));
+	      
+	        result.addElement(b);
+	      }
+	    }
+	    catch (SQLException e) {
+	      e.printStackTrace();
+	    }
+
+	    return result;
+	  }
   public Beitrag insert(Beitrag b) {
     Connection con = LocalDBConnection.connection();
 
@@ -128,7 +159,7 @@ public class BeitragMapper {
 
         stmt = con.createStatement();
 
-        stmt.executeUpdate("INSERT INTO beitrag (id, eintrag, sourceUser) "
+        stmt.executeUpdate("INSERT INTO beitrag (id, beitrag, sourceUser) "
             + "VALUES (" + b.getId() + ",'" + b.getBeitrag() + "','"
             + b.getSourceUserID() + "')");
       }
@@ -146,7 +177,7 @@ public class BeitragMapper {
     try {
       Statement stmt = con.createStatement();
 
-      stmt.executeUpdate("UPDATE beitrag " + "SET eintrag=\""
+      stmt.executeUpdate("UPDATE beitrag " + "SET beitrag=\""
           + b.getBeitrag() + "\", " + "sourceID=\"" + b.getSourceUserID() + "\" "
           + "WHERE id=" + b.getId());
 
@@ -178,3 +209,4 @@ public class BeitragMapper {
 	    		
   }
 }
+
