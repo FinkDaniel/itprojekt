@@ -200,9 +200,9 @@ public class PinnwandMapper {
   }
 
  
-  public User getOwner(User u) {
+  public User getOwner(Pinnwand u) {
    
-	  return UserMapper.userMapper().findByKey(u.getId());
+	  return UserMapper.userMapper().findByKey(u.getOwnerID());
   }
 
 }

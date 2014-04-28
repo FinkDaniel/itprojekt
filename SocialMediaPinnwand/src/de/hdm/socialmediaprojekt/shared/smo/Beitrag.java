@@ -31,7 +31,9 @@ public class Beitrag extends SMObject {
   
   
   public String toString() {
-	  	return super.toString() + " " + this.beitrag+ " " + this.sourceUserID;
+	  	return super.toString() 
+	  	+"Der Nutzer mit der User-ID: #" + this.sourceUserID 
+	   	+ "hat den Beitrag mit der Beitrags-ID: #" + this.beitrag + "verfasst";  			
   }
 
 }
