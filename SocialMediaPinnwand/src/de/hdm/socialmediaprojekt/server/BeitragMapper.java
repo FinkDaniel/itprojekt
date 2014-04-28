@@ -32,11 +32,8 @@ public class BeitragMapper {
     try {
       
       Statement stmt = con.createStatement();
-
-     
       ResultSet rs = stmt
-
-          .executeQuery("SELECT id, sourceUser, beitrag FROM beitrag "
+    		  .executeQuery("SELECT id, sourceUser, beitrag FROM beitrag "
               + "WHERE id=" + id + " ORDER BY sourceUser");
 
       if (rs.next()) {

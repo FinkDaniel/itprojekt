@@ -202,7 +202,9 @@ public class PinnwandMapper {
  
 
   public User getOwner(Pinnwand u) {
-return UserMapper.userMapper().findByKey(u.getOwnerID());
+   
+	  return UserMapper.userMapper().findByKey(u.getOwnerID());
+
   }
   
 public User getOwner(User u) {

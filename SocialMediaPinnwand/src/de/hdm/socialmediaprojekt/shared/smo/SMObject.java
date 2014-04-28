@@ -1,13 +1,15 @@
 package de.hdm.socialmediaprojekt.shared.smo;
 
 import java.util.Date;
+import java.io.Serializable;
 
-public abstract class SMObject {
+public abstract class SMObject implements Serializable {
+
+	  private static final long serialVersionUID = 1L;
 
 	  private int id = 0;
-	  private long time = System.currentTimeMillis();
-	  private Date erstellungsdatum = new Date(this.time);
-
+	  private Date erstellungsdatum = new Date();
+	  
 	  public int getId() {
 		    return this.id;
 		  }
@@ -16,15 +18,10 @@ public abstract class SMObject {
 		    this.id = id;
 		  }
 	  
-		  
 	  public Date getErstellungsdatum(){
 		  	return this.erstellungsdatum;
 	  }
-
-	  public void setErstellungsdatum(long time){
-		  	erstellungsdatum = new Date(this.time);
-	  }
-
+	  
 	  public boolean equals(Object o){
 		  if (o != null && o instanceof SMObject) {
 		      SMObject bo = (SMObject) o;
@@ -33,17 +30,17 @@ public abstract class SMObject {
 		          return true;
 		      }
 		      catch (IllegalArgumentException e) {
-
+		
 		        return false;
 		      }
 		  }
 		  return false;
 	  }	
-
+	  
 	  public String toString() {
 		    return this.getClass().getName() + " #" + this.id;
 	  }
-
+	  
 	  public int hashCode() {
 		  return this.id;
 	  }

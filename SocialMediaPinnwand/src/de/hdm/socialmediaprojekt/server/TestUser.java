@@ -14,12 +14,13 @@ public class TestUser {
 		
 		User u = new User();
 
+
 		u.setVorname("'Test'");
 		u.setNachname("'Peter'");
 		u.setNickname("'Maier'");
 		UserMapper.userMapper().insert(u);
 
-		
+
 
 		
 		Pinnwand p = new Pinnwand();
@@ -34,6 +35,7 @@ public class TestUser {
 							+ "\nPinnwandnummer: "+p.getId());
 							
 						
+
 
 }
 			

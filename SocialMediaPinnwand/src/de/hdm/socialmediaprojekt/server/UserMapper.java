@@ -77,8 +77,8 @@ private static UserMapper userMapper = null;
         u.setId(rs.getInt("id"));
         u.setVorname(rs.getString("vorname"));
         u.setNachname(rs.getString("nachname"));
-
         u.setNickname(rs.getString("nickname"));
+
 
         result.addElement(u);
       }
@@ -127,9 +127,8 @@ private static UserMapper userMapper = null;
 
         stmt = con.createStatement();
 
-
-        stmt.executeUpdate ("INSERT INTO users (id, vorname, nachname, nickname) "
-            + "VALUES (" + u.getId() + "," + u.getVorname() + ","
+        stmt.executeUpdate ("INSERT INTO users(id, vorname, nachname, nickname) "
+            + "VALUES  (" + u.getId() + "," + u.getVorname() + ","
             + u.getNachname() +  "," + u.getNickname()+ ")");
            }
     }
