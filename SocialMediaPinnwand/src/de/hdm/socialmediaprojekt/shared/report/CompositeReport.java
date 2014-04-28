@@ -17,7 +17,7 @@ public class CompositeReport extends Report implements Serializable {
 		this.subReports.remove(r);
 	}
 	
-	public int getReports(){
+	public int getAnzahlVonReports(){
 		return this.subReports.size();
 	}
 	
