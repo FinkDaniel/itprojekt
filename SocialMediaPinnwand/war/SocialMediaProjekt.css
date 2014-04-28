@@ -10,6 +10,7 @@ h1 {
   text-align: center;
 }
 .MeinePinnwandButton {
+	display: block;
 	color:#919191;
 }
 
