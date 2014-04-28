@@ -6,7 +6,7 @@ import de.hdm.socialmediaprojekt.shared.smo.SMObject;
 
 public class Pinnwand extends SMObject {
 
-  //private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
   private int ownerID = 0;
 

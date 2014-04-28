@@ -3,7 +3,7 @@ package de.hdm.socialmediaprojekt.shared.smo;
 
 public class Abo extends SMObject {
 
-  //private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
   
   
