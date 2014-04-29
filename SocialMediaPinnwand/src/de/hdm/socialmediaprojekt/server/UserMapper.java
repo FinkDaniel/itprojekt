@@ -41,7 +41,7 @@ private static UserMapper userMapper = null;
  
       ResultSet rs = stmt
           .executeQuery("SELECT id, vorname, nachname, nickname FROM users "
-              + "WHERE Uid=" + id + " ORDER BY nachname");
+              + "WHERE id=" + id + " ORDER BY nachname");
 
      
       if (rs.next()) {
@@ -169,6 +169,6 @@ private static UserMapper userMapper = null;
 
   public Vector<Pinnwand> getPinnwandOf(User u) {
 	   
-	    return PinnwandMapper.pinnwandMapper().findByOwner(u);
+	    return PinnwandMapper.pinnwandMapper().findBySourceUser(u);
 	  }
 	}

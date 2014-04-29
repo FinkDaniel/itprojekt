@@ -1,42 +1,29 @@
 package de.hdm.socialmediaprojekt.server;
 
-
-import de.hdm.socialmediaprojekt.shared.smo.User;
-import de.hdm.socialmediaprojekt.server.UserMapper;
-import de.hdm.socialmediaprojekt.shared.smo.Pinnwand;
+import de.hdm.socialmediaprojekt.shared.smo.*;
 
 public class TestUser {
 
 	
-	
 	public static void main(String[] args){
 	
-		
-		User u = new User();
+		    User u = new User();
+		    u.setVorname("'Isabell'");
+		    u.setNachname("'Feininger'");
+		    u.setNickname("'Isabelle'");
+		    u.setId(1);
+		    System.out.println(UserMapper.userMapper().insert(u));
+		  
+		    Pinnwand p = new Pinnwand();
+		    p.setSourceUserID(u.getId());
+		    p.setId(1);
 
-
-		u.setVorname("'Test'");
-		u.setNachname("'Peter'");
-		u.setNickname("'Maier'");
-		UserMapper.userMapper().insert(u);
-
-
-
-		
-		Pinnwand p = new Pinnwand();
-		p.getOwnerID();
-		PinnwandMapper.pinnwandMapper().insert(p);
-			
-
-		System.out.println("User-ID:"+ u.getId()
-							+ "\nVorname:"+ u.getVorname()
-							+ "\nNachname:"+ u.getNachname()
-							+ "\nNickname:"+ u.getNickname()
-							+ "\nPinnwandnummer: "+p.getId());
-							
-						
-
-
+		    System.out.println(PinnwandMapper.pinnwandMapper().insert(p));
+		    System.out.println("User-ID:"+ u.getId()
+					+ "\nVorname:"+ u.getVorname()
+					+ "\nNachname:"+ u.getNachname()
+					+ "\nNickname:"+ u.getNickname()
+					+ "\nPinnwandnummer: "+p.getId());
+		  }
+	
 }
-			
-	}

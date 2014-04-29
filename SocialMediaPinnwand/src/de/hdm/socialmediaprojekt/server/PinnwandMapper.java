@@ -34,15 +34,15 @@ public class PinnwandMapper {
       Statement stmt = con.createStatement();
 
    
-      ResultSet rs = stmt.executeQuery("SELECT id, owner FROM pinnwand "
-          + "WHERE id=" + id + " ORDER BY owner");
+      ResultSet rs = stmt.executeQuery("SELECT id, sourceUser FROM pinnwand "
+          + "WHERE id=" + id + " ORDER BY sourceUser");
 
       
       if (rs.next()) {
       
         Pinnwand a = new Pinnwand();
         a.setId(rs.getInt("id"));
-        a.setOwnerID(rs.getInt("owner"));
+        a.setSourceUserID(rs.getInt("sourceUser"));
         return a;
       }
     }
@@ -64,13 +64,13 @@ public class PinnwandMapper {
     try {
       Statement stmt = con.createStatement();
 
-      ResultSet rs = stmt.executeQuery("SELECT id, owner FROM pinnwand "
+      ResultSet rs = stmt.executeQuery("SELECT id, sourceUser FROM pinnwand "
           + " ORDER BY id");
 
             while (rs.next()) {
         Pinnwand p = new Pinnwand();
         p.setId(rs.getInt("id"));
-        p.setOwnerID(rs.getInt("owner"));
+        p.setSourceUserID(rs.getInt("sourceUser"));
 
        
         result.addElement(p);
@@ -85,21 +85,21 @@ public class PinnwandMapper {
   }
 
   
-  public Vector<Pinnwand> findByOwner(int ownerid) {
+  public Vector<Pinnwand> findBySourceUser(int sourceID) {
     Connection con = LocalDBConnection.connection();
     Vector<Pinnwand> result = new Vector<Pinnwand>();
 
     try {
       Statement stmt = con.createStatement();
 
-      ResultSet rs = stmt.executeQuery("SELECT id, owner FROM pinnwand "
-          + "WHERE owner=" + ownerid + " ORDER BY id");
+      ResultSet rs = stmt.executeQuery("SELECT id, sourceUser FROM pinnwand "
+          + "WHERE sourceUser=" + sourceID + " ORDER BY id");
 
       
       while (rs.next()) {
     	Pinnwand p = new Pinnwand();
         p.setId(rs.getInt("id"));
-        p.setOwnerID(rs.getInt("owner"));
+        p.setSourceUserID(rs.getInt("sourceUser"));
 
         
         result.addElement(p);
@@ -114,10 +114,10 @@ public class PinnwandMapper {
   }
 
   
-  public Vector<Pinnwand> findByOwner(User owner) {
+  public Vector<Pinnwand> findBySourceUser(User sourceUser) {
 
     
-    return findByOwner(owner.getId());
+    return findBySourceUser(sourceUser.getId());
   }
 
  
@@ -139,8 +139,8 @@ public class PinnwandMapper {
         stmt = con.createStatement();
 
         
-        stmt.executeUpdate("INSERT INTO pinnwand (id, owner) " + "VALUES ("
-            + p.getId() + "," + p.getId() + ")");
+        stmt.executeUpdate("INSERT INTO pinnwand (id, sourceUser) " + "VALUES ("
+            + p.getId()+ "," + p.getSourceUserID() + ")");
       }
     }
     catch (SQLException e2) {
@@ -158,7 +158,7 @@ public class PinnwandMapper {
     try {
       Statement stmt = con.createStatement();
 
-      stmt.executeUpdate("UPDATE pinnwand " + "SET owner=\"" + p.getId()
+      stmt.executeUpdate("UPDATE pinnwand " + "SET sourceUser=\"" + p.getSourceUserID()
           + "\" " + "WHERE id=" + p.getId());
 
     }
@@ -191,7 +191,7 @@ public class PinnwandMapper {
     try {
       Statement stmt = con.createStatement();
 
-      stmt.executeUpdate("DELETE FROM pinnwand " + "WHERE owner=" + u.getId());
+      stmt.executeUpdate("DELETE FROM pinnwand " + "WHERE sourceUser=" + u.getId());
 
     }
     catch (SQLException e2) {
@@ -201,16 +201,17 @@ public class PinnwandMapper {
 
  
 
-  public User getOwner(Pinnwand u) {
+// public User getOwner(Pinnwand u) {
    
-	  return UserMapper.userMapper().findByKey(u.getOwnerID());
+//  return UserMapper.userMapper().findByKey(u.getId());
 
-  }
+//  }
   
-public User getOwner(User u) {
-	 return UserMapper.userMapper().findByKey(u.getId());
+public User getSourceUser(Pinnwand p) {
+	 return UserMapper.userMapper().findByKey(p.getSourceUserID());
 
 
-	  }
+	  
 
+}
 }
