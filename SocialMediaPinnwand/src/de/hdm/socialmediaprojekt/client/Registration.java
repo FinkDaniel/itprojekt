@@ -2,6 +2,7 @@ package de.hdm.socialmediaprojekt.client;
 
 
 import com.google.appengine.api.users.User;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
@@ -18,17 +19,24 @@ import com.google.gwt.event.dom.client.MouseDownEvent;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.user.client.Window;
 
+import de.hdm.socialmediaprojekt.shared.PinnwandVerwaltungAsync;
 import de.hdm.socialmediaprojekt.shared.smo.*;
-import de.hdm.socialmediaprojekt.server.db.*;
+import de.hdm.socialmediaprojekt.server.*;
+import de.hdm.socialmediaprojekt.client.ClientSideSettings;
 
 public class Registration extends Composite {
+	
 	FlowPanel panel = new FlowPanel();
+	PinnwandVerwaltungAsync pinnwandVerwaltung = ClientSideSettings.getPinnwandVerwaltung();
+	UserAccountsTreeViewModel catvm = null;
 	
 	public Registration() {
 		panel.setPixelSize(300, 300);
 		initWidget(panel);
 		registrieren();
 		
+		
+	
 	}
 
 	private void registrieren() {
@@ -54,11 +62,7 @@ public class Registration extends Composite {
 				Window.alert("Folgende Angaben wurden gemacht.. \n\nVorname:" +vorname.getText()+"\nNachname:"+nachname.getText()+"\nNickname: "+nickname.getText());
 				
 //				Implementierung der Werte in die Datenbank
-				
-//				erfolgt wie im Beispiel TestUser.java
-				
-				
-				
+				pinnwandVerwaltung.createUser(vorname.getText(), nachname.getText(), nickname.getText(), new CreateUserCallback());
 				
 				
 			}

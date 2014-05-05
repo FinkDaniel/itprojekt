@@ -20,8 +20,8 @@ import com.google.gwt.event.dom.client.MouseDownEvent;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.user.client.Window;
 
-import de.hdm.socialmediaprojekt.shared.smo.*;
-import de.hdm.socialmediaprojekt.server.db.*;
+import de.hdm.socialmediaprojekt.shared.*;
+
 
 public class Login extends Composite {
 	FlowPanel panel = new FlowPanel();
@@ -59,7 +59,6 @@ public class Login extends Composite {
 				
 //				erfolgt wie im Beispiel TestUser.java
 				
-				User u = new User();
 				
 				
 				
