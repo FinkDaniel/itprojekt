@@ -1,5 +1,7 @@
 package de.hdm.socialmediaprojekt.newserver;
 
+import java.util.Vector;
+
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 import de.hdm.socialmediaprojekt.server.db.*;
@@ -48,4 +50,56 @@ public class SocialMediaPiwanndVerwaltungImpl extends RemoteServiceServlet imple
 		uMapper.update(u);
 	}
 	
+	public Vector<User> getUserByNachname(String nachname) throws IllegalArgumentException{
+		
+	return this.uMapper.findByNachname(nachname);
+	}
+	
+
+	
+	// "Find" by ID -Methoden für Alle SMOs
+	
+	public User getUserById(int id) throws IllegalArgumentException{
+		return this.uMapper.findByKey(id);
+	}
+	public Abo getAboById(int id) throws IllegalArgumentException{
+		return this.aMapper.findByKey(id);
+	}
+	public Pinnwand getPinnwandById(int id) throws IllegalArgumentException{
+		return this.pMapper.findByKey(id);
+	}
+	public Beitrag getBeitragById(int id) throws IllegalArgumentException{
+		return this.bMapper.findByKey(id);
+	}
+	public Like getLikeById(int id) throws IllegalArgumentException{
+		return this.lMapper.findByKey(id);
+	}
+	public Kommentar getKommentarById(int id) throws IllegalArgumentException{
+		return this.kMapper.findByKey(id);
+	}
+	
+	// "FIND ALL"- Methoden für alle SMOs
+	// alle Methodennamen sind im Singular gehalten.
+	
+	public Vector<User> getAllUser() throws IllegalArgumentException{
+		return this.uMapper.findAll();
+	}
+	public Vector<Pinnwand> getAllPinnwand() throws IllegalArgumentException{
+		return this.pMapper.findAll();
+	}
+	public Vector<Like> getAllLike() throws IllegalArgumentException{
+		return this.lMapper.findAll();
+	}
+	public Vector<Kommentar> getAllKommentar() throws IllegalArgumentException{
+		return this.kMapper.findAll();
+	}
+	public Vector<Beitrag> getAllBeitrag() throws IllegalArgumentException{
+		return this.bMapper.findAll();
+	}
+	public Vector<Abo> getAllAbo() throws IllegalArgumentException{
+		return this.aMapper.findAll();
+	}
+	
+	
 }
+
