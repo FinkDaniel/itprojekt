@@ -56,8 +56,6 @@ public class SocialMediaProjekt implements EntryPoint {
 			
 		});
 		
-		
-		
 	}
 	
 }

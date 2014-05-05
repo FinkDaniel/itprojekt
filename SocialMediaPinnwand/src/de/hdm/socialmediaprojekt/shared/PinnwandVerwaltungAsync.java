@@ -10,5 +10,9 @@ public interface PinnwandVerwaltungAsync {
 	
 	void createUser(String vorname, String nachname, String nickname, AsyncCallback<User> callback);
 	
+	void init(AsyncCallback<Void> callback);
+	
+		
+	}
 
-}
+

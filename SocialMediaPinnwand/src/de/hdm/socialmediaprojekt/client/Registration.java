@@ -28,7 +28,7 @@ public class Registration extends Composite {
 	
 	FlowPanel panel = new FlowPanel();
 	PinnwandVerwaltungAsync pinnwandVerwaltung = ClientSideSettings.getPinnwandVerwaltung();
-	UserAccountsTreeViewModel catvm = null;
+	//UserAccountsTreeViewModel catvm = null;
 	
 	public Registration() {
 		panel.setPixelSize(300, 300);
@@ -36,7 +36,6 @@ public class Registration extends Composite {
 		registrieren();
 		
 		
-	
 	}
 
 	private void registrieren() {
@@ -62,7 +61,11 @@ public class Registration extends Composite {
 				Window.alert("Folgende Angaben wurden gemacht.. \n\nVorname:" +vorname.getText()+"\nNachname:"+nachname.getText()+"\nNickname: "+nickname.getText());
 				
 //				Implementierung der Werte in die Datenbank
-				pinnwandVerwaltung.createUser(vorname.getText(), nachname.getText(), nickname.getText(), new CreateUserCallback());
+				String vnam = vorname.getText();
+				String nanam = nachname.getText();
+				String niname = nickname.getText();
+				
+				pinnwandVerwaltung.createUser(vnam, nanam, niname, new CreateUserCallback());
 				
 				
 			}

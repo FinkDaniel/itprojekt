@@ -12,6 +12,11 @@ public class SocialMediaPiwanndVerwaltungImpl extends RemoteServiceServlet imple
 	private static final long serialVersionUID = 1L;
 	
 	private UserMapper uMapper = null;
+	private BeitragMapper bMapper = null;
+	private PinnwandMapper pMapper = null;
+	private KommentarMapper kMapper = null;
+	private AboMapper aMapper = null;
+	private LikeMapper lMapper = null;
 	
 	public User createUser(String vorname, String nachname, String nickname) throws IllegalArgumentException {
 		
@@ -24,6 +29,23 @@ public class SocialMediaPiwanndVerwaltungImpl extends RemoteServiceServlet imple
 		return this.uMapper.insert(u);
 		
 	}
+	public SocialMediaPiwanndVerwaltungImpl() throws IllegalArgumentException{
+		
+	}
 	
+	public void init() throws IllegalArgumentException {
+		this.uMapper = UserMapper.userMapper();
+		this.bMapper = BeitragMapper.beitragMapper();
+		this.pMapper = PinnwandMapper.pinnwandMapper();
+		this.kMapper = KommentarMapper.kommentarMapper();
+		this.aMapper = AboMapper.aboMapper();
+		this.lMapper = LikeMapper.likeMapper();
+		
+		
+		
+	}
+	public void save(User u) throws IllegalArgumentException {
+		uMapper.update(u);
+	}
 	
 }
