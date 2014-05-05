@@ -1,4 +1,4 @@
-package de.hdm.socialmediaprojekt.server;
+package de.hdm.socialmediaprojekt.server.db;
 
 import java.sql.*;
 import java.util.Vector;

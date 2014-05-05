@@ -32,6 +32,30 @@ public class HTMLReportWriter extends ReportWriter {
 	public String paragraph2HTML (SimpleParagraph p){
 		return "<p>" + p.toString() + "<p>";
 	}
+
+	@Override
+	public void process(AlleInfosVonEinemUserReport r) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void process(AlleInfosVonEinemBeitragReport r) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void process(AlleInfosVonAllenUsernReport r) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void process(AlleInfosVonAllenBeitraegenReport r) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	
 

@@ -1,4 +1,4 @@
-package de.hdm.socialmediaprojekt.server;
+package de.hdm.socialmediaprojekt.server.db;
 
 import de.hdm.socialmediaprojekt.shared.smo.*;
 

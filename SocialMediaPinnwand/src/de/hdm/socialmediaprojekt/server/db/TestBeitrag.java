@@ -1,7 +1,7 @@
-package de.hdm.socialmediaprojekt.server;
+package de.hdm.socialmediaprojekt.server.db;
 
 import de.hdm.socialmediaprojekt.shared.smo.Beitrag;
-import de.hdm.socialmediaprojekt.server.BeitragMapper;
+import de.hdm.socialmediaprojekt.server.db.BeitragMapper;
 
 public class TestBeitrag {
 

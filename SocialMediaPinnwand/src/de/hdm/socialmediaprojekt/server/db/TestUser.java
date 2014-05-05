@@ -1,4 +1,4 @@
-package de.hdm.socialmediaprojekt.server;
+package de.hdm.socialmediaprojekt.server.db;
 
 import de.hdm.socialmediaprojekt.shared.smo.*;
 
@@ -10,7 +10,7 @@ public class TestUser {
 		    User u = new User();
 		    u.setVorname("'Isabell'");
 		    u.setNachname("'Feininger'");
-		    u.setNickname("'Isabelle'");
+		    u.setNickname("'IsabelleDIESCHRECKLICHE'");
 		    u.setId(1);
 		    System.out.println(UserMapper.userMapper().insert(u));
 		  
