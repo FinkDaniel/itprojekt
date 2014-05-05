@@ -54,6 +54,33 @@ public class SocialMediaPiwanndVerwaltungImpl extends RemoteServiceServlet imple
 		
 	return this.uMapper.findByNachname(nachname);
 	}
+	// getbySourceUser Methoden
+	
+	public Vector<Kommentar> getKommentarBySourceUser(int sourceId) throws IllegalArgumentException{
+		return this.kMapper.findBySourceUser(sourceId);
+	}
+	public Vector<Pinnwand> getPinnwandBySourceUser(int sourceId) throws IllegalArgumentException{
+		return this.pMapper.findBySourceUser(sourceId);
+	}
+	public Vector<Beitrag> getBeitragBySourceUser(int sourceId) throws IllegalArgumentException{
+		return this.bMapper.findBySourceUser(sourceId);
+	}
+	public Vector<Like> getLikeBySourceUser(int sourceId) throws IllegalArgumentException{
+		return this.lMapper.findBySourceUser(sourceId);
+	}
+	
+	public Vector<Like> getLikeByTargetBeitrag(int beitragId) throws IllegalArgumentException{
+		return this.lMapper.findByTargetBeitrag(beitragId);
+	}
+	public Vector<Abo> getAboBySourcePinnwand(int pinnwandId) throws IllegalArgumentException{
+		return this.aMapper.findBySourcePinnwand(pinnwandId);
+	}	
+	public Vector<Abo> getAboByTargetPinnwand(int pinnwandId) throws IllegalArgumentException{
+		return this.aMapper.findByTargetPinnwand(pinnwandId);
+	}
+	
+	
+	
 	
 
 	

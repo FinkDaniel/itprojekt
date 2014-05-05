@@ -22,7 +22,17 @@ public interface PinnwandVerwaltungAsync {
 	void getUserByNachname(String nachname, AsyncCallback<Vector<User>> callback);
 	
 	void getUserById(int id, AsyncCallback<User> callback);
-
+	
+	// getbySourceUser Methoden
+	
+	void getKommentarBySourceUser(int sourceId, AsyncCallback<Vector<Kommentar>> callback);
+	void getPinnwandBySourceUser(int sourceId, AsyncCallback<Vector<Pinnwand>> callback);
+	void getBeitragBySourceUser(int sourceId, AsyncCallback<Vector<Beitrag>> callback);
+	void getLikeBySourceUser(int sourceId, AsyncCallback<Vector<Like>> callback);
+	void getLikeByTargetBeitrag(int beitragId, AsyncCallback<Vector<Like>> callback);
+	void getAboBySourcePinnwand(int pinnwandId, AsyncCallback<Vector<Abo>> callback);
+	void getAboByTargetPinnwand(int pinnwandId, AsyncCallback<Vector<Abo>> callback);
+	
 	// "Find" by ID -Methoden für Alle SMOs
 	
 	void getAboById(int id, AsyncCallback<Abo> callback);
