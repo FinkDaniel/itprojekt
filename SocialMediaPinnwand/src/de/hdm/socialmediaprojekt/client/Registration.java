@@ -3,6 +3,7 @@ package de.hdm.socialmediaprojekt.client;
 
 import com.google.appengine.api.users.User;
 import com.google.gwt.user.client.rpc.AsyncCallback;
+import com.google.gwt.user.client.rpc.ServiceDefTarget;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
@@ -25,6 +26,8 @@ import de.hdm.socialmediaprojekt.server.*;
 import de.hdm.socialmediaprojekt.client.ClientSideSettings;
 
 public class Registration extends Composite {
+	
+	
 	
 	FlowPanel panel = new FlowPanel();
 	PinnwandVerwaltungAsync pinnwandVerwaltung = ClientSideSettings.getPinnwandVerwaltung();

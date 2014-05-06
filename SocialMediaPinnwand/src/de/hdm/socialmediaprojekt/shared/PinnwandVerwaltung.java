@@ -12,17 +12,17 @@ import de.hdm.socialmediaprojekt.shared.smo.Pinnwand;
 import de.hdm.socialmediaprojekt.shared.smo.User;
 
 public interface PinnwandVerwaltung extends RemoteService {
-	
+
 	public void init() throws IllegalArgumentException;
-	
+
 	public User createUser(String vorname, String nachname, String nickname) throws IllegalArgumentException;
-	
+
 	public void save(User u) throws IllegalArgumentException;
-	
+
 	public Vector<User> getUserByNachname(String nachname) throws IllegalArgumentException;
-	
+
 	// getbySourceUser Methoden
-	
+
 	public Vector<Kommentar> getKommentarBySourceUser(int sourceId) throws IllegalArgumentException;
 	public Vector<Pinnwand> getPinnwandBySourceUser(int sourceId) throws IllegalArgumentException;
 	public Vector<Beitrag> getBeitragBySourceUser(int sourceId) throws IllegalArgumentException;
@@ -31,43 +31,43 @@ public interface PinnwandVerwaltung extends RemoteService {
 	public Vector<Abo> getAboBySourcePinnwand(int pinnwandId) throws IllegalArgumentException;
 	public Vector<Abo> getAboByTargetPinnwand(int pinnwandId) throws IllegalArgumentException;
 	public Vector<Kommentar> getKommentarByTargetBeitrag(int beitragId) throws IllegalArgumentException;
-	
-	// "Find" by ID -Methoden für Alle SMOs
-	
+
+	// "Find" by ID -Methoden fÃ¼r Alle SMOs
+
 	public User getUserById(int id) throws IllegalArgumentException;
-	
+
 	public Abo getAboById(int id) throws IllegalArgumentException;
-	
+
 	public Pinnwand getPinnwandById(int id) throws IllegalArgumentException;
-	
+
 	public Beitrag getBeitragById(int id) throws IllegalArgumentException;
-	
+
 	public Like getLikeById(int id) throws IllegalArgumentException;
-	
+
 	public Kommentar getKommentarById(int id) throws IllegalArgumentException;
-	
-	// "FIND ALL"- Methoden für alle SMOs
+
+	// "FIND ALL"- Methoden fÃ¼r alle SMOs
 	// alle Methodennamen sind im Singular gehalten.
-	
+
 	public Vector<User> getAllUser() throws IllegalArgumentException;
-	
+
 	public Vector<Pinnwand> getAllPinnwand() throws IllegalArgumentException;
-	
+
 	public Vector<Like> getAllLike() throws IllegalArgumentException;
-	
+
 	public Vector<Kommentar> getAllKommentar() throws IllegalArgumentException;
-	
+
 	public Vector<Beitrag> getAllBeitrag() throws IllegalArgumentException;
-	
+
 	public Vector<Abo> getAllAbo() throws IllegalArgumentException;
-	
+
 	//create methoden
 	public Abo createAbo(int sourcePinnwand, int targetPinnwand) throws IllegalArgumentException;
 	public Pinnwand createPinnwand(int sourceUser) throws IllegalArgumentException;
 	public Kommentar createKommentar(String text, int sourceUser, int targetBeitrag) throws IllegalArgumentException;
 	public Like createLike(int sourceUser, int targetBeitrag) throws IllegalArgumentException;
 	public Beitrag createBeitrag(String text, int sourceUser) throws IllegalArgumentException;
-	
+
 	//delete methoden
 	public User deleteUser(User u) throws IllegalArgumentException;
 	public void deleteAbo(Abo a) throws IllegalArgumentException;
@@ -75,9 +75,9 @@ public interface PinnwandVerwaltung extends RemoteService {
 	public void deleteKommentar(Kommentar k)throws IllegalArgumentException;
 	public void deleteLike(Like l) throws IllegalArgumentException;
 	public void deleteBeitrag(Beitrag b) throws IllegalArgumentException;
-	
+
 	//update methoden
 	public void save(Beitrag b) throws IllegalArgumentException;
 	public void save(Kommentar k) throws IllegalArgumentException;
-	
+
 }
