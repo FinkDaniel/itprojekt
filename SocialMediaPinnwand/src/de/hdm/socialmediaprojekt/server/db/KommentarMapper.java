@@ -181,4 +181,10 @@ public class KommentarMapper {
 	    
 	    return BeitragMapper.beitragMapper().findByKey(k.getTargetBeitragID());
   }
+
+
+public Vector<Kommentar> findByTargetBeitrag(int beitragId) {
+	// TODO Auto-generated method stub
+	return null;
+}
 }
