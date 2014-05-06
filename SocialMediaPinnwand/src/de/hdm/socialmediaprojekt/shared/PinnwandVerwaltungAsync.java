@@ -51,6 +51,39 @@ public interface PinnwandVerwaltungAsync {
 	void getAllBeitrag(AsyncCallback<Vector<Beitrag>> callback);
 	void getAllAbo(AsyncCallback<Vector<Abo>> callback);
 
+	void getKommentarByTargetBeitrag(int beitragId,
+			AsyncCallback<Vector<Kommentar>> callback);
+
+	void createAbo(int sourcePinnwand, int targetPinnwand,
+			AsyncCallback<Abo> callback);
+
+	void createPinnwand(int sourceUser, AsyncCallback<Pinnwand> callback);
+
+	void createKommentar(String text, int sourceUser, int targetBeitrag,
+			AsyncCallback<Kommentar> callback);
+
+	void createLike(int sourceUser, int targetBeitrag,
+			AsyncCallback<Like> callback);
+
+	void createBeitrag(String text, int sourceUser,
+			AsyncCallback<Beitrag> callback);
+
+	void deleteUser(User u, AsyncCallback<User> callback);
+
+	void deleteAbo(Abo a, AsyncCallback<Void> callback);
+
+	void deletePinnwand(Pinnwand p, AsyncCallback<Void> callback);
+
+	void deleteKommentar(Kommentar k, AsyncCallback<Void> callback);
+
+	void deleteLike(Like l, AsyncCallback<Void> callback);
+
+	void deleteBeitrag(Beitrag b, AsyncCallback<Void> callback);
+
+	void save(Beitrag b, AsyncCallback<Void> callback);
+
+	void save(Kommentar k, AsyncCallback<Void> callback);
+
 
 	}
 
