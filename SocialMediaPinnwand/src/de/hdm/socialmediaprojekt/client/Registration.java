@@ -18,11 +18,12 @@ import com.google.gwt.event.dom.client.MouseDownHandler;
 import com.google.gwt.event.dom.client.MouseDownEvent;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.user.client.Window;
-
+import com.google.gwt.user.client.ui.RootPanel;
 import de.hdm.socialmediaprojekt.shared.PinnwandVerwaltungAsync;
 import de.hdm.socialmediaprojekt.shared.smo.*;
 import de.hdm.socialmediaprojekt.server.*;
 import de.hdm.socialmediaprojekt.client.ClientSideSettings;
+import de.hdm.socialmediaprojekt.client.SocialMediaProjekt;
 
 public class Registration extends Composite {
 	
@@ -34,8 +35,6 @@ public class Registration extends Composite {
 		panel.setPixelSize(300, 300);
 		initWidget(panel);
 		registrieren();
-		
-		
 	}
 
 	private void registrieren() {
@@ -66,7 +65,9 @@ public class Registration extends Composite {
 				String niname = nickname.getText();
 				
 				pinnwandVerwaltung.createUser(vnam, nanam, niname, new CreateUserCallback());
-				
+				//* Bereinigung des Panels
+				panel.clear();
+				RootPanel.get("h1").clear();
 				
 			}
 			

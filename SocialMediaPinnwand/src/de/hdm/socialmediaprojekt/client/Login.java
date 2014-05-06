@@ -6,6 +6,7 @@ import java.awt.Dialog;
 import com.google.appengine.api.users.User;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FlowPanel;
+import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.FlexTable;
@@ -53,17 +54,15 @@ public class Login extends Composite {
 				
 //				Anzeigen der eingegebenen Werte
 				
-				Window.alert("Platzhalter für den Datenbankcheck der angegebenen Daten. Folgende Angaben wurden gemacht: \n\nVorname:" +vorname.getText()+"\nNachname:"+nachname.getText()+"\nNickname: "+nickname.getText());
+				Window.alert("Platzhalter fï¿½r den Datenbankcheck der angegebenen Daten. Folgende Angaben wurden gemacht: \n\nVorname:" +vorname.getText()+"\nNachname:"+nachname.getText()+"\nNickname: "+nickname.getText());
 				
 //				Implementierung der Werte in die Datenbank
 				
 //				erfolgt wie im Beispiel TestUser.java
 				
 				
-				
-				
-				
-				
+				panel.clear();
+				RootPanel.get("h1").clear();
 			}
 			
 		});
