@@ -24,7 +24,7 @@ public interface PinnwandVerwaltungAsync {
 	void getUserByNachname(String nachname, AsyncCallback<Vector<User>> callback);
 
 	void getUserById(int id, AsyncCallback<User> callback);
-
+	
 	// getbySourceUser Methoden
 
 	void getKommentarBySourceUser(int sourceId, AsyncCallback<Vector<Kommentar>> callback);
@@ -52,7 +52,7 @@ public interface PinnwandVerwaltungAsync {
 	void getAllKommentar(AsyncCallback<Vector<Kommentar>> callback);
 	void getAllBeitrag(AsyncCallback<Vector<Beitrag>> callback);
 	void getAllAbo(AsyncCallback<Vector<Abo>> callback);
-
+	
 	void getKommentarByTargetBeitrag(int beitragId,
 			AsyncCallback<Vector<Kommentar>> callback);
 
@@ -85,6 +85,8 @@ public interface PinnwandVerwaltungAsync {
 	void save(Beitrag b, AsyncCallback<Void> callback);
 
 	void save(Kommentar k, AsyncCallback<Void> callback);
+
+	
 
 
 	}
