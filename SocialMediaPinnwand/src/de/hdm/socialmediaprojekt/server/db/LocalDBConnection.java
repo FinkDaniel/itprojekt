@@ -3,6 +3,7 @@ package de.hdm.socialmediaprojekt.server.db;
 import java.sql.*;
 
 
+
 public class LocalDBConnection {
 	 
 	private static Connection con = null;
@@ -14,13 +15,13 @@ public class LocalDBConnection {
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
 				
 				 con = DriverManager.getConnection(
-						"jdbc:mysql://localhost/socialmediapinnwand","demo","demo");
+				"jdbc:mysql://localhost/socialmediapinnwand","demo","demo");
 				con.setReadOnly(false);
 				//con.close();
 			}
 		catch(Exception e){
 				
-				System.out.println("*****FEHLER*****->" +e);
+				System.out.println("*****LOCAL DB FEHLER*****->"+e);
 			}
 		return con;
 		

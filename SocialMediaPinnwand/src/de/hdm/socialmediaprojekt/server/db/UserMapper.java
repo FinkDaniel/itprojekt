@@ -40,7 +40,7 @@ private static UserMapper userMapper = null;
 
  
       ResultSet rs = stmt
-          .executeQuery("SELECT id, vorname, nachname, nickname FROM users "
+          .executeQuery("SELECT id, vorname, nachname, nickname, password FROM users "
               + "WHERE id=" + id + " ORDER BY nachname");
 
      
@@ -51,6 +51,7 @@ private static UserMapper userMapper = null;
         u.setVorname(rs.getString("vorname"));
         u.setNachname(rs.getString("nachname"));
         u.setNickname(rs.getString("nickname"));
+        u.setPassword(rs.getString("password"));
 
         return u;
       }
@@ -127,9 +128,9 @@ private static UserMapper userMapper = null;
 
         stmt = con.createStatement();
 
-        stmt.executeUpdate ("INSERT INTO users(id, vorname, nachname, nickname) "
-            + "VALUES  (" + u.getId() + "," + u.getVorname() + ","
-            + u.getNachname() +  "," + u.getNickname()+ ")");
+        stmt.executeUpdate ("INSERT INTO users(id, vorname, nachname, nickname, password)"
+            + "VALUES  ('" + u.getId() + "','" + u.getVorname() + "','"
+            + u.getNachname() +  "','" + u.getNickname()+ "','" + u.getPassword()+ "')");
            }
     }
     catch (SQLException e) {

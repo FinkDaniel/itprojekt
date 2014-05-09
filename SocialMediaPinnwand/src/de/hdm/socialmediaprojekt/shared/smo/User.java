@@ -18,6 +18,8 @@ public class User extends SMObject {
 	  
 	  private String nickname = "";
 	  
+	  private String password = "";
+	  
 	  
 	  public String getVorname() {
 	    return this.vorname;
@@ -48,21 +50,31 @@ public class User extends SMObject {
 	    return this.nickname;
 	  }
 
-
+	  public String getPassword(){
+		  return this.password;
+	  }
+	  
+	  public void setPassword(String password){
+		  this.password = password;
+	  }
 	public User() {
 		
 	}
 
-	  public User(String vname, String nname, String niname) {
+	  public User(String vname, String nname, String niname, String pword) {
 		this.vorname = vname;
 		this.nachname = nname;
 		this.nickname = niname;
+		this.password = pword;
 		
 	}
 
 
 	  public String toString() {
-	    return super.toString() + " " + this.vorname + " " + this.nachname + " " + this.nickname;
+	    return super.toString() + " " + this.vorname + " " + this.nachname + " " + this.nickname+ " " + this.password;
 	  }
+
+
+	
 
 	}

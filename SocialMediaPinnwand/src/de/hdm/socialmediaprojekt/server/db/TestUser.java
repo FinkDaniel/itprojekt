@@ -10,7 +10,7 @@ public class TestUser {
 		    User u = new User();
 		    u.setVorname("'Isabell'");
 		    u.setNachname("'Feininger'");
-		    u.setNickname("'IsabelleDIESCHRECKLICHE'");
+		    u.setNickname("'IsabelleDIESCjkjkjjkCKLICHE'");
 		    u.setId(1);
 		    System.out.println(UserMapper.userMapper().insert(u));
 		  

@@ -3,6 +3,7 @@ package de.hdm.socialmediaprojekt.shared;
 import java.util.Vector;
 
 import com.google.gwt.user.client.rpc.RemoteService;
+import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
 import de.hdm.socialmediaprojekt.shared.smo.Abo;
 import de.hdm.socialmediaprojekt.shared.smo.Beitrag;
@@ -10,12 +11,13 @@ import de.hdm.socialmediaprojekt.shared.smo.Kommentar;
 import de.hdm.socialmediaprojekt.shared.smo.Like;
 import de.hdm.socialmediaprojekt.shared.smo.Pinnwand;
 import de.hdm.socialmediaprojekt.shared.smo.User;
+@RemoteServiceRelativePath("pinnwandVerwaltung")
 
 public interface PinnwandVerwaltung extends RemoteService {
 	
 	public void init() throws IllegalArgumentException;
 	
-	public User createUser(String vorname, String nachname, String nickname) throws IllegalArgumentException;
+	public User createUser(String vorname, String nachname, String nickname, String password) throws IllegalArgumentException;
 	
 	public void save(User u) throws IllegalArgumentException;
 	
@@ -32,7 +34,7 @@ public interface PinnwandVerwaltung extends RemoteService {
 	public Vector<Abo> getAboByTargetPinnwand(int pinnwandId) throws IllegalArgumentException;
 	public Vector<Kommentar> getKommentarByTargetBeitrag(int beitragId) throws IllegalArgumentException;
 	
-	// "Find" by ID -Methoden für Alle SMOs
+	// "Find" by ID -Methoden fï¿½r Alle SMOs
 	
 	public User getUserById(int id) throws IllegalArgumentException;
 	
@@ -46,7 +48,7 @@ public interface PinnwandVerwaltung extends RemoteService {
 	
 	public Kommentar getKommentarById(int id) throws IllegalArgumentException;
 	
-	// "FIND ALL"- Methoden für alle SMOs
+	// "FIND ALL"- Methoden fï¿½r alle SMOs
 	// alle Methodennamen sind im Singular gehalten.
 	
 	public Vector<User> getAllUser() throws IllegalArgumentException;

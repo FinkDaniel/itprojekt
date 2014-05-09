@@ -15,7 +15,7 @@ public interface PinnwandVerwaltungAsync {
 	
 	void save(User u, AsyncCallback<Void> callback);
 	
-	void createUser(String vorname, String nachname, String nickname, AsyncCallback<User> callback);
+	void createUser(String vorname, String nachname, String nickname, String password, AsyncCallback<User> callback);
 	
 	void init(AsyncCallback<Void> callback);
 	
@@ -33,7 +33,7 @@ public interface PinnwandVerwaltungAsync {
 	void getAboBySourcePinnwand(int pinnwandId, AsyncCallback<Vector<Abo>> callback);
 	void getAboByTargetPinnwand(int pinnwandId, AsyncCallback<Vector<Abo>> callback);
 	
-	// "Find" by ID -Methoden für Alle SMOs
+	// "Find" by ID -Methoden fï¿½r Alle SMOs
 	
 	void getAboById(int id, AsyncCallback<Abo> callback);
 	void getPinnwandById(int id, AsyncCallback<Pinnwand> callback);
@@ -41,7 +41,7 @@ public interface PinnwandVerwaltungAsync {
 	void getLikeById(int id, AsyncCallback<Like> callback);
 	void getKommentarById(int id, AsyncCallback<Kommentar> callback);
 	
-	// "FIND ALL"- Methoden für alle SMOs
+	// "FIND ALL"- Methoden fï¿½r alle SMOs
 	// alle Methodennamen sind im Singular gehalten.
 	
 	void getAllUser(AsyncCallback<Vector<User>> callback);
