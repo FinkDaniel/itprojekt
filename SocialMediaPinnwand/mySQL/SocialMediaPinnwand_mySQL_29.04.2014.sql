@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 29. Apr 2014 um 12:25
+-- Erstellungszeit: 09. Mai 2014 um 17:13
 -- Server Version: 5.6.16
 -- PHP-Version: 5.5.9
 
@@ -23,7 +23,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `abo`
+-- Tabellenstruktur fÃ¼r Tabelle `abo`
 --
 
 CREATE TABLE IF NOT EXISTS `abo` (
@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS `abo` (
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `beitrag`
+-- Tabellenstruktur fÃ¼r Tabelle `beitrag`
 --
 
 CREATE TABLE IF NOT EXISTS `beitrag` (
@@ -52,19 +52,19 @@ CREATE TABLE IF NOT EXISTS `beitrag` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Daten für Tabelle `beitrag`
+-- Daten fÃ¼r Tabelle `beitrag`
 --
 
 INSERT INTO `beitrag` (`id`, `sourceUser`, `beitrag`, `erstellungsdatum`) VALUES
 (1, 1, 'Habe heute eine Pizza gegessen!', '2014-04-22 15:18:30'),
 (2, 2, 'Oh man....Was soll ich heute nur anziehen? Ein Kleid oder doch eine Hose?', '2014-04-22 15:20:20'),
 (3, 2, 'Was wird wohl aus dem VFB wenn der wirklich absteigt?', '2014-04-22 15:21:28'),
-(4, 2, 'Der Wasen ist eröffnet!', '2014-04-25 10:14:02');
+(4, 2, 'Der Wasen ist erÃ¶ffnet!', '2014-04-25 10:14:02');
 
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `gelikt`
+-- Tabellenstruktur fÃ¼r Tabelle `gelikt`
 --
 
 CREATE TABLE IF NOT EXISTS `gelikt` (
@@ -78,7 +78,7 @@ CREATE TABLE IF NOT EXISTS `gelikt` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Daten für Tabelle `gelikt`
+-- Daten fÃ¼r Tabelle `gelikt`
 --
 
 INSERT INTO `gelikt` (`id`, `sourceUser`, `targetBeitrag`, `erstellungsdatum`) VALUES
@@ -87,7 +87,7 @@ INSERT INTO `gelikt` (`id`, `sourceUser`, `targetBeitrag`, `erstellungsdatum`) V
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `kommentar`
+-- Tabellenstruktur fÃ¼r Tabelle `kommentar`
 --
 
 CREATE TABLE IF NOT EXISTS `kommentar` (
@@ -102,16 +102,16 @@ CREATE TABLE IF NOT EXISTS `kommentar` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Daten für Tabelle `kommentar`
+-- Daten fÃ¼r Tabelle `kommentar`
 --
 
 INSERT INTO `kommentar` (`id`, `sourceUser`, `targetBeitrag`, `kommentar`, `erstellungsdatum`) VALUES
-(1, 2, 1, 'Der VfB steigt nicht ab, dafür ist er zu stark. Lieber Nürnber :)', '2014-04-24 10:54:08');
+(1, 2, 1, 'Der VfB steigt nicht ab, dafÃ¼r ist er zu stark. Lieber NÃ¼rnber :)', '2014-04-24 10:54:08');
 
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `pinnwand`
+-- Tabellenstruktur fÃ¼r Tabelle `pinnwand`
 --
 
 CREATE TABLE IF NOT EXISTS `pinnwand` (
@@ -123,19 +123,17 @@ CREATE TABLE IF NOT EXISTS `pinnwand` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Daten für Tabelle `pinnwand`
+-- Daten fÃ¼r Tabelle `pinnwand`
 --
 
 INSERT INTO `pinnwand` (`id`, `sourceUser`, `erstellungsdatum`) VALUES
 (1, 5, '2014-04-28 22:13:52'),
-(2, 6, '2014-04-28 22:15:09'),
-(3, 7, '2014-04-29 09:53:04'),
-(4, 8, '2014-04-29 10:16:24');
+(2, 6, '2014-04-28 22:15:09');
 
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `users`
+-- Tabellenstruktur fÃ¼r Tabelle `users`
 --
 
 CREATE TABLE IF NOT EXISTS `users` (
@@ -143,24 +141,28 @@ CREATE TABLE IF NOT EXISTS `users` (
   `vorname` varchar(100) NOT NULL,
   `nachname` varchar(100) NOT NULL,
   `nickname` varchar(100) NOT NULL,
+  `password` varchar(100) NOT NULL,
   `erstellungsdatum` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `nickname` (`nickname`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Daten für Tabelle `users`
+-- Daten fÃ¼r Tabelle `users`
 --
 
-INSERT INTO `users` (`id`, `vorname`, `nachname`, `nickname`, `erstellungsdatum`) VALUES
-(1, 'Daniel', 'Lepiorz', 'Lepiorzddssddhh', '2014-04-28 20:32:47'),
-(2, 'Test', 'Tester', 'adads', '2014-04-28 21:51:19'),
-(3, 'Test', 'Tester', 'adadsxcx', '2014-04-28 21:52:37'),
-(4, 'Test', 'Tester', 'adadsxgfhgfcx', '2014-04-28 22:03:24'),
-(5, 'Daniel', 'Fink', 'Der Lotz', '2014-04-28 22:13:52'),
-(6, 'Patrick', 'Preller', 'Der Preller', '2014-04-28 22:15:09'),
-(7, 'Patrick', 'Preller', 'Mongo', '2014-04-29 09:53:04'),
-(8, 'Isabell', 'Feininger', 'Isabelle', '2014-04-29 10:16:24');
+INSERT INTO `users` (`id`, `vorname`, `nachname`, `nickname`, `password`, `erstellungsdatum`) VALUES
+(1, 'Daniel', 'Lepiorz', 'Lepiorzddssddhh', '', '2014-04-28 20:32:47'),
+(2, 'Test', 'Tester', 'adads', '', '2014-04-28 21:51:19'),
+(3, 'Test', 'Tester', 'adadsxcx', '', '2014-04-28 21:52:37'),
+(4, 'Test', 'Tester', 'adadsxgfhgfcx', '', '2014-04-28 22:03:24'),
+(5, 'Daniel', 'Fink', 'Der Lotz', '', '2014-04-28 22:13:52'),
+(6, 'Patrick', 'Preller', 'Der Preller', '', '2014-04-28 22:15:09'),
+(7, '', '', '', '', '2014-05-08 17:28:21'),
+(8, 'Vornamed', 'Nachnamed', 'Nicknamed', '', '2014-05-08 22:43:17'),
+(9, 'Daniel', 'Fink', 'Der Lotz Deluxe', '', '2014-05-08 22:46:38'),
+(10, 'Daniel', 'Lepiorz', 'Der Don', 'Demo', '2014-05-08 23:01:22'),
+(11, 'Daniel', 'Lepiorz', 'Uli HoeneÃŸ', 'FcBayern', '2014-05-09 15:08:15');
 
 --
 -- Constraints der exportierten Tabellen
