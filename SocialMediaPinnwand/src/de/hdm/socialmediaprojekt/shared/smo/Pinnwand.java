@@ -8,20 +8,20 @@ public class Pinnwand extends SMObject {
 
 private static final long serialVersionUID = 1L;
 
-  private int ownerID = 0;
+  private int sourceUserID = 0;
 
  
-  public int getOwnerID() {
-    return this.ownerID;
+  public int getSourceUserID() {
+    return this.sourceUserID;
   }
 
  
-  public void setOwnerID(int userID) {
-    this.ownerID = userID;
+  public void setSourceUserID(int sourceID) {
+    this.sourceUserID = sourceID;
   }
 
   public String toString() {
-    return super.toString() + " inhaber, User-ID: #" + this.ownerID;
+    return super.toString() + " inhaber, User-ID: #" + this.sourceUserID;
   }
 
 
@@ -38,4 +38,6 @@ private static final long serialVersionUID = 1L;
     }
     return false;
   }
+
 }
+
