@@ -18,7 +18,7 @@ import de.hdm.socialmediaprojekt.client.SocialMediaProjekt;
 
 public class Registration extends Composite {
 	
-	FlowPanel panel = new FlowPanel();
+	VerticalPanel panel = new VerticalPanel();
 	
 	PinnwandVerwaltungAsync pinnwandVerwaltung = ClientSideSettings.getPinnwandVerwaltung();
 	//UserAccountsTreeViewModel catvm = null;
@@ -41,6 +41,7 @@ public class Registration extends Composite {
 		nickname.setText("Nickname");
 		panel.add(nickname);
 		Button reg = new Button("Registrieren");
+		reg.getElement().setId("logButton");
 		panel.add(reg);
 		
 		reg.addClickHandler(new ClickHandler(){

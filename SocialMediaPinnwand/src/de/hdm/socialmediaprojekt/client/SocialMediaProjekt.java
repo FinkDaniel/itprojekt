@@ -75,18 +75,10 @@ public class SocialMediaProjekt implements EntryPoint {
 		
 		
 		//*navigation.add(child);
-				header.add(new HTML("<h1>Test134</h1>"));
+				
 				buttons.add(new HTML("<h2>Buttons</h2>"));
 				content.add(new HTML("<h3>Content</h3"));
-				footer.add(new HTML("<h1>Test456</h1>"));
-		
-		
-		
-		
-		
-		
-		
-		
+				
 		
 	}
 	
@@ -146,9 +138,14 @@ public class SocialMediaProjekt implements EntryPoint {
 		dockPanel.add(navigation, DockPanel.WEST);
 		dockPanel.add(content_bg, DockPanel.EAST);	
 		
-		
-		
-		
+		HTML h1 = new HTML();
+		h1.setText("Social Media Pinnwand");
+		h1.getElement().setId("h1");
+		header.add(h1);
+		HTML footerText = new HTML();
+		footerText.setText("Hier könnte auch Ihre Werbung erscheinen");
+		footerText.getElement().setId("h1");
+		footer.add(footerText);
 		
 		
 		RootPanel.get("socialMediaProjekt").add(dockPanel);

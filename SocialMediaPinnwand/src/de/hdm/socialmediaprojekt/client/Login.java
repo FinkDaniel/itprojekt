@@ -6,6 +6,7 @@ import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.user.client.Window;
@@ -14,7 +15,7 @@ import de.hdm.socialmediaprojekt.client.SocialMediaProjekt;
 
 
 public class Login extends Composite {
-	FlowPanel panel = new FlowPanel();
+	VerticalPanel panel = new VerticalPanel();
 	SocialMediaProjekt smp = new SocialMediaProjekt();
 	
 
@@ -38,6 +39,7 @@ public class Login extends Composite {
 		Button log = new Button("Login");
 		panel.add(log);
 		log.getElement().setId("logButton");
+		
 		log.addClickHandler(new ClickHandler(){
 
 			public void onClick(ClickEvent event) {
