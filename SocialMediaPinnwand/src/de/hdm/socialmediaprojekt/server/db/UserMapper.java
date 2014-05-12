@@ -168,7 +168,7 @@ private static UserMapper userMapper = null;
     }
   }
 
-  public Vector<Pinnwand> getPinnwandOf(User u) {
+  public Pinnwand getPinnwandOf(User u) {
 	   
 	    return PinnwandMapper.pinnwandMapper().findBySourceUser(u);
 	  }

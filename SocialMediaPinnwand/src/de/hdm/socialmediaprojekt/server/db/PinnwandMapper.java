@@ -85,10 +85,9 @@ public class PinnwandMapper {
   }
 
   
-  public Vector<Pinnwand> findBySourceUser(int sourceID) {
+  public Pinnwand findBySourceUser(int sourceID) {
     Connection con = LocalDBConnection.connection();
-    Vector<Pinnwand> result = new Vector<Pinnwand>();
-
+ 
     try {
       Statement stmt = con.createStatement();
 
@@ -102,7 +101,7 @@ public class PinnwandMapper {
         p.setSourceUserID(rs.getInt("sourceUser"));
 
         
-        result.addElement(p);
+        return p;
       }
     }
     catch (SQLException e2) {
@@ -110,11 +109,11 @@ public class PinnwandMapper {
     }
 
     
-    return result;
+    return null;
   }
 
   
-  public Vector<Pinnwand> findBySourceUser(User sourceUser) {
+  public Pinnwand findBySourceUser(User sourceUser) {
 
     
     return findBySourceUser(sourceUser.getId());

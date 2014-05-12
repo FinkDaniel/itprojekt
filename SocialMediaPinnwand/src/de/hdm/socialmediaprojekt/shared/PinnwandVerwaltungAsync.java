@@ -26,7 +26,7 @@ public interface PinnwandVerwaltungAsync {
 	// getbySourceUser Methoden
 	
 	void getKommentarBySourceUser(int sourceId, AsyncCallback<Vector<Kommentar>> callback);
-	void getPinnwandBySourceUser(int sourceId, AsyncCallback<Vector<Pinnwand>> callback);
+	void getPinnwandBySourceUser(int sourceId, AsyncCallback<Pinnwand> callback);
 	void getBeitragBySourceUser(int sourceId, AsyncCallback<Vector<Beitrag>> callback);
 	void getLikeBySourceUser(int sourceId, AsyncCallback<Vector<Like>> callback);
 	void getLikeByTargetBeitrag(int beitragId, AsyncCallback<Vector<Like>> callback);
