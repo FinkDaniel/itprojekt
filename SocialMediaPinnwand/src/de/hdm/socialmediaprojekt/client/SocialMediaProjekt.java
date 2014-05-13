@@ -4,7 +4,6 @@ package de.hdm.socialmediaprojekt.client;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DockPanel;
 import com.google.gwt.user.client.ui.HTML;
@@ -12,8 +11,9 @@ import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
-import de.hdm.socialmediaprojekt.client.Login;
 
+import de.hdm.socialmediaprojekt.client.gui.MeinePinnwand;
+import de.hdm.socialmediaprojekt.client.gui.UserSuche;;
 
 
 /**
@@ -77,7 +77,7 @@ public class SocialMediaProjekt implements EntryPoint {
 		//*navigation.add(child);
 				
 				buttons.add(new HTML("<h2>Buttons</h2>"));
-				content.add(new HTML("<h3>Content</h3"));
+				//content.add(new HTML("<h3>Content</h3"));
 				
 		
 	}
@@ -88,39 +88,46 @@ public class SocialMediaProjekt implements EntryPoint {
 		// Vorhergehende Seite löschen und Seite 1 erstellen
 		RootPanel.get("socialMediaProjekt").clear();
 		
-		
-		VerticalPanel userSuche = new VerticalPanel();
+				
+		UserSuche userSuche = new UserSuche();
 		userSuche.addStyleName("userSuche");
-		
-		userSuche.add(new HTML("<h4>User Suchen</h4>"));
 		
 		VerticalPanel logout = new VerticalPanel();
 		logout.addStyleName("logout");
 		
-		
-		
-		Button meinePinnwand = new Button("Meine Pinnwand");
+				
+		Button meinePinnwandButton = new Button("Meine Pinnwand");
 		Button meineAbos = new Button("Meine Abos");
 		Button ausloggen = new Button("Ausloggen");
 		
-		meinePinnwand.getElement().setId("logButton");
+		meinePinnwandButton.getElement().setId("logButton");
 		meineAbos.getElement().setId("logButton");
 		ausloggen.getElement().setId("logButton");
 		
-		logout.add(ausloggen);
+		meinePinnwandButton.addClickHandler(new ClickHandler(){
+			public void onClick(ClickEvent event) {
+				content.clear();
+				MeinePinnwand meinePinnwand = new MeinePinnwand();
+				content.add(meinePinnwand);
+				
+			}
+			
+		});
 		
-		buttons.add(meinePinnwand);
+		buttons.add(meinePinnwandButton);
 		buttons.add(meineAbos);
 		
 		navigation.add(userSuche, DockPanel.CENTER);
 		navigation.add(logout, DockPanel.SOUTH);
+		
+		logout.add(ausloggen);
 		
 		initialisieren();
 		
 	}
 	
 	public void initialisieren(){
-		
+		RootPanel.get("socialMediaProjekt").clear();
 		dockPanel.addStyleName("dockPanel");
 		header.addStyleName("header");
 		content_bg.addStyleName("content_bg");
@@ -136,7 +143,7 @@ public class SocialMediaProjekt implements EntryPoint {
 		dockPanel.add(header, DockPanel.NORTH);
 		dockPanel.add(footer, DockPanel.SOUTH);
 		dockPanel.add(navigation, DockPanel.WEST);
-		dockPanel.add(content_bg, DockPanel.EAST);	
+		dockPanel.add(content_bg, DockPanel.CENTER);	
 		
 		HTML h1 = new HTML();
 		h1.setText("Social Media Pinnwand");

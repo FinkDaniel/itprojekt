@@ -21,7 +21,7 @@ public class Registration extends Composite {
 	VerticalPanel panel = new VerticalPanel();
 	
 	PinnwandVerwaltungAsync pinnwandVerwaltung = ClientSideSettings.getPinnwandVerwaltung();
-	//UserAccountsTreeViewModel catvm = null;
+
 	
 	public Registration() {
 		
@@ -40,6 +40,10 @@ public class Registration extends Composite {
 		final TextBox nickname = new TextBox();
 		nickname.setText("Nickname");
 		panel.add(nickname);
+		final TextBox password = new TextBox();
+		password.setText("Passwort");
+		panel.add(password);
+	
 		Button reg = new Button("Registrieren");
 		reg.getElement().setId("logButton");
 		panel.add(reg);
@@ -53,12 +57,15 @@ public class Registration extends Composite {
 				Window.alert("Folgende Angaben wurden gemacht.. \n\nVorname:" +vorname.getText()+"\nNachname:"+nachname.getText()+"\nNickname: "+nickname.getText());
 				
 //				Implementierung der Werte in die Datenbank
-				/*String vnam = vorname.getText();
+				String vnam = vorname.getText();
 				String nanam = nachname.getText();
 				String niname = nickname.getText();
+				String pword = password.getText();
+							
+				pinnwandVerwaltung.createUser(vnam, nanam, niname, pword, new CreateUserCallback());
 				
-				pinnwandVerwaltung.createUser(vnam, nanam, niname, new CreateUserCallback());
-				*/
+				
+				
 				//* Bereinigung des Panels
 				panel.clear();
 				SocialMediaProjekt smp = new SocialMediaProjekt();

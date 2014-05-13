@@ -55,14 +55,19 @@ body {
 }
 .userSuche{
 	background-color: white;
-	padding: 50px;
+	padding: 25px;
 	border-style: solid;
 	border-color: rgb(247, 150, 70);
 	display: inline-block;
 	float:left;
 }
-.logout {
+#textbox {
+	
 	background-color:red;
+	
+}
+.logout {
+	background-color:white;
 	padding:50px;
 }
 .content_bg{
@@ -79,11 +84,34 @@ body {
 }
 .content {
 	background-color: white;
-	padding: 50px;
-	border-style: solid;
+	
+	/**border-style: solid;*/
 	border-color: rgb(247, 150, 70);
 	display: inline-block;
 	float:left;
+}
+.pinnwand {
+	
+	margin:5px;
+	width: 590px;
+	height:550px;
+	padding: 10px;
+	border-style:solid;
+	border-color:rgb(247, 150, 70);
+}
+.pinnwand_inhalt {
+	
+	margin:5px;
+	width: 580px;
+	height:600px;
+	padding: 10px;
+	border-style:solid;
+	border-color:rgb(247, 150, 70);
+}
+#beitrag {
+	
+	border-style:solid;
+	border-color:rgb(247, 150, 70);
 }
 .footer{
 	background-color: white;
