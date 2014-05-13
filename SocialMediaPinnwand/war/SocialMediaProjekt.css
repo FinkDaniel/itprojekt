@@ -2,33 +2,147 @@
 
 
 /** Example rules used by the template application (remove for your app) */
-h1 {
-  font-size: 2em;
-  font-weight: bold;
-  color: #777777;
-  margin: 40px 0px 70px;
-  text-align: center;
+body {
+	color: black;
+	margin: 0%;
+	border: 0px;
+	padding: 0px;
+	background: #fff;
+	direction: ltr;
 }
+.dockPanel {
 
-.sendButton {
-  display: block;
-  font-size: 16pt;
+	background-color: rgba(255, 255, 255, 0);
+	border-style: solid;
+	border-color: rgb(57, 94, 138);
+	border-width: 5px;
+	height: 768px;
+	width: 1024px;
+
+
 }
-
-/** Most GWT widgets already have a style name defined */
-.gwt-DialogBox {
-  width: 400px;
+.header {
+	background-color: white;
+	border-style: solid;
+	border-color: rgb(247, 150, 70);
+	display: block;
+	width: 100%;
 }
-
-.dialogVPanel {
-  margin: 5px;
+#h1{
+	font-size: 40px;
 }
+.navigation {
+	background-color: white;
+	margin-top: 7%;
+	padding: 10;
+	border-style: solid;
+	border-color: rgb(247, 150, 70);
+	display: inline-block;
+	width: 230px;
+	height: 600px;
+	float: left;
 
-.serverResponseLabelError {
-  color: red;
+
 }
+.buttons {
+	background-color: white;
 
-/** Set ids using widget.getElement().setId("idOfElement") */
-#closeButton {
-  margin: 15px 6px 6px;
+	padding: 50px;
+	border-style: solid;
+	border-color: rgb(247, 150, 70);
+	display: inline-block;
+	float:left;
+}
+.userSuche{
+	background-color: white;
+	padding: 25px;
+	border-style: solid;
+	border-color: rgb(247, 150, 70);
+	display: inline-block;
+	float:left;
+}
+#textbox {
+
+	background-color:red;
+
+}
+.logout {
+	background-color:white;
+	padding:50px;
+}
+.content_bg{
+	background-color: white;
+	margin-top: 2%;
+	margin-bottom: 1%;
+	padding: 50px;
+	width: 750px;
+	height: 600px;
+	display: inline-block;
+	border-color: rgb(247, 150, 70);
+	border-style: solid;
+	float: right;
+}
+.content {
+	background-color: white;
+
+	/**border-style: solid;*/
+	border-color: rgb(247, 150, 70);
+	display: inline-block;
+	float:left;
+}
+.pinnwand {
+
+	margin:5px;
+	width: 590px;
+	height:550px;
+	padding: 10px;
+	border-style:solid;
+	border-color:rgb(247, 150, 70);
+}
+.pinnwand_inhalt {
+
+	margin:5px;
+	width: 580px;
+	height:600px;
+	padding: 10px;
+	border-style:solid;
+	border-color:rgb(247, 150, 70);
+}
+#beitrag {
+
+	border-style:solid;
+	border-color:rgb(247, 150, 70);
+}
+.footer{
+	background-color: white;
+	margin-top: 1%;
+	padding: 50px;
+	display: block;
+	border-style: solid;
+	border-color: rgb(247, 150, 70);
+	width: 100%;
+}
+#logButton {
+	width: 120px;
+	height: 40px;
+	margin: 5%;
+	box-sizing: border-box;
+  -moz-box-sizing: border-box;
+ 
+ 
+  opacity: 1;
+  border: 1px solid #f6923f;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  box-shadow: 0px 0px 0px 0px #F6923F,0px -7px 17px 0px #f6923f inset;
+  -webkit-box-shadow: 0px 0px 0px 0px #F6923F,0px -7px 17px 0px #f6923f inset;
+  -moz-box-shadow: 0px 0px 0px 0px #F6923F,0px -7px 17px 0px #f6923f inset;
+  -ms-box-shadow: 0px 0px 0px 0px #F6923F,0px -7px 17px 0px #f6923f inset;
+  -o-box-shadow: 0px 0px 0px 0px #F6923F,0px -7px 17px 0px #f6923f inset;
+}
+#logButton:hover {
+	background:rgb(247, 150, 70);
 }

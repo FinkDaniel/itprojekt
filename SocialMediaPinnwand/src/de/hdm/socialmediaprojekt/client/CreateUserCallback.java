@@ -15,8 +15,7 @@ public class CreateUserCallback implements AsyncCallback<User> {
 				ClientSideSettings.getLogger().info("User mit" +user.getNickname()+" wurde angelegt");
 			}
 			System.out.println("Test_Callback");
-		
+
 		}
 	}
-
 
