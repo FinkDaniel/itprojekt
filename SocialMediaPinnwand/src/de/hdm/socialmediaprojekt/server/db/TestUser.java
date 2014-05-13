@@ -8,9 +8,9 @@ public class TestUser {
 	public static void main(String[] args){
 	
 		    User u = new User();
-		    u.setVorname("'Isabell'");
-		    u.setNachname("'Feininger'");
-		    u.setNickname("'IsabelleDIESCjkjkjjkCKLICHE'");
+		    u.setVorname("sssssssssssssss");
+		    u.setNachname("Preller stinkt");
+		    u.setNickname("gdfgdfgdfgfdgd");
 		    u.setId(1);
 		    System.out.println(UserMapper.userMapper().insert(u));
 		  
