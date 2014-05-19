@@ -3,7 +3,7 @@ package de.hdm.socialmediaprojekt.shared;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
 import de.hdm.socialmediaprojekt.shared.report.*;
-import de.hdm.socialmediaprojekt.shared.smo.*;
+
 
 
 public interface ReportGeneratorAsync {

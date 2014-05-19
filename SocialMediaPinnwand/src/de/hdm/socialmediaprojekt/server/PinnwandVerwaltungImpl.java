@@ -2,8 +2,11 @@ package de.hdm.socialmediaprojekt.server;
 
 import java.util.Vector;
 
+import com.google.appengine.api.users.UserService;
+import com.google.appengine.api.users.UserServiceFactory;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
+import de.hdm.socialmediaprojekt.client.LoginInfo;
 import de.hdm.socialmediaprojekt.server.db.*;
 import de.hdm.socialmediaprojekt.shared.*;
 import de.hdm.socialmediaprojekt.shared.smo.*;
@@ -250,6 +253,25 @@ public class PinnwandVerwaltungImpl extends RemoteServiceServlet implements Pinn
 	public void save(Kommentar k) throws IllegalArgumentException{
 		kMapper.update(k);
 	}
+
+	@Override
+	public LoginInfo login(String requestUri) {
+	    UserService userService = UserServiceFactory.getUserService();
+	    com.google.appengine.api.users.User user = userService.getCurrentUser();
+	    LoginInfo loginInfo = new LoginInfo();
+
+	    if (user != null) {
+	      loginInfo.setLoggedIn(true);
+	      loginInfo.setEmailAddress(user.getEmail());
+	      loginInfo.setNickname(user.getNickname());
+	      loginInfo.setLogoutUrl(userService.createLogoutURL(requestUri));
+	    } else {
+	      loginInfo.setLoggedIn(false);
+	      loginInfo.setLoginUrl(userService.createLoginURL(requestUri));
+	    }
+	    return loginInfo;
+	  }
+	}
 	
-}
+
 
