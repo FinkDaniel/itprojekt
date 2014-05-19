@@ -1,26 +1,23 @@
 	package de.hdm.socialmediaprojekt.client.gui;
 
 	import com.google.gwt.user.client.ui.Button;
-	import com.google.gwt.user.client.ui.Composite;
-	import com.google.gwt.user.client.ui.HTML;
-	import com.google.gwt.user.client.ui.TextBox;
-	import com.google.gwt.user.client.ui.VerticalPanel;
-
-	import de.hdm.socialmediaprojekt.client.SocialMediaProjekt;
+import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.TextBox;
+import com.google.gwt.user.client.ui.VerticalPanel;
 
 
 	public class UserSuche extends Composite {
 
 		public UserSuche (){
 			initWidget(userSuche);
-			userSucheTextfeld();
+			//erstelleUserSuche();
 
 		}
 
 		VerticalPanel userSuche = new VerticalPanel();
-		SocialMediaProjekt smp = new SocialMediaProjekt();
+	
 
-		public void userSucheTextfeld(){
+		public void erstelleUserSuche(){
 
 			TextBox textBox = new TextBox();
 			textBox.getElement().setId("textBox");

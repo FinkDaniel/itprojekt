@@ -19,18 +19,18 @@ public class Content extends Composite{
 	 */
 	public VerticalPanel content = new VerticalPanel();
 	public Content() {
-		// TODO Auto-generated constructor stub
+		initWidget(content);
+		
 	}
 	public void erstelleContent(){
 		content.clear();
 		content.addStyleName("content");
 		
-		Registration registrieren = new Registration();
-		content.add(registrieren); 
 	}
 	public void addLogin(){
 		content.clear();
 		Login login = new Login(); 
+		login.einloggen();
 		content.add(login);
 	}
 	public void addRegistration(){

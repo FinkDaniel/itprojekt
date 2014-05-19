@@ -9,11 +9,12 @@ public class Content_BG extends Composite{
 	Content content = new Content();
 	
 	public Content_BG() {
+		initWidget(content_bg);
 		
-		erstelleContentBG();
 	}
 	
 	public void erstelleContentBG(){
+		
 		content_bg.clear();
 		content_bg.addStyleName("content_bg");
 		content_bg.add(content, DockPanel.NORTH);

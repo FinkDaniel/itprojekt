@@ -8,23 +8,27 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 
 public class Navigation extends Composite {
 	
-	VerticalPanel navigation = new VerticalPanel();
+	public VerticalPanel navigation = new VerticalPanel();
 	Buttons buttons = new Buttons();
-	UserSuche userSuche = new UserSuche();
-	Logout logout = new Logout();
+	public UserSuche userSuche = new UserSuche();
+	public Logout logout = new Logout();
 
 	public Navigation() {
 		initWidget(navigation);
-		erstelleNavigation();
+		//erstelleNavigation();
 	}
 
 	public void erstelleNavigation(){
+		
+		buttons.erstelleStartseite();
+		userSuche.erstelleUserSuche();
+		logout.erstelleLogout();
+		
 		navigation.addStyleName("navigation");
 		navigation.add(buttons);
 		navigation.add(userSuche);
 		navigation.add(logout);
-
-		
+	
 	}
 
 }
