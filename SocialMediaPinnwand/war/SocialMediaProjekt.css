@@ -28,8 +28,15 @@ body {
 	display: block;
 	width: 100%;
 }
+
 #h1{
 	font-size: 40px;
+}
+#addUserEingeloggt{
+	float: right;
+	background-color:red;
+	width: 50px;
+	
 }
 .navigation {
 	background-color: white;

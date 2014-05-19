@@ -2,19 +2,15 @@ package de.hdm.socialmediaprojekt.client;
 
 
 
-import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.FlowPanel;
-import com.google.gwt.user.client.ui.HTML;
-import com.google.gwt.user.client.ui.VerticalPanel;
-import com.google.gwt.user.client.ui.TextBox;
-import com.google.gwt.user.client.ui.Button;
-import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.TextBox;
+import com.google.gwt.user.client.ui.VerticalPanel;
 
 import de.hdm.socialmediaprojekt.shared.PinnwandVerwaltungAsync;
-import de.hdm.socialmediaprojekt.client.ClientSideSettings;
-import de.hdm.socialmediaprojekt.client.SocialMediaProjekt;
 
 public class Registration extends Composite {
 
@@ -57,12 +53,12 @@ public class Registration extends Composite {
 				Window.alert("Folgende Angaben wurden gemacht.. \n\nVorname:" +vorname.getText()+"\nNachname:"+nachname.getText()+"\nNickname: "+nickname.getText());
 
 //				Implementierung der Werte in die Datenbank
-				String vnam = vorname.getText();
-				String nanam = nachname.getText();
-				String niname = nickname.getText();
-				String pword = password.getText();
+			//					String vnam = vorname.getText();
+			//					String nanam = nachname.getText();
+			//				String niname = nickname.getText();
+			//				String pword = password.getText();
 
-				pinnwandVerwaltung.createUser(vnam, nanam, niname, pword, new CreateUserCallback());
+			//					pinnwandVerwaltung.createUser(vnam, nanam, niname, pword, new CreateUserCallback());
 
 
 

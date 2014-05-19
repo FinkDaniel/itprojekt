@@ -7,7 +7,6 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
-import de.hdm.socialmediaprojekt.client.Registration;
 
 public class Buttons extends Composite{
 

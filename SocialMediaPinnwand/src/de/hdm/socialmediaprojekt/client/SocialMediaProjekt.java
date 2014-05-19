@@ -2,32 +2,15 @@ package de.hdm.socialmediaprojekt.client;
 
 
 import com.google.gwt.core.client.EntryPoint;
-import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DockPanel;
-import com.google.gwt.user.client.ui.HTML;
-import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.RootPanel;
-import com.google.gwt.user.client.ui.VerticalPanel;
-
-
-
-
-
-
-
-import com.google.gwt.user.client.ui.Widget;
 
 import de.hdm.socialmediaprojekt.client.gui.Buttons;
 import de.hdm.socialmediaprojekt.client.gui.Content;
 import de.hdm.socialmediaprojekt.client.gui.Content_BG;
 import de.hdm.socialmediaprojekt.client.gui.Footer;
 import de.hdm.socialmediaprojekt.client.gui.Header;
-import de.hdm.socialmediaprojekt.client.gui.Login;
-import de.hdm.socialmediaprojekt.client.gui.MeinePinnwand;
 import de.hdm.socialmediaprojekt.client.gui.Navigation;
-import de.hdm.socialmediaprojekt.client.gui.UserSuche;;
 
 
 /**

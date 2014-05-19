@@ -8,9 +8,10 @@ public class TestUser {
 	public static void main(String[] args){
 	
 		    User u = new User();
-		    u.setVorname("sssssssssssssss");
-		    u.setNachname("Preller stinkt");
-		    u.setNickname("gdfgdfgdfgfdgd");
+		    u.setVorname("sssss");
+		    u.setNachname("FinksSchwester");
+		    u.setNickname("ooooo");
+		    u.setPassword("geil");
 		    u.setId(1);
 		    System.out.println(UserMapper.userMapper().insert(u));
 		  
@@ -23,7 +24,8 @@ public class TestUser {
 					+ "\nVorname:"+ u.getVorname()
 					+ "\nNachname:"+ u.getNachname()
 					+ "\nNickname:"+ u.getNickname()
-					+ "\nPinnwandnummer: "+p.getId());
+					+ "\nPinnwandnummer: "+p.getId()
+		    		+ "\nPassword:"+ u.getPassword());
 		  }
 	
 }
