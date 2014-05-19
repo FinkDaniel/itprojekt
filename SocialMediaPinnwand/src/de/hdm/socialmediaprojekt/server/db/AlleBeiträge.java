@@ -8,7 +8,7 @@ import java.util.Vector;
 
 import de.hdm.socialmediaprojekt.shared.smo.Beitrag;
 
-public class AlleBeitr√§ge {
+public class AlleBeitr‰ge {
 
 	public static void main(String[] args) {
 		Connection con = LocalDBConnection.connection();
