@@ -4,6 +4,7 @@ import java.util.Vector;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
+import de.hdm.socialmediaprojekt.client.LoginInfo;
 import de.hdm.socialmediaprojekt.shared.smo.Abo;
 import de.hdm.socialmediaprojekt.shared.smo.Beitrag;
 import de.hdm.socialmediaprojekt.shared.smo.Kommentar;
@@ -83,6 +84,8 @@ public interface PinnwandVerwaltungAsync {
 	void save(Beitrag b, AsyncCallback<Void> callback);
 
 	void save(Kommentar k, AsyncCallback<Void> callback);
+
+	
 
 
 	}

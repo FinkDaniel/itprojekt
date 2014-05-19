@@ -2,8 +2,10 @@ package de.hdm.socialmediaprojekt.client;
 
 
 import com.google.gwt.core.client.EntryPoint;
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DockPanel;
 import com.google.gwt.user.client.ui.HTML;
@@ -12,8 +14,12 @@ import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
 
+
+
+
 import de.hdm.socialmediaprojekt.client.gui.MeinePinnwand;
 import de.hdm.socialmediaprojekt.client.gui.UserSuche;;
+import de.hdm.socialmediaprojekt.shared.*;
 
 
 /**
@@ -30,6 +36,14 @@ public class SocialMediaProjekt implements EntryPoint {
 	public DockPanel content_bg=new DockPanel();
 	public VerticalPanel content=new VerticalPanel();
 	public HorizontalPanel footer= new HorizontalPanel();
+	
+	//Klassenvariablen für Google Login
+	private LoginInfo loginInfo = null;
+	private VerticalPanel loginPanel = new VerticalPanel();
+	private Label loginLabel = new Label("Please sign in to your Google Account to access the SM application.");
+	private Anchor signInLink = new Anchor("Sign In");
+	private Nutzer aktuellerNutzer = null;
+	private static PinnwandVerwaltungAsync pinnwandVerwaltung = null;
 
 
 
@@ -38,6 +52,7 @@ public class SocialMediaProjekt implements EntryPoint {
 
 
 	public void onModuleLoad() {
+		googlelogincheck();
 
 		initialisieren();
 		Button anmelden = new Button("Anmelden");
@@ -80,6 +95,41 @@ public class SocialMediaProjekt implements EntryPoint {
 				//content.add(new HTML("<h3>Content</h3"));
 
 
+	}
+
+
+	private void googlelogincheck() {
+		//aufrufen async call von LoginInfo
+		pinnwandVerwaltung.login(GWT.getHostPageBaseURL(), new AsyncCallback <LoginInfo>(){
+			
+			  public void onFailure(Throwable error) {}
+
+			   public void onSuccess(LoginInfo result) {
+			          loginInfo = result;
+			          if(loginInfo.isLoggedIn()) {
+			           nutzerInDatenbank(result);
+			           
+			           //für unseren Fall anpassen
+			           loadSocialMediaPinnwand();
+			           
+			           //überprüfen ob angemeldete Nutzer bereits in Datenbank ist (anhand email-adresse)
+			           
+			           
+			          } else {
+			           loadLogin();
+			          }
+			   }
+
+			   private void loadLogin() {
+				      // Assemble login panel.
+				      signInLink.setHref(loginInfo.getLoginUrl());
+				      loginPanel.add(loginLabel);
+				      loginPanel.add(signInLink);
+				      RootPanel.get().add(loginPanel);
+				   }
+		});
+		// TODO Auto-generated method stub
+		
 	}
 
 

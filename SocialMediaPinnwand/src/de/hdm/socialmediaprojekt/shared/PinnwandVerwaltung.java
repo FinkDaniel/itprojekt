@@ -5,6 +5,7 @@ import java.util.Vector;
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
+import de.hdm.socialmediaprojekt.client.LoginInfo;
 import de.hdm.socialmediaprojekt.shared.smo.Abo;
 import de.hdm.socialmediaprojekt.shared.smo.Beitrag;
 import de.hdm.socialmediaprojekt.shared.smo.Kommentar;
@@ -81,5 +82,7 @@ public interface PinnwandVerwaltung extends RemoteService {
 	//update methoden
 	public void save(Beitrag b) throws IllegalArgumentException;
 	public void save(Kommentar k) throws IllegalArgumentException;
+	
+	public LoginInfo login(String requesturi) throws IllegalArgumentException;
 	
 }
