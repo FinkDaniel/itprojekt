@@ -13,7 +13,7 @@ public class MeinePinnwand extends Composite{
 
 	public ScrollPanel pinnwand = new ScrollPanel();
 	public VerticalPanel pinnwand_inhalt = new VerticalPanel();
-	public SocialMediaProjekt smp = new SocialMediaProjekt();
+	
 
 
 	public MeinePinnwand() {
@@ -26,16 +26,19 @@ public class MeinePinnwand extends Composite{
 
 		pinnwand.addStyleName("pinnwand");
 		pinnwand_inhalt.addStyleName("pinnwand_inhalt");
-		VerticalPanel beitrag = new VerticalPanel();
-		beitrag.getElement().setId("beitrag");
+		
+		
 
 
 		for(int i=10; i<10; i++){
+			VerticalPanel beitrag = new VerticalPanel();
+			beitrag.getElement().setId("beitrag");
 			beitrag.add(new HTML("Test"+i));
 			pinnwand_inhalt.add(beitrag);
 		}
-		pinnwand_inhalt.add(beitrag);
+		
 		pinnwand.add(pinnwand_inhalt);
+		
 	}
 
 }

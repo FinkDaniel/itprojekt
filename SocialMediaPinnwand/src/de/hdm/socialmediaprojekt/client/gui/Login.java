@@ -52,7 +52,7 @@ public class Login extends Composite {
 //				erfolgt wie im Beispiel TestUser.java
 
 
-				smp.erstelleSeite1();
+				
 			}
 
 			});

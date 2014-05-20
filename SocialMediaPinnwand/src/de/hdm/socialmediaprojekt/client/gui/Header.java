@@ -32,8 +32,7 @@ public class Header extends Composite {
 		h1.setText("Social Media Pinnwand");
 		h1.getElement().setId("h1");
 		header.add(h1);
-	}
-	public void addUserEingeloggt() {
+	
 		Label userEingeloggtAls = new Label("User eingeloggt als"+"Test134");
 		userEingeloggtAls.getElement().setId("userEingeloggtAls");
 		header.add(userEingeloggtAls);
