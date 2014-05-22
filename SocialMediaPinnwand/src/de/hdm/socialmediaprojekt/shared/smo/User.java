@@ -1,5 +1,11 @@
 package de.hdm.socialmediaprojekt.shared.smo;
 
+import java.sql.Date;
+
+import javax.jdo.annotations.IdGeneratorStrategy;
+import javax.jdo.annotations.Persistent;
+import javax.jdo.annotations.PrimaryKey;
+
 import de.hdm.socialmediaprojekt.shared.smo.SMObject;
 
 
@@ -75,6 +81,6 @@ public class User extends SMObject {
 	  }
 
 
-	
+}
 
-	}
+	

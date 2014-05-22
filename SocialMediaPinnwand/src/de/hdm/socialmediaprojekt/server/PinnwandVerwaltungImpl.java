@@ -2,11 +2,17 @@ package de.hdm.socialmediaprojekt.server;
 
 import java.util.Vector;
 
+import javax.jdo.JDOHelper;
+import javax.jdo.PersistenceManager;
+import javax.jdo.PersistenceManagerFactory;
+
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
+import com.google.gwt.core.client.impl.AsyncFragmentLoader.Logger;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 import de.hdm.socialmediaprojekt.client.LoginInfo;
+
 import de.hdm.socialmediaprojekt.server.db.*;
 import de.hdm.socialmediaprojekt.shared.*;
 import de.hdm.socialmediaprojekt.shared.smo.*;
@@ -271,7 +277,7 @@ public class PinnwandVerwaltungImpl extends RemoteServiceServlet implements Pinn
 	    }
 	    return loginInfo;
 	  }
-	}
-	
+
+}
 
 

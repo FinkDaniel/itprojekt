@@ -13,17 +13,18 @@ import de.hdm.socialmediaprojekt.client.SocialMediaProjekt;
 
 
 public class Login extends Composite {
-	VerticalPanel panel = new VerticalPanel();
-	SocialMediaProjekt smp = new SocialMediaProjekt();
+	public VerticalPanel panel = new VerticalPanel();
+	public SocialMediaProjekt smp = new SocialMediaProjekt();
 
 
 	public Login() {
 
 		initWidget(panel);
-		einloggen();	
+		einloggen();
+		
 	}
 
-	private  void einloggen() {
+	public  void einloggen() {
 		panel.clear();
 		final TextBox vorname = new TextBox();
 		vorname.setText("Vorname");

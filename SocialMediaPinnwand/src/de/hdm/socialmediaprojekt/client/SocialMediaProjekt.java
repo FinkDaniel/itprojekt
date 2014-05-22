@@ -3,22 +3,19 @@ package de.hdm.socialmediaprojekt.client;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.DockPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
-
-
-
-
-
 import com.google.gwt.user.client.ui.VerticalPanel;
 
+import de.hdm.socialmediaprojekt.server.PinnwandVerwaltungImpl;
+import de.hdm.socialmediaprojekt.server.db.PinnwandMapper;
 import de.hdm.socialmediaprojekt.shared.*;
 import de.hdm.socialmediaprojekt.shared.smo.User;
 import de.hdm.socialmediaprojekt.client.gui.Buttons;
-import de.hdm.socialmediaprojekt.client.gui.Content;
 import de.hdm.socialmediaprojekt.client.gui.Content_BG;
 import de.hdm.socialmediaprojekt.client.gui.Footer;
 import de.hdm.socialmediaprojekt.client.gui.Header;
@@ -37,22 +34,17 @@ public class SocialMediaProjekt implements EntryPoint {
 	private VerticalPanel loginPanel = new VerticalPanel();
 	private Label loginLabel = new Label("Please sign in to your Google Account to access the SM application.");
 	private Anchor signInLink = new Anchor("Sign In");
-	private User aktuellerNutzer = null;
+	private User Currentuser = null;
 	
 	
 	public DockPanel dockPanel = new DockPanel();
 
-	Header header= new Header();
-	Navigation navigation = new Navigation();
-	Buttons buttons = new Buttons();
-	Content_BG content_bg = new Content_BG();
-	Content content = new Content();
-	Footer footer = new Footer();
-
-
-
-
-
+	public Header header= new Header();
+	public Navigation navigation = new Navigation();
+	
+	public Content_BG content_bg = new Content_BG();
+	
+	public Footer footer = new Footer();
 
 
 
@@ -61,12 +53,22 @@ public class SocialMediaProjekt implements EntryPoint {
 	googlelogincheck();
 
 		
-	header.erstelleHeader();
-	buttons.erstelleStartseite();
+	/*header.erstelleHeader();
 	
 	navigation.erstelleNavigation();
 	content_bg.erstelleContentBG();
+
 	dockPanel.addStyleName("dockPanel");
+
+	
+	
+	dockPanel.add(header, DockPanel.NORTH);
+	dockPanel.add(footer, DockPanel.SOUTH);
+	dockPanel.add(navigation, DockPanel.WEST);
+	dockPanel.add(content_bg, DockPanel.CENTER);
+	initialisieren();
+	
+*/
 	}
 
 
@@ -82,11 +84,17 @@ private void googlelogincheck() {
 			          loginInfo = result;
 			          if(loginInfo.isLoggedIn()) {
 			        	  
-			        	  
-			           // nutzerInDatenbank(result);
+			        	  loginInfo.getEmailAddress();
+			        	  loginInfo.getNickname();
+			  		    Window.alert("User-ID:"+ loginInfo.getEmailAddress() + loginInfo.getNickname()); 
 			           
-			           //für unseren Fall anpassen
-			           
+			  		    nutzerInDatenbank(result);
+			  		    if(nutzerInDatenbank(loginInfo.getEmailAddress()) == false){
+			  		    	
+			  		    	// Vorname, Nachname einlesen (Panel erzeugen
+			  		    	//UPDATE in die Datenbank
+			  		    	
+			  		    }
 			        	initialisieren();
 			           
 			           //überprüfen ob angemeldete Nutzer bereits in Datenbank ist (anhand email-adresse)
@@ -96,7 +104,15 @@ private void googlelogincheck() {
 			          }
 			   }
 
-			   private void loadLogin() {
+			  private boolean nutzerInDatenbank(String emailAddress) {
+				   
+				//suche in DB nach Eintrag mit übergebener Emailadresse
+				//findet eintrag ->return true
+				//findet keinen eintrag -> return false
+				  return false;
+			}
+
+			private void loadLogin() {
 				      // Assemble login panel.
 				      signInLink.setHref(loginInfo.getLoginUrl());
 				      loginPanel.add(loginLabel);
@@ -116,8 +132,10 @@ private void googlelogincheck() {
 		header.addUserEingeloggt();
 		navigation.erstelleNavigation();
 		content_bg.erstelleContentBG();
+		Buttons buttons = new Buttons();
 		buttons.erstelleButtonsSeite1();
 		footer.erstelleFooter();
+
 
 		initialisieren();
 
@@ -127,16 +145,20 @@ private void googlelogincheck() {
 		
 		
 		RootPanel.get("socialMediaProjekt").clear();
-		
+		dockPanel.clear();
 		dockPanel.add(header, DockPanel.NORTH);
 		dockPanel.add(footer, DockPanel.SOUTH);
 		dockPanel.add(navigation, DockPanel.WEST);
 		dockPanel.add(content_bg, DockPanel.CENTER);
 		
 		RootPanel.get("socialMediaProjekt").add(dockPanel);
-
-		}
+		
+		
+		
+	}
+		
 }
+
 
 
 

@@ -8,21 +8,23 @@ import com.google.gwt.user.client.ui.HorizontalPanel;
 
 import com.google.gwt.user.client.ui.Label;
 
-import de.hdm.socialmediaprojekt.client.SocialMediaProjekt;
+
 
 public class Header extends Composite {
 
-	SocialMediaProjekt smp = new SocialMediaProjekt();
+	
 	public HorizontalPanel header=new HorizontalPanel();
 	
 	
 	public Header() {
 
 		initWidget(header);
-		erstelleHeader();	
+			
 	}
 
 	public void erstelleHeader(){
+		
+		header.clear();
 		
 		header.addStyleName("header");
 		
@@ -34,5 +36,6 @@ public class Header extends Composite {
 	public void addUserEingeloggt() {
 		Label userEingeloggtAls = new Label("User eingeloggt als"+"Test134");
 		userEingeloggtAls.getElement().setId("userEingeloggtAls");
+		header.add(userEingeloggtAls);
 	}
 }

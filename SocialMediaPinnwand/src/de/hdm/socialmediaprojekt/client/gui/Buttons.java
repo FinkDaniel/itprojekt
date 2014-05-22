@@ -10,14 +10,14 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 
 public class Buttons extends Composite{
 
-	VerticalPanel buttons = new VerticalPanel();
-	Content content = new Content();
+	public VerticalPanel buttons = new VerticalPanel();
+	public Content content = new Content();
 	
 	
 	
 	public Buttons() {
 		initWidget(buttons);
-		erstelleStartseite();
+		
 	}
 	public void erstelleStartseite(){
 		
@@ -38,9 +38,9 @@ public class Buttons extends Composite{
 			
 			public void onClick(ClickEvent event) {
 				content.addLogin();
-
 			}
 		});
+		
 		reg.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event) {
 				content.addRegistration();
@@ -53,11 +53,13 @@ public class Buttons extends Composite{
 		
 	}
 	public void erstelleButtonsSeite1(){
+		
 		buttons.clear();
 		
 		
 		Button meinePinnwandButton = new Button("Meine Pinnwand");
 		Button meineAbos = new Button("Meine Abos");
+		
 		Button ausloggen = new Button("Ausloggen");
 
 		meinePinnwandButton.getElement().setId("logButton");
@@ -74,6 +76,7 @@ public class Buttons extends Composite{
 
 		buttons.add(meinePinnwandButton);
 		buttons.add(meineAbos);
+		buttons.add(ausloggen);
 		
 	}
 }

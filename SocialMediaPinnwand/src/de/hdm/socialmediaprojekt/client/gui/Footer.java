@@ -10,7 +10,7 @@ public class Footer extends Composite{
 
 	public Footer() {
 		initWidget(footer);
-		erstelleFooter();
+		//erstelleFooter();
 	}
 	public void erstelleFooter(){
 		footer.clear();
