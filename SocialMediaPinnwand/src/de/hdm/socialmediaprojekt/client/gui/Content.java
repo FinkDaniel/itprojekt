@@ -5,13 +5,14 @@ import com.google.gwt.user.client.ui.DockPanel;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ScrollPanel;
+import com.google.gwt.user.client.ui.TextArea;
 
 public class Content extends Composite{
 
 	DockPanel content = new DockPanel();
 	
 	public Content() {
-		content.addStyleName("content");
+		//content.setStyleName("content");
 		content.add(new HTML("Test2353"), DockPanel.NORTH);
 		initWidget(content);
 	}
@@ -21,17 +22,15 @@ public class Content extends Composite{
 		Label pinnwandMenüpunkt = new Label("Meine Pinnwand");
 		content.add(pinnwandMenüpunkt, DockPanel.NORTH);
 		
-		ScrollPanel pinnwand = new ScrollPanel();
-		pinnwand.getElement().setId("pinnwand");
-		pinnwand.setAlwaysShowScrollBars(true);
+		BeitragForm beitragForm = new BeitragForm();
+		
+		content.add(beitragForm, DockPanel.CENTER);
+			
 		
 		
-		PinnwandView pinnwandView = new PinnwandView();
-		
-		pinnwand.add(pinnwandView);
-		
-		
+		PinnwandView pinnwand = new PinnwandView();
 		content.add(pinnwand, DockPanel.SOUTH);
+		
 		return content;
 	}
 	public DockPanel getContent(){
