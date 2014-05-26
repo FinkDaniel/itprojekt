@@ -4,17 +4,17 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 
-
-public class Footer extends Composite{
+public class AboView extends Composite{
 	
+	HorizontalPanel aboView = new HorizontalPanel();
 	
-	
-	public Footer() {
+	public AboView(){
 		
-		HorizontalPanel footer = new HorizontalPanel();
-		footer.add(new HTML("Hier könnte auch Ihre Werbung erscheinen!"));
+		aboView.getElement().setId("aboView");
+		aboView.add(new HTML("Beitrag"));
+		initWidget(aboView);
 		
-		initWidget(footer);
+		
 	}
 
 }

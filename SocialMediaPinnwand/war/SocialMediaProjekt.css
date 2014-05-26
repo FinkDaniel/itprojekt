@@ -22,11 +22,12 @@ body {
 
 }
 .header {
-	background-color: white;
+	
 	border-style: solid;
 	border-color: rgb(247, 150, 70);
+	padding: 50px;
 	display: block;
-	width: 100%;
+	
 }
 
 #h1{
@@ -39,15 +40,12 @@ body {
 	
 }
 .navigation {
-	background-color: white;
-	margin-top: 7%;
-	padding: 10;
 	border-style: solid;
 	border-color: rgb(247, 150, 70);
 	display: inline-block;
-	width: 230px;
-	height: 600px;
+	width: 20%;
 	float: left;
+	margin-top: 0.5%;
 
 
 }
@@ -73,45 +71,35 @@ body {
 	background-color:red;
 
 }
-.logout {
-	background-color:white;
-	padding:50px;
-}
-.content_bg{
-	background-color: white;
-	margin-top: 2%;
-	margin-bottom: 1%;
-	padding: 50px;
-	width: 750px;
-	height: 600px;
-	display: inline-block;
-	border-color: rgb(247, 150, 70);
-	border-style: solid;
-	float: right;
-}
+
+
 .content {
-	background-color: white;
-
-	/**border-style: solid;*/
+	border-style: solid;
 	border-color: rgb(247, 150, 70);
-	display: inline-block;
-	float:left;
+	float: left;
+	width: 78%;
+	margin-top: 0.5%;
+	margin-left: 0.5%;
 }
-.pinnwand {
+#pinnwand {
 
-	margin:5px;
-	width: 590px;
-	height:550px;
+	margin: 5px;
 	padding: 10px;
+	border-style: solid;
+	border-color: rgb(247, 150, 70);
+	height: 250px;
+}
+#pinnwandView{
+	margin: 5px;
+	width:60%;
+	height:500px;
 	border-style:solid;
 	border-color:rgb(247, 150, 70);
 }
-.pinnwand_inhalt {
-
-	margin:5px;
-	width: 580px;
-	height:600px;
-	padding: 10px;
+#aboView{
+	margin: 5px;
+	width:60%;
+	height:500px;
 	border-style:solid;
 	border-color:rgb(247, 150, 70);
 }
@@ -120,7 +108,7 @@ body {
 	border-style:solid;
 	border-color:rgb(247, 150, 70);
 }
-.footer{
+#footer{
 	background-color: white;
 	margin-top: 1%;
 	padding: 50px;
@@ -129,7 +117,7 @@ body {
 	border-color: rgb(247, 150, 70);
 	width: 100%;
 }
-#logButton {
+.Button {
 	width: 120px;
 	height: 40px;
 	margin: 5%;
@@ -150,6 +138,6 @@ body {
   -ms-box-shadow: 0px 0px 0px 0px #F6923F,0px -7px 17px 0px #f6923f inset;
   -o-box-shadow: 0px 0px 0px 0px #F6923F,0px -7px 17px 0px #f6923f inset;
 }
-#logButton:hover {
+.Button:hover {
 	background:rgb(247, 150, 70);
 }
