@@ -2,14 +2,14 @@ package de.hdm.socialmediaprojekt.client;
 
 import com.google.gwt.safehtml.shared.SafeUri;
 
-	import java.io.Serializable;
+import java.io.Serializable;
 
 	public class LoginInfo implements Serializable {
 
 	  /**
 		 * 
 		 */
-		private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 	private boolean loggedIn = false;
 	  private String loginUrl;
 	  private String logoutUrl;
@@ -54,5 +54,14 @@ import com.google.gwt.safehtml.shared.SafeUri;
 
 	  public void setNickname(String nickname) {
 	    this.nickname = nickname;
-	  }
+	  }}
+	  
+	/*  public LoginInfo(String niname, String mail) {
+			this.nickname = niname;
+			this.emailAddress = mail;}
+	  
+	  public String toString() {
+		    return super.toString() + " " + this.nickname + " " + this.emailAddress; //+ " " + this.nickname+ " " + this.email;
+		  }
 	}
+*/

@@ -4,6 +4,7 @@
 package de.hdm.socialmediaprojekt.client.gui;
 
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
 import de.hdm.socialmediaprojekt.client.Registration;
@@ -18,13 +19,19 @@ public class Content extends Composite{
 	 * 
 	 */
 	public VerticalPanel content = new VerticalPanel();
+	
+	
 	public Content() {
 		initWidget(content);
-		
+		content.addStyleName("content");
+		this.getContent();
 	}
-	public void erstelleContent(){
+	
+	
+	public VerticalPanel erstelleContent(){
 		content.clear();
 		content.addStyleName("content");
+		return content;
 		
 	}
 	public void addLogin(){
@@ -32,6 +39,8 @@ public class Content extends Composite{
 		Login login = new Login(); 
 		login.einloggen();
 		content.add(login);
+		
+		
 	}
 	public void addRegistration(){
 		content.clear();
@@ -43,5 +52,9 @@ public class Content extends Composite{
 		content.clear();
 		MeinePinnwand meinePinnwand = new MeinePinnwand();
 		content.add(meinePinnwand);
+		
+	}
+	public VerticalPanel getContent(){
+		return content;
 	}
 }

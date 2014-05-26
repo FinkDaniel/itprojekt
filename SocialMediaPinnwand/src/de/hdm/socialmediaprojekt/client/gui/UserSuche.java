@@ -10,7 +10,7 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 
 		public UserSuche (){
 			initWidget(userSuche);
-			//erstelleUserSuche();
+			erstelleUserSuche();
 
 		}
 

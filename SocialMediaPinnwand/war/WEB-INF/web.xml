@@ -40,5 +40,20 @@
     <servlet-name>SystemServiceServlet</servlet-name>
     <url-pattern>/_ah/spi/*</url-pattern>
   </servlet-mapping>
+  
+  <!-- Servlets -->
+  <servlet>
+    <servlet-name>loginService</servlet-name>
+    <servlet-class>de.hdm.socialmediaprojekt.server.PinnwandVerwaltungImpl</servlet-class>
+  </servlet>
+
+ 
+
+  <servlet-mapping>
+    <servlet-name>loginService</servlet-name>
+    <url-pattern>/socialmediaprojekt/login</url-pattern>
+  </servlet-mapping>
+
+ 
     
 </web-app>

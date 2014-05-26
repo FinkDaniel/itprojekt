@@ -66,7 +66,7 @@ public class Registration extends Composite {
 				panel.clear();
 				SocialMediaProjekt smp = new SocialMediaProjekt();
 
-				smp.erstelleSeite1();
+			
 
 			}
 

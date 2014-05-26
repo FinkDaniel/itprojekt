@@ -51,7 +51,7 @@ private static UserMapper userMapper = null;
         u.setVorname(rs.getString("vorname"));
         u.setNachname(rs.getString("nachname"));
         u.setNickname(rs.getString("nickname"));
-        u.setPassword(rs.getString("password"));
+//        u.setPassword(rs.getString("password"));
 
         return u;
       }
@@ -128,9 +128,9 @@ private static UserMapper userMapper = null;
 
         stmt = con.createStatement();
 
-        stmt.executeUpdate ("INSERT INTO users(id, vorname, nachname, nickname, password)"
+        stmt.executeUpdate ("INSERT INTO users(id, vorname, nachname, nickname, email)"
             + "VALUES  ('" + u.getId() + "','" + u.getVorname() + "','"
-            + u.getNachname() +  "','" + u.getNickname()+ "','" + u.getPassword()+ "')");
+            + u.getNachname() +  "','" + u.getNickname()+ "','" + u.getEmail()+ "')");
            }
     }
     catch (SQLException e) {
@@ -172,4 +172,34 @@ private static UserMapper userMapper = null;
 	   
 	    return PinnwandMapper.pinnwandMapper().findBySourceUser(u);
 	  }
-	}
+  
+  public User findByEmail(String email) {
+	  
+	  Connection con = LocalDBConnection.connection();
+	  
+	  try {
+		    
+	      Statement stmt = con.createStatement();
+
+	 
+	      ResultSet rs = stmt
+	          .executeQuery("SELECT id, vorname, nachname, nickname, email FROM users "
+	              + "WHERE email=" + email + " ORDER BY nachname");
+	      
+	      if (rs.next()) {
+	    	     
+	          User u = new User();
+	          u.setId(rs.getInt("id"));
+	          u.setNickname(rs.getString("nickname"));
+	          u.setEmail(rs.getString("email"));
+	          return u;
+	      }
+	    }
+	    catch (SQLException e) {
+	      e.printStackTrace();
+	      return null;
+	    }
+
+	    return null;
+	  }
+  }

@@ -4,25 +4,36 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.HTML;
+import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
+
+import de.hdm.socialmediaprojekt.client.SocialMediaProjekt;
+
+
+
+
 
 
 public class Buttons extends Composite{
 
 	public VerticalPanel buttons = new VerticalPanel();
 	public Content content = new Content();
+	//public SocialMediaProjekt smp = new SocialMediaProjekt();
+	
 	
 	
 	
 	public Buttons() {
-		initWidget(buttons);
 		
+		initWidget(buttons);
+		buttons.addStyleName("buttons");
 	}
-	public void erstelleStartseite(){
+	/*public void erstelleStartseite(){
 		
 		buttons.clear();
 		buttons.addStyleName("buttons");
+		
+		
 		
 		
 		Button anmelden = new Button("Anmelden");
@@ -37,7 +48,12 @@ public class Buttons extends Composite{
 		anmelden.addClickHandler(new ClickHandler(){
 			
 			public void onClick(ClickEvent event) {
+				
+				content.getContent();
 				content.addLogin();
+				Content_BG cbg = new Content_BG();
+				cbg.erstelleContentBG();
+				
 			}
 		});
 		
@@ -52,7 +68,8 @@ public class Buttons extends Composite{
 		//content.add(new HTML("<h3>Content</h3"));
 		
 	}
-	public void erstelleButtonsSeite1(){
+	*/
+	public void erstelleButtons(){
 		
 		buttons.clear();
 		
@@ -60,23 +77,26 @@ public class Buttons extends Composite{
 		Button meinePinnwandButton = new Button("Meine Pinnwand");
 		Button meineAbos = new Button("Meine Abos");
 		
-		Button ausloggen = new Button("Ausloggen");
+		
 
 		meinePinnwandButton.getElement().setId("logButton");
 		meineAbos.getElement().setId("logButton");
-		ausloggen.getElement().setId("logButton");
+		
 
 		meinePinnwandButton.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event) {
-				content.addMeinePinnwand();
-
+				
+				content.getContent();
+				
+				
+				
 			}
 
 		});
 
 		buttons.add(meinePinnwandButton);
 		buttons.add(meineAbos);
-		buttons.add(ausloggen);
+		
 		
 	}
 }

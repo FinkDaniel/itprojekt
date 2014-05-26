@@ -7,7 +7,7 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 public class Logout extends Composite{
 
 	VerticalPanel logout = new VerticalPanel();
-	Button logoutButton = new Button();
+	Button logoutButton = new Button("Logout");
 	
 	
 	public Logout() {

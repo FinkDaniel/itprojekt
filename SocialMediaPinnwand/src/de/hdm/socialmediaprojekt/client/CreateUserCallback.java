@@ -12,7 +12,7 @@ public class CreateUserCallback implements AsyncCallback<User> {
 		}
 		public void onSuccess(User user){
 			if(user != null){
-				ClientSideSettings.getLogger().info("User mit" +user.getNickname()+" wurde angelegt");
+				ClientSideSettings.getLogger().info("User mit wurde angelegt");
 			}
 			System.out.println("Test_Callback");
 

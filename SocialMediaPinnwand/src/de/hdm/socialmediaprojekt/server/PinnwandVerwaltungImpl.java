@@ -12,7 +12,6 @@ import com.google.gwt.core.client.impl.AsyncFragmentLoader.Logger;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 import de.hdm.socialmediaprojekt.client.LoginInfo;
-
 import de.hdm.socialmediaprojekt.server.db.*;
 import de.hdm.socialmediaprojekt.shared.*;
 import de.hdm.socialmediaprojekt.shared.smo.*;
@@ -29,6 +28,8 @@ public class PinnwandVerwaltungImpl extends RemoteServiceServlet implements Pinn
 	private KommentarMapper kMapper = null;
 	private AboMapper aMapper = null;
 	private LikeMapper lMapper = null;
+
+	private String email;
 	
 	//Konstruktor
 	
@@ -136,7 +137,6 @@ public class PinnwandVerwaltungImpl extends RemoteServiceServlet implements Pinn
 		u.setNachname(nachname);
 		u.setVorname(vorname);
 		u.setNickname(nickname);
-		u.setPassword(password);
 		u.setId(1);
 		System.out.println("PinnwandVerwaltungImpl Test");
 		return this.uMapper.insert(u);
@@ -277,6 +277,13 @@ public class PinnwandVerwaltungImpl extends RemoteServiceServlet implements Pinn
 	    }
 	    return loginInfo;
 	  }
+	
+	public User findUserbyEmail(String email){
+		String emailaddr = this.email;
+		
+		return uMapper.findByEmail(emailaddr);
+		
+	}
 
 }
 

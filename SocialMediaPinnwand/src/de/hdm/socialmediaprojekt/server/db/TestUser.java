@@ -11,7 +11,7 @@ public class TestUser {
 		    u.setVorname("sssss");
 		    u.setNachname("FinksSchwester");
 		    u.setNickname("ooooo");
-		    u.setPassword("geil");
+//		    u.setPassword("geil");
 		    u.setId(1);
 		    System.out.println(UserMapper.userMapper().insert(u));
 		  
@@ -24,8 +24,8 @@ public class TestUser {
 					+ "\nVorname:"+ u.getVorname()
 					+ "\nNachname:"+ u.getNachname()
 					+ "\nNickname:"+ u.getNickname()
-					+ "\nPinnwandnummer: "+p.getId()
-		    		+ "\nPassword:"+ u.getPassword());
+					+ "\nPinnwandnummer: "+p.getId());
+//		    		+ "\nPassword:"+ u.getPassword());
 		  }
 	
 }

@@ -9,7 +9,7 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 public class Navigation extends Composite {
 	
 	public VerticalPanel navigation = new VerticalPanel();
-	Buttons buttons = new Buttons();
+	public Buttons buttons = new Buttons();
 	public UserSuche userSuche = new UserSuche();
 	public Logout logout = new Logout();
 
@@ -20,15 +20,13 @@ public class Navigation extends Composite {
 
 	public void erstelleNavigation(){
 		
-		buttons.erstelleStartseite();
-		userSuche.erstelleUserSuche();
-		logout.erstelleLogout();
-		
+		buttons.erstelleButtons();
 		navigation.addStyleName("navigation");
 		navigation.add(buttons);
 		navigation.add(userSuche);
 		navigation.add(logout);
 	
 	}
+	
 
 }

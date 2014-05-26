@@ -101,6 +101,8 @@ public interface PinnwandVerwaltungAsync {
 
 	void login(String requesturi, AsyncCallback<LoginInfo> callback);
 
+	void findUserbyEmail(String email, AsyncCallback<User> callback);
+
 	// void login(String hostPageBaseURL, AsyncCallback<LoginInfo> callback);
 
 

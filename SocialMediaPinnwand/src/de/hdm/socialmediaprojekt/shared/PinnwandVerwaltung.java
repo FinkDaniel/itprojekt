@@ -84,5 +84,7 @@ public interface PinnwandVerwaltung extends RemoteService {
 	public void save(Kommentar k) throws IllegalArgumentException;
 	
 	public LoginInfo login(String requesturi) throws IllegalArgumentException;
+	public User findUserbyEmail(String email);
+	
 	
 }
