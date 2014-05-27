@@ -7,17 +7,17 @@ public class Kommentar extends SMObject {
 private static final long serialVersionUID = 1L;
 
   
-  private String kommentar = "";
+  private String text = "";
   
   private int sourceUserID = 0;
   private int targetBeitragID = 0;
   
   public String getKommentar() {
-    return this.kommentar;
+    return this.text;
   }
 
   public void setKommentar(String kommentar) {
-    this.kommentar = kommentar;
+    this.text = kommentar;
   }
 
   public int getSourceUserID() {
@@ -42,7 +42,7 @@ public void setTargetBeitragID(int targetID){
 	  	return super.toString() 
 	  	+"Der Nutzer mit der User-ID: #" + this.sourceUserID 
 	   	+ "hat den Beitrag mit der Beitrags-ID: #" + this.targetBeitragID 
-	   	+ "mit dem Kommentar:" + this.kommentar
+	   	+ "mit dem Kommentar:" + this.text
 	   	+"kommentiert";  		
   }
 

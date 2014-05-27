@@ -131,12 +131,13 @@ public class PinnwandVerwaltungImpl extends RemoteServiceServlet implements Pinn
 	// ---- Create f�r alle ----
 	
 	//create User
-	public User createUser(String vorname, String nachname, String nickname, String password) throws IllegalArgumentException {
+	public User createUser(String vorname, String nachname, String nickname, String email) throws IllegalArgumentException {
 		
 		User u = new User();
 		u.setNachname(nachname);
 		u.setVorname(vorname);
 		u.setNickname(nickname);
+		u.setEmail(email);
 		u.setId(1);
 		System.out.println("PinnwandVerwaltungImpl Test");
 		return this.uMapper.insert(u);
@@ -284,6 +285,8 @@ public class PinnwandVerwaltungImpl extends RemoteServiceServlet implements Pinn
 		return uMapper.findByEmail(emailaddr);
 		
 	}
+
+	
 
 }
 

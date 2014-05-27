@@ -183,8 +183,7 @@ private static UserMapper userMapper = null;
 
 	 
 	      ResultSet rs = stmt
-	          .executeQuery("SELECT id, vorname, nachname, nickname, email FROM users "
-	              + "WHERE email=" + email + " ORDER BY nachname");
+	          .executeQuery("SELECT * FROM `users` WHERE `email` = "+email);
 	      
 	      if (rs.next()) {
 	    	     

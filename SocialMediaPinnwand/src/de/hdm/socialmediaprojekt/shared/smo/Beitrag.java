@@ -7,16 +7,16 @@ public class Beitrag extends SMObject {
 private static final long serialVersionUID = 1L;
 
   
-  private String beitrag = "";
+  private String text = "";
   
   private int sourceUserID = 0;
   
   public String getBeitrag() {
-    return this.beitrag;
+    return this.text;
   }
 
   public void setBeitrag(String beitrag) {
-    this.beitrag = beitrag;
+    this.text = beitrag;
   }
 
   public int getSourceUserID() {
@@ -32,9 +32,9 @@ private static final long serialVersionUID = 1L;
   
   public String toString() {
 
-	  return super.toString()+ " " + this.beitrag+ " " + this.sourceUserID
+	  return super.toString()+ " " + this.text+ " " + this.sourceUserID
 	  	+"Der Nutzer mit der User-ID: #" + this.sourceUserID 
-	   	+ "hat den Beitrag mit der Beitrags-ID: #" + this.beitrag + "verfasst";  			
+	   	+ "hat den Beitrag mit der Beitrags-ID: #" + this.text + "verfasst";  			
 
 	  	
 

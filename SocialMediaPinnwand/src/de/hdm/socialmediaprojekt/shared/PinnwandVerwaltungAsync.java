@@ -28,8 +28,8 @@ public interface PinnwandVerwaltungAsync {
 
 	void createPinnwand(int sourceUser, AsyncCallback<Pinnwand> callback);
 
-	void createUser(String vorname, String nachname, String nickname,
-			String password, AsyncCallback<User> callback);
+	void createUser(String vorname, String nachname, String nickname, String email,
+			 AsyncCallback<User> callback);
 
 	void deleteAbo(Abo a, AsyncCallback<Void> callback);
 
