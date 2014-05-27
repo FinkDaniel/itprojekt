@@ -6,8 +6,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Vector;
 
-import de.hdm.socialmediaprojekt.shared.smo.*;
-import de.hdm.socialmediaprojekt.server.db.LocalDBConnection;
+import de.hdm.socialmediaprojekt.shared.smo.Pinnwand;
+import de.hdm.socialmediaprojekt.shared.smo.User;
 
 
 

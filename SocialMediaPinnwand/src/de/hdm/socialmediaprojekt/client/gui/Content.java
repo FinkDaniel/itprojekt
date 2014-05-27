@@ -5,7 +5,6 @@ import com.google.gwt.user.client.ui.DockPanel;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ScrollPanel;
-import com.google.gwt.user.client.ui.TextArea;
 
 public class Content extends Composite{
 
@@ -23,7 +22,6 @@ public class Content extends Composite{
 		content.add(pinnwandMenüpunkt, DockPanel.NORTH);
 		
 		BeitragForm beitragForm = new BeitragForm();
-		
 		content.add(beitragForm, DockPanel.CENTER);
 			
 		

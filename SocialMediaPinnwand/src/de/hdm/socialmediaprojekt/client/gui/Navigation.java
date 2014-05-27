@@ -2,15 +2,17 @@ package de.hdm.socialmediaprojekt.client.gui;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
-import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.MultiWordSuggestOracle;
+import com.google.gwt.user.client.ui.SuggestBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
 import de.hdm.socialmediaprojekt.client.SocialMediaProjekt;
 
-public class Navigation extends Composite{
+public class Navigation extends VerticalPanel{
 
-	VerticalPanel navigation = new VerticalPanel();
+	
 	
 	
 	public Navigation() {
@@ -23,11 +25,11 @@ public class Navigation extends Composite{
 		meineAbos.addStyleName("Button");
 		logout.addStyleName("Button");
 		
-		navigation.add(meinePinnwand);
-		navigation.add(meineAbos);
-		navigation.add(logout);
+		this.add(meinePinnwand);
+		this.add(meineAbos);
+		this.add(logout);
 		
-		initWidget(navigation);
+		
 		
 		meinePinnwand.addClickHandler(new ClickHandler(){
 
@@ -51,6 +53,32 @@ public class Navigation extends Composite{
 			}
 		});
 		
+		MultiWordSuggestOracle suggestBox = new MultiWordSuggestOracle();
+		
+			suggestBox.add("test");
+			suggestBox.add("Daniel Fink");
+			suggestBox.add("Oberlotz");
+			suggestBox.add("Peter Pan");
+		
+
+		   final SuggestBox box = new SuggestBox(suggestBox);
+		  this.add(box);
+		 
+		  Button abonieren = new Button("User abonieren");
+		  abonieren.setStyleName("Button");
+		  this.add(abonieren);
+		  
+		  abonieren.addClickHandler(new ClickHandler(){
+
+			public void onClick(ClickEvent event) {
+				
+			String boxInhalt = box.getText();
+			Window.alert(boxInhalt);
+			}
+			  
+		  });
+		   
+		   
 	}
 
 }

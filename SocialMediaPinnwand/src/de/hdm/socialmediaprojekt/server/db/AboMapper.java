@@ -1,9 +1,13 @@
 package de.hdm.socialmediaprojekt.server.db;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Vector;
 
-import de.hdm.socialmediaprojekt.shared.smo.*;
+import de.hdm.socialmediaprojekt.shared.smo.Abo;
+import de.hdm.socialmediaprojekt.shared.smo.Pinnwand;
 
 
 public class AboMapper {

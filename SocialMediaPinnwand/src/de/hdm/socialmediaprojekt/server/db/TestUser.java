@@ -1,6 +1,7 @@
 package de.hdm.socialmediaprojekt.server.db;
 
-import de.hdm.socialmediaprojekt.shared.smo.*;
+import de.hdm.socialmediaprojekt.shared.smo.Pinnwand;
+import de.hdm.socialmediaprojekt.shared.smo.User;
 
 public class TestUser {
 

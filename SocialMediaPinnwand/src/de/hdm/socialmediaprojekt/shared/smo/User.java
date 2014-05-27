@@ -1,6 +1,5 @@
 package de.hdm.socialmediaprojekt.shared.smo;
 
-import de.hdm.socialmediaprojekt.shared.smo.SMObject;
 
 
 

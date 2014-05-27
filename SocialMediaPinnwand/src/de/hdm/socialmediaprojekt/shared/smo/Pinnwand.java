@@ -1,7 +1,5 @@
 package de.hdm.socialmediaprojekt.shared.smo;
 
-import de.hdm.socialmediaprojekt.shared.smo.Pinnwand;
-import de.hdm.socialmediaprojekt.shared.smo.SMObject;
 
 
 public class Pinnwand extends SMObject {

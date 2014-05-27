@@ -6,28 +6,27 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ScrollPanel;
-import com.google.gwt.user.client.ui.TextArea;
 
-public class PinnwandView extends Composite{
+public class PinnwandView extends ScrollPanel{
 	
 	
-	ScrollPanel pinnwand = new ScrollPanel();
+	
 	HorizontalPanel pinnwandView = new HorizontalPanel();
 	
 	public PinnwandView() {
 		
-		ScrollPanel pinnwand = new ScrollPanel();
-		pinnwand.getElement().setId("pinnwand");
-		pinnwand.setAlwaysShowScrollBars(true);
+		
+		this.getElement().setId("pinnwand");
+		this.setAlwaysShowScrollBars(true);
 		
 		
 		
 		
 		createPinnwand();
-		pinnwand.add(pinnwandView);
+		this.add(pinnwandView);
 		
 		
-		initWidget(pinnwand);
+		
 		
 		
 		

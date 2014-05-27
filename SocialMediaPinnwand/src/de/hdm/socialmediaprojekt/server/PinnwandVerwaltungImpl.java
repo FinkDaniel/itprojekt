@@ -4,9 +4,19 @@ import java.util.Vector;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
-import de.hdm.socialmediaprojekt.server.db.*;
-import de.hdm.socialmediaprojekt.shared.*;
-import de.hdm.socialmediaprojekt.shared.smo.*;
+import de.hdm.socialmediaprojekt.server.db.AboMapper;
+import de.hdm.socialmediaprojekt.server.db.BeitragMapper;
+import de.hdm.socialmediaprojekt.server.db.KommentarMapper;
+import de.hdm.socialmediaprojekt.server.db.LikeMapper;
+import de.hdm.socialmediaprojekt.server.db.PinnwandMapper;
+import de.hdm.socialmediaprojekt.server.db.UserMapper;
+import de.hdm.socialmediaprojekt.shared.PinnwandVerwaltung;
+import de.hdm.socialmediaprojekt.shared.smo.Abo;
+import de.hdm.socialmediaprojekt.shared.smo.Beitrag;
+import de.hdm.socialmediaprojekt.shared.smo.Kommentar;
+import de.hdm.socialmediaprojekt.shared.smo.Like;
+import de.hdm.socialmediaprojekt.shared.smo.Pinnwand;
+import de.hdm.socialmediaprojekt.shared.smo.User;
 
 public class PinnwandVerwaltungImpl extends RemoteServiceServlet implements PinnwandVerwaltung {
 

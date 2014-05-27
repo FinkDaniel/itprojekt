@@ -2,10 +2,11 @@ package de.hdm.socialmediaprojekt.client;
 
 
 import com.google.gwt.core.client.EntryPoint;
-import com.google.gwt.user.client.ui.DockPanel;
 import com.google.gwt.user.client.ui.RootPanel;
 
-import de.hdm.socialmediaprojekt.client.gui.*;
+import de.hdm.socialmediaprojekt.client.gui.Content;
+import de.hdm.socialmediaprojekt.client.gui.Header;
+import de.hdm.socialmediaprojekt.client.gui.Navigation;
 
 
 
