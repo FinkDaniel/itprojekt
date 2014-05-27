@@ -1,7 +1,7 @@
 package de.hdm.socialmediaprojekt.shared.smo;
 
-import java.util.Date;
 import java.io.Serializable;
+import java.util.Date;
 
 public abstract class SMObject implements Serializable {
 

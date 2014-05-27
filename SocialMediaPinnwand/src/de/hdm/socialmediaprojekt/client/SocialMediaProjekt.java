@@ -1,13 +1,11 @@
 package de.hdm.socialmediaprojekt.client;
 
 
-import java.io.IOException;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
-import com.google.appengine.api.users.UserServiceFactory;
+
 import com.google.gwt.core.client.EntryPoint;
+import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
@@ -17,20 +15,14 @@ import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DockPanel;
 import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
-
-import de.hdm.socialmediaprojekt.server.PinnwandVerwaltungImpl;
-import de.hdm.socialmediaprojekt.server.db.PinnwandMapper;
 import de.hdm.socialmediaprojekt.shared.*;
 import de.hdm.socialmediaprojekt.shared.smo.User;
-import de.hdm.socialmediaprojekt.client.gui.Buttons;
 import de.hdm.socialmediaprojekt.client.gui.Content;
-import de.hdm.socialmediaprojekt.client.gui.Content_BG;
-import de.hdm.socialmediaprojekt.client.gui.Footer;
 import de.hdm.socialmediaprojekt.client.gui.Header;
 import de.hdm.socialmediaprojekt.client.gui.Navigation;
+
 
 
 
@@ -41,57 +33,38 @@ import de.hdm.socialmediaprojekt.client.gui.Navigation;
 public class SocialMediaProjekt implements EntryPoint {
 
 
+
 	//Klassenvariablen für Google Login
 	private LoginInfo loginInfo = null;
 	private VerticalPanel loginPanel = new VerticalPanel();
 	private Label loginLabel = new Label("Please sign in to your Google Account to access the SM application.");
 	private Anchor signInLink = new Anchor("Sign In");
-	private User currentUser = null;
+//	private User currentUser = null;
 	private Button logButton = new Button("Anmelden");
-	
-	
 	public DockPanel dockPanel = new DockPanel();
-
-	public Header header= new Header();
+	public Header header = new Header();
 	public Navigation navigation = new Navigation();
-	
-	public Content_BG content_bg = new Content_BG();
 	public Content content = new Content();
-	public Footer footer = new Footer();
+
+//	public Footer footer = new Footer();
+
+
 
 
 
 	public void onModuleLoad() {
 		
 
-	googlelogincheck();
-
-		
-	/*header.erstelleHeader();
+		googlelogincheck();
+		RootPanel.get("header").add(header);
+		RootPanel.get("navigation").add(navigation);
+		RootPanel.get("content").add(content);
+		//RootPanel.get("footer").add(footer);
+			
 	
-	navigation.erstelleNavigation();
-	content_bg.erstelleContentBG();
-
-	dockPanel.addStyleName("dockPanel");
-
-	
-	
-	dockPanel.add(header, DockPanel.NORTH);
-	dockPanel.add(footer, DockPanel.SOUTH);
-	dockPanel.add(navigation, DockPanel.WEST);
-	dockPanel.add(content_bg, DockPanel.CENTER);
-
-	//Google Login Funktion
-		
-		
-
-	initialisieren();
-	
-*/
 	}
 
-
-private void googlelogincheck() {
+	private void googlelogincheck() {
 		//aufrufen async call von LoginInfo
 	
 	
@@ -166,7 +139,7 @@ private void googlelogincheck() {
 			  		    
 
 			  		    }
-			        	//initialisieren();
+			        	initialisieren();
 			           
 			           //überprüfen ob angemeldete Nutzer bereits in Datenbank ist (anhand email-adresse)
 			           
@@ -244,31 +217,28 @@ private void googlelogincheck() {
 
 */
 	public void initialisieren(){
+
+//		RootPanel.get("socialMediaProjekt").clear();
 		
-		
-		RootPanel.get("socialMediaProjekt").clear();
-		
-		header.erstelleHeader();
-		navigation.erstelleNavigation();
-		content_bg.erstelleContentBG();
-		footer.erstelleFooter();
-		
-		dockPanel.clear();
-		dockPanel.add(header, DockPanel.NORTH);
-		dockPanel.add(footer, DockPanel.SOUTH);
-		dockPanel.add(navigation, DockPanel.WEST);
-		dockPanel.add(content_bg, DockPanel.CENTER);
-		
-		RootPanel.get("socialMediaProjekt").add(dockPanel);
 		
 		
 		
 	}
 
-
+	public void clearContent(){
+		RootPanel.get("content").clear();
+	}
+	
+	public void addPinnwandToContent(){
+		content.addPinnwand();
+		RootPanel.get("content").add(content);
+	}
+	public void addAbosToContent(){
+		content.addMeineAbos();
+		RootPanel.get("content").add(content);
 		}
 
-
+	}
 
 
 

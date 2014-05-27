@@ -1,6 +1,6 @@
 package de.hdm.socialmediaprojekt.server.db;
 
-import de.hdm.socialmediaprojekt.shared.smo.*;
+import de.hdm.socialmediaprojekt.shared.smo.Like;
 
 public class TestLike {
 

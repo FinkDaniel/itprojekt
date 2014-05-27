@@ -2,7 +2,9 @@ package de.hdm.socialmediaprojekt.shared;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
-import de.hdm.socialmediaprojekt.shared.report.*;
+import de.hdm.socialmediaprojekt.shared.report.AlleInfosVonAllenBeitraegenReport;
+import de.hdm.socialmediaprojekt.shared.report.AlleInfosVonAllenUsernReport;
+import de.hdm.socialmediaprojekt.shared.report.AlleInfosVonEinemBeitragReport;
 
 
 

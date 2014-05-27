@@ -1,60 +1,61 @@
-/**
- * 
- */
 package de.hdm.socialmediaprojekt.client.gui;
 
 import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.RootPanel;
-import com.google.gwt.user.client.ui.VerticalPanel;
+import com.google.gwt.user.client.ui.DockPanel;
+import com.google.gwt.user.client.ui.HTML;
+import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.ScrollPanel;
 
-import de.hdm.socialmediaprojekt.client.Registration;
-
-/**
- * @author Patrick
- *
- */
 public class Content extends Composite{
 
-	/**
-	 * 
-	 */
-	public VerticalPanel content = new VerticalPanel();
-	
-	
+
+	DockPanel content = new DockPanel();
+
 	public Content() {
+		content.addStyleName("content");
+		content.add(new HTML("Test2353"), DockPanel.NORTH);
 		initWidget(content);
-		content.addStyleName("content");
-		this.getContent();
 	}
-	
-	
-	public VerticalPanel erstelleContent(){
+	public DockPanel addPinnwand(){
+
 		content.clear();
-		content.addStyleName("content");
-		return content;
-		
-	}
-	public void addLogin(){
-		content.clear();
-		Login login = new Login(); 
-		login.einloggen();
-		content.add(login);
-		
-		
-	}
-	public void addRegistration(){
-		content.clear();
-		Registration registration = new Registration();
-		content.add(registration);
-		
-	}
-	public void addMeinePinnwand(){
-		content.clear();
-		MeinePinnwand meinePinnwand = new MeinePinnwand();
-		content.add(meinePinnwand);
-		
-	}
-	public VerticalPanel getContent(){
+		Label pinnwandMenüpunkt = new Label("Meine Pinnwand");
+		content.add(pinnwandMenüpunkt, DockPanel.NORTH);
+
+		ScrollPanel pinnwand = new ScrollPanel();
+		pinnwand.getElement().setId("pinnwand");
+		pinnwand.setAlwaysShowScrollBars(true);
+
+
+		PinnwandView pinnwandView = new PinnwandView();
+
+		pinnwand.add(pinnwandView);
+
+
+		content.add(pinnwand, DockPanel.SOUTH);
 		return content;
 	}
+	public DockPanel getContent(){
+		return content;
+	}
+	public DockPanel addMeineAbos() {
+
+		content.clear();
+		Label aboMenüpunkt = new Label("Meine Abos");
+		content.add(aboMenüpunkt, DockPanel.NORTH);
+
+		ScrollPanel abos = new ScrollPanel();
+		abos.getElement().setId("pinnwand");
+		abos.setAlwaysShowScrollBars(true);
+
+		AboView aboView = new AboView();
+
+		abos.add(aboView);
+
+		content.add(abos, DockPanel.SOUTH);
+		return content;
+
+
+	}
+
 }

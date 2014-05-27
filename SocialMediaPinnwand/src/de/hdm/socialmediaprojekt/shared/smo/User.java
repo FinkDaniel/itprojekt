@@ -1,5 +1,6 @@
 package de.hdm.socialmediaprojekt.shared.smo;
 
+
 import java.sql.Date;
 
 import javax.jdo.annotations.IdGeneratorStrategy;
