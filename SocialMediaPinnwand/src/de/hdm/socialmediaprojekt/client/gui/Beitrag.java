@@ -25,7 +25,7 @@ public class Beitrag {
 		private Button like;
 		private Label dufte;
 		int i = 0;
-		
+//		Test
 		
 	
 	
