@@ -15,7 +15,7 @@ import de.hdm.socialmediaprojekt.client.*;
 import de.hdm.socialmediaprojekt.server.PinnwandVerwaltungImpl;
 
 
-public class Header extends HorizontalPanel{
+public class Header extends Composite{
 
 	HorizontalPanel header = new HorizontalPanel();
 	
@@ -31,6 +31,7 @@ public class Header extends HorizontalPanel{
 		userEingeloggtAls.getElement().setId("userEingeloggtAls");
 		header.add(userEingeloggtAls);
 		initWidget(header);
+		
 	}
 
 

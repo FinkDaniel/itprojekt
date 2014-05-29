@@ -200,7 +200,7 @@ public class SocialMediaProjekt implements EntryPoint {
 
 
 
-		// Vorhergehende Seite löschen und Seite 1 erstellen
+//		 Vorhergehende Seite löschen und Seite 1 erstellen
 /*		RootPanel.get("socialMediaProjekt").clear();
 
 		header.addUserEingeloggt();
