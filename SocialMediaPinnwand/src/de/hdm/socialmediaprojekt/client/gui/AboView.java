@@ -3,16 +3,16 @@ package de.hdm.socialmediaprojekt.client.gui;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 
-
-public class Footer extends HorizontalPanel{
+public class AboView extends HorizontalPanel{
 	
 	
 	
-	public Footer() {
+	public AboView(){
+		
+		this.getElement().setId("aboView");
+		this.add(new HTML("Beitrag"));
 		
 		
-		this.add(new HTML("Hier könnte auch Ihre Werbung erscheinen!"));
-		this.getElement().setId("footer");
 		
 	}
 

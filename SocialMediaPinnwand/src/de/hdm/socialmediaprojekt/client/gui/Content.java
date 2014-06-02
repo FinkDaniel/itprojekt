@@ -1,60 +1,62 @@
-/**
- * 
- */
 package de.hdm.socialmediaprojekt.client.gui;
 
-import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.RootPanel;
+import com.google.gwt.user.client.ui.DockPanel;
+import com.google.gwt.user.client.ui.HTML;
+import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.ScrollPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
-import de.hdm.socialmediaprojekt.client.Registration;
+public class Content extends DockPanel{
 
-/**
- * @author Patrick
- *
- */
-public class Content extends Composite{
-
-	/**
-	 * 
-	 */
-	public VerticalPanel content = new VerticalPanel();
 	
 	
 	public Content() {
-		initWidget(content);
-		content.addStyleName("content");
-		this.getContent();
-	}
-	
-	
-	public VerticalPanel erstelleContent(){
-		content.clear();
-		content.addStyleName("content");
-		return content;
+		
+		this.add(new HTML("Test2353"), DockPanel.NORTH);
 		
 	}
-	public void addLogin(){
-		content.clear();
-		Login login = new Login(); 
-		login.einloggen();
-		content.add(login);
+	public DockPanel addPinnwand(){
+		
+		this.clear();
+		Label pinnwandMenüpunkt = new Label("Meine Pinnwand");
+		this.add(pinnwandMenüpunkt, DockPanel.NORTH);
+		
+		BeitragForm beitrag = new BeitragForm();
+		this.add(beitrag, DockPanel.NORTH);
+		
+		ScrollPanel pinnwand = new ScrollPanel();
+		pinnwand.getElement().setId("pinnwand");
+		pinnwand.setAlwaysShowScrollBars(true);
+		
+		
+		PinnwandView pinnwandView = new PinnwandView();
+		pinnwand.add(pinnwandView);
+		
+		
+		this.add(pinnwand, DockPanel.SOUTH);
+		return this;
+	}
+	public DockPanel getContent(){
+		return this;
+	}
+	public DockPanel addMeineAbos() {
+		
+		this.clear();
+		Label aboMenüpunkt = new Label("Meine Abos");
+		this.add(aboMenüpunkt, DockPanel.NORTH);
+		
+		ScrollPanel abos = new ScrollPanel();
+		abos.getElement().setId("pinnwand");
+		abos.setAlwaysShowScrollBars(true);
+		
+		AboView aboView = new AboView();
+		
+		abos.add(aboView);
+		
+		this.add(abos, DockPanel.SOUTH);
+		return this;
 		
 		
 	}
-	public void addRegistration(){
-		content.clear();
-		Registration registration = new Registration();
-		content.add(registration);
-		
-	}
-	public void addMeinePinnwand(){
-		content.clear();
-		MeinePinnwand meinePinnwand = new MeinePinnwand();
-		content.add(meinePinnwand);
-		
-	}
-	public VerticalPanel getContent(){
-		return content;
-	}
+
 }
