@@ -2,26 +2,29 @@ package de.hdm.socialmediaprojekt.server;
 
 import java.util.Vector;
 
-import javax.jdo.JDOHelper;
-import javax.jdo.PersistenceManager;
-import javax.jdo.PersistenceManagerFactory;
+
 
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
-import com.google.gwt.core.client.impl.AsyncFragmentLoader.Logger;
+
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
+
 
 import de.hdm.socialmediaprojekt.client.LoginInfo;
 import de.hdm.socialmediaprojekt.server.db.*;
-import de.hdm.socialmediaprojekt.shared.*;
+
 import de.hdm.socialmediaprojekt.shared.smo.*;
+
+import de.hdm.socialmediaprojekt.shared.PinnwandVerwaltung;
+
+
 
 public class PinnwandVerwaltungImpl extends RemoteServiceServlet implements PinnwandVerwaltung {
 
 	// Variablendefinition
-	
+
 	private static final long serialVersionUID = 1L;
-	
+
 	private UserMapper uMapper = null;
 	private BeitragMapper bMapper = null;
 	private PinnwandMapper pMapper = null;
@@ -30,15 +33,15 @@ public class PinnwandVerwaltungImpl extends RemoteServiceServlet implements Pinn
 	private LikeMapper lMapper = null;
 
 	private String email;
-	
+
 	//Konstruktor
-	
+
 	public PinnwandVerwaltungImpl() throws IllegalArgumentException{
-		
+
 	}
-	
+
 	// Initialisierung
-	
+
 	public void init() throws IllegalArgumentException {
 		this.uMapper = UserMapper.userMapper();
 		this.bMapper = BeitragMapper.beitragMapper();
@@ -46,14 +49,14 @@ public class PinnwandVerwaltungImpl extends RemoteServiceServlet implements Pinn
 		this.kMapper = KommentarMapper.kommentarMapper();
 		this.aMapper = AboMapper.aboMapper();
 		this.lMapper = LikeMapper.likeMapper();
-		
+
 	}
-	
-	
+
+
 
 
 	// getbySourceUser Methoden
-	
+
 	public Vector<Kommentar> getKommentarBySourceUser(int sourceId) throws IllegalArgumentException{
 		return this.kMapper.findBySourceUser(sourceId);
 	}
@@ -66,7 +69,7 @@ public class PinnwandVerwaltungImpl extends RemoteServiceServlet implements Pinn
 	public Vector<Like> getLikeBySourceUser(int sourceId) throws IllegalArgumentException{
 		return this.lMapper.findBySourceUser(sourceId);
 	}
-	
+
 	public Vector<Like> getLikeByTargetBeitrag(int beitragId) throws IllegalArgumentException{
 		return this.lMapper.findByTargetBeitrag(beitragId);
 	}
@@ -79,10 +82,10 @@ public class PinnwandVerwaltungImpl extends RemoteServiceServlet implements Pinn
 	public Vector<Kommentar> getKommentarByTargetBeitrag(int beitragId) throws IllegalArgumentException{
 		return this.kMapper.findByTargetBeitrag(beitragId);
 	}
-	
-	
+
+
 	// "Find" by ID -Methoden f�r Alle SMOs
-	
+
 	public User getUserById(int id) throws IllegalArgumentException{
 		return this.uMapper.findByKey(id);
 	}
@@ -102,13 +105,13 @@ public class PinnwandVerwaltungImpl extends RemoteServiceServlet implements Pinn
 		return this.kMapper.findByKey(id);
 	}
 	public Vector<User> getUserByNachname(String nachname) throws IllegalArgumentException{
-		
+
 	return this.uMapper.findByNachname(nachname);
 	}
-	
+
 	// "FIND ALL"- Methoden f�r alle SMOs
 	// alle Methodennamen sind im Singular gehalten.
-	
+
 	public Vector<User> getAllUser() throws IllegalArgumentException{
 		return this.uMapper.findAll();
 	}
@@ -127,12 +130,12 @@ public class PinnwandVerwaltungImpl extends RemoteServiceServlet implements Pinn
 	public Vector<Abo> getAllAbo() throws IllegalArgumentException{
 		return this.aMapper.findAll();
 	}
-	
+
 	// ---- Create f�r alle ----
-	
+
 	//create User
 	public User createUser(String vorname, String nachname, String nickname, String email) throws IllegalArgumentException {
-		
+
 		User u = new User();
 		u.setNachname(nachname);
 		u.setVorname(vorname);
@@ -140,95 +143,101 @@ public class PinnwandVerwaltungImpl extends RemoteServiceServlet implements Pinn
 		u.setEmail(email);
 		u.setId(1);
 		System.out.println("PinnwandVerwaltungImpl Test");
-		return this.uMapper.insert(u);
-		
+
+		this.uMapper.insert(u);
+
+		createPinnwand(u.getId());
+
+		return u;
+
+
 	}
 	//create Abo
-	
+
 	public Abo createAbo(int sourcePinnwand, int targetPinnwand) throws IllegalArgumentException{
 		Abo a = new Abo();
 		a.setSourcePinnwandID(sourcePinnwand);
 		a.setTargetPinnwandID(targetPinnwand);
 		a.setId(1);
-		
+
 		return this.aMapper.insert(a);
 	}
 	//create Pinnwand
-	
+
 	public Pinnwand createPinnwand(int sourceUser) throws IllegalArgumentException{
 		Pinnwand p = new Pinnwand();
 		p.setSourceUserID(sourceUser);
 		p.setId(1);
-		
+
 		return this.pMapper.insert(p);
 	}
 	//create Kommentar
-	
+
 	public Kommentar createKommentar(String text, int sourceUser, int targetBeitrag) throws IllegalArgumentException{
 		Kommentar k = new Kommentar();
 		k.setKommentar(text);
 		k.setSourceUserID(sourceUser);
 		k.setTargetBeitragID(targetBeitrag);
 		k.setId(1);
-		
+
 		return this.kMapper.insert(k);
 	}
 	//create Like
-	
+
 	public Like createLike(int sourceUser, int targetBeitrag) throws IllegalArgumentException{
 		Like l = new Like();
 		l.setSourceUserID(sourceUser);
 		l.setTargetBeitragID(targetBeitrag);
 		l.setId(1);
-		
+
 		return this.lMapper.insert(l);
 	}	
 	//create Beitrag
-	
+
 	public Beitrag createBeitrag(String text, int sourceUser) throws IllegalArgumentException{
 		Beitrag b = new Beitrag();
 		b.setBeitrag(text);
 		b.setSourceUserID(sourceUser);
 		b.setId(1);
-		
+
 		return this.bMapper.insert(b);
 	}
-	
+
 	// ---- Delete f�r alle ----
 	//delete User (inaktiv setzen des Users)
-	
+
 	public User deleteUser(User u) throws IllegalArgumentException{
 		u.setNickname("Unbekannter User");
 		//Variable f�r aktivit�t ---- auf false setzen
 		return this.uMapper.update(u);
 	}
-	
+
 	//delete Abo
-	
+
 	public void deleteAbo(Abo a) throws IllegalArgumentException{
-		
+
 		aMapper.delete(a);
 	}
 	//delete Pinnwand wird nicht benutzt
-	
+
 	public void deletePinnwand(Pinnwand p) throws IllegalArgumentException{
 		pMapper.delete(p);
 	}
-	
+
 	//delete Kommentar
-	
+
 	public void deleteKommentar(Kommentar k)throws IllegalArgumentException{
 		kMapper.delete(k);
 	}
 	//delete Like
-	
+
 	public void deleteLike(Like l) throws IllegalArgumentException{
 		lMapper.delete(l);
 	}
 	//delete Beitrag
-	
+
 	public void deleteBeitrag(Beitrag b) throws IllegalArgumentException{
-		
+
 		Vector<Like> likes = this.getLikeByTargetBeitrag(b.getId());
 		if (likes != null){
 			for (Like l : likes){
@@ -242,16 +251,16 @@ public class PinnwandVerwaltungImpl extends RemoteServiceServlet implements Pinn
 				this.deleteKommentar(k);
 			}
 		}
-		
+
 		bMapper.delete(b);
 	}
-	
+
 	// ---- update f�r Ausgew�hlte ---- (user, beitrag, kommentar)
 	//update User
 	public void save(User u) throws IllegalArgumentException {
 		uMapper.update(u);
 	}
-	
+
 	//update Beitrag
 	public void save(Beitrag b) throws IllegalArgumentException{
 		bMapper.update(b);
@@ -278,16 +287,14 @@ public class PinnwandVerwaltungImpl extends RemoteServiceServlet implements Pinn
 	    }
 	    return loginInfo;
 	  }
-	
+
 	public User findUserbyEmail(String email){
 		String emailaddr = this.email;
-		
+
 		return uMapper.findByEmail(emailaddr);
-		
+
 	}
 
-	
+
 
 }
-
-
