@@ -114,11 +114,11 @@ public void nutzerInDatenbank(final LoginInfo googleNutzer){
 								
 								if (u.getEmail() == googleNutzer.getEmailAddress()){
 									System.out.print("test 2");	
-									aktuellerNutzer = u;
+									setAktuellerNutzer(u);
 
 								}
 							}		
-							if (aktuellerNutzer == null){
+							if (getAktuellerNutzer() == null){
 			    			createUser(googleNutzer);
 					}
 				}
@@ -160,7 +160,7 @@ public void createUser(final LoginInfo googleNutzer){
 
 								@Override
 				public void onSuccess(User result) {
-						aktuellerNutzer = result;	
+						setAktuellerNutzer(result);	
 						Window.alert("Fotzkopf");
 						seitenaufbau();
 						
@@ -179,6 +179,16 @@ private void loadLogin() {
 	  }
 private void loadLogout() {	  
 	  Window.Location.assign(loginInfo.getLogoutUrl());
+}
+
+
+public static User getAktuellerNutzer() {
+	return aktuellerNutzer;
+}
+
+
+public static void setAktuellerNutzer(User aktuellerNutzer) {
+	SocialMediaProjekt.aktuellerNutzer = aktuellerNutzer;
 }
 
 }

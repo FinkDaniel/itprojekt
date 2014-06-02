@@ -108,6 +108,9 @@ public class PinnwandVerwaltungImpl extends RemoteServiceServlet implements Pinn
 		
 	return this.uMapper.findByNachname(nachname);
 	}
+	public User getUserByNickname(String nickname) throws IllegalArgumentException{
+		return this.uMapper.findByNickname(nickname);
+	}
 	
 	// "FIND ALL"- Methoden f�r alle SMOs
 	// alle Methodennamen sind im Singular gehalten.

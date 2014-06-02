@@ -204,4 +204,39 @@ private static UserMapper userMapper = null;
 
 	    
 	  }
+
+
+public User findByNickname(String nickname) {
+    Connection con = LocalDBConnection.connection();
+
+    try {
+    
+      Statement stmt = con.createStatement();
+
+ 
+      ResultSet rs = stmt
+          .executeQuery("SELECT id, vorname, nachname, nickname, email FROM users "
+              + "WHERE nickname=" + nickname + " ORDER BY nachname");
+
+     
+      if (rs.next()) {
+     
+        User u = new User();
+        u.setId(rs.getInt("id"));
+        u.setVorname(rs.getString("vorname"));
+        u.setNachname(rs.getString("nachname"));
+        u.setNickname(rs.getString("nickname"));
+        u.setEmail(rs.getString("email"));
+
+        return u;
+      }
+    }
+    catch (SQLException e) {
+      e.printStackTrace();
+      return null;
+    }
+
+    return null;
   }
+}
+  
