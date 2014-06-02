@@ -163,7 +163,7 @@ public class AboMapper {
         stmt = con.createStatement();
 
         
-        stmt.executeUpdate("INSERT INTO abo (id, sourcePinnwand, targetPinnwand) "
+        stmt.executeUpdate ("INSERT INTO `abo` (`id`, `sourcePinnwand`, `targetPinnwand`, `erstellungsdatum`) "
             + "VALUES ("
             + a.getId()
             + ","

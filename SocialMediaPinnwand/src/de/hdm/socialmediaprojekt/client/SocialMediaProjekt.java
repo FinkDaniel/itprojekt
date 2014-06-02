@@ -65,7 +65,9 @@ public class SocialMediaProjekt implements EntryPoint {
 			        	seitenaufbau();
 			    }
 				else {
-			        	loadLogin();
+			        	
+						loadLogin();
+			        	
 			    }
 			        
 			}
@@ -113,7 +115,7 @@ public void nutzerInDatenbank(final LoginInfo googleNutzer){
 							for (User u : result){
 								
 								if (u.getEmail() == googleNutzer.getEmailAddress()){
-									System.out.print("test 2");	
+						
 									setAktuellerNutzer(u);
 
 								}
