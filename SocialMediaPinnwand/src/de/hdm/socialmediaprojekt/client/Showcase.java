@@ -55,7 +55,7 @@ public abstract class Showcase extends VerticalPanel {
 	   * @param text der String, den wir als HTML an die bisherige Showcase-Ausgabe
 	   *          anhängen wollen.
 	   */
-	  protected void append(String text) {
+	  public void append(String text) {
 	    HTML content = new HTML(text);
 	    content.setStylePrimaryName("bankproject-simpletext");
 	    this.add(content);

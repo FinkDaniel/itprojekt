@@ -1,8 +1,6 @@
 package de.hdm.socialmediaprojekt.client;
 
-
-
-
+import java.util.Vector;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.user.client.ui.RootPanel;
@@ -13,233 +11,182 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.DockPanel;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
+import com.google.gwt.event.logical.shared.CloseEvent;
+import com.google.gwt.event.logical.shared.CloseHandler;
+import com.google.gwt.event.logical.shared.SelectionEvent;
+import com.google.gwt.event.logical.shared.SelectionHandler;
+
 import de.hdm.socialmediaprojekt.shared.*;
 import de.hdm.socialmediaprojekt.shared.smo.User;
-import de.hdm.socialmediaprojekt.client.gui.Content;
 import de.hdm.socialmediaprojekt.client.gui.Header;
 import de.hdm.socialmediaprojekt.client.gui.Navigation;
-
-
-
-
+import de.hdm.socialmediaprojekt.client.gui.Content;
 
 /**
  * Entry point classes define <code>onModuleLoad()</code>.
  */
+
 public class SocialMediaProjekt implements EntryPoint {
-
-
+	
+	final PinnwandVerwaltungAsync pinnwandVerwaltung = ClientSideSettings.getPinnwandVerwaltung();
 
 	//Klassenvariablen für Google Login
 	private LoginInfo loginInfo = null;
-	private VerticalPanel loginPanel = new VerticalPanel();
 	private Label loginLabel = new Label("Please sign in to your Google Account to access the SM application.");
 	private Anchor signInLink = new Anchor("Sign In");
-//	private User currentUser = null;
-	private Button logButton = new Button("Anmelden");
-	public DockPanel dockPanel = new DockPanel();
-	public Header header = new Header();
+	private static User aktuellerNutzer = null;
+
+	public Header header= new Header();
 	public Navigation navigation = new Navigation();
+
+	//public Content_BG content_bg = new Content_BG();
 	public Content content = new Content();
-
-//	public Footer footer = new Footer();
-
-
-
-
+	//public Footer footer = new Footer();
+	
 
 	public void onModuleLoad() {
 		
-
-		googlelogincheck();
-		RootPanel.get("header").add(header);
-		RootPanel.get("navigation").add(navigation);
-		RootPanel.get("content").add(content);
-		//RootPanel.get("footer").add(footer);
+		pinnwandVerwaltung.login("http://127.0.0.1:8888/SocialMediaProjekt.html?gwt.codesvr=127.0.0.1:9997", new AsyncCallback <LoginInfo>(){
 			
-	
-	}
-
-	private void googlelogincheck() {
-		//aufrufen async call von LoginInfo
-	
-	
-		final PinnwandVerwaltungAsync pinnwandVerwaltung = ClientSideSettings.getPinnwandVerwaltung();
-		
-		pinnwandVerwaltung.login(GWT.getHostPageBaseURL(), new AsyncCallback <LoginInfo>(){
-			
-
-			private boolean status;
-
-
-
 
 			public void onFailure(Throwable error) {}
 
-			   public void onSuccess(LoginInfo result) {
-			          loginInfo = result;
-			          if(loginInfo.isLoggedIn()) {
-			        	  
-			        	  loginInfo.getEmailAddress();
-			        	  loginInfo.getNickname();
-			  		    Window.alert("User-ID:"+ loginInfo.getEmailAddress() + loginInfo.getNickname()); 
-			           
-//			  		    nutzerInDatenbank(result);
-			  		    if(nutzerInDatenbank(loginInfo.getEmailAddress()) == false){
-			  		    	
-			  		    // der eingeloggte Nutzer war zuvor noch nie auf der SM Plattform
-			  		    	
-			  		    VerticalPanel userInfoPanel = new VerticalPanel();
-			  		    final TextBox vorname = new TextBox();
-			  		    vorname.setText("Vorname");
-			  		    final TextBox nachname = new TextBox();
-			  		    nachname.setText("nachname");
-			  		    final TextBox nickname = new TextBox();
-			  		    nickname.setText(loginInfo.getNickname());
-			  		    final TextBox email = new TextBox();
-			  		    email.setText(loginInfo.getEmailAddress());
-			  		    email.setEnabled(false);
-			  		    Button abschicken = new Button();
-			  		    abschicken.setText("User anlegen");
-			  		    
-			  		    userInfoPanel.add(vorname);
-			  		    userInfoPanel.add(nachname);
-			  		    userInfoPanel.add(nickname);
-			  		    userInfoPanel.add(email);
-			  		    userInfoPanel.add(abschicken);
-			  		    RootPanel.get().add(userInfoPanel);
-			  		    System.out.print("CLICK");
-			  		    abschicken.addClickHandler(new ClickHandler (){	
-			  		    	
-							@Override
-							public void onClick(ClickEvent event) {
-								// TODO Auto-generated method stub
-								pinnwandVerwaltung.createUser(vorname.getText(), nachname.getText(), nickname.getText(), email.getText(), new AsyncCallback<User>(){
-
-									@Override
-									public void onFailure(Throwable caught) {
-										// TODO Auto-generated method stub
-										
-									}
-
-									@Override
-									public void onSuccess(User result) {
-										// TODO Auto-generated method stub
-										
-									}
-					  		    	
-					  		    });
-							}
-			  		    	
-			  		    });
-			  		    
-
-			  		    }
-			        	initialisieren();
-			           
-			           //überprüfen ob angemeldete Nutzer bereits in Datenbank ist (anhand email-adresse)
-			           
-			          } else {
-			           loadLogin();
-			          }
-			   }
-
-			  private boolean nutzerInDatenbank(String email) {
-				  
-				  pinnwandVerwaltung.findUserbyEmail(email, new AsyncCallback<User>(){
-					  
-					  public void onFailure(Throwable caught){
-							System.out.println(caught.getMessage());
-							caught.getCause();
-							System.out.print("Fehler");
-						}
-	
-						@Override
-						public void onSuccess(User result) {
-							// TODO Auto-generated method stub
-							
-							if(result==null){
-								status = false;
-							}else{
-								status = true;
-							}
-						}  
-					  
-				  
-				  
-						  });
-				return status;
-			  }
-				 
-				  
-				 
-
-			private void loadLogin() {
-				      // Assemble login panel.
-				      signInLink.setHref(loginInfo.getLoginUrl());
-				      loginPanel.add(loginLabel);
-				      loginPanel.add(signInLink);
-				      logButton.addClickHandler(new ClickHandler(){
-
-						@Override
-						public void onClick(ClickEvent event) {
-							Window.Location.assign(loginInfo.getLoginUrl());
-						}
-				    	 
-				      });
-				      RootPanel.get().add(logButton);
-				   }
-		});
-		// TODO Auto-generated method stub
-		
-	}
-
-
-
-//		 Vorhergehende Seite löschen und Seite 1 erstellen
-/*		RootPanel.get("socialMediaProjekt").clear();
-
-		header.addUserEingeloggt();
-		navigation.erstelleNavigation();
-		content_bg.erstelleContentBG();
-		Buttons buttons = new Buttons();
-		buttons.erstelleButtonsSeite1();
-		footer.erstelleFooter();
-
-
-		initialisieren();
-
-	}
-
-*/
-	public void initialisieren(){
-
-//		RootPanel.get("socialMediaProjekt").clear();
-		
-		
-		
-		
-	}
-
-	public void clearContent(){
-		RootPanel.get("content").clear();
+			public void onSuccess(LoginInfo result) {
+				   
+				loginInfo = result;
+				if(loginInfo.isLoggedIn()) {
+					nutzerInDatenbank(result);
+			        	seitenaufbau();
+			    }
+				else {
+			        	loadLogin();
+			    }
+			        
+			}
+		});  
 	}
 	
-	public void addPinnwandToContent(){
-		content.addPinnwand();
-		RootPanel.get("content").add(content);
+
+private void seitenaufbau() {
+	
+	  RootPanel.get().clear();
+	  RootPanel.get("header").add(header);
+	  RootPanel.get("navigation").add(navigation);
+	  RootPanel.get("content").add(content);
+	  //RootPanel.get("footer").add(footer);
+	  
+		
 	}
-	public void addAbosToContent(){
-		content.addMeineAbos();
-		RootPanel.get("content").add(content);
+
+
+public void clearContent(){
+	RootPanel.get("content").clear();
+}
+
+public void addPinnwandToContent(){
+	content.addPinnwand();
+	RootPanel.get("content").add(content);
+}
+public void addAbosToContent(){
+	content.addMeineAbos();
+	RootPanel.get("content").add(content);
+
+}	
+
+		
+public void nutzerInDatenbank(final LoginInfo googleNutzer){
+			pinnwandVerwaltung.getAllUser(new AsyncCallback<Vector<User>>() {
+
+				@Override
+				public void onFailure(Throwable caught) {
+			
+				}
+
+			
+				public void onSuccess(Vector<User> result) {
+							for (User u : result){
+								
+								if (u.getEmail() == googleNutzer.getEmailAddress()){
+									System.out.print("test 2");	
+									aktuellerNutzer = u;
+
+								}
+							}		
+							if (aktuellerNutzer == null){
+			    			createUser(googleNutzer);
+					}
+				}
+			    	
+			}
+			);}
+			        
+			    				
+			        
+			   
+public void createUser(final LoginInfo googleNutzer){
+	final User user = new User();
+	user.setEmail(googleNutzer.getEmailAddress());
+	//user.setErstellungsZeitpunkt(new Date());
+
+
+					/**
+					 * Fordert den Nutzer auf Vor-, Nachname und Nickname einzugeben,
+					 * da diese Information nicht über die Google API bezogen werden kann
+					 * bzw. geändert werden soll
+					 * 
+					 * @author Daniel Fink
+					 */
+	final LoginCustomDialog dialog = new LoginCustomDialog(googleNutzer.getNickname());
+	DialogBox dlb = dialog;
+	dlb.center();
+					
+					
+					
+	dlb.addCloseHandler(new CloseHandler<PopupPanel>(){
+			
+		public void onClose(CloseEvent<PopupPanel> event) {
+				user.setVorname(dialog.getVorname());
+				user.setNachname(dialog.getNachname());
+				user.setNickname(dialog.getNickname());
+				pinnwandVerwaltung.createUser(user.getVorname(),user.getNachname(), user.getNickname(), user.getEmail(), new AsyncCallback<User>(){
+								@Override
+				public void onFailure(Throwable caught) {}
+
+								@Override
+				public void onSuccess(User result) {
+						aktuellerNutzer = result;	
+						Window.alert("Fotzkopf");
+						seitenaufbau();
+						
+									 /* Update die SuggestBox mit neuen Nutzer
+									 */
+									//fillSuggestenBox();
+				}
+
+				});
 		}
+	});
 
-	}
+}
+private void loadLogin() {	  
+		  Window.Location.assign(loginInfo.getLoginUrl());
+	  }
+private void loadLogout() {	  
+	  Window.Location.assign(loginInfo.getLogoutUrl());
+}
+
+}
+		
 
 
 
 
+
+
+		

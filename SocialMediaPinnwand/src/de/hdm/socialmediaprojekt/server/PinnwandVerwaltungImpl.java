@@ -143,7 +143,13 @@ public class PinnwandVerwaltungImpl extends RemoteServiceServlet implements Pinn
 		u.setEmail(email);
 		u.setId(1);
 		System.out.println("PinnwandVerwaltungImpl Test");
-		return this.uMapper.insert(u);
+		
+		this.uMapper.insert(u);
+		
+		createPinnwand(u.getId());
+		
+		return u;
+		
 		
 	}
 	//create Abo

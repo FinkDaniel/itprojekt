@@ -71,7 +71,7 @@ private static UserMapper userMapper = null;
     try {
       Statement stmt = con.createStatement();
 
-      ResultSet rs = stmt.executeQuery("SELECT id, vorname, nachname, nickname "
+      ResultSet rs = stmt.executeQuery("SELECT id, vorname, nachname, nickname, email "
           + "FROM users " + "ORDER BY nachname");
       while (rs.next()) {
         User u = new User();
@@ -79,7 +79,7 @@ private static UserMapper userMapper = null;
         u.setVorname(rs.getString("vorname"));
         u.setNachname(rs.getString("nachname"));
         u.setNickname(rs.getString("nickname"));
-
+        u.setEmail(rs.getString("email"));
 
         result.addElement(u);
       }
@@ -103,8 +103,8 @@ private static UserMapper userMapper = null;
       while (rs.next()) {
         User u = new User();
         u.setId(rs.getInt("id"));
-        u.setVorname(rs.getString("firstName"));
-        u.setNachname(rs.getString("lastName"));
+        u.setVorname(rs.getString("vorname"));
+        u.setNachname(rs.getString("nachname"));
         result.addElement(u);
       }
     }
@@ -189,6 +189,8 @@ private static UserMapper userMapper = null;
 	    	     
 	          User u = new User();
 	          u.setId(rs.getInt("id"));
+	          u.setVorname(rs.getString("vorname"));
+	          u.setNachname(rs.getString("nachname"));
 	          u.setNickname(rs.getString("nickname"));
 	          u.setEmail(rs.getString("email"));
 	          return u;
@@ -198,7 +200,8 @@ private static UserMapper userMapper = null;
 	      e.printStackTrace();
 	      return null;
 	    }
+	return null;
 
-	    return null;
+	    
 	  }
   }
