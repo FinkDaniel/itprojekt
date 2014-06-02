@@ -3,30 +3,21 @@ package de.hdm.socialmediaprojekt.client;
 import java.util.Vector;
 
 import com.google.gwt.core.client.EntryPoint;
-import com.google.gwt.user.client.ui.RootPanel;
-import com.google.gwt.core.client.GWT;
-import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.logical.shared.CloseEvent;
+import com.google.gwt.event.logical.shared.CloseHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Anchor;
-import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DialogBox;
-import com.google.gwt.user.client.ui.DockPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.PopupPanel;
-import com.google.gwt.user.client.ui.TextBox;
-import com.google.gwt.user.client.ui.VerticalPanel;
-import com.google.gwt.event.logical.shared.CloseEvent;
-import com.google.gwt.event.logical.shared.CloseHandler;
-import com.google.gwt.event.logical.shared.SelectionEvent;
-import com.google.gwt.event.logical.shared.SelectionHandler;
+import com.google.gwt.user.client.ui.RootPanel;
 
-import de.hdm.socialmediaprojekt.shared.*;
-import de.hdm.socialmediaprojekt.shared.smo.User;
+import de.hdm.socialmediaprojekt.client.gui.Content;
 import de.hdm.socialmediaprojekt.client.gui.Header;
 import de.hdm.socialmediaprojekt.client.gui.Navigation;
-import de.hdm.socialmediaprojekt.client.gui.Content;
+import de.hdm.socialmediaprojekt.shared.PinnwandVerwaltungAsync;
+import de.hdm.socialmediaprojekt.shared.smo.User;
 
 /**
  * Entry point classes define <code>onModuleLoad()</code>.
@@ -114,11 +105,11 @@ public void nutzerInDatenbank(final LoginInfo googleNutzer){
 
 								if (u.getEmail() == googleNutzer.getEmailAddress()){
 									System.out.print("test 2");	
-									aktuellerNutzer = u;
+									setAktuellerNutzer(u);
 
 								}
 							}		
-							if (aktuellerNutzer == null){
+							if (getAktuellerNutzer() == null){
 			    			createUser(googleNutzer);
 					}
 				}
@@ -155,12 +146,12 @@ public void createUser(final LoginInfo googleNutzer){
 				user.setNachname(dialog.getNachname());
 				user.setNickname(dialog.getNickname());
 				pinnwandVerwaltung.createUser(user.getVorname(),user.getNachname(), user.getNickname(), user.getEmail(), new AsyncCallback<User>(){
-								@Override
+								
 				public void onFailure(Throwable caught) {}
 
-								@Override
+								
 				public void onSuccess(User result) {
-						aktuellerNutzer = result;	
+						setAktuellerNutzer(result);	
 						Window.alert("Fotzkopf");
 						seitenaufbau();
 
@@ -181,4 +172,22 @@ private void loadLogout() {
 	  Window.Location.assign(loginInfo.getLogoutUrl());
 }
 
+
+
+
+
+public static User getAktuellerNutzer() {
+	return aktuellerNutzer;
 }
+
+
+public static void setAktuellerNutzer(User aktuellerNutzer) {
+	SocialMediaProjekt.aktuellerNutzer = aktuellerNutzer;
+}
+
+}
+		
+
+
+
+

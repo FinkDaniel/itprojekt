@@ -103,6 +103,8 @@ public interface PinnwandVerwaltungAsync {
 
 	void findUserbyEmail(String email, AsyncCallback<User> callback);
 
+	void getUserByNickname(String nickname, AsyncCallback<User> callback);
+
 	// void login(String hostPageBaseURL, AsyncCallback<LoginInfo> callback);
 
 

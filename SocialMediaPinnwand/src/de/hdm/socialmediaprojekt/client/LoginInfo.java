@@ -1,7 +1,5 @@
 package de.hdm.socialmediaprojekt.client;
 
-import com.google.gwt.safehtml.shared.SafeUri;
-
 import java.io.Serializable;
 
 	public class LoginInfo implements Serializable {
