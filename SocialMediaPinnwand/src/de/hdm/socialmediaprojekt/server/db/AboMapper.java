@@ -162,10 +162,8 @@ public class AboMapper {
 
         stmt = con.createStatement();
 
+        stmt.executeUpdate("INSERT INTO `socialmediapinnwand`.`abo` (`id`, `sourcePinnwand`, `targetPinnwand`, `erstellungsdatum`) VALUES ('"+a.getId()+"', '"+a.getSourcePinnwandID()+"', '"+a.getTargetPinnwandID()+"', CURRENT_TIMESTAMP);");
         
-        stmt.executeUpdate ("INSERT INTO abo (id, sourcePinnwand, targetPinnwand, erstellungsdatum)"
-                + "VALUES  ('" + a.getId() + "','" + a.getSourcePinnwandID() + "','"
-                + a.getTargetPinnwandID() + "')");
         
         
         

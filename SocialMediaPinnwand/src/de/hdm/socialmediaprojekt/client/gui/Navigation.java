@@ -98,7 +98,7 @@ public class Navigation extends VerticalPanel{
 				if(box.getText() == ""){
 					Window.alert("Bitte einen Nickname eingeben");
 				}
-
+				
 
 
 
@@ -113,12 +113,16 @@ public class Navigation extends VerticalPanel{
 					@Override
 					public void onSuccess(User result) {
 						Window.alert(SocialMediaProjekt.getAktuellerNutzer().getEmail());
+						Window.alert("onSuccess");
+						if(SocialMediaProjekt.getAktuellerNutzer().getId() == result.getId()){
+							Window.alert("Du kannst dich nicht selbst abbonieren!");
+						}else if(SocialMediaProjekt.getAktuellerNutzer().getId() != result.getId()){
 						pinnwandVerwaltung.createAbo(SocialMediaProjekt.getAktuellerNutzer().getId(), result.getId(), new AsyncCallback<Abo>(){
 
 							@Override
 							public void onFailure(Throwable caught) {
 								// TODO Auto-generated method stub
-
+								Window.alert("onFailure createAbo");
 							}
 
 							@Override
@@ -131,7 +135,7 @@ public class Navigation extends VerticalPanel{
 
 
 						//Klammern passen
-					}
+					}}
 
 				});
 

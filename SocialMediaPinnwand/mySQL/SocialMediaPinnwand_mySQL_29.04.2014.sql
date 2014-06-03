@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 09. Mai 2014 um 17:13
+-- Erstellungszeit: 03. Jun 2014 um 11:09
 -- Server Version: 5.6.16
 -- PHP-Version: 5.5.9
 
@@ -35,6 +35,13 @@ CREATE TABLE IF NOT EXISTS `abo` (
   KEY `sourcePinnwand` (`sourcePinnwand`),
   KEY `targetPinnwand` (`targetPinnwand`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Daten fÃ¼r Tabelle `abo`
+--
+
+INSERT INTO `abo` (`id`, `sourcePinnwand`, `targetPinnwand`, `erstellungsdatum`) VALUES
+(1, 9, 8, '2014-06-02 16:02:28');
 
 -- --------------------------------------------------------
 
@@ -127,8 +134,18 @@ CREATE TABLE IF NOT EXISTS `pinnwand` (
 --
 
 INSERT INTO `pinnwand` (`id`, `sourceUser`, `erstellungsdatum`) VALUES
-(1, 5, '2014-04-28 22:13:52'),
-(2, 6, '2014-04-28 22:15:09');
+(2, 6, '2014-06-02 13:29:49'),
+(3, 7, '2014-06-02 13:34:40'),
+(4, 8, '2014-06-02 13:36:15'),
+(5, 9, '2014-06-02 14:31:43'),
+(6, 10, '2014-06-02 16:14:48'),
+(7, 11, '2014-06-02 16:20:06'),
+(8, 12, '2014-06-02 19:53:10'),
+(9, 13, '2014-06-02 19:54:31'),
+(10, 13, '2014-06-02 20:05:40'),
+(11, 14, '2014-06-02 21:20:43'),
+(12, 15, '2014-06-02 22:03:54'),
+(13, 16, '2014-06-03 08:17:37');
 
 -- --------------------------------------------------------
 
@@ -141,7 +158,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `vorname` varchar(100) NOT NULL,
   `nachname` varchar(100) NOT NULL,
   `nickname` varchar(100) NOT NULL,
-  `password` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
   `erstellungsdatum` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `nickname` (`nickname`)
@@ -151,35 +168,18 @@ CREATE TABLE IF NOT EXISTS `users` (
 -- Daten fÃ¼r Tabelle `users`
 --
 
-INSERT INTO `users` (`id`, `vorname`, `nachname`, `nickname`, `password`, `erstellungsdatum`) VALUES
-(1, 'Daniel', 'Lepiorz', 'Lepiorzddssddhh', '', '2014-04-28 20:32:47'),
-(2, 'Test', 'Tester', 'adads', '', '2014-04-28 21:51:19'),
-(3, 'Test', 'Tester', 'adadsxcx', '', '2014-04-28 21:52:37'),
-(4, 'Test', 'Tester', 'adadsxgfhgfcx', '', '2014-04-28 22:03:24'),
-(5, 'Daniel', 'Fink', 'Der Lotz', '', '2014-04-28 22:13:52'),
-(6, 'Patrick', 'Preller', 'Der Preller', '', '2014-04-28 22:15:09'),
-(7, '', '', '', '', '2014-05-08 17:28:21'),
-(8, 'Vornamed', 'Nachnamed', 'Nicknamed', '', '2014-05-08 22:43:17'),
-(9, 'Daniel', 'Fink', 'Der Lotz Deluxe', '', '2014-05-08 22:46:38'),
-(10, 'Daniel', 'Lepiorz', 'Der Don', 'Demo', '2014-05-08 23:01:22'),
-(11, 'Daniel', 'Lepiorz', 'Uli HoeneÃŸ', 'FcBayern', '2014-05-09 15:08:15');
-
---
--- Constraints der exportierten Tabellen
---
-
---
--- Constraints der Tabelle `abo`
---
-ALTER TABLE `abo`
-  ADD CONSTRAINT `abo_ibfk_1` FOREIGN KEY (`sourcePinnwand`) REFERENCES `pinnwand` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `abo_ibfk_2` FOREIGN KEY (`targetPinnwand`) REFERENCES `pinnwand` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints der Tabelle `pinnwand`
---
-ALTER TABLE `pinnwand`
-  ADD CONSTRAINT `pinnwand_ibfk_1` FOREIGN KEY (`sourceUser`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+INSERT INTO `users` (`id`, `vorname`, `nachname`, `nickname`, `email`, `erstellungsdatum`) VALUES
+(6, 'lotz', 'lotzington', 'lotz@example.com', 'lotz@example.com', '2014-06-02 13:29:49'),
+(7, 'asadad', 'adadad', 'saub?123@example.com', 'saub?123@example.com', '2014-06-02 13:34:40'),
+(8, 'der', 'fotzkopf', 'fotzkopf@example.com', 'fotzkopf@example.com', '2014-06-02 13:36:14'),
+(9, 'test', 'testtt', 'test@example.com', 'test@example.com', '2014-06-02 14:31:43'),
+(10, 'Frosch', 'gruen', 'froschkopf@prell.com', 'froschkopf@prell.com', '2014-06-02 16:14:48'),
+(11, 'VfB', 'Forever', 'vfbforever@vfb.de', 'vfbforever@vfb.de', '2014-06-02 16:20:06'),
+(12, 'Daniel', 'Lepiorz', 'DanielL', 'daniel.lepiorz@gmail.com', '2014-06-02 19:53:10'),
+(13, 'daniel', 'Lepiorz', 'd.lepiorz', 'd.lepiorz@web.de', '2014-06-02 20:05:40'),
+(14, 'Daniel', 'Llelel', 'ftftf', 'dertestaccount@googlemail.com', '2014-06-02 21:20:43'),
+(15, 'hhhh', 'dfffff', 'lotz', 'lotz@mww.com', '2014-06-02 22:03:54'),
+(16, 'Peter', 'Pan', 'PeterP', 'peterpan@captainhook.com', '2014-06-03 08:17:37');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

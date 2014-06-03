@@ -10,8 +10,10 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ScrollPanel;
+import com.google.gwt.user.client.ui.VerticalPanel;
 
 import de.hdm.socialmediaprojekt.client.ClientSideSettings;
+import de.hdm.socialmediaprojekt.client.SocialMediaProjekt;
 import de.hdm.socialmediaprojekt.shared.PinnwandVerwaltungAsync;
 import de.hdm.socialmediaprojekt.shared.smo.Beitrag;
 import de.hdm.socialmediaprojekt.shared.smo.User;
@@ -20,7 +22,7 @@ public class PinnwandView extends ScrollPanel{
 	
 	
 	
-	HorizontalPanel pinnwandView = new HorizontalPanel();
+	VerticalPanel pinnwandView = new VerticalPanel();
 	
 	public PinnwandView() {
 		
@@ -43,14 +45,14 @@ public class PinnwandView extends ScrollPanel{
 	
 	
 
-	private HorizontalPanel createPinnwand(){
+	private VerticalPanel createPinnwand(){
 		
 		pinnwandView.getElement().setId("pinnwandView");
 		
 		
 		final PinnwandVerwaltungAsync pinnwandVerwaltung = ClientSideSettings.getPinnwandVerwaltung();
 
-		pinnwandVerwaltung.getBeitragBySourceUser(1,new AsyncCallback <Vector<Beitrag>>(){
+		pinnwandVerwaltung.getBeitragBySourceUser(SocialMediaProjekt.getAktuellerNutzer().getId(), new AsyncCallback <Vector<Beitrag>>(){
 
 
 				public void onFailure(Throwable caught) {
@@ -63,14 +65,42 @@ public class PinnwandView extends ScrollPanel{
 
 
 					//System.out.print(result);
+					/*
 					for(int i=0;i<result.size();i++){
 						BeitragCell beitragCell = new BeitragCell();
 						beitragCell.addButtons();
 						beitragCell.setText(result.get(i).getBeitrag().toString());
-
+					*/
+					//BeitragCell[] beitragcell = new BeitragCell[result.size()];
+					
+					//BeitragCell[] beitragcell = new BeitragCell[result.size()];
+					//beitragcell[result.size()] = new BeitragCell();
+					BeitragCell[] beitragCell = new BeitragCell[2];
+					beitragCell[1].setText("test");
+					
+					System.out.print(result.size());
+					
+					
+					//beitragcell[3].setText(result.get(3).getBeitrag());
+					pinnwandView.add(beitragCell[1]);
+					
+					
+					/*
+					for(int i=0; i<=result.size(); i++){
+						//labelcell[i].addButtons();
+						labelcell[i].setText("Text Nummer");
+						//beitragcell[i].setText(result.get(i).getBeitrag());
+						pinnwandView.add(labelcell[i]);
+						//pinnwandView.add(beitragcell[i]);
 					}
-				}});
+					*/
+					
+					//}
+				//}});
+				}
+				
+	});
 		return pinnwandView;
-	}
 
+}
 }

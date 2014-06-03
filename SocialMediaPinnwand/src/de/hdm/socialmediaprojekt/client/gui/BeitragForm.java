@@ -62,7 +62,9 @@ public class BeitragForm extends VerticalPanel {
 									}
 
 									public void onSuccess(Beitrag result) {
+										
 										Window.alert("Beitrag wurde angelegt");
+										beitragBox.setText("");
 									}
 
 								});

@@ -215,7 +215,7 @@ public User findByNickname(String nickname) {
 
  
       ResultSet rs = stmt
-          .executeQuery("SELECT * FROM `users` WHERE `nickname` = " +nickname);
+          .executeQuery("SELECT * FROM `users` WHERE `nickname` = '"+nickname+"'");
          
           
 
