@@ -7,9 +7,10 @@ public class TestBeitrag {
 	public static void main(String[] args) {
 
 		Beitrag b = new Beitrag();
-		b.setBeitrag("Der Wasen ist er�ffnet!");
+		b.setBeitrag("Fink hat n kleinen!");
 		b.setSourceUserID(2);
 		BeitragMapper.beitragMapper().insert(b);
+		
 	}
 
 }
