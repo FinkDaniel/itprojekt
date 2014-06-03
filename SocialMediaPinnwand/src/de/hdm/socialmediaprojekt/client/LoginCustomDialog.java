@@ -12,7 +12,7 @@ import com.google.gwt.user.client.ui.Widget;
  * Custom DialogBox um die Login Informationen des Google UserService
  * zu erweitern
  * 
- * @author Eric Schmidt
+ * @author Daniel Fink
  */
 @SuppressWarnings("deprecation")
 public class LoginCustomDialog  extends DialogBox implements ClickListener { 

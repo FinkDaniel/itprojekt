@@ -48,42 +48,42 @@ public class SocialMediaProjekt implements EntryPoint {
 	//public Content_BG content_bg = new Content_BG();
 	public Content content = new Content();
 	//public Footer footer = new Footer();
-	
+
 
 	public void onModuleLoad() {
-		
+
 		pinnwandVerwaltung.login("http://127.0.0.1:8888/SocialMediaProjekt.html?gwt.codesvr=127.0.0.1:9997", new AsyncCallback <LoginInfo>(){
-			
+
 
 			public void onFailure(Throwable error) {}
 
 			public void onSuccess(LoginInfo result) {
-				   
+
 				loginInfo = result;
 				if(loginInfo.isLoggedIn()) {
 					nutzerInDatenbank(result);
 			        	seitenaufbau();
 			    }
 				else {
-			        	
+
 						loadLogin();
-			        	
+
 			    }
-			        
+
 			}
 		});  
 	}
-	
+
 
 private void seitenaufbau() {
-	
+
 	  RootPanel.get().clear();
 	  RootPanel.get("header").add(header);
 	  RootPanel.get("navigation").add(navigation);
 	  RootPanel.get("content").add(content);
 	  //RootPanel.get("footer").add(footer);
-	  
-		
+
+
 	}
 
 
@@ -101,21 +101,21 @@ public void addAbosToContent(){
 
 }	
 
-		
+
 public void nutzerInDatenbank(final LoginInfo googleNutzer){
 			pinnwandVerwaltung.getAllUser(new AsyncCallback<Vector<User>>() {
 
 				@Override
 				public void onFailure(Throwable caught) {
-			
+
 				}
 
-			
+
 				public void onSuccess(Vector<User> result) {
 							for (User u : result){
-								
+
 								if (u.getEmail() == googleNutzer.getEmailAddress()){
-						
+
 									setAktuellerNutzer(u);
 
 								}
@@ -124,13 +124,13 @@ public void nutzerInDatenbank(final LoginInfo googleNutzer){
 			    			createUser(googleNutzer);
 					}
 				}
-			    	
+
 			}
 			);}
-			        
-			    				
-			        
-			   
+
+
+
+
 public void createUser(final LoginInfo googleNutzer){
 	final User user = new User();
 	user.setEmail(googleNutzer.getEmailAddress());
@@ -147,11 +147,11 @@ public void createUser(final LoginInfo googleNutzer){
 	final LoginCustomDialog dialog = new LoginCustomDialog(googleNutzer.getNickname());
 	DialogBox dlb = dialog;
 	dlb.center();
-					
-					
-					
+
+
+
 	dlb.addCloseHandler(new CloseHandler<PopupPanel>(){
-			
+
 		public void onClose(CloseEvent<PopupPanel> event) {
 				user.setVorname(dialog.getVorname());
 				user.setNachname(dialog.getNachname());
@@ -163,9 +163,8 @@ public void createUser(final LoginInfo googleNutzer){
 								@Override
 				public void onSuccess(User result) {
 						setAktuellerNutzer(result);	
-						Window.alert("Fotzkopf");
 						seitenaufbau();
-						
+
 									 /* Update die SuggestBox mit neuen Nutzer
 									 */
 									//fillSuggestenBox();
@@ -193,12 +192,4 @@ public static void setAktuellerNutzer(User aktuellerNutzer) {
 	SocialMediaProjekt.aktuellerNutzer = aktuellerNutzer;
 }
 
-}
-		
-
-
-
-
-
-
-		
+}		

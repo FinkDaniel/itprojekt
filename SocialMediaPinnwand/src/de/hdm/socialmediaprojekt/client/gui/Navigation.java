@@ -118,7 +118,7 @@ public class Navigation extends VerticalPanel{
 					public void onSuccess(User result) {
 						Window.alert(SocialMediaProjekt.getAktuellerNutzer().getEmail());
 						pinnwandVerwaltung.createAbo(SocialMediaProjekt.getAktuellerNutzer().getId(), result.getId(), new AsyncCallback<Abo>(){
-
+							
 							@Override
 							public void onFailure(Throwable caught) {
 								// TODO Auto-generated method stub

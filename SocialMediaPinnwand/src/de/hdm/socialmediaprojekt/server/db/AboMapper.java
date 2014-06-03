@@ -163,13 +163,14 @@ public class AboMapper {
         stmt = con.createStatement();
 
         
-        stmt.executeUpdate ("INSERT INTO `abo` (`id`, `sourcePinnwand`, `targetPinnwand`, `erstellungsdatum`) "
-            + "VALUES ("
-            + a.getId()
-            + ","
-            + a.getSourcePinnwandID()
-            + ","
-            + a.getTargetPinnwandID() +")");
+        stmt.executeUpdate ("INSERT INTO abo (id, sourcePinnwand, targetPinnwand, erstellungsdatum)"
+                + "VALUES  ('" + a.getId() + "','" + a.getSourcePinnwandID() + "','"
+                + a.getTargetPinnwandID() + "')");
+        
+        
+        
+        
+       
       }
     }
     catch (SQLException e2) {
