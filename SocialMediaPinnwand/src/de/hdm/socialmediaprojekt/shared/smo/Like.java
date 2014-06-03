@@ -32,11 +32,12 @@ public void setTargetBeitragID(int targetID) {
   
   
   public String toString() {
-	  	return super.toString()
+	  return super.toString()
 	  	+"Der Nutzer mit der User-ID: #" + this.sourceUserID 
 	   	+ "hat den Beitrag mit der Beitrags-ID: #" + this.targetBeitragID 
 	   	+ "mit der Like-ID: #" + this.getId()
 	   	+ "geliked";  
+	  	
   }
 
 }

@@ -33,7 +33,7 @@ import de.hdm.socialmediaprojekt.client.gui.Content;
  */
 
 public class SocialMediaProjekt implements EntryPoint {
-	
+
 	final PinnwandVerwaltungAsync pinnwandVerwaltung = ClientSideSettings.getPinnwandVerwaltung();
 
 	//Klassenvariablen für Google Login
@@ -163,6 +163,7 @@ public void createUser(final LoginInfo googleNutzer){
 								@Override
 				public void onSuccess(User result) {
 						setAktuellerNutzer(result);	
+						Window.alert("Fotzkopf");
 						seitenaufbau();
 
 									 /* Update die SuggestBox mit neuen Nutzer
@@ -192,4 +193,4 @@ public static void setAktuellerNutzer(User aktuellerNutzer) {
 	SocialMediaProjekt.aktuellerNutzer = aktuellerNutzer;
 }
 
-}		
+}
