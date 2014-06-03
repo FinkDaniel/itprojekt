@@ -28,7 +28,7 @@ public class BeitragForm extends VerticalPanel {
 		beitragButton.setStyleName("Button");
 
 		beitragBox.setVisibleLines(5);
-		beitragBox.setText("Dein Beitrag");
+		beitragBox.setText("Bitte Text eingeben");
 
 		this.add(beitragBox);
 		this.add(beitragButton);
@@ -37,9 +37,10 @@ public class BeitragForm extends VerticalPanel {
 
 			public void onClick(ClickEvent event) {
 
-				if (beitragBox.getText() == "") {
+				if (beitragBox.getText() == "" ||  beitragBox.getText()=="Bitte Text eingeben") {
 					Window.alert("Bitte Text eingeben");
-				}
+				
+				}else if(beitragBox.getText() != ""|| beitragBox.getText()!="Bitte Text eingeben"){
 
 				Beitrag beitrag = new Beitrag();
 				beitrag.setBeitrag(beitragBox.getText());
@@ -50,7 +51,7 @@ public class BeitragForm extends VerticalPanel {
 					}
 
 					public void onSuccess(Void result) {
-
+						
 						pinnwandVerwaltung.createBeitrag(
 								beitragBox.getText(),
 								
@@ -65,6 +66,10 @@ public class BeitragForm extends VerticalPanel {
 									public void onSuccess(Beitrag result) {
 										
 										Window.alert("Beitrag wurde angelegt");
+										beitragBox.setText("Bitte Text eingeben");
+										SocialMediaProjekt smp = new SocialMediaProjekt();
+										smp.clearContent();
+										smp.addPinnwandToContent();
 									}
 
 								});
@@ -74,7 +79,7 @@ public class BeitragForm extends VerticalPanel {
 
 				});
 
-			}
+			}}
 		});
 
 	}

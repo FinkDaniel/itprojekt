@@ -243,10 +243,12 @@ body {
 	border-style:solid;
 	border-color:rgb(247, 150, 70);
 }
-#beitrag {
+.BeitragCell {
 
 	border-style:solid;
 	border-color:rgb(247, 150, 70);
+	padding:2px;
+	margin:2px;
 }
 #footer{
 	background-color: white;
@@ -258,25 +260,11 @@ body {
 	width: 100%;
 }
 .Button {
-	width: 120px;
-	height: 40px;
-	margin: 5%;
 	box-sizing: border-box;
-  -moz-box-sizing: border-box;
- 
- 
-  opacity: 1;
-  border: 1px solid #f6923f;
-  border-radius: 10px;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  -ms-border-radius: 10px;
-  -o-border-radius: 10px;
-  box-shadow: 0px 0px 0px 0px #F6923F,0px -7px 17px 0px #f6923f inset;
-  -webkit-box-shadow: 0px 0px 0px 0px #F6923F,0px -7px 17px 0px #f6923f inset;
-  -moz-box-shadow: 0px 0px 0px 0px #F6923F,0px -7px 17px 0px #f6923f inset;
-  -ms-box-shadow: 0px 0px 0px 0px #F6923F,0px -7px 17px 0px #f6923f inset;
-  -o-box-shadow: 0px 0px 0px 0px #F6923F,0px -7px 17px 0px #f6923f inset;
+opacity: 1;
+border: 1px solid #f6923f;
+-webkit-border-radius: 10px;
+box-shadow: 0px 0px 0px 0px #F6923F,0px -7px 17px 0px #f6923f inset;
 }
 .Button:hover {
 	background:rgb(247, 150, 70);
