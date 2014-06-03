@@ -65,7 +65,7 @@ public interface PinnwandVerwaltungAsync {
 
 	void getBeitragById(int id, AsyncCallback<Beitrag> callback);
 
-	void getBeitragBySourceUser(int sourceId,
+	void getBeitragBySourceUser(int sourceUser,
 			AsyncCallback<Vector<Beitrag>> callback);
 
 	void getKommentarById(int id, AsyncCallback<Kommentar> callback);

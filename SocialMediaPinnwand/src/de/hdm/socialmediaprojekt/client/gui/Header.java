@@ -18,7 +18,7 @@ public class Header extends HorizontalPanel {
 
 	}
 
-	public void addUserStatus(User user) {
+	/*public void addUserStatus(User user) {
 
 		Label userEingeloggtAls = new Label("User eingeloggt als"
 				+ user.getVorname() + "" + user.getNachname() 
@@ -27,5 +27,5 @@ public class Header extends HorizontalPanel {
 		userEingeloggtAls.getElement().setId("userEingeloggtAls");
 		this.add(userEingeloggtAls);
 
-	}
+	}*/
 }

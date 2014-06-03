@@ -87,23 +87,22 @@ public class BeitragMapper {
   }
 
 
-  public Vector<Beitrag> findBySourceUser(int sourceID) {
+  public Vector<Beitrag> findBySourceUser(int sourceUser) {
     Connection con = LocalDBConnection.connection();
     Vector<Beitrag> result = new Vector<Beitrag>();
 
     try {
       Statement stmt = con.createStatement();
 
-      ResultSet rs = stmt.executeQuery("SELECT id, sourceUser, beitrag "
-          + "FROM beitrag " + "WHERE sourceUser" + sourceID
-          + "ORDER BY sourceUser");
+      ResultSet rs = stmt.executeQuery//("SELECT id, sourceUser, beitrag  FROM beitrag " + "WHERE sourceUser=" + sourceUser+"");
 
-      
+      ("SELECT id, sourceUser, beitrag FROM beitrag "
+              + "WHERE sourceUser=" + sourceUser + " ORDER BY sourceUser");
       while (rs.next()) {
         Beitrag b = new Beitrag();
         b.setId(rs.getInt("id"));
         b.setBeitrag(rs.getString("beitrag"));
-        b.setSourceUserID(rs.getInt("sourceID"));
+        b.setSourceUserID(rs.getInt("sourceUser"));
       
         result.addElement(b);
       }

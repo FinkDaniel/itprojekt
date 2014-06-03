@@ -10,8 +10,11 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ScrollPanel;
+import com.google.gwt.user.client.ui.VerticalPanel;
+import com.google.gwt.user.client.ui.Widget;
 
 import de.hdm.socialmediaprojekt.client.ClientSideSettings;
+import de.hdm.socialmediaprojekt.client.SocialMediaProjekt;
 import de.hdm.socialmediaprojekt.shared.PinnwandVerwaltungAsync;
 import de.hdm.socialmediaprojekt.shared.smo.Beitrag;
 import de.hdm.socialmediaprojekt.shared.smo.User;
@@ -20,7 +23,8 @@ public class PinnwandView extends ScrollPanel{
 	
 	
 	
-	HorizontalPanel pinnwandView = new HorizontalPanel();
+	VerticalPanel pinnwandView = new VerticalPanel();
+	
 	
 	public PinnwandView() {
 		
@@ -43,14 +47,14 @@ public class PinnwandView extends ScrollPanel{
 	
 	
 
-	private HorizontalPanel createPinnwand(){
+	private VerticalPanel createPinnwand(){
 		
 		pinnwandView.getElement().setId("pinnwandView");
 		
 		
 		final PinnwandVerwaltungAsync pinnwandVerwaltung = ClientSideSettings.getPinnwandVerwaltung();
 
-		pinnwandVerwaltung.getBeitragBySourceUser(1,new AsyncCallback <Vector<Beitrag>>(){
+		pinnwandVerwaltung.getBeitragBySourceUser(SocialMediaProjekt.getAktuellerNutzer().getId(),new AsyncCallback <Vector<Beitrag>>(){
 
 
 				public void onFailure(Throwable caught) {
@@ -60,14 +64,22 @@ public class PinnwandView extends ScrollPanel{
 
 
 				public void onSuccess(Vector<Beitrag> result) {
-
-
+					Widget[] objectList = new Widget[result.size()];
+					
+					//BeitragCell[] beitragCell = new BeitragCell[result.size()];
+					
 					//System.out.print(result);
+					
 					for(int i=0;i<result.size();i++){
+						
 						BeitragCell beitragCell = new BeitragCell();
+						beitragCell.clear();
+						beitragCell.setText(result.get(i).getBeitrag());
 						beitragCell.addButtons();
-						beitragCell.setText(result.get(i).getBeitrag().toString());
-
+						objectList[i] = beitragCell;
+					
+						System.out.print(objectList[i]);
+						pinnwandView.add(objectList[i]);
 					}
 				}});
 		return pinnwandView;
