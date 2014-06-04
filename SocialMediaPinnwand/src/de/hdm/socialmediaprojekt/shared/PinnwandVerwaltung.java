@@ -27,6 +27,7 @@ public interface PinnwandVerwaltung extends RemoteService {
 			throws IllegalArgumentException;
 
 	// getbySourceUser Methoden
+<<<<<<< HEAD
 
 	public Vector<Kommentar> getKommentarBySourceUser(int sourceUser)
 			throws IllegalArgumentException;
@@ -52,6 +53,18 @@ public interface PinnwandVerwaltung extends RemoteService {
 	public Vector<Kommentar> getKommentarByTargetBeitrag(int beitragId)
 			throws IllegalArgumentException;
 
+=======
+	
+	public Vector<Kommentar> getKommentarBySourceUser(int sourceUser) throws IllegalArgumentException;
+	public Pinnwand getPinnwandBySourceUser(int sourceUser) throws IllegalArgumentException;
+	Vector<Beitrag> getBeitragBySourceUser(int[] abos);
+	public Vector<Like> getLikeBySourceUser(int sourceUser) throws IllegalArgumentException;
+	public Vector<Like> getLikeByTargetBeitrag(int beitragId) throws IllegalArgumentException;
+	public Vector<Abo> getAboBySourcePinnwand(int pinnwandId) throws IllegalArgumentException;
+	public Vector<Abo> getAboByTargetPinnwand(int pinnwandId) throws IllegalArgumentException;
+	public Vector<Kommentar> getKommentarByTargetBeitrag(int beitragId) throws IllegalArgumentException;
+	
+>>>>>>> refs/remotes/origin/master
 	// "Find" by ID -Methoden f�r Alle SMOs
 
 	public User getUserById(int id) throws IllegalArgumentException;
@@ -118,7 +131,14 @@ public interface PinnwandVerwaltung extends RemoteService {
 	public LoginInfo login(String requesturi) throws IllegalArgumentException;
 
 	public User findUserbyEmail(String email);
+<<<<<<< HEAD
 
 	public User getUserByNickname(String nickname)
 			throws IllegalArgumentException;
+=======
+	
+	public User getUserByNickname(String nickname) throws IllegalArgumentException;
+
+	public Vector<Abo> getAboBySourceUser(int sourceUserID) throws IllegalArgumentException;
+>>>>>>> refs/remotes/origin/master
 }

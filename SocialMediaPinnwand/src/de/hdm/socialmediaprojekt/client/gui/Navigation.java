@@ -24,61 +24,54 @@ public class Navigation extends VerticalPanel{
 
 
 
-public Navigation() {
+	public Navigation() {
 
+		//SocialMediaProjekt smp = new SocialMediaProjekt();
 
+		Button meinePinnwand = new Button("Meine Pinnwand");
+		Button meineAbos = new Button("Meine Abos");
+		Button logout = new Button("Logout");
 
-	Button meinePinnwand = new Button("Meine Pinnwand");
-	Button meineAbos = new Button("Meine Abos");
-	Button logout = new Button("Logout");
+		meinePinnwand.addStyleName("Button");
+		meineAbos.addStyleName("Button");
+		logout.addStyleName("Button");
 
-	meinePinnwand.addStyleName("Button");
-	meineAbos.addStyleName("Button");
-	logout.addStyleName("Button");
+		this.add(meinePinnwand);
+		this.add(meineAbos);
+		this.add(logout);
 
-	this.add(meinePinnwand);
-	this.add(meineAbos);
-	this.add(logout);
+		meinePinnwand.addClickHandler(new ClickHandler(){
 
+			public void onClick(ClickEvent event) {
 
+				SocialMediaProjekt smp = new SocialMediaProjekt();
+				smp.clearContent();
+				smp.addPinnwandToContent();
+			}
+		});
 
-	meinePinnwand.addClickHandler(new ClickHandler(){
+		meineAbos.addClickHandler(new ClickHandler(){
 
-		public void onClick(ClickEvent event) {
+			public void onClick(ClickEvent event) {
+				SocialMediaProjekt smp = new SocialMediaProjekt();
+				smp.clearContent();
+				smp.addAbosToContent();
+			}
+		});
 
-			SocialMediaProjekt smp = new SocialMediaProjekt();
-			smp.clearContent();
-			smp.addPinnwandToContent();
-		}
+		final MultiWordSuggestOracle suggestBox = new MultiWordSuggestOracle();
 
-	});
+		final PinnwandVerwaltungAsync pinnwandVerwaltung = ClientSideSettings.getPinnwandVerwaltung();
 
-	meineAbos.addClickHandler(new ClickHandler(){
+		pinnwandVerwaltung.getAllUser(new AsyncCallback <Vector<User>>(){
 
-		public void onClick(ClickEvent event) {
-			SocialMediaProjekt smp = new SocialMediaProjekt();
-			smp.clearContent();
-			smp.addAbosToContent();
-
-		}
-	});
-
-
-
-
-	final MultiWordSuggestOracle suggestBox = new MultiWordSuggestOracle();
-
-	final PinnwandVerwaltungAsync pinnwandVerwaltung = ClientSideSettings.getPinnwandVerwaltung();
-
-	pinnwandVerwaltung.getAllUser(new AsyncCallback <Vector<User>>(){
-
-
+			@Override
 			public void onFailure(Throwable caught) {
 				// TODO Auto-generated method stub
 
 			}
 
-
+			@Override
 			public void onSuccess(Vector<User> result) {
 
 
@@ -87,60 +80,68 @@ public Navigation() {
 					suggestBox.add(result.get(i).getNickname().toString());
 
 				}
-			}});
-
-	final SuggestBox box = new SuggestBox(suggestBox);
-	this.add(box);
-
-	Button abbonieren = new Button("User abbonieren");
-	abbonieren.setStyleName("Button");
-	this.add(abbonieren);
-
-	abbonieren.addClickHandler(new ClickHandler(){
-
-		public void onClick(ClickEvent event) {
-
-
-			if(box.getText() == ""){
-				Window.alert("Bitte einen Nickname eingeben");
 			}
+		});
 
-			pinnwandVerwaltung.getUserByNickname(box.getText(), new AsyncCallback<User>(){
+		final SuggestBox box = new SuggestBox(suggestBox);
+		this.add(box);
 
-				@Override
-				public void onFailure(Throwable caught) {
-					// TODO Auto-generated method stub
+		Button abbonieren = new Button("User abbonieren");
+		abbonieren.setStyleName("Button");
+		this.add(abbonieren);
 
+		abbonieren.addClickHandler(new ClickHandler(){
+
+			public void onClick(ClickEvent event) {
+
+
+				if(box.getText() == ""){
+					Window.alert("Bitte einen Nickname eingeben");
 				}
-
-				public void onSuccess(User result) {
-
-					pinnwandVerwaltung.createAbo(SocialMediaProjekt.getAktuellerNutzer().getId(), result.getId(), new AsyncCallback<Abo>(){
-
-
-						public void onFailure(Throwable caught) {
-							// TODO Auto-generated method stub
-
-						}
-
-
-						public void onSuccess(Abo result) {
-							Window.alert("Abo wurde angelegt");
-
-						}
-
-					});
-
-
-					//Klammern passen
-				}
-
-			});
+				
 
 
 
-		}
-	});
+				pinnwandVerwaltung.getUserByNickname(box.getText(), new AsyncCallback<User>(){
+
+					@Override
+					public void onFailure(Throwable caught) {
+						// TODO Auto-generated method stub
+
+					}
+
+					@Override
+					public void onSuccess(User result) {
+						Window.alert(SocialMediaProjekt.getAktuellerNutzer().getEmail());
+						Window.alert("onSuccess");
+						if(SocialMediaProjekt.getAktuellerNutzer().getId() == result.getId()){
+							Window.alert("Du kannst dich nicht selbst abbonieren!");
+						}else if(SocialMediaProjekt.getAktuellerNutzer().getId() != result.getId()){
+						pinnwandVerwaltung.createAbo(SocialMediaProjekt.getAktuellerNutzer().getId(), result.getId(), new AsyncCallback<Abo>(){
+
+							@Override
+							public void onFailure(Throwable caught) {
+								// TODO Auto-generated method stub
+								Window.alert("onFailure createAbo");
+							}
+
+							@Override
+							public void onSuccess(Abo result) {
+								Window.alert("Abo wurde angelegt");
+
+							}
+
+						});
+
+
+						//Klammern passen
+					}}
+
+				});
+
+
+
+			} 
+		}); 
 	}
 }
-

@@ -68,8 +68,58 @@ public class BeitragForm extends VerticalPanel {
 
 				}
 
+<<<<<<< HEAD
 			};
+=======
+				Beitrag beitrag = new Beitrag();
+				beitrag.setBeitrag(beitragBox.getText());
+				//pinnwandVerwaltung.createBeitrag(beitrag, new AsyncCallback<Void>() {
+>>>>>>> refs/remotes/origin/master
 
+<<<<<<< HEAD
 		});
+=======
+					//public void onFailure(Throwable caught) {
+					//	Window.alert("Failure1");
+					//}
+
+					//public void onSuccess(Void result) {
+
+						pinnwandVerwaltung.createBeitrag(
+								beitragBox.getText(),
+								
+								SocialMediaProjekt.getAktuellerNutzer().getId(),
+								new AsyncCallback<Beitrag>() {
+
+									
+									public void onFailure(Throwable caught) {
+										Window.alert("Failure2");
+									}
+
+									public void onSuccess(Beitrag result) {
+										
+										Window.alert("Beitrag wurde angelegt");
+										SocialMediaProjekt smp = new SocialMediaProjekt();
+										smp.clearContent();
+										smp.addPinnwandToContent();
+										beitragBox.setText("Bitte Text eingeben");
+									}
+
+								});
+					}
+
+				
+
+				});
+
+//			}
+		//});
+
+>>>>>>> refs/remotes/origin/master
 	}
+<<<<<<< HEAD
 }
+=======
+
+}
+>>>>>>> refs/remotes/origin/master

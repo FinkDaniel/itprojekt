@@ -164,7 +164,18 @@ public class UserMapper {
 		return PinnwandMapper.pinnwandMapper().findBySourceUser(u);
 	}
 
+<<<<<<< HEAD
 	public User findByEmail(String email) {
+=======
+ 
+      ResultSet rs = stmt
+
+          .executeQuery("SELECT * FROM `users` WHERE `nickname` = '"+nickname+"'");
+         
+          
+
+         
+>>>>>>> refs/remotes/origin/master
 
 		Connection con = LocalDBConnection.connection();
 

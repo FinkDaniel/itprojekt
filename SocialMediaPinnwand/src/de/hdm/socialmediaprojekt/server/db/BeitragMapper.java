@@ -78,13 +78,52 @@ public class BeitragMapper {
 		return result;
 	}
 
+<<<<<<< HEAD
 	public Vector<Beitrag> findBySourceUser(int sourceUser) {
 		Connection con = LocalDBConnection.connection();
 		Vector<Beitrag> result = new Vector<Beitrag>();
+=======
 
+  public Vector<Beitrag> findBySourceUser(int[] sourceId) {
+
+	  
+
+
+
+    Connection con = LocalDBConnection.connection();
+    Vector<Beitrag> result = new Vector<Beitrag>();
+>>>>>>> refs/remotes/origin/master
+
+<<<<<<< HEAD
 		try {
 			Statement stmt = con.createStatement();
+=======
+    try {
+      Statement stmt = con.createStatement();
+      StringBuffer query = new StringBuffer();
+      String teil1 = new String();
+      
+      teil1 = "SELECT * FROM `beitrag` "
+              + "WHERE `sourceUser` = " + sourceId[0];
+      query.append(teil1);
+     
+              
+      for(int i=1; i<sourceId.length; i++){
+    	  query.append(" OR `sourceUser` = "+sourceId[i]+" ");
+      }
+      String teil2 = new String();
+      teil2 = "ORDER BY `erstellungsdatum` DESC";
+      query.append(teil2);
+      ResultSet rs = stmt.executeQuery(query.toString());
+      
+      System.out.print(query.toString());
+    		 
+      
 
+    
+>>>>>>> refs/remotes/origin/master
+
+<<<<<<< HEAD
 			ResultSet rs = stmt.executeQuery// ("SELECT id, sourceUser, beitrag  FROM beitrag "
 											// + "WHERE sourceUser=" +
 											// sourceUser+"");
@@ -97,6 +136,21 @@ public class BeitragMapper {
 				b.setId(rs.getInt("id"));
 				b.setBeitrag(rs.getString("beitrag"));
 				b.setSourceUserID(rs.getInt("sourceUser"));
+=======
+
+      while (rs.next()) {
+        Beitrag b = new Beitrag();
+        b.setId(rs.getInt("id"));
+        b.setBeitrag(rs.getString("beitrag"));
+        b.setSourceUserID(rs.getInt("sourceUser"));
+      
+        result.addElement(b);
+      }
+    }
+    catch (SQLException e) {
+      e.printStackTrace();
+    }
+>>>>>>> refs/remotes/origin/master
 
 				result.addElement(b);
 			}

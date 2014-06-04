@@ -9,13 +9,13 @@ import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
    
 /**
-* Custom DialogBox um die Login Informationen des Google UserService
-* zu erweitern
-*
+<<<<<<< HEAD
+ * Custom DialogBox um die Login Informationen des Google UserService
+ * zu erweitern
+ * 
+ * @author Daniel Fink
+ */
 
-*/
-
-@SuppressWarnings("deprecation")
 public class LoginCustomDialog extends DialogBox implements ClickListener {
 private String vorname, nachname, nickname;
 private TextBox nachnameTextBox, vornameTextBox, nicknameTextBox;

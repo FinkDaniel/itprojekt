@@ -25,34 +25,31 @@ import de.hdm.socialmediaprojekt.shared.smo.User;
 
 public class SocialMediaProjekt implements EntryPoint {
 
-	final PinnwandVerwaltungAsync pinnwandVerwaltung = ClientSideSettings
-			.getPinnwandVerwaltung();
+	final PinnwandVerwaltungAsync pinnwandVerwaltung = ClientSideSettings.getPinnwandVerwaltung();
 
-	// Klassenvariablen für Google Login
+	//Klassenvariablen für Google Login
 	private LoginInfo loginInfo = null;
-	private Label loginLabel = new Label(
-			"Please sign in to your Google Account to access the SM application.");
+	private Label loginLabel = new Label("Please sign in to your Google Account to access the SM application.");
 	private Anchor signInLink = new Anchor("Sign In");
 	private static User aktuellerNutzer = null;
 
-	public Header header = new Header();
+	public Header header= new Header();
 	public Navigation navigation = new Navigation();
 
-	// public Content_BG content_bg = new Content_BG();
+	//public Content_BG content_bg = new Content_BG();
 	public Content content = new Content();
+	//public Footer footer = new Footer();
 
-	// public Footer footer = new Footer();
 
 	public void onModuleLoad() {
 
-		pinnwandVerwaltung
-				.login("http://127.0.0.1:8888/SocialMediaProjekt.html?gwt.codesvr=127.0.0.1:9997",
-						new AsyncCallback<LoginInfo>() {
+		pinnwandVerwaltung.login("http://127.0.0.1:8888/SocialMediaProjekt.html?gwt.codesvr=127.0.0.1:9997", new AsyncCallback <LoginInfo>(){
 
-							public void onFailure(Throwable error) {
-							}
 
-							public void onSuccess(LoginInfo result) {
+			public void onFailure(Throwable error) {}
+
+
+			public void onSuccess(LoginInfo result) {
 
 								loginInfo = result;
 								if (loginInfo.isLoggedIn()) {
@@ -63,123 +60,150 @@ public class SocialMediaProjekt implements EntryPoint {
 									loadLogin();
 								}
 
-							}
-						});
-	}
 
-	private void seitenaufbau() {
+				loginInfo = result;
+				if(loginInfo.isLoggedIn()) {
+					nutzerInDatenbank(result);
+			        	seitenaufbau();
+			    }
+				else {
 
-		RootPanel.get().clear();
-		RootPanel.get("header").add(header);
-		RootPanel.get("navigation").add(navigation);
-		RootPanel.get("content").add(content);
-		// RootPanel.get("footer").add(footer);
+						loadLogin();
 
-	}
-
-	public void clearContent() {
-		RootPanel.get("content").clear();
-	}
-
-	public void addPinnwandToContent() {
-		content.addPinnwand();
-		RootPanel.get("content").add(content);
-	}
-
-	public void addAbosToContent() {
-		content.addMeineAbos();
-		RootPanel.get("content").add(content);
-
-	}
-
-	public void nutzerInDatenbank(final LoginInfo googleNutzer) {
-		pinnwandVerwaltung.getAllUser(new AsyncCallback<Vector<User>>() {
-
-			@Override
-			public void onFailure(Throwable caught) {
+			    }
 
 			}
+		});  
+	}
 
-			public void onSuccess(Vector<User> result) {
-				for (User u : result) {
 
-					if (u.getEmail() == googleNutzer.getEmailAddress()) {
-						System.out.print("test 2");
-						setAktuellerNutzer(u);
+private void seitenaufbau() {
 
+	  RootPanel.get().clear();
+	  RootPanel.get("header").add(header);
+	  RootPanel.get("navigation").add(navigation);
+	  RootPanel.get("content").add(content);
+	  //RootPanel.get("footer").add(footer);
+
+
+	}
+
+
+public void clearContent(){
+	RootPanel.get("content").clear();
+}
+
+public void addPinnwandToContent(){
+	content.addPinnwand();
+	RootPanel.get("content").add(content);
+}
+public void addAbosToContent(){
+	content.addMeineAbos();
+	RootPanel.get("content").add(content);
+
+}	
+
+
+public void nutzerInDatenbank(final LoginInfo googleNutzer){
+			pinnwandVerwaltung.getAllUser(new AsyncCallback<Vector<User>>() {
+
+				@Override
+				public void onFailure(Throwable caught) {
+
+				}
+
+
+				public void onSuccess(Vector<User> result) {
+							for (User u : result){
+
+								if (u.getEmail() == googleNutzer.getEmailAddress()){
+
+									setAktuellerNutzer(u);
+
+								}
+							}		
+							if (getAktuellerNutzer() == null){
+			    			createUser(googleNutzer);
 					}
 				}
-				if (getAktuellerNutzer() == null) {
-					createUser(googleNutzer);
-				}
+
 			}
+			);}
 
-		});
-	}
 
-	public void createUser(final LoginInfo googleNutzer) {
-		final User user = new User();
-		user.setEmail(googleNutzer.getEmailAddress());
-		// user.setErstellungsZeitpunkt(new Date());
 
-		/**
-		 * Fordert den Nutzer auf Vor-, Nachname und Nickname einzugeben, da
-		 * diese Information nicht über die Google API bezogen werden kann bzw.
-		 * geändert werden soll
-		 * 
-		 * @author Daniel Fink
-		 */
-		final LoginCustomDialog dialog = new LoginCustomDialog(
-				googleNutzer.getNickname());
-		DialogBox dlb = dialog;
-		dlb.center();
 
-		dlb.addCloseHandler(new CloseHandler<PopupPanel>() {
+public void createUser(final LoginInfo googleNutzer){
+	final User user = new User();
+	user.setEmail(googleNutzer.getEmailAddress());
+	//user.setErstellungsZeitpunkt(new Date());
 
-			public void onClose(CloseEvent<PopupPanel> event) {
+
+					/**
+					 * Fordert den Nutzer auf Vor-, Nachname und Nickname einzugeben,
+					 * da diese Information nicht über die Google API bezogen werden kann
+					 * bzw. geändert werden soll
+					 * 
+					 * @author Daniel Fink
+					 */
+	final LoginCustomDialog dialog = new LoginCustomDialog(googleNutzer.getNickname());
+	DialogBox dlb = dialog;
+	dlb.center();
+
+
+
+	dlb.addCloseHandler(new CloseHandler<PopupPanel>(){
+
+		public void onClose(CloseEvent<PopupPanel> event) {
 				user.setVorname(dialog.getVorname());
 				user.setNachname(dialog.getNachname());
 				user.setNickname(dialog.getNickname());
-				pinnwandVerwaltung.createUser(user.getVorname(),
-						user.getNachname(), user.getNickname(),
-						user.getEmail(), new AsyncCallback<User>() {
-							@Override
-							public void onFailure(Throwable caught) {
-							}
+				pinnwandVerwaltung.createUser(user.getVorname(),user.getNachname(), user.getNickname(), user.getEmail(), new AsyncCallback<User>(){
+								@Override
+				public void onFailure(Throwable caught) {}
 
+								
+				public void onSuccess(User result) {
+						setAktuellerNutzer(result);	
+						Window.alert("Fotzkopf");
+						seitenaufbau();
+
+							
+
+<<<<<<< HEAD
 							@Override
 							public void onSuccess(User result) {
 								setAktuellerNutzer(result);
 								Window.alert("Fotzkopf");
 								//header.addUserStatus(getAktuellerNutzer());
 								seitenaufbau();
+=======
+									 /* Update die SuggestBox mit neuen Nutzer
+									 */
+									//fillSuggestenBox();
+				}
+>>>>>>> refs/remotes/origin/master
 
-								/*
-								 * Update die SuggestBox mit neuen Nutzer
-								 */
-								// fillSuggestenBox();
-							}
+				});
+		}
+	});
 
-						});
-			}
-		});
+}
+private void loadLogin() {	  
+		  Window.Location.assign(loginInfo.getLoginUrl());
+	  }
+private void loadLogout() {	  
+	  Window.Location.assign(loginInfo.getLogoutUrl());
+}
 
-	}
 
-	private void loadLogin() {
-		Window.Location.assign(loginInfo.getLoginUrl());
-	}
+public static User getAktuellerNutzer() {
+	return aktuellerNutzer;
+}
 
-	private void loadLogout() {
-		Window.Location.assign(loginInfo.getLogoutUrl());
-	}
 
-	public static User getAktuellerNutzer() {
-		return aktuellerNutzer;
-	}
-
-	public static void setAktuellerNutzer(User aktuellerNutzer) {
-		SocialMediaProjekt.aktuellerNutzer = aktuellerNutzer;
-	}
+public static void setAktuellerNutzer(User aktuellerNutzer) {
+	SocialMediaProjekt.aktuellerNutzer = aktuellerNutzer;
+}
 
 }

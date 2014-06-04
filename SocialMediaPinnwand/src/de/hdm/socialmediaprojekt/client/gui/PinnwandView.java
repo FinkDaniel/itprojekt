@@ -7,15 +7,33 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ScrollPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
+<<<<<<< HEAD
+=======
+
+
+
+
+
+
+
+
+>>>>>>> refs/remotes/origin/master
 import de.hdm.socialmediaprojekt.client.ClientSideSettings;
 import de.hdm.socialmediaprojekt.client.SocialMediaProjekt;
 import de.hdm.socialmediaprojekt.shared.PinnwandVerwaltungAsync;
+import de.hdm.socialmediaprojekt.shared.smo.Abo;
 import de.hdm.socialmediaprojekt.shared.smo.Beitrag;
 
 public class PinnwandView extends ScrollPanel {
 
 	VerticalPanel pinnwandView = new VerticalPanel();
+<<<<<<< HEAD
 
+=======
+
+
+	
+>>>>>>> refs/remotes/origin/master
 	public PinnwandView() {
 
 		this.clear();
@@ -30,18 +48,51 @@ public class PinnwandView extends ScrollPanel {
 	private VerticalPanel createPinnwand() {
 
 		pinnwandView.getElement().setId("pinnwandView");
+<<<<<<< HEAD
+=======
+		
+		
+		final PinnwandVerwaltungAsync pinnwandVerwaltung = ClientSideSettings.getPinnwandVerwaltung();
+		
+		pinnwandVerwaltung.getAboBySourcePinnwand(SocialMediaProjekt.getAktuellerNutzer().getId(), new AsyncCallback <Vector<Abo>>(){
+>>>>>>> refs/remotes/origin/master
 
+<<<<<<< HEAD
 		final PinnwandVerwaltungAsync pinnwandVerwaltung = ClientSideSettings
 				.getPinnwandVerwaltung();
+=======
+			@Override
+			public void onFailure(Throwable caught) {
+				// TODO Auto-generated method stub
+				
+			}
+>>>>>>> refs/remotes/origin/master
 
+<<<<<<< HEAD
 		pinnwandVerwaltung.getBeitragBySourceUser(SocialMediaProjekt
 				.getAktuellerNutzer().getId(),
 				new AsyncCallback<Vector<Beitrag>>() {
+=======
+			@Override
+			public void onSuccess(Vector<Abo> result) {
+				int[] abos = new int[result.size()+1];
+				abos[0] = SocialMediaProjekt.getAktuellerNutzer().getId();
+				
+				for(int i=1; i<result.size(); i++){
+					abos[i] = result.get(i).getTargetPinnwandID();
+					//System.out.print(result.get(i).getTargetPinnwandID());
+					System.out.print(abos[i]);
+				}
+				pinnwandVerwaltung.getBeitragBySourceUser(abos, new AsyncCallback <Vector<Beitrag>>(){
+
+
+>>>>>>> refs/remotes/origin/master
 
 					public void onFailure(Throwable caught) {
 						pinnwandView.add(new Label("Blubb"));
 
 					}
+<<<<<<< HEAD
 
 					public void onSuccess(Vector<Beitrag> result) {
 						Widget[] objectList = new Widget[result.size()];
@@ -63,5 +114,38 @@ public class PinnwandView extends ScrollPanel {
 				});
 		return pinnwandView;
 	}
+=======
+>>>>>>> refs/remotes/origin/master
 
-}
+
+					public void onSuccess(Vector<Beitrag> result) {
+						Widget[] objectList = new Widget[result.size()];
+						
+						
+										
+						for(int i=0; i< result.size(); i++){
+							BeitragCell beitragCell = new BeitragCell();
+							beitragCell.clear();
+							beitragCell.setText(result.get(i).getBeitrag());
+							beitragCell.addButtons();
+
+							objectList[i] = beitragCell;
+							pinnwandView.add(objectList[i]);
+
+						}
+						
+						
+						//}
+					//}});
+					}
+					
+		});
+			
+
+	
+				
+			}});
+		
+
+		return pinnwandView;
+}}

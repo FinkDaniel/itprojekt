@@ -65,7 +65,7 @@ public interface PinnwandVerwaltungAsync {
 
 	void getBeitragById(int id, AsyncCallback<Beitrag> callback);
 
-	void getBeitragBySourceUser(int sourceUser,
+	void getBeitragBySourceUser(int[] abos,
 			AsyncCallback<Vector<Beitrag>> callback);
 
 	void getKommentarById(int id, AsyncCallback<Kommentar> callback);
@@ -104,6 +104,9 @@ public interface PinnwandVerwaltungAsync {
 	void findUserbyEmail(String email, AsyncCallback<User> callback);
 
 	void getUserByNickname(String nickname, AsyncCallback<User> callback);
+
+	void getAboBySourceUser(int sourceUserID, AsyncCallback<Vector<Abo>> callback);
+	
 
 	// void login(String hostPageBaseURL, AsyncCallback<LoginInfo> callback);
 
