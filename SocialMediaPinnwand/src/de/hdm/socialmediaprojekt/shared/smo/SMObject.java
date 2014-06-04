@@ -1,6 +1,7 @@
 package de.hdm.socialmediaprojekt.shared.smo;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.Date;
 
 public abstract class SMObject implements Serializable {
@@ -8,7 +9,8 @@ public abstract class SMObject implements Serializable {
 	  private static final long serialVersionUID = 1L;
 
 	  private int id = 0;
-	  private Date erstellungsdatum = new Date();
+	  private Date erstellungsdatum;
+	  
 	  
 	  public int getId() {
 		    return this.id;
@@ -21,7 +23,10 @@ public abstract class SMObject implements Serializable {
 	  public Date getErstellungsdatum(){
 		  	return this.erstellungsdatum;
 	  }
-	  
+	  public void setErstellungsdatum(Date date) {
+			date = this.erstellungsdatum;
+			
+		}
 	  public boolean equals(Object o){
 		  if (o != null && o instanceof SMObject) {
 		      SMObject bo = (SMObject) o;
@@ -44,4 +49,5 @@ public abstract class SMObject implements Serializable {
 	  public int hashCode() {
 		  return this.id;
 	  }
+	  
 }

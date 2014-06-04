@@ -100,8 +100,9 @@ public class PinnwandView extends ScrollPanel{
 							BeitragCell beitragCell = new BeitragCell();
 							beitragCell.clear();
 							beitragCell.setText(result.get(i).getBeitrag());
+							beitragCell.setErsteller(result.get(i).getSourceUserID());
+							beitragCell.setErstellungszeitpunkt(result.get(i).getHour(), result.get(i).getMinute(), result.get(i).getDay(), result.get(i).getMonth(), result.get(i).getYear());
 							beitragCell.addButtons();
-
 							objectList[i] = beitragCell;
 							pinnwandView.add(objectList[i]);
 

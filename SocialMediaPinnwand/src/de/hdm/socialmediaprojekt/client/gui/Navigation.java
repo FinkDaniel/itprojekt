@@ -7,11 +7,14 @@ import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.ClickListener;
 import com.google.gwt.user.client.ui.MultiWordSuggestOracle;
 import com.google.gwt.user.client.ui.SuggestBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
+import com.google.gwt.user.client.ui.Widget;
 
 import de.hdm.socialmediaprojekt.client.ClientSideSettings;
+import de.hdm.socialmediaprojekt.client.LoginInfo;
 import de.hdm.socialmediaprojekt.client.SocialMediaProjekt;
 import de.hdm.socialmediaprojekt.shared.PinnwandVerwaltungAsync;
 import de.hdm.socialmediaprojekt.shared.smo.Abo;
@@ -22,12 +25,13 @@ import de.hdm.socialmediaprojekt.shared.smo.User;
 public class Navigation extends VerticalPanel{
 
 
+	private LoginInfo loginInfo = null;
 
-
+	@SuppressWarnings("deprecation")
 	public Navigation() {
 
 		//SocialMediaProjekt smp = new SocialMediaProjekt();
-
+		
 		Button meinePinnwand = new Button("Meine Pinnwand");
 		Button meineAbos = new Button("Meine Abos");
 		Button logout = new Button("Logout");
@@ -39,7 +43,17 @@ public class Navigation extends VerticalPanel{
 		this.add(meinePinnwand);
 		this.add(meineAbos);
 		this.add(logout);
+		
+		logout.addClickListener(new ClickListener(){
 
+			@Override
+			public void onClick(Widget sender) {
+				
+				loadLogout();
+				
+				
+			}});
+		
 		meinePinnwand.addClickHandler(new ClickHandler(){
 
 			public void onClick(ClickEvent event) {
@@ -144,4 +158,12 @@ public class Navigation extends VerticalPanel{
 			} 
 		}); 
 	}
+
+	
+		 private void loadLogout() {	  
+			 //Window.Location.assign(loginInfo.getLogoutUrl());
+			 Window.Location.assign("https://accounts.google.com/logout");
+		  }
+		
+	
 }

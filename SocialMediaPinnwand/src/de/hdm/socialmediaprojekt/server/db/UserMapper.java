@@ -40,7 +40,7 @@ private static UserMapper userMapper = null;
 
  
       ResultSet rs = stmt
-          .executeQuery("SELECT id, vorname, nachname, nickname, password FROM users "
+          .executeQuery("SELECT id, vorname, nachname, nickname, email FROM users "
               + "WHERE id=" + id + " ORDER BY nachname");
 
      
@@ -51,7 +51,7 @@ private static UserMapper userMapper = null;
         u.setVorname(rs.getString("vorname"));
         u.setNachname(rs.getString("nachname"));
         u.setNickname(rs.getString("nickname"));
-//        u.setPassword(rs.getString("password"));
+        u.setEmail(rs.getString("email"));
 
         return u;
       }

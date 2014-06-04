@@ -102,7 +102,7 @@ public class BeitragMapper {
       StringBuffer query = new StringBuffer();
       String teil1 = new String();
       
-      teil1 = "SELECT * FROM `beitrag` "
+      teil1 = "SELECT `id`,`sourceUser`,`beitrag`,`erstellungsdatum`,DAYOFMONTH(`erstellungsdatum`) as day, MONTH(`erstellungsdatum`) as month, YEAR(`erstellungsdatum`) as year, HOUR(`erstellungsdatum`) as hours, MINUTE(`erstellungsdatum`) as minute FROM `beitrag` "
               + "WHERE `sourceUser` = " + sourceId[0];
       query.append(teil1);
      
@@ -115,7 +115,7 @@ public class BeitragMapper {
       query.append(teil2);
       ResultSet rs = stmt.executeQuery(query.toString());
       
-      System.out.print(query.toString());
+     
     		 
       
 
@@ -127,6 +127,12 @@ public class BeitragMapper {
         b.setId(rs.getInt("id"));
         b.setBeitrag(rs.getString("beitrag"));
         b.setSourceUserID(rs.getInt("sourceUser"));
+        b.setDay(rs.getInt("day"));
+        b.setMonth(rs.getInt("month"));
+        b.setYear(rs.getInt("year"));
+        b.setHours(rs.getInt("hours"));
+        b.setMinutes(rs.getInt("minute"));
+        
       
         result.addElement(b);
       }
