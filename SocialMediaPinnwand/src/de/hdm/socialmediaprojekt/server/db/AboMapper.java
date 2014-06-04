@@ -222,4 +222,7 @@ public class AboMapper {
     return PinnwandMapper.pinnwandMapper().findByKey(a.getTargetPinnwandID());
   }
 
+
+
+
 }

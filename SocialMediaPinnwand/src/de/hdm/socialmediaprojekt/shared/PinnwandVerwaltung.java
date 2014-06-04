@@ -28,7 +28,7 @@ public interface PinnwandVerwaltung extends RemoteService {
 	
 	public Vector<Kommentar> getKommentarBySourceUser(int sourceUser) throws IllegalArgumentException;
 	public Pinnwand getPinnwandBySourceUser(int sourceUser) throws IllegalArgumentException;
-	public Vector<Beitrag> getBeitragBySourceUser(int sourceUser) throws IllegalArgumentException;
+	Vector<Beitrag> getBeitragBySourceUser(int[] abos);
 	public Vector<Like> getLikeBySourceUser(int sourceUser) throws IllegalArgumentException;
 	public Vector<Like> getLikeByTargetBeitrag(int beitragId) throws IllegalArgumentException;
 	public Vector<Abo> getAboBySourcePinnwand(int pinnwandId) throws IllegalArgumentException;
@@ -87,4 +87,6 @@ public interface PinnwandVerwaltung extends RemoteService {
 	public User findUserbyEmail(String email);
 	
 	public User getUserByNickname(String nickname) throws IllegalArgumentException;
+
+	public Vector<Abo> getAboBySourceUser(int sourceUserID) throws IllegalArgumentException;
 }

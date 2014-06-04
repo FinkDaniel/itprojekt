@@ -88,7 +88,7 @@ public class BeitragMapper {
 
 
 
-  public Vector<Beitrag> findBySourceUser(int sourceID) {
+  public Vector<Beitrag> findBySourceUser(int[] sourceId) {
 
 	  
 
@@ -99,10 +99,23 @@ public class BeitragMapper {
 
     try {
       Statement stmt = con.createStatement();
-
-
-      ResultSet rs = stmt.executeQuery("SELECT id, beitrag, sourceUser FROM beitrag "
-              + "WHERE sourceUser=" + sourceID + " ORDER BY id");
+      StringBuffer query = new StringBuffer();
+      String teil1 = new String();
+      
+      teil1 = "SELECT * FROM `beitrag` "
+              + "WHERE `sourceUser` = " + sourceId[0];
+      query.append(teil1);
+     
+              
+      for(int i=1; i<sourceId.length; i++){
+    	  query.append(" OR `sourceUser` = "+sourceId[i]+" ");
+      }
+      String teil2 = new String();
+      teil2 = "ORDER BY `erstellungsdatum` DESC";
+      query.append(teil2);
+      ResultSet rs = stmt.executeQuery(query.toString());
+      
+      System.out.print(query.toString());
     		 
       
 

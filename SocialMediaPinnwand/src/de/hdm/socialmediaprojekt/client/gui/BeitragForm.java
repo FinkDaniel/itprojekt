@@ -43,13 +43,13 @@ public class BeitragForm extends VerticalPanel {
 
 				Beitrag beitrag = new Beitrag();
 				beitrag.setBeitrag(beitragBox.getText());
-				pinnwandVerwaltung.save(beitrag, new AsyncCallback<Void>() {
+				//pinnwandVerwaltung.createBeitrag(beitrag, new AsyncCallback<Void>() {
 
-					public void onFailure(Throwable caught) {
-						Window.alert("Failure1");
-					}
+					//public void onFailure(Throwable caught) {
+					//	Window.alert("Failure1");
+					//}
 
-					public void onSuccess(Void result) {
+					//public void onSuccess(Void result) {
 
 						pinnwandVerwaltung.createBeitrag(
 								beitragBox.getText(),
@@ -78,8 +78,8 @@ public class BeitragForm extends VerticalPanel {
 
 				});
 
-			}
-		});
+//			}
+		//});
 
 	}
 

@@ -4,17 +4,16 @@ import java.util.Vector;
 
 
 
+
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
-
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
+
 
 
 import de.hdm.socialmediaprojekt.client.LoginInfo;
 import de.hdm.socialmediaprojekt.server.db.*;
-
 import de.hdm.socialmediaprojekt.shared.smo.*;
-
 import de.hdm.socialmediaprojekt.shared.PinnwandVerwaltung;
 
 
@@ -63,7 +62,7 @@ public class PinnwandVerwaltungImpl extends RemoteServiceServlet implements Pinn
 	public Pinnwand getPinnwandBySourceUser(int sourceId) throws IllegalArgumentException{
 		return this.pMapper.findBySourceUser(sourceId);
 	}
-	public Vector<Beitrag> getBeitragBySourceUser(int sourceId) throws IllegalArgumentException{
+	public Vector<Beitrag> getBeitragBySourceUser(int[] sourceId) throws IllegalArgumentException{
 		return this.bMapper.findBySourceUser(sourceId);
 	}
 	public Vector<Like> getLikeBySourceUser(int sourceId) throws IllegalArgumentException{
@@ -297,7 +296,18 @@ public class PinnwandVerwaltungImpl extends RemoteServiceServlet implements Pinn
 		return uMapper.findByEmail(emailaddr);
 		
 	}
-
+	public Vector<Abo> getAboBySourceUser(int sourceUserID) throws IllegalArgumentException{
+		
+		Pinnwand p = new Pinnwand();
+		p = this.pMapper.findBySourceUser(sourceUserID);
+		
+		return this.aMapper.findBySourcePinnwand(p.getId());
+		
+		
+		
+		
+	}
+	
 	
 
 }
