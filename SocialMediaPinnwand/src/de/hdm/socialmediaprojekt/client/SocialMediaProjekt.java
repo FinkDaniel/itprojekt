@@ -57,7 +57,7 @@ public class SocialMediaProjekt implements EntryPoint {
 								loginInfo = result;
 								if (loginInfo.isLoggedIn()) {
 									nutzerInDatenbank(result);
-									// header.addUserStatus(aktuellerNutzer);
+									//header.addUserStatus(getAktuellerNutzer());
 									seitenaufbau();
 								} else {
 									loadLogin();
@@ -151,7 +151,7 @@ public class SocialMediaProjekt implements EntryPoint {
 							public void onSuccess(User result) {
 								setAktuellerNutzer(result);
 								Window.alert("Fotzkopf");
-								//header.addUserStatus(aktuellerNutzer);
+								//header.addUserStatus(getAktuellerNutzer());
 								seitenaufbau();
 
 								/*

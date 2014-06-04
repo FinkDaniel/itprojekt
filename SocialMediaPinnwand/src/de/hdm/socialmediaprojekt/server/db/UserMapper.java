@@ -9,234 +9,220 @@ import java.util.Vector;
 import de.hdm.socialmediaprojekt.shared.smo.Pinnwand;
 import de.hdm.socialmediaprojekt.shared.smo.User;
 
-
-
 public class UserMapper {
 
-private static UserMapper userMapper = null;
+	private static UserMapper userMapper = null;
 
-  
-  	protected UserMapper() {
-  	}
+	protected UserMapper() {
+	}
 
+	public static UserMapper userMapper() {
+		if (userMapper == null) {
+			userMapper = new UserMapper();
+		}
 
-  	public static UserMapper userMapper() {
-    if (userMapper == null) {
-      userMapper = new UserMapper();
-    }
+		return userMapper;
+	}
 
-    return userMapper;
-  	}
+	public User findByKey(int id) {
 
- 
-  public User
-  	findByKey(int id) {
+		Connection con = LocalDBConnection.connection();
 
-    Connection con = LocalDBConnection.connection();
+		try {
 
-    try {
-    
-      Statement stmt = con.createStatement();
+			Statement stmt = con.createStatement();
 
- 
-      ResultSet rs = stmt
-          .executeQuery("SELECT id, vorname, nachname, nickname, password FROM users "
-              + "WHERE id=" + id + " ORDER BY nachname");
+			ResultSet rs = stmt
+					.executeQuery("SELECT id, vorname, nachname, nickname, password FROM users "
+							+ "WHERE id=" + id + " ORDER BY nachname");
 
-     
-      if (rs.next()) {
-     
-        User u = new User();
-        u.setId(rs.getInt("id"));
-        u.setVorname(rs.getString("vorname"));
-        u.setNachname(rs.getString("nachname"));
-        u.setNickname(rs.getString("nickname"));
-//        u.setPassword(rs.getString("password"));
+			if (rs.next()) {
 
-        return u;
-      }
-    }
-    catch (SQLException e) {
-      e.printStackTrace();
-      return null;
-    }
+				User u = new User();
+				u.setId(rs.getInt("id"));
+				u.setVorname(rs.getString("vorname"));
+				u.setNachname(rs.getString("nachname"));
+				u.setNickname(rs.getString("nickname"));
+				// u.setPassword(rs.getString("password"));
 
-    return null;
-  }
+				return u;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
 
- 
-  public Vector<User> findAll() {
-    Connection con = LocalDBConnection.connection();
-    Vector<User> result = new Vector<User>();
-    try {
-      Statement stmt = con.createStatement();
+		return null;
+	}
 
-      ResultSet rs = stmt.executeQuery("SELECT id, vorname, nachname, nickname, email "
-          + "FROM users " + "ORDER BY nachname");
-      while (rs.next()) {
-        User u = new User();
-        u.setId(rs.getInt("id"));
-        u.setVorname(rs.getString("vorname"));
-        u.setNachname(rs.getString("nachname"));
-        u.setNickname(rs.getString("nickname"));
-        u.setEmail(rs.getString("email"));
+	public Vector<User> findAll() {
+		Connection con = LocalDBConnection.connection();
+		Vector<User> result = new Vector<User>();
+		try {
+			Statement stmt = con.createStatement();
 
-        result.addElement(u);
-      }
-    }
-    catch (SQLException e) {
-      e.printStackTrace();
-    }
-    return result;
-  }
+			ResultSet rs = stmt
+					.executeQuery("SELECT id, vorname, nachname, nickname, email "
+							+ "FROM users " + "ORDER BY nachname");
+			while (rs.next()) {
+				User u = new User();
+				u.setId(rs.getInt("id"));
+				u.setVorname(rs.getString("vorname"));
+				u.setNachname(rs.getString("nachname"));
+				u.setNickname(rs.getString("nickname"));
+				u.setEmail(rs.getString("email"));
 
- 
-  public Vector<User> findByNachname(String name) {
-    Connection con = LocalDBConnection.connection();
-    Vector<User> result = new Vector<User>();
+				result.addElement(u);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
 
-    try {
-      Statement stmt = con.createStatement();
+	public Vector<User> findByNachname(String name) {
+		Connection con = LocalDBConnection.connection();
+		Vector<User> result = new Vector<User>();
 
-      ResultSet rs = stmt.executeQuery("SELECT id, vorname, nachname, nickname "
-              + "FROM users " + "ORDER BY nachname");
-      while (rs.next()) {
-        User u = new User();
-        u.setId(rs.getInt("id"));
-        u.setVorname(rs.getString("vorname"));
-        u.setNachname(rs.getString("nachname"));
-        result.addElement(u);
-      }
-    }
-    catch (SQLException e) {
-      e.printStackTrace();
-    }
-    return result;
-  }
+		try {
+			Statement stmt = con.createStatement();
 
- 
-  public User insert(User u) {
-    Connection con = LocalDBConnection.connection();
-    try {
-      Statement stmt = con.createStatement();
+			ResultSet rs = stmt
+					.executeQuery("SELECT id, vorname, nachname, nickname "
+							+ "FROM users " + "ORDER BY nachname");
+			while (rs.next()) {
+				User u = new User();
+				u.setId(rs.getInt("id"));
+				u.setVorname(rs.getString("vorname"));
+				u.setNachname(rs.getString("nachname"));
+				result.addElement(u);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
 
-      ResultSet rs = stmt.executeQuery("SELECT MAX(id) AS maxid "
-          + "FROM users ");
-      if (rs.next()) {
-        
-        u.setId(rs.getInt("maxid") + 1);
+	public User insert(User u) {
+		Connection con = LocalDBConnection.connection();
+		try {
+			Statement stmt = con.createStatement();
 
-        stmt = con.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT MAX(id) AS maxid "
+					+ "FROM users ");
+			if (rs.next()) {
 
-        stmt.executeUpdate ("INSERT INTO users(id, vorname, nachname, nickname, email)"
-            + "VALUES  ('" + u.getId() + "','" + u.getVorname() + "','"
-            + u.getNachname() +  "','" + u.getNickname()+ "','" + u.getEmail()+ "')");
-           }
-    }
-    catch (SQLException e) {
-      e.printStackTrace();
-    }
-    return u;
-    }
+				u.setId(rs.getInt("maxid") + 1);
 
-  
-  public User update(User u) {
-    Connection con = LocalDBConnection.connection();
+				stmt = con.createStatement();
 
-    try {
-      Statement stmt = con.createStatement();
+				stmt.executeUpdate("INSERT INTO users(id, vorname, nachname, nickname, email)"
+						+ "VALUES  ('"
+						+ u.getId()
+						+ "','"
+						+ u.getVorname()
+						+ "','"
+						+ u.getNachname()
+						+ "','"
+						+ u.getNickname()
+						+ "','" + u.getEmail() + "')");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return u;
+	}
 
-      stmt.executeUpdate("UPDATE users " + "SET vorname=\""
-          + u.getVorname() + "\", " + "nachname=\"" + u.getNachname() + "\" , " + "nickname=\"" + u.getNickname() + "\" "
-          + "WHERE id=" + u.getId());
-    }
-    catch (SQLException e) {
-      e.printStackTrace();
-    }
-    return u;
-  }
+	public User update(User u) {
+		Connection con = LocalDBConnection.connection();
 
-  
-  public void delete(User u) {
-    Connection con = LocalDBConnection.connection();
-    try {
-      Statement stmt = con.createStatement();
-      stmt.executeUpdate("DELETE FROM users " + "WHERE id=" + u.getId());
-    }
-    catch (SQLException e) {
-      e.printStackTrace();
-    }
-  }
+		try {
+			Statement stmt = con.createStatement();
 
-  public Pinnwand getPinnwandOf(User u) {
-	   
-	    return PinnwandMapper.pinnwandMapper().findBySourceUser(u);
-	  }
-  
-  public User findByEmail(String email) {
-	  
-	  Connection con = LocalDBConnection.connection();
-	  
-	  try {
-		    
-	      Statement stmt = con.createStatement();
+			stmt.executeUpdate("UPDATE users " + "SET vorname=\""
+					+ u.getVorname() + "\", " + "nachname=\"" + u.getNachname()
+					+ "\" , " + "nickname=\"" + u.getNickname() + "\" "
+					+ "WHERE id=" + u.getId());
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return u;
+	}
 
-	 
-	      ResultSet rs = stmt
-	          .executeQuery("SELECT * FROM `users` WHERE `email` = "+email);
-	      
-	      if (rs.next()) {
-	    	     
-	          User u = new User();
-	          u.setId(rs.getInt("id"));
-	          u.setVorname(rs.getString("vorname"));
-	          u.setNachname(rs.getString("nachname"));
-	          u.setNickname(rs.getString("nickname"));
-	          u.setEmail(rs.getString("email"));
-	          return u;
-	      }
-	    }
-	    catch (SQLException e) {
-	      e.printStackTrace();
-	      return null;
-	    }
-	return null;
+	public void delete(User u) {
+		Connection con = LocalDBConnection.connection();
+		try {
+			Statement stmt = con.createStatement();
+			stmt.executeUpdate("DELETE FROM users " + "WHERE id=" + u.getId());
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 
-	    
-	  }
+	public Pinnwand getPinnwandOf(User u) {
 
+		return PinnwandMapper.pinnwandMapper().findBySourceUser(u);
+	}
 
-public User findByNickname(String nickname) {
-    Connection con = LocalDBConnection.connection();
+	public User findByEmail(String email) {
 
-    try {
-    
-      Statement stmt = con.createStatement();
+		Connection con = LocalDBConnection.connection();
 
- 
-      ResultSet rs = stmt
-          .executeQuery("SELECT id, vorname, nachname, nickname, email FROM users "
-              + "WHERE nickname=" + nickname + " ORDER BY nickname");
+		try {
 
-     
-      if (rs.next()) {
-     
-        User u = new User();
-        u.setId(rs.getInt("id"));
-        u.setVorname(rs.getString("vorname"));
-        u.setNachname(rs.getString("nachname"));
-        u.setNickname(rs.getString("nickname"));
-        u.setEmail(rs.getString("email"));
+			Statement stmt = con.createStatement();
 
-        return u;
-      }
-    }
-    catch (SQLException e) {
-      e.printStackTrace();
-      return null;
-    }
+			ResultSet rs = stmt
+					.executeQuery("SELECT * FROM `users` WHERE `email` = "
+							+ email);
 
-    return null;
-  }
+			if (rs.next()) {
+
+				User u = new User();
+				u.setId(rs.getInt("id"));
+				u.setVorname(rs.getString("vorname"));
+				u.setNachname(rs.getString("nachname"));
+				u.setNickname(rs.getString("nickname"));
+				u.setEmail(rs.getString("email"));
+				return u;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+		return null;
+
+	}
+
+	public User findByNickname(String nickname) {
+		Connection con = LocalDBConnection.connection();
+
+		try {
+
+			Statement stmt = con.createStatement();
+
+			ResultSet rs = stmt
+					.executeQuery("SELECT id, vorname, nachname, nickname, email FROM users "
+							+ "WHERE nickname="
+							+ nickname
+							+ " ORDER BY nickname");
+
+			if (rs.next()) {
+
+				User u = new User();
+				u.setId(rs.getInt("id"));
+				u.setVorname(rs.getString("vorname"));
+				u.setNachname(rs.getString("nachname"));
+				u.setNickname(rs.getString("nickname"));
+				u.setEmail(rs.getString("email"));
+
+				return u;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+
+		return null;
+	}
 }
-  

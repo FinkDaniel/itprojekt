@@ -37,51 +37,39 @@ public class BeitragForm extends VerticalPanel {
 
 			public void onClick(ClickEvent event) {
 
-				if (beitragBox.getText() == "" ||  beitragBox.getText()=="Bitte Text eingeben") {
+				if (beitragBox.getText() == ""
+						|| beitragBox.getText() == "Bitte Text eingeben") {
 					Window.alert("Bitte Text eingeben");
-				
-				}else if(beitragBox.getText() != ""|| beitragBox.getText()!="Bitte Text eingeben"){
 
-				Beitrag beitrag = new Beitrag();
-				beitrag.setBeitrag(beitragBox.getText());
-				pinnwandVerwaltung.save(beitrag, new AsyncCallback<Void>() {
+				} else if (beitragBox.getText() != ""
+						|| beitragBox.getText() != "Bitte Text eingeben") {
 
-					public void onFailure(Throwable caught) {
-						Window.alert("Failure1");
-					}
+					Beitrag beitrag = new Beitrag();
+					beitrag.setBeitrag(beitragBox.getText());
 
-					public void onSuccess(Void result) {
-						
-						pinnwandVerwaltung.createBeitrag(
-								beitragBox.getText(),
-								
-								SocialMediaProjekt.getAktuellerNutzer().getId(),
-								new AsyncCallback<Beitrag>() {
+					pinnwandVerwaltung.createBeitrag(beitragBox.getText(),
+							SocialMediaProjekt.getAktuellerNutzer().getId(),
+							new AsyncCallback<Beitrag>() {
 
-									
-									public void onFailure(Throwable caught) {
-										Window.alert("Failure2");
-									}
+								public void onFailure(Throwable caught) {
+									Window.alert("Failure2");
+								}
 
-									public void onSuccess(Beitrag result) {
-										
-										Window.alert("Beitrag wurde angelegt");
-										beitragBox.setText("Bitte Text eingeben");
-										SocialMediaProjekt smp = new SocialMediaProjekt();
-										smp.clearContent();
-										smp.addPinnwandToContent();
-									}
+								public void onSuccess(Beitrag result) {
 
-								});
-					}
+									Window.alert("Beitrag wurde angelegt");
+									beitragBox.setText("Bitte Text eingeben");
+									SocialMediaProjekt smp = new SocialMediaProjekt();
+									smp.clearContent();
+									smp.addPinnwandToContent();
+								}
 
-				
+							});
 
-				});
+				}
 
-			}}
+			};
+
 		});
-
 	}
-
 }

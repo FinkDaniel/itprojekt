@@ -4,6 +4,7 @@ import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 
+import de.hdm.socialmediaprojekt.client.SocialMediaProjekt;
 import de.hdm.socialmediaprojekt.shared.smo.User;
 
 public class Header extends HorizontalPanel {
@@ -18,14 +19,14 @@ public class Header extends HorizontalPanel {
 
 	}
 
-	/*public void addUserStatus(User user) {
-
+	/*public Header addUserStatus(User user) {
+		
 		Label userEingeloggtAls = new Label("User eingeloggt als"
 				+ user.getVorname() + "" + user.getNachname() 
 				+ "alias" + user.getNickname());
 
 		userEingeloggtAls.getElement().setId("userEingeloggtAls");
 		this.add(userEingeloggtAls);
-
+		return this;
 	}*/
 }

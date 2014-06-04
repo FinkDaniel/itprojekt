@@ -9,204 +9,195 @@ import java.util.Vector;
 import de.hdm.socialmediaprojekt.shared.smo.Beitrag;
 import de.hdm.socialmediaprojekt.shared.smo.User;
 
-
 public class BeitragMapper {
 
+	private static BeitragMapper beitragMapper = null;
 
-  private static BeitragMapper beitragMapper = null;
+	protected BeitragMapper() {
+	}
 
+	public static BeitragMapper beitragMapper() {
+		if (beitragMapper == null) {
+			beitragMapper = new BeitragMapper();
+		}
 
-  protected BeitragMapper() {
-  }
+		return beitragMapper;
+	}
 
-  
-  public static BeitragMapper beitragMapper() {
-    if (beitragMapper == null) {
-      beitragMapper = new BeitragMapper();
-    }
+	public Beitrag findByKey(int id) {
 
-    return beitragMapper;
-  }
+		Connection con = LocalDBConnection.connection();
 
+		try {
 
-  public Beitrag findByKey(int id) {
-   
-    Connection con = LocalDBConnection.connection();
+			Statement stmt = con.createStatement();
+			ResultSet rs = stmt
+					.executeQuery("SELECT id, sourceUser, beitrag FROM beitrag "
+							+ "WHERE id=" + id + " ORDER BY sourceUser");
 
-    try {
-      
-      Statement stmt = con.createStatement();
-      ResultSet rs = stmt
-    		  .executeQuery("SELECT id, sourceUser, beitrag FROM beitrag "
-              + "WHERE id=" + id + " ORDER BY sourceUser");
+			if (rs.next()) {
 
-      if (rs.next()) {
-       
-        Beitrag b = new Beitrag();
-        b.setId(rs.getInt("id"));
-        b.setBeitrag(rs.getString("beitrag"));
-        b.setSourceUserID(rs.getInt("sourceUser"));
+				Beitrag b = new Beitrag();
+				b.setId(rs.getInt("id"));
+				b.setBeitrag(rs.getString("beitrag"));
+				b.setSourceUserID(rs.getInt("sourceUser"));
 
-        return b;
-      }
-    }
-    catch (SQLException e) {
-      e.printStackTrace();
-      return null;
-    }
+				return b;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
 
-    return null;
-  }
+		return null;
+	}
 
-  public Vector<Beitrag> findAll() {
-    Connection con = LocalDBConnection.connection();
-   
-    Vector<Beitrag> result = new Vector<Beitrag>();
+	public Vector<Beitrag> findAll() {
+		Connection con = LocalDBConnection.connection();
 
-    try {
-      Statement stmt = con.createStatement();
+		Vector<Beitrag> result = new Vector<Beitrag>();
 
-      ResultSet rs = stmt.executeQuery("SELECT id, sourceUser, beitrag "
-          + "FROM beitrag " + "ORDER BY sourceUser");
+		try {
+			Statement stmt = con.createStatement();
 
-        while (rs.next()) {
-        Beitrag b = new Beitrag();
-        b.setId(rs.getInt("id"));
-        b.setBeitrag(rs.getString("beitrag"));
-        b.setSourceUserID(rs.getInt("sourceUser"));
+			ResultSet rs = stmt.executeQuery("SELECT id, sourceUser, beitrag "
+					+ "FROM beitrag " + "ORDER BY sourceUser");
 
-       
-        result.addElement(b);
-      }
-    }
-    catch (SQLException e) {
-      e.printStackTrace();
-    }
+			while (rs.next()) {
+				Beitrag b = new Beitrag();
+				b.setId(rs.getInt("id"));
+				b.setBeitrag(rs.getString("beitrag"));
+				b.setSourceUserID(rs.getInt("sourceUser"));
 
-    return result;
-  }
+				result.addElement(b);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 
+		return result;
+	}
 
-  public Vector<Beitrag> findBySourceUser(int sourceUser) {
-    Connection con = LocalDBConnection.connection();
-    Vector<Beitrag> result = new Vector<Beitrag>();
+	public Vector<Beitrag> findBySourceUser(int sourceUser) {
+		Connection con = LocalDBConnection.connection();
+		Vector<Beitrag> result = new Vector<Beitrag>();
 
-    try {
-      Statement stmt = con.createStatement();
+		try {
+			Statement stmt = con.createStatement();
 
-      ResultSet rs = stmt.executeQuery//("SELECT id, sourceUser, beitrag  FROM beitrag " + "WHERE sourceUser=" + sourceUser+"");
+			ResultSet rs = stmt.executeQuery// ("SELECT id, sourceUser, beitrag  FROM beitrag "
+											// + "WHERE sourceUser=" +
+											// sourceUser+"");
 
-      ("SELECT id, sourceUser, beitrag FROM beitrag "
-              + "WHERE sourceUser=" + sourceUser + " ORDER BY sourceUser");
-      while (rs.next()) {
-        Beitrag b = new Beitrag();
-        b.setId(rs.getInt("id"));
-        b.setBeitrag(rs.getString("beitrag"));
-        b.setSourceUserID(rs.getInt("sourceUser"));
-      
-        result.addElement(b);
-      }
-    }
-    catch (SQLException e) {
-      e.printStackTrace();
-    }
+					("SELECT id, sourceUser, beitrag FROM beitrag "
+							+ "WHERE sourceUser=" + sourceUser
+							+ " ORDER BY sourceUser");
+			while (rs.next()) {
+				Beitrag b = new Beitrag();
+				b.setId(rs.getInt("id"));
+				b.setBeitrag(rs.getString("beitrag"));
+				b.setSourceUserID(rs.getInt("sourceUser"));
 
-    return result;
-  }
+				result.addElement(b);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 
-  public Vector<Beitrag> findByBeitrag(String beitrag) {
-	    Connection con = LocalDBConnection.connection();
-	    Vector<Beitrag> result = new Vector<Beitrag>();
+		return result;
+	}
 
-	    try {
-	      Statement stmt = con.createStatement();
+	public Vector<Beitrag> findByBeitrag(String beitrag) {
+		Connection con = LocalDBConnection.connection();
+		Vector<Beitrag> result = new Vector<Beitrag>();
 
-	      ResultSet rs = stmt.executeQuery("SELECT id, sourceUser, beitrag FROM beitrag "
-	              + "WHERE sourceUser=" + beitrag + " ORDER BY id");
-	    		  
-//	    		  ("SELECT id, sourceUser, beitrag "
-//	          + "FROM beitrag " + "WHERE sourceUser" + id
-//	          + "ORDER BY id");
+		try {
+			Statement stmt = con.createStatement();
 
-      
-	      while (rs.next()) {
-	        Beitrag b = new Beitrag();
-	        b.setId(rs.getInt("id"));
-	        b.setBeitrag(rs.getString("beitrag"));
-	        b.setSourceUserID(rs.getInt("sourceID"));
-	      
-	        result.addElement(b);
-	      }
-	    }
-	    catch (SQLException e) {
-	      e.printStackTrace();
-	    }
+			ResultSet rs = stmt
+					.executeQuery("SELECT id, sourceUser, beitrag FROM beitrag "
+							+ "WHERE sourceUser=" + beitrag + " ORDER BY id");
 
-	    return result;
-	  }
-  public Beitrag insert(Beitrag b) {
-    Connection con = LocalDBConnection.connection();
+			// ("SELECT id, sourceUser, beitrag "
+			// + "FROM beitrag " + "WHERE sourceUser" + id
+			// + "ORDER BY id");
 
-    try {
-      Statement stmt = con.createStatement();
+			while (rs.next()) {
+				Beitrag b = new Beitrag();
+				b.setId(rs.getInt("id"));
+				b.setBeitrag(rs.getString("beitrag"));
+				b.setSourceUserID(rs.getInt("sourceID"));
 
-      ResultSet rs = stmt.executeQuery("SELECT MAX(id) AS maxid "
-          + "FROM beitrag ");
+				result.addElement(b);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 
-      if (rs.next()) {
-        
-        b.setId(rs.getInt("maxid") + 1);
+		return result;
+	}
 
-        stmt = con.createStatement();
+	public Beitrag insert(Beitrag b) {
+		Connection con = LocalDBConnection.connection();
 
-        stmt.executeUpdate("INSERT INTO beitrag (id, beitrag, sourceUser) "
-            + "VALUES (" + b.getId() + ",'" + b.getBeitrag() + "','"
-            + b.getSourceUserID() + "')");
-      }
-    }
-    catch (SQLException e) {
-      e.printStackTrace();
-    }
+		try {
+			Statement stmt = con.createStatement();
 
-    return b;
-  }
+			ResultSet rs = stmt.executeQuery("SELECT MAX(id) AS maxid "
+					+ "FROM beitrag ");
 
-  public Beitrag update(Beitrag b) {
-    Connection con = LocalDBConnection.connection();
+			if (rs.next()) {
 
-    try {
-      Statement stmt = con.createStatement();
+				b.setId(rs.getInt("maxid") + 1);
 
-      stmt.executeUpdate("UPDATE beitrag " + "SET beitrag=\""
-          + b.getBeitrag() + "\", " + "sourceID=\"" + b.getSourceUserID() + "\" "
-          + "WHERE id=" + b.getId());
+				stmt = con.createStatement();
 
-    }
-    catch (SQLException e) {
-      e.printStackTrace();
-    }
+				stmt.executeUpdate("INSERT INTO beitrag (id, beitrag, sourceUser) "
+						+ "VALUES ("
+						+ b.getId()
+						+ ",'"
+						+ b.getBeitrag()
+						+ "','" + b.getSourceUserID() + "')");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 
-    return b;
-  }
+		return b;
+	}
 
-  public void delete(Beitrag b) {
-    Connection con = LocalDBConnection.connection();
+	public Beitrag update(Beitrag b) {
+		Connection con = LocalDBConnection.connection();
 
-    try {
-      Statement stmt = con.createStatement();
+		try {
+			Statement stmt = con.createStatement();
 
-      stmt.executeUpdate("DELETE FROM beitrag " + "WHERE id=" + b.getId());
-    }
-    catch (SQLException e) {
-      e.printStackTrace();
-    }
-  }
+			stmt.executeUpdate("UPDATE beitrag " + "SET beitrag=\""
+					+ b.getBeitrag() + "\", " + "sourceID=\""
+					+ b.getSourceUserID() + "\" " + "WHERE id=" + b.getId());
 
-  public User getSourceID(Beitrag b) {
-	    
-	    return UserMapper.userMapper().findByKey(b.getId());
-	    		
-	    		
-  }
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return b;
+	}
+
+	public void delete(Beitrag b) {
+		Connection con = LocalDBConnection.connection();
+
+		try {
+			Statement stmt = con.createStatement();
+
+			stmt.executeUpdate("DELETE FROM beitrag " + "WHERE id=" + b.getId());
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public User getSourceID(Beitrag b) {
+
+		return UserMapper.userMapper().findByKey(b.getId());
+
+	}
 }
-
