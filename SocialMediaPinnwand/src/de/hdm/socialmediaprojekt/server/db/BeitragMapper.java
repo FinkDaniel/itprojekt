@@ -87,20 +87,28 @@ public class BeitragMapper {
   }
 
 
+
   public Vector<Beitrag> findBySourceUser(int sourceID) {
-	 System.out.print("wir sind jetzt im beitragsmapper in der funktion findbysourceuser");
-	 System.out.print(sourceID);
+
 	  
+
+
+
     Connection con = LocalDBConnection.connection();
     Vector<Beitrag> result = new Vector<Beitrag>();
 
     try {
       Statement stmt = con.createStatement();
 
+
       ResultSet rs = stmt.executeQuery("SELECT id, beitrag, sourceUser FROM beitrag "
               + "WHERE sourceUser=" + sourceID + " ORDER BY id");
     		 
       
+
+    
+
+
       while (rs.next()) {
         Beitrag b = new Beitrag();
         b.setId(rs.getInt("id"));

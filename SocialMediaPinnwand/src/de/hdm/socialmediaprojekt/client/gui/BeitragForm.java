@@ -53,10 +53,11 @@ public class BeitragForm extends VerticalPanel {
 
 						pinnwandVerwaltung.createBeitrag(
 								beitragBox.getText(),
+								
 								SocialMediaProjekt.getAktuellerNutzer().getId(),
 								new AsyncCallback<Beitrag>() {
 
-									@Override
+									
 									public void onFailure(Throwable caught) {
 										Window.alert("Failure2");
 									}
@@ -64,7 +65,10 @@ public class BeitragForm extends VerticalPanel {
 									public void onSuccess(Beitrag result) {
 										
 										Window.alert("Beitrag wurde angelegt");
-										beitragBox.setText("");
+										SocialMediaProjekt smp = new SocialMediaProjekt();
+										smp.clearContent();
+										smp.addPinnwandToContent();
+										beitragBox.setText("Bitte Text eingeben");
 									}
 
 								});

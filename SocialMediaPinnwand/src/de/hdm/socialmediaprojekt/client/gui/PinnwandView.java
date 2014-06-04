@@ -12,6 +12,9 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ScrollPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
+import com.google.gwt.user.client.ui.Widget;
+
+
 import de.hdm.socialmediaprojekt.client.ClientSideSettings;
 import de.hdm.socialmediaprojekt.client.SocialMediaProjekt;
 import de.hdm.socialmediaprojekt.shared.PinnwandVerwaltungAsync;
@@ -23,6 +26,8 @@ public class PinnwandView extends ScrollPanel{
 	
 	
 	VerticalPanel pinnwandView = new VerticalPanel();
+
+
 	
 	public PinnwandView() {
 		
@@ -55,6 +60,7 @@ public class PinnwandView extends ScrollPanel{
 		pinnwandVerwaltung.getBeitragBySourceUser(SocialMediaProjekt.getAktuellerNutzer().getId(), new AsyncCallback <Vector<Beitrag>>(){
 
 
+
 				public void onFailure(Throwable caught) {
 					pinnwandView.add(new Label("Blubb"));
 
@@ -62,38 +68,23 @@ public class PinnwandView extends ScrollPanel{
 
 
 				public void onSuccess(Vector<Beitrag> result) {
-
-
-					//System.out.print(result);
-					/*
-					for(int i=0;i<result.size();i++){
+					Widget[] objectList = new Widget[result.size()];
+					
+					
+									
+					for(int i=0; i< result.size(); i++){
 						BeitragCell beitragCell = new BeitragCell();
+						beitragCell.clear();
+						beitragCell.setText(result.get(i).getBeitrag());
 						beitragCell.addButtons();
-						beitragCell.setText(result.get(i).getBeitrag().toString());
-					*/
-					//BeitragCell[] beitragcell = new BeitragCell[result.size()];
+
+						objectList[i] = beitragCell;
 					
-					//BeitragCell[] beitragcell = new BeitragCell[result.size()];
-					//beitragcell[result.size()] = new BeitragCell();
-					BeitragCell[] beitragCell = new BeitragCell[2];
-					beitragCell[1].setText("test");
-					
-					System.out.print(result.size());
-					
-					
-					//beitragcell[3].setText(result.get(3).getBeitrag());
-					pinnwandView.add(beitragCell[1]);
-					
-					
-					/*
-					for(int i=0; i<=result.size(); i++){
-						//labelcell[i].addButtons();
-						labelcell[i].setText("Text Nummer");
-						//beitragcell[i].setText(result.get(i).getBeitrag());
-						pinnwandView.add(labelcell[i]);
-						//pinnwandView.add(beitragcell[i]);
+						System.out.print(objectList[i]);
+						pinnwandView.add(objectList[i]);
+
 					}
-					*/
+					
 					
 					//}
 				//}});

@@ -26,10 +26,10 @@ public interface PinnwandVerwaltung extends RemoteService {
 	
 	// getbySourceUser Methoden
 	
-	public Vector<Kommentar> getKommentarBySourceUser(int sourceId) throws IllegalArgumentException;
-	public Pinnwand getPinnwandBySourceUser(int sourceId) throws IllegalArgumentException;
-	public Vector<Beitrag> getBeitragBySourceUser(int sourceId) throws IllegalArgumentException;
-	public Vector<Like> getLikeBySourceUser(int sourceId) throws IllegalArgumentException;
+	public Vector<Kommentar> getKommentarBySourceUser(int sourceUser) throws IllegalArgumentException;
+	public Pinnwand getPinnwandBySourceUser(int sourceUser) throws IllegalArgumentException;
+	public Vector<Beitrag> getBeitragBySourceUser(int sourceUser) throws IllegalArgumentException;
+	public Vector<Like> getLikeBySourceUser(int sourceUser) throws IllegalArgumentException;
 	public Vector<Like> getLikeByTargetBeitrag(int beitragId) throws IllegalArgumentException;
 	public Vector<Abo> getAboBySourcePinnwand(int pinnwandId) throws IllegalArgumentException;
 	public Vector<Abo> getAboByTargetPinnwand(int pinnwandId) throws IllegalArgumentException;

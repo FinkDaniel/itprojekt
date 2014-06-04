@@ -7,20 +7,22 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 
 public class BeitragCell extends VerticalPanel {
 	
-	Label text = new Label();
+	
 	
 
 	public BeitragCell() {
 
 		this.addStyleName("BeitragCell");
-		this.add(text);
+	
 		
 
 	}
 
-	public Label setText(String inhalt) {
-		this.text.setText(inhalt);
-		return text;
+	public void setText(String inhalt) {
+		HorizontalPanel text = new HorizontalPanel();
+		Label i = new Label(inhalt);
+		text.add(i);
+		this.add(text);
 	}
 
 	public BeitragCell addButtons() {
