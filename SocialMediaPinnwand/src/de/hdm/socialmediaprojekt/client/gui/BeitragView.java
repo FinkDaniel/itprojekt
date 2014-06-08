@@ -10,7 +10,7 @@ public class BeitragView extends VerticalPanel{
 	BeitragCell beitragCell = new BeitragCell();
 	
 	public BeitragView() {
-		this.addStyleName("BeitragView");
+		this.addStyleName("beitragView");
 	}
 	
 	

@@ -1,306 +1,252 @@
-/** Add css rules here for your application. */
-
-
-/** Example rules used by the template application (remove for your app) */
+/** Aktuelle CSS Klassen und IDs */
 body {
+	background-color: grey;
 	color: black;
-	margin: 0%;
-	border: 0px;
-	padding: 0px;
+	padding: 0.5em;
 	background: #fff;
 	direction: ltr;
+	min-width: 700px;
 }
-.dockPanel {
 
-	background-color: rgba(255, 255, 255, 0);
-	border-style: solid;
-	border-color: rgb(57, 94, 138);
-	border-width: 5px;
-	height: 768px;
-	width: 1024px;
-
-
+.start {
+	background-color: red;
 }
+
 .header {
-	
 	border-style: solid;
+	border-radius: 0.5em;
 	border-color: rgb(247, 150, 70);
-	padding: 50px;
-	display: block;
-	
+	padding: 2em;
 }
-#h1{
+
+#h1 {
 	font-size: 40px;
 }
+
 .navigation {
-	background-color: white;
-	margin-top: 7%;
-	padding: 10;
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+	padding: 1em;
 	border-style: solid;
+	border-radius: 0.5em;
 	border-color: rgb(247, 150, 70);
-	display: inline-block;
-	width: 230px;
-	height: 600px;
 	float: left;
+}
 
-
-}
-.buttons {
-	background-color: white;
-
-	padding: 50px;
-	border-style: solid;
-	border-color: rgb(247, 150, 70);
-	display: inline-block;
-	float:left;
-}
-.userSuche{
-	background-color: white;
-	padding: 25px;
-	border-style: solid;
-	border-color: rgb(247, 150, 70);
-	display: inline-block;
-	float:left;
-}
-#textbox {
-
-	background-color:red;
-
-}
-.logout {
-	background-color:white;
-	padding:50px;
-}
-.content_bg{
-	background-color: white;
-	margin-top: 2%;
-	margin-bottom: 1%;
-	padding: 50px;
-	width: 750px;
-	height: 600px;
-	display: inline-block;
-	border-color: rgb(247, 150, 70);
-	border-style: solid;
-	float: right;
-}
-.content {
-	background-color: white;
-
-	/**border-style: solid;*/
-	border-color: rgb(247, 150, 70);
-	display: inline-block;
-	float:left;
-}
-.pinnwand {
-
-	margin:5px;
-	width: 590px;
-	height:550px;
-	padding: 10px;
-	border-style:solid;
-	border-color:rgb(247, 150, 70);
-}
-.pinnwand_inhalt {
-
-	margin:5px;
-	width: 580px;
-	height:600px;
-	padding: 10px;
-	border-style:solid;
-	border-color:rgb(247, 150, 70);
-}
-#beitrag {
-
-	border-style:solid;
-	border-color:rgb(247, 150, 70);
-}
-.footer{
-	background-color: white;
-	margin-top: 1%;
-	padding: 50px;
-	display: block;
-	border-style: solid;
-	border-color: rgb(247, 150, 70);
-	width: 100%;
-}
-#logButton {
+.buttonNavigation {
 	width: 120px;
 	height: 40px;
 	margin: 5%;
 	box-sizing: border-box;
-  -moz-box-sizing: border-box;
- 
- 
-  opacity: 1;
-  border: 1px solid #f6923f;
-  border-radius: 10px;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  -ms-border-radius: 10px;
-  -o-border-radius: 10px;
-  box-shadow: 0px 0px 0px 0px #F6923F,0px -7px 17px 0px #f6923f inset;
-  -webkit-box-shadow: 0px 0px 0px 0px #F6923F,0px -7px 17px 0px #f6923f inset;
-  -moz-box-shadow: 0px 0px 0px 0px #F6923F,0px -7px 17px 0px #f6923f inset;
-  -ms-box-shadow: 0px 0px 0px 0px #F6923F,0px -7px 17px 0px #f6923f inset;
-  -o-box-shadow: 0px 0px 0px 0px #F6923F,0px -7px 17px 0px #f6923f inset;
+	opacity: 1;
+	border: 1px solid #f6923f;
+	-webkit-border-radius: 10px;
+	-webkit-box-shadow: 0px 0px 0px 0px #F6923F, 0px -7px 17px 0px #f6923f
+		inset;
 }
-#logButton:hover {
-	background:rgb(247, 150, 70);
-}/** Add css rules here for your application. */
 
-
-/** Example rules used by the template application (remove for your app) */
-body {
-	color: black;
-	margin: 0%;
-	border: 0px;
-	padding: 0px;
-	background: #fff;
-	direction: ltr;
+.buttonNavigation:hover {
+	background: rgb(247, 150, 70);
 }
-.dockPanel {
 
-	background-color: rgba(255, 255, 255, 0);
-	border-style: solid;
-	border-color: rgb(57, 94, 138);
-	border-width: 5px;
-	height: 768px;
-	width: 1024px;
-
-
-}
-.header {
-	background-color: white;
-	border-style: solid;
-	border-color: rgb(247, 150, 70);
-	display: block;
-	width: 100%;
-}
-#h1{
-	font-size: 40px;
-}
-.navigation {
-	border-style: solid;
-	border-color: rgb(247, 150, 70);
-	display: inline-block;
-	width: 20%;
-	float: left;
-	margin-top: 0.5%;
-
-
-}
-.buttons {
-	background-color: white;
-
-	padding: 50px;
-	border-style: solid;
-	border-color: rgb(247, 150, 70);
-	display: inline-block;
-	float:left;
-}
-.userSuche{
+.userSuche {
 	background-color: white;
 	padding: 25px;
 	border-style: solid;
 	border-color: rgb(247, 150, 70);
 	display: inline-block;
-	float:left;
+	float: left;
 }
+
 #textbox {
-
-	background-color:red;
-
+	margin-top: 2em;
+	border: 0.1em solid rgb(247, 150, 70);
+	border-radius: 0.5em;
 }
 
+#beitragBox {
+	max-width: 19em;
+	max-height: 40em;
+}
+
+#kommentarBox {
+	border-style: solid;
+}
+
+#logoutButton {
+	width: 120px;
+	height: 40px;
+	margin: 5%;
+	box-sizing: border-box;
+	opacity: 1;
+	border: 1px solid #f6923f;
+	-webkit-border-radius: 10px;
+	-webkit-box-shadow: 0px 0px 0px 0px #F6923F, 0px -7px 17px 0px #f6923f
+		inset;
+	margin-top: 4em;
+}
+
+#logoutButton:hover {
+	background: rgb(247, 150, 70);
+}
+
+#buttonAbonieren {
+	width: 120px;
+	height: 40px;
+	margin: 5%;
+	box-sizing: border-box;
+	opacity: 1;
+	border: 1px solid #f6923f;
+	-webkit-border-radius: 10px;
+	-webkit-box-shadow: 0px 0px 0px 0px #F6923F, 0px -7px 17px 0px #f6923f
+		inset;
+}
+
+#buttonAbonieren: hover {
+	background: rgb(247, 150, 70);
+}
+
+.buttonBeitragSenden {
+	width: 120px;
+	height: 40px;
+	margin: 5%;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	opacity: 1;
+	border: 1px solid #f6923f;
+	border-radius: 10px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	-ms-border-radius: 10px;
+	-o-border-radius: 10px;
+	box-shadow: 0px 0px 0px 0px #F6923F, 0px -7px 17px 0px #f6923f inset;
+	-webkit-box-shadow: 0px 0px 0px 0px #F6923F, 0px -7px 17px 0px #f6923f
+		inset;
+	-moz-box-shadow: 0px 0px 0px 0px #F6923F, 0px -7px 17px 0px #f6923f
+		inset;
+	-ms-box-shadow: 0px 0px 0px 0px #F6923F, 0px -7px 17px 0px #f6923f inset;
+	-o-box-shadow: 0px 0px 0px 0px #F6923F, 0px -7px 17px 0px #f6923f inset;
+}
+
+.buttonKommentarSenden: hover {
+	background: rgb(247, 150, 70);
+}
+
+.buttonKommentarSenden {
+	width: 120px;
+	height: 40px;
+	margin: 5%;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	opacity: 1;
+	border: 1px solid #f6923f;
+	border-radius: 10px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	-ms-border-radius: 10px;
+	-o-border-radius: 10px;
+	box-shadow: 0px 0px 0px 0px #F6923F, 0px -7px 17px 0px #f6923f inset;
+	-webkit-box-shadow: 0px 0px 0px 0px #F6923F, 0px -7px 17px 0px #f6923f
+		inset;
+	-moz-box-shadow: 0px 0px 0px 0px #F6923F, 0px -7px 17px 0px #f6923f
+		inset;
+	-ms-box-shadow: 0px 0px 0px 0px #F6923F, 0px -7px 17px 0px #f6923f inset;
+	-o-box-shadow: 0px 0px 0px 0px #F6923F, 0px -7px 17px 0px #f6923f inset;
+}
+
+.buttonKommentarSenden: hover {
+	background: rgb(247, 150, 70);
+}
 
 .content {
 	border-style: solid;
+	border-radius: 0.5em;
 	border-color: rgb(247, 150, 70);
-	float: left;
-	width: 78%;
-	margin-top: 0.5%;
-	margin-left: 0.5%;
+	margin-left: 15em;
+	margin-top: 0.5em;
 }
-#pinnwand {
 
+.beitragCell {
+	border-style: solid;
+	border-color: rgb(247, 150, 70);
+	border-radius: 0.25em;
+	padding: 0.5em;
+	margin: 0.5em;
+}
+.panelErsteller{
+	border-style:solid;
+}
+.beitragView {
+	border-style: solid;
+}
+
+.like {
+	border-style: solid;
+}
+
+.kommentieren {
+	border-style: solid;
+}
+
+.aboCell {
+	border-style: solid;
+}
+
+#aboView {
+	border-style: solid;
+}
+
+#pinnwandMenuepunkt {
+	border-style: solid;
+	font-size: 23px;
+	width: 8em;
+	border-color: rgb(247, 150, 70);
+	border-radius: 0.25em;
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+#aboMenuepunkt {
+	border-style: solid;
+}
+
+#labelFooter {
+	border-style: solid;
+}
+.labelVerfasser{
+	border-style:solid;
+}
+
+.labelErstellungszeitpunkt {
+	border-style: solid;
+}
+
+.pinnwand {
+	margin: 5px;
+	height: 550px;
+	padding: 10px;
+	border-style: solid;
+	border-color: rgb(247, 150, 70);
+}
+
+.pinnwandView {
 	margin: 5px;
 	padding: 10px;
 	border-style: solid;
 	border-color: rgb(247, 150, 70);
-	height: 250px;
 }
-#pinnwandView{
-	margin: 5px;
-	width:60%;
-	height:500px;
-	border-style:solid;
-	border-color:rgb(247, 150, 70);
-}
-#aboView{
-	margin: 5px;
-	width:60%;
-	height:500px;
-	border-style:solid;
-	border-color:rgb(247, 150, 70);
-}
-.BeitragCell {
 
-	border-style:solid;
-	border-color:rgb(247, 150, 70);
-	padding:2px;
-	margin:2px;
-}
-#footer{
+.footer {
+	clear: both;
+	border-style: solid;
+	border-radius: 0.5em;
+	border-color: rgb(247, 150, 70);
 	background-color: white;
-	margin-top: 1%;
+	margin-top: 0.5em;
 	padding: 50px;
 	display: block;
-	border-style: solid;
-	border-color: rgb(247, 150, 70);
-	width: 100%;
-}
-.Button {
-	box-sizing: border-box;
-opacity: 1;
-border: 1px solid #f6923f;
--webkit-border-radius: 10px;
-box-shadow: 0px 0px 0px 0px #F6923F,0px -7px 17px 0px #f6923f inset;
-}
-.Button:hover {
-	background:rgb(247, 150, 70);
-}
-.anmeldenButton{
-	display: block;
-  font-size: 16pt;
-}
-h1 {
-  font-size: 2em;
-  font-weight: bold;
-  color: #777777;
-  margin: 40px 0px 70px;
-  text-align: center;
 }
 
-.sendButton {
-  display: block;
-  font-size: 16pt;
+.gwt-SuggestBox {
+	
 }
-
-/** Most GWT widgets already have a style name defined */
-.gwt-DialogBox {
-  width: 400px;
-}
-
-.dialogVPanel {
-  margin: 5px;
-}
-
-.serverResponseLabelError {
-  color: red;
-}
-
-/** Set ids using widget.getElement().setId("idOfElement") */
-#closeButton {
-  margin: 15px 6px 6px;
-}
-

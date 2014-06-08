@@ -16,16 +16,18 @@ public class KommentarForm extends VerticalPanel {
 
 	PinnwandVerwaltungAsync pinnwandVerwaltung = ClientSideSettings
 			.getPinnwandVerwaltung();
+	Button kommentarButton = new Button("Kommentar absenden");
+	final TextArea kommentarBox = new TextArea();
 
 	// SocialMediaProjekt smp = new SocialMediaProjekt.aktuellerUser();
 
 	public KommentarForm() {
 
-		final TextArea kommentarBox = new TextArea();
-		Button kommentarButton = new Button("Kommenatar absenden");
+		
+		
 
-		kommentarButton.setStyleName("Button");
-
+		kommentarButton.setStyleName("buttonKommentarAbsenden");
+		kommentarBox.getElement().setId("kommentarBox");
 		kommentarBox.setVisibleLines(3);
 		kommentarBox.setText("Bitte Text eingeben");
 
