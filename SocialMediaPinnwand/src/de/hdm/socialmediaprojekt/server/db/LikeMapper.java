@@ -10,17 +10,29 @@ import de.hdm.socialmediaprojekt.shared.smo.Beitrag;
 import de.hdm.socialmediaprojekt.shared.smo.Like;
 import de.hdm.socialmediaprojekt.shared.smo.User;
 
-
+/**
+ * Dies ist die Mapperklasse zum Like. Sie stellt die Verbindung zur Like-Tabelle in der Datenbank her.
+ * @mapper Like
+ * @author Social Media Team
+ *
+ */
 public class LikeMapper {
 
-
+//Variablendeklaration
   private static LikeMapper likeMapper = null;
 
- 
+  /**
+   * Konstruktor des LikeMappers
+   * @author Social Media Team
+   */
   protected LikeMapper() {
   }
 
-
+  /**
+   * erweiterter Konstruktor der eine neue Instanz anlegt, sofern es noch keine gibt
+   * @return BeitragMapper
+   * @author Social Media Team
+   */
   public static LikeMapper likeMapper() {
     if (likeMapper == null) {
       likeMapper = new LikeMapper();
@@ -29,7 +41,12 @@ public class LikeMapper {
     return likeMapper;
   }
 
- 
+  /**
+   * Diese Methode findet den Like nach zugehöriger ID. Der Like wird anschließend nach der Struktur des SMO-Objects gebaut und zurückgegeben.
+   * @author Social Media Team
+   * @param Integer
+   * @return Like
+   */
   public Like findByKey(int id) {
  
     Connection con = LocalDBConnection.connection();
@@ -61,7 +78,11 @@ public class LikeMapper {
     return null;
   }
 
- 
+  /**
+   * Diese Methode gibt alle Likes aus, die in der Datenbank hinterlegt sind
+   * @return Vector<Like>
+   * @author Social Media Team
+   */
   public Vector<Like> findAll() {
     Connection con = LocalDBConnection.connection();
 
@@ -91,7 +112,12 @@ public class LikeMapper {
     return result;
   }
 
- 
+  /**
+   * Diese Methode gibt alle Kommentare von einem SourceUser aus, die in der Datenbank hinterlegt sind. Übergabewert ist der Integer ID des SourceNutzers, von dem die Beiträge benötigt werden. Sie werden nach Erstellungsdatum sortiert zurückgegeben, beginnend mit dem Neuesten.
+   * @return Vector<Kommentar>
+   * @author Social Media Team
+   * @param Integer
+   */
   public Vector<Like> findBySourceUser(int userID) {
     Connection con = LocalDBConnection.connection();
     Vector<Like> result = new Vector<Like>();
@@ -120,7 +146,12 @@ public class LikeMapper {
     return result;
   }
 
-  
+  /**
+   * Diese Methode gibt alle Beiträge aus der Datenbank aus, die zu einem Beitrag hinzugefügt wurden. Die ID eines Beitrags wird im Parameter übergeben.
+   * @return Vector<Like>
+   * @author Social Media Team
+   * @param Integer
+   */
   public Vector<Like> findByTargetBeitrag(int beitragID) {
     Connection con = LocalDBConnection.connection();
     Vector<Like> result = new Vector<Like>();
@@ -147,7 +178,12 @@ public class LikeMapper {
 
     return result;
   }
-
+  /**
+   * Diese Methode erstellt einen Like in der Datenbank. Selbiger wird nach Struktur der SMO-Objekts gebaut und zurückgegeben.
+   * @return Like
+   * @author Social Media Team
+   * @param Like
+   */
   public Like insert(Like l) {
     Connection con = LocalDBConnection.connection();
 
@@ -179,7 +215,12 @@ public class LikeMapper {
 
     return l;
   }
-
+  /**
+   * Diese Methode löscht einen Like aus der Datenbank.
+   * @return void
+   * @author Social Media Team
+   * @param Like
+   */
   public void delete(Like l) {
     Connection con = LocalDBConnection.connection();
 
@@ -194,7 +235,12 @@ public class LikeMapper {
     }
   }
 
- 
+  /**
+   * Diese Methode löscht alle Likes die zu einem Beitrag gehören aus der Datenbank.
+   * @return void
+   * @author Social Media Team
+   * @param Beitrag
+   */
   public void deleteLikeOf(Beitrag l) {
     Connection con = LocalDBConnection.connection();
 
@@ -212,13 +258,23 @@ public class LikeMapper {
     }
   }
 
- 
+  /**
+   * Diese gibt das komplette User-Objekt jenes Likes zurück, welcher der Methode übergeben wird.
+   * @return User
+   * @author Social Media Team
+   * @param Like
+   */
   public User getSourceUser(Like l) {
     
     return UserMapper.userMapper().findByKey(l.getSourceUserID());
   }
 
- 
+  /**
+   * Diese gibt das komplette Beitrag-Objekt jenes Likes zurück, welcher der Methode übergeben wird.
+   * @return Beitrag
+   * @author Social Media Team
+   * @param Like
+   */
   public Beitrag getTargetBeitrag(Like l) {
     
     return BeitragMapper.beitragMapper().findByKey(l.getTargetBeitragID());

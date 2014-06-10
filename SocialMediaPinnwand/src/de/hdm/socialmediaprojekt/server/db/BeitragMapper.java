@@ -9,17 +9,29 @@ import java.util.Vector;
 import de.hdm.socialmediaprojekt.shared.smo.Beitrag;
 import de.hdm.socialmediaprojekt.shared.smo.User;
 
-
+/**
+ * Dies ist die Mapperklasse zum Beitrag. Sie stellt die Verbindung zur Abo-Tabelle in der Datenbank her.
+ * @mapper Beitrag
+ * @author Social Media Team
+ *
+ */
 public class BeitragMapper {
 
-
+	// Variablendeklaration
   private static BeitragMapper beitragMapper = null;
 
-
+  /**
+   * Konstruktor des BeitragMappers
+   * @author Social Media Team
+   */
   protected BeitragMapper() {
   }
 
-  
+  /**
+   * erweiterter Konstruktor der eine neue Instanz anlegt, sofern es noch keine gibt
+   * @return BeitragMapper
+   * @author Social Media Team
+   */
   public static BeitragMapper beitragMapper() {
     if (beitragMapper == null) {
       beitragMapper = new BeitragMapper();
@@ -28,7 +40,12 @@ public class BeitragMapper {
     return beitragMapper;
   }
 
-
+  /**
+   * Diese Methode findet den Beitrag nach zugehöriger ID. Der Beitrag wird anschließend nach der Struktur des SMO-Objects gebaut und zurückgegeben.
+   * @author Social Media Team
+   * @param Integer
+   * @return Beitrag
+   */
   public Beitrag findByKey(int id) {
    
     Connection con = LocalDBConnection.connection();
@@ -57,7 +74,11 @@ public class BeitragMapper {
 
     return null;
   }
-
+  /**
+   * Diese Methode gibt alle Beiträge aus, die in der Datenbank hinterlegt sind
+   * @return Vector<Beitrag>
+   * @author Social Media Team
+   */
   public Vector<Beitrag> findAll() {
     Connection con = LocalDBConnection.connection();
    
@@ -87,7 +108,12 @@ public class BeitragMapper {
   }
 
 
-
+  /**
+   * Diese Methode gibt alle Beiträge von beliebig vielen SourceUsern aus, die in der Datenbank hinterlegt sind. Übergabewert ist das Array an ID von den Nutzern, von denen die Beiträge benötigt werden. Sie werden nach Erstellungsdatum sortiert zurückgegeben, beginnend mit dem Neuesten.
+   * @return Vector<Beitrag>
+   * @author Social Media Team
+   * @param Integer Array
+   */
   public Vector<Beitrag> findBySourceUser(int[] sourceId) {
 
 	  
@@ -143,7 +169,12 @@ public class BeitragMapper {
 
     return result;
   }
-
+  /**
+   * Diese Methode gibt alle Beiträge aus der Datenbank aus, die einen bestimmten Text enthalten. Dieser wird im Parameter übergeben.
+   * @return Vector<Beitrag>
+   * @author Social Media Team
+   * @param String
+   */
   public Vector<Beitrag> findByBeitrag(String beitrag) {
 	    Connection con = LocalDBConnection.connection();
 	    Vector<Beitrag> result = new Vector<Beitrag>();
@@ -174,6 +205,12 @@ public class BeitragMapper {
 
 	    return result;
 	  }
+  /**
+   * Diese Methode erstellt einen Beitrag in der Datenbank. Selbiger wird nach Struktur der SMO-Objekts gebaut und zurückgegeben.
+   * @return Beitrag
+   * @author Social Media Team
+   * @param Beitrag
+   */
   public Beitrag insert(Beitrag b) {
     Connection con = LocalDBConnection.connection();
 
@@ -200,7 +237,12 @@ public class BeitragMapper {
 
     return b;
   }
-
+  /**
+   * Diese Methode aktualisiert einen Beitrag mit den Eigenschaften die im Parameter-Beitrags-Objekt übergeben werden in der Datenbank. Selbiger wird nach Struktur der SMO-Objekts gebaut und zurückgegeben.
+   * @return Beitrag
+   * @author Social Media Team
+   * @param Beitrag
+   */
   public Beitrag update(Beitrag b) {
     Connection con = LocalDBConnection.connection();
 
@@ -218,7 +260,12 @@ public class BeitragMapper {
 
     return b;
   }
-
+  /**
+   * Diese Methode löscht einen Beitrag aus der Datenbank.
+   * @return void
+   * @author Social Media Team
+   * @param Beitrag
+   */
   public void delete(Beitrag b) {
     Connection con = LocalDBConnection.connection();
 
@@ -231,7 +278,12 @@ public class BeitragMapper {
       e.printStackTrace();
     }
   }
-
+  /**
+   * Diese gibt das komplette User-Objekt jenes Beitrags zurück, welcher der Methode übergeben wird.
+   * @return User
+   * @author Social Media Team
+   * @param Beitrag
+   */
   public User getSourceID(Beitrag b) {
 	    
 	    return UserMapper.userMapper().findByKey(b.getId());

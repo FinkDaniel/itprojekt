@@ -10,17 +10,29 @@ import de.hdm.socialmediaprojekt.shared.smo.Beitrag;
 import de.hdm.socialmediaprojekt.shared.smo.Kommentar;
 import de.hdm.socialmediaprojekt.shared.smo.User;
 
-
+/**
+ * Dies ist die Mapperklasse zum Kommentar. Sie stellt die Verbindung zur Kommentar-Tabelle in der Datenbank her.
+ * @mapper Abo
+ * @author Social Media Team
+ *
+ */
 public class KommentarMapper {
 
-
+//Variablendeklaration
   private static KommentarMapper kommentarMapper = null;
 
-
+  /**
+   * Konstruktor des BeitragMappers
+   * @author Social Media Team
+   */
   protected KommentarMapper() {
   }
 
-  
+  /**
+   * erweiterter Konstruktor der eine neue Instanz anlegt, sofern es noch keine gibt
+   * @return KommentarMapper
+   * @author Social Media Team
+   */
   public static KommentarMapper kommentarMapper() {
     if (kommentarMapper == null) {
       kommentarMapper = new KommentarMapper();
@@ -29,7 +41,12 @@ public class KommentarMapper {
     return kommentarMapper;
   }
 
-
+  /**
+   * Diese Methode findet den Kommentar nach zugehöriger ID. Der Kommentar wird anschließend nach der Struktur des SMO-Objects gebaut und zurückgegeben.
+   * @author Social Media Team
+   * @param Integer
+   * @return Kommentar
+   */
   public Kommentar findByKey(int id) {
    
     Connection con = LocalDBConnection.connection();
@@ -60,7 +77,11 @@ public class KommentarMapper {
 
     return null;
   }
-
+  /**
+   * Diese Methode gibt alle Kommentare aus, die in der Datenbank hinterlegt sind
+   * @return Vector<Kommentar>
+   * @author Social Media Team
+   */
   public Vector<Kommentar> findAll() {
     Connection con = LocalDBConnection.connection();
    
@@ -88,7 +109,12 @@ public class KommentarMapper {
     return result;
   }
 
-
+  /**
+   * Diese Methode gibt alle Kommentare von einem SourceUser aus, die in der Datenbank hinterlegt sind. Übergabewert ist der Integer ID des SourceNutzers, von dem die Beiträge benötigt werden. Sie werden nach Erstellungsdatum sortiert zurückgegeben, beginnend mit dem Neuesten.
+   * @return Vector<Kommentar>
+   * @author Social Media Team
+   * @param Integer
+   */
   public Vector<Kommentar> findBySourceUser(int sourceID) {
     Connection con = LocalDBConnection.connection();
     Vector<Kommentar> result = new Vector<Kommentar>();
@@ -117,7 +143,12 @@ public class KommentarMapper {
 
     return result;
   }
-
+  /**
+   * Diese Methode erstellt einen Kommentar in der Datenbank. Selbiger wird nach Struktur der SMO-Objekts gebaut und zurückgegeben.
+   * @return Kommentar
+   * @author Social Media Team
+   * @param Kommentar
+   */
   public Kommentar insert(Kommentar k) {
     Connection con = LocalDBConnection.connection();
 
@@ -145,7 +176,12 @@ public class KommentarMapper {
 
     return k;
   }
-
+  /**
+   * Diese Methode aktualisiert einen Kommentar mit den Eigenschaften die im Parameter-Beitrags-Objekt übergeben werden in der Datenbank. Selbiger wird nach Struktur der SMO-Objekts gebaut und zurückgegeben.
+   * @return Kommentar
+   * @author Social Media Team
+   * @param Kommentar
+   */
   public Kommentar update(Kommentar k) {
     Connection con = LocalDBConnection.connection();
 
@@ -163,7 +199,12 @@ public class KommentarMapper {
 
     return k;
   }
-
+  /**
+   * Diese Methode löscht einen Kommentar aus der Datenbank.
+   * @return void
+   * @author Social Media Team
+   * @param Kommentar
+   */
   public void delete(Kommentar k) {
     Connection con = LocalDBConnection.connection();
 
@@ -176,20 +217,26 @@ public class KommentarMapper {
       e.printStackTrace();
     }
   }
-
+  /**
+   * Diese gibt das komplette User-Objekt jenes Kommentars zurück, welcher der Methode übergeben wird.
+   * @return User
+   * @author Social Media Team
+   * @param Kommentar
+   */
   public User getSourceID(Kommentar k) {
 	    
 	    return UserMapper.userMapper().findByKey(k.getSourceUserID());
 	    		 		
   }
+  /**
+   * Diese gibt das komplette Beitrag-Objekt jenes Kommentars zurück, welcher der Methode übergeben wird.
+   * @return User
+   * @author Social Media Team
+   * @param Kommentar
+   */
   public Beitrag getTargetID(Kommentar k) {
 	    
 	    return BeitragMapper.beitragMapper().findByKey(k.getTargetBeitragID());
   }
 
-
-public Vector<Kommentar> findByTargetBeitrag(int beitragId) {
-	// TODO Auto-generated method stub
-	return null;
-}
 }

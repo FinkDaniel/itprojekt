@@ -19,7 +19,7 @@ import de.hdm.socialmediaprojekt.shared.PinnwandVerwaltung;
 /**
  * Diese Klasse ist die Implementierungsklasse des Interfaces PinnwandVerwaltung. Enthalten sind alle Methoden die von der GUI benötigt werden. Diese Klasse enthält die entsprechende Applikationslogik und greift auf die verschiedenen Mapper zu.
  * 
- * @author Daniel Fink
+ * @author Social Media Team
  * @extends
  * 
  *
@@ -28,7 +28,7 @@ import de.hdm.socialmediaprojekt.shared.PinnwandVerwaltung;
 public class PinnwandVerwaltungImpl extends RemoteServiceServlet implements PinnwandVerwaltung {
 
 	/**
-	 * @author Daniel Fink
+	 * @author Social Media Team
 	 * Variablendefinition
 	 * Es werden Instanzen für alle Mapper erstellt und mit dem Standardwert <code> null </code> belegt.
 	 * 
@@ -48,7 +48,7 @@ public class PinnwandVerwaltungImpl extends RemoteServiceServlet implements Pinn
 	/**
 	 * Konstruktor-Methode
 	 * 
-	 * @author Daniel Fink
+	 * @author Social Media Team
 	 * @throws IllegalArgumentException
 	 */
 	
@@ -58,7 +58,7 @@ public class PinnwandVerwaltungImpl extends RemoteServiceServlet implements Pinn
 	
 	/**
 	 * initialiseren Methode. Den Mappern werden die entsprechenden Konstruktoren zugewiesen und aufgerufen.
-	 * @author Daniel Fink
+	 * @author Social Media Team
 	 * @throws IllegalArgumentException
 	 * 
 	 */
@@ -81,7 +81,7 @@ public class PinnwandVerwaltungImpl extends RemoteServiceServlet implements Pinn
 	/**
 	 * Diese Methode liefert alle Kommentare eines Users. Die Kommentar-Objekte werden als Vektor zurückgegeben. Parameterwert ist die ID des Nutzers von dem die Kommentare angefordert werden sollen.
 	 * 
-	 * @author Daniel Fink
+	 * @author Social Media Team
 	 * @return Vector<Kommentar>
 	 * @param Integer (sourceID)
 	 * @throws IllegalException
@@ -93,7 +93,7 @@ public class PinnwandVerwaltungImpl extends RemoteServiceServlet implements Pinn
 	
 	/**
 	 * Diese Methode gibt die Pinnwand eines Nutzers zurück. Übergabewert ist die Integer ID des Nutzers
-	 * @author Daniel Fink
+	 * @author Social Media Team
 	 * @param Integer
 	 * @return Pinnwand
 	 *  
@@ -105,7 +105,7 @@ public class PinnwandVerwaltungImpl extends RemoteServiceServlet implements Pinn
 	/**
 	 * Diese Methode gibt einen Vector an Beiträgen zurück. Übergabewert ist ein Array an Integer ID von Nutzern, von denen die Beiträge benötigt werden. Die Rückgabe der Werte erfolgt nach Erstellungszeitpunkt sortiert beginnend mit dem aktuellste, neuesten Beitrag.
 	 * 
-	 * @author Daniel Fink
+	 * @author Social Media Team
 	 * @return Vector<Beitrag>
 	 * @param Array Integer
 	 */
@@ -114,7 +114,7 @@ public class PinnwandVerwaltungImpl extends RemoteServiceServlet implements Pinn
 	}
 	/**
 	 * Diese Methode gibt einen Vector an Like-Objekten zurück. Übergabewert ist die Integer ID von dem  Nutzern, von dem die Likes benötigt werden.
-	 * @author Daniel Fink
+	 * @author Social Media Team
 	 * @return Vector<Like>
 	 * @param Integer
 	 */
@@ -123,7 +123,7 @@ public class PinnwandVerwaltungImpl extends RemoteServiceServlet implements Pinn
 	}
 	/**
 	 * Diese Methode gibt einen Vector an Like-Objekten zurück. Übergabewert ist die Integer ID von dem  Beitrag, von dem die Likes benötigt werden.
-	 * @author Daniel Fink
+	 * @author Social Media Team
 	 * @param Integer
 	 * @return Vector<Like>
 	 */
@@ -132,7 +132,7 @@ public class PinnwandVerwaltungImpl extends RemoteServiceServlet implements Pinn
 	}
 	/**
 	 * Diese Methode gibt einen Vector von Abo-Objekten zurück. Übergabewert ist die Integer ID von der Ersteller(Source)Pinnwand, von der die Abos benötigt werden.
-	 * @author Daniel Fink
+	 * @author Social Media Team
 	 * @param Integer
 	 * @return Vector<Abo>
 	 */
@@ -141,7 +141,7 @@ public class PinnwandVerwaltungImpl extends RemoteServiceServlet implements Pinn
 	}
 	/**
 	 * Diese Methode gibt einen Vector von Abo-Objekten zurück. Übergabewert ist die Integer ID von der Ziel(Target)Pinnwand, von der die Abos benötigt werden.
-	 * @author Daniel Fink
+	 * @author Social Media Team
 	 * @param Integer
 	 * @return Vector<Abo>
 	 */
@@ -150,7 +150,7 @@ public class PinnwandVerwaltungImpl extends RemoteServiceServlet implements Pinn
 	}
 	/**
 	 * Diese Methode gibt einen Vector von Kommentar-Objekten zurück. Übergabewert ist die Integer ID von dem Beitrag, von dem die Kommentare benötigt werden.
-	 * @author Daniel Fink
+	 * @author Social Media Team
 	 * @param Integer
 	 * @return Vector<Kommentar>
 	 */
@@ -162,7 +162,7 @@ public class PinnwandVerwaltungImpl extends RemoteServiceServlet implements Pinn
 	// "Find" by ID -Methoden f�r Alle SMOs
 	/**
 	 * Diese Methode gibt ein User-Objekt zurück. Übergabewert ist die Integer ID des Nutzers, von dem das ganze User-Objekt benötigt wird.
-	 * @author Daniel Fink
+	 * @author Social Media Team
 	 * @param Integer
 	 * @return User
 	 */
@@ -171,7 +171,7 @@ public class PinnwandVerwaltungImpl extends RemoteServiceServlet implements Pinn
 	}
 	/**
 	 * Diese Methode gibt ein Abo-Objekt zurück. Übergabewert ist die Integer ID des Abos, von dem das ganze Abo-Objekt benötigt wird.
-	 * @author Daniel Fink
+	 * @author Social Media Team
 	 * @param Integer
 	 * @return Abo
 	 */
@@ -180,7 +180,7 @@ public class PinnwandVerwaltungImpl extends RemoteServiceServlet implements Pinn
 	}
 	/**
 	 * Diese Methode gibt ein Pinnwand-Objekt zurück. Übergabewert ist die Integer ID der Pinnwand, von der das ganze Pinnwand-Objekt benötigt wird.
-	 * @author Daniel Fink
+	 * @author Social Media Team
 	 * @param Integer
 	 * @return Pinnwand
 	 */
@@ -189,7 +189,7 @@ public class PinnwandVerwaltungImpl extends RemoteServiceServlet implements Pinn
 	}
 	/**
 	 * Diese Methode gibt ein Beitrag-Objekt zurück. Übergabewert ist die Integer ID des Beitrags, von der das ganze Beitrag-Objekt benötigt wird.
-	 * @author Daniel Fink
+	 * @author Social Media Team
 	 * @param Integer
 	 * @return Beitrag
 	 */
@@ -198,7 +198,7 @@ public class PinnwandVerwaltungImpl extends RemoteServiceServlet implements Pinn
 	}
 	/**
 	 * Diese Methode gibt ein Like-Objekt zurück. Übergabewert ist die Integer ID des Likes, von der das ganze Like-Objekt benötigt wird.
-	 * @author Daniel Fink
+	 * @author Social Media Team
 	 * @param Integer
 	 * @return Pinnwand
 	 */
@@ -207,7 +207,7 @@ public class PinnwandVerwaltungImpl extends RemoteServiceServlet implements Pinn
 	}
 	/**
 	 * Diese Methode gibt ein Kommentar-Objekt zurück. Übergabewert ist die Integer ID des Kommentars, von dem das ganze Kommentar-Objekt benötigt wird.
-	 * @author Daniel Fink
+	 * @author Social Media Team
 	 * @param Integer
 	 * @return Kommentar
 	 */
@@ -216,7 +216,7 @@ public class PinnwandVerwaltungImpl extends RemoteServiceServlet implements Pinn
 	}
 	/**
 	 * Mithilfe dieser Methode bekommt man alle User-Objekte mit dem gleichen Nachnamen zurück. Diese Methode gibt einen Vector an User-Objekten zurück. Übergabewert ist der Nachname in Form eines Strings.
-	 * @author Daniel Fink
+	 * @author Social Media Team
 	 * @param Integer
 	 * @return Vector<User>
 	 */
@@ -226,7 +226,7 @@ public class PinnwandVerwaltungImpl extends RemoteServiceServlet implements Pinn
 	}
 	/**
 	 * Mithilfe dieser Methode bekommt man ein User-Objekt mit dem übergebenen Nickname zurück. Nicknames sind eindeutig. Übergabewert ist der Nickname in Form eines Strings.
-	 * @author Daniel Fink
+	 * @author Social Media Team
 	 * @param Integer
 	 * @return User
 	 */
@@ -239,7 +239,7 @@ public class PinnwandVerwaltungImpl extends RemoteServiceServlet implements Pinn
 	
 	/**
 	 * Mithilfe dieser Methode erhält man alle User-Objekte. Sie gibt einen Vector an User-Objekten zurück. Übergabewert gibt es keinen.
-	 * @author Daniel Fink
+	 * @author Social Media Team
 	 * @return Vector<User>
 	 */
 	public Vector<User> getAllUser() throws IllegalArgumentException{
@@ -247,7 +247,7 @@ public class PinnwandVerwaltungImpl extends RemoteServiceServlet implements Pinn
 	}
 	/**
 	 * Mithilfe dieser Methode erhält man alle Pinnwand-Objekte. Sie gibt einen Vector an Pinnwand-Objekten zurück. Übergabewert gibt es keinen.
-	 * @author Daniel Fink
+	 * @author Social Media Team
 	 * @return Vector<Pinnwand>
 	 */
 	public Vector<Pinnwand> getAllPinnwand() throws IllegalArgumentException{
@@ -255,7 +255,7 @@ public class PinnwandVerwaltungImpl extends RemoteServiceServlet implements Pinn
 	}
 	/**
 	 * Mithilfe dieser Methode erhält man alle Like-Objekte. Sie gibt einen Vector an Like-Objekten zurück. Übergabewert gibt es keinen.
-	 * @author Daniel Fink
+	 * @author Social Media Team
 	 * @return Vector<Like>
 	 */
 	public Vector<Like> getAllLike() throws IllegalArgumentException{
@@ -263,7 +263,7 @@ public class PinnwandVerwaltungImpl extends RemoteServiceServlet implements Pinn
 	}
 	/**
 	 * Mithilfe dieser Methode erhält man alle Kommentar-Objekte. Sie gibt einen Vector an Kommentar-Objekten zurück. Übergabewert gibt es keinen.
-	 * @author Daniel Fink
+	 * @author Social Media Team
 	 * @return Vector<Kommentar>
 	 */
 	public Vector<Kommentar> getAllKommentar() throws IllegalArgumentException{
@@ -271,7 +271,7 @@ public class PinnwandVerwaltungImpl extends RemoteServiceServlet implements Pinn
 	}
 	/**
 	 * Mithilfe dieser Methode erhält man alle Beitrags-Objekte. Sie gibt einen Vector an Beitrag-Objekten zurück. Übergabewert gibt es keinen.
-	 * @author Daniel Fink
+	 * @author Social Media Team
 	 * @return Vector<Beitrag>
 	 */
 	public Vector<Beitrag> getAllBeitrag() throws IllegalArgumentException{
@@ -279,7 +279,7 @@ public class PinnwandVerwaltungImpl extends RemoteServiceServlet implements Pinn
 	}
 	/**
 	 * Mithilfe dieser Methode erhält man alle Abo-Objekte. Sie gibt einen Vector an Abo-Objekten zurück. Übergabewert gibt es keinen.
-	 * @author Daniel Fink
+	 * @author Social Media Team
 	 * @return Vector<Abo>
 	 */
 	public Vector<Abo> getAllAbo() throws IllegalArgumentException{
@@ -291,7 +291,7 @@ public class PinnwandVerwaltungImpl extends RemoteServiceServlet implements Pinn
 	//create User
 	/**
 	 * Mithilfe dieser Methode erstellt man ein User-Objekt. Sie gibt dieses fertige Objekt anschließend auch zurück.
-	 * @author Daniel Fink
+	 * @author Social Media Team
 	 * @param String vorname, String nachname, String nickname, String email
 	 * @return Vector<Pinnwand>
 	 */
@@ -315,7 +315,7 @@ public class PinnwandVerwaltungImpl extends RemoteServiceServlet implements Pinn
 	//create Abo
 	/**
 	 * Mithilfe dieser Methode erstellt man ein Abo-Objekt. Sie gibt dieses fertige Objekt anschließend auch zurück.
-	 * @author Daniel Fink
+	 * @author Social Media Team
 	 * @return Abo
 	 */
 	public Abo createAbo(int sourcePinnwand, int targetPinnwand) throws IllegalArgumentException{
@@ -329,7 +329,7 @@ public class PinnwandVerwaltungImpl extends RemoteServiceServlet implements Pinn
 	//create Pinnwand
 	/**
 	 * Mithilfe dieser Methode erstellt man ein Pinnwand-Objekt. Sie gibt dieses fertige Objekt anschließend auch zurück.
-	 * @author Daniel Fink
+	 * @author Social Media Team
 	 * @return Pinnwand
 	 */
 	public Pinnwand createPinnwand(int sourceUser) throws IllegalArgumentException{
@@ -342,7 +342,7 @@ public class PinnwandVerwaltungImpl extends RemoteServiceServlet implements Pinn
 	//create Kommentar
 	/**
 	 * Mithilfe dieser Methode erstellt man ein Kommenar-Objekt. Sie gibt dieses fertige Objekt anschließend auch zurück.
-	 * @author Daniel Fink
+	 * @author Social Media Team
 	 * @return Kommentar
 	 */
 	public Kommentar createKommentar(String text, int sourceUser, int targetBeitrag) throws IllegalArgumentException{
@@ -357,7 +357,7 @@ public class PinnwandVerwaltungImpl extends RemoteServiceServlet implements Pinn
 	//create Like
 	/**
 	 * Mithilfe dieser Methode erstellt man ein Like-Objekt. Sie gibt dieses fertige Objekt anschließend auch zurück.
-	 * @author Daniel Fink
+	 * @author Social Media Team
 	 * @return Like
 	 */
 	public Like createLike(int sourceUser, int targetBeitrag) throws IllegalArgumentException{
@@ -371,7 +371,7 @@ public class PinnwandVerwaltungImpl extends RemoteServiceServlet implements Pinn
 	//create Beitrag
 	/**
 	 * Mithilfe dieser Methode erstellt man ein Beitrag-Objekt. Sie gibt dieses fertige Objekt anschließend auch zurück.
-	 * @author Daniel Fink
+	 * @author Social Media Team
 	 * @return Beitrag
 	 */
 	public Beitrag createBeitrag(String text, int sourceUser) throws IllegalArgumentException{
@@ -387,7 +387,7 @@ public class PinnwandVerwaltungImpl extends RemoteServiceServlet implements Pinn
 	//delete User (inaktiv setzen des Users)
 	/**
 	 * Mithilfe dieser Methode setzt man einen User inaktiv. Der Username wird in <text>unbekannter User</text> geändert und es ist ihm nicht weiter möglich sich einzuloggen.
-	 * @author Daniel Fink
+	 * @author Social Media Team
 	 * @return User
 	 */
 	public User deleteUser(User u) throws IllegalArgumentException{
@@ -399,7 +399,7 @@ public class PinnwandVerwaltungImpl extends RemoteServiceServlet implements Pinn
 	//delete Abo
 	/**
 	 * Durch Aufruf dieser Methode löscht man das im Parameter übergebene Abo. 
-	 * @author Daniel Fink
+	 * @author Social Media Team
 	 * @return void
 	 * @param Abo
 	 */
@@ -410,7 +410,7 @@ public class PinnwandVerwaltungImpl extends RemoteServiceServlet implements Pinn
 	//delete Pinnwand wird nicht benutzt
 	/**
 	 * Durch Aufruf dieser Methode löscht man die im Parameter übergebene Pinnwand. 
-	 * @author Daniel Fink
+	 * @author Social Media Team
 	 * @return void
 	 * @param Pinnwand
 	 */
@@ -421,7 +421,7 @@ public class PinnwandVerwaltungImpl extends RemoteServiceServlet implements Pinn
 	//delete Kommentar
 	/**
 	 * Durch Aufruf dieser Methode löscht man den im Parameter übergebene Kommentar. 
-	 * @author Daniel Fink
+	 * @author Social Media Team
 	 * @return void
 	 * @param Kommentar
 	 */
@@ -434,7 +434,7 @@ public class PinnwandVerwaltungImpl extends RemoteServiceServlet implements Pinn
 	
 	/**
 	 * Durch Aufruf dieser Methode löscht man den im Parameter übergebenen Like. 
-	 * @author Daniel Fink
+	 * @author Social Media Team
 	 * @return void
 	 * @param Like
 	 */
@@ -444,7 +444,7 @@ public class PinnwandVerwaltungImpl extends RemoteServiceServlet implements Pinn
 	//delete Beitrag
 	/**
 	 * Durch Aufruf dieser Methode löscht man das im Parameter übergebenen Beitrag. Hierbei werden auch saemtliche Kommentare dieses Beitrages geloescht.
-	 * @author Daniel Fink
+	 * @author Social Media Team
 	 * @return void
 	 * @param Beitrag
 	 */
@@ -471,7 +471,7 @@ public class PinnwandVerwaltungImpl extends RemoteServiceServlet implements Pinn
 	//update User
 	/**
 	 * Durch Aufruf dieser Methode aendert man den im Parameter übergebenen User mit den Eigenschaften die ihn charakterisieren. 
-	 * @author Daniel Fink
+	 * @author Social Media Team
 	 * @return void
 	 * @param Abo
 	 */
@@ -482,7 +482,7 @@ public class PinnwandVerwaltungImpl extends RemoteServiceServlet implements Pinn
 	//update Beitrag
 	/**
 	 * Durch Aufruf dieser Methode aendert man den im Parameter übergebenen Beitrag mit den Eigenschaften die ihn charakterisieren. 
-	 * @author Daniel Fink
+	 * @author Social Media Team
 	 * @return void
 	 * @param Abo
 	 */
@@ -492,7 +492,7 @@ public class PinnwandVerwaltungImpl extends RemoteServiceServlet implements Pinn
 	//update Kommentar
 	/**
 	 * Durch Aufruf dieser Methode aendert man den im Parameter übergebenen Kommentar mit den Eigenschaften die ihn charakterisieren. 
-	 * @author Daniel Fink
+	 * @author Social Media Team
 	 * @return void
 	 * @param Abo
 	 */
@@ -503,7 +503,7 @@ public class PinnwandVerwaltungImpl extends RemoteServiceServlet implements Pinn
 	@Override
 	/**
 	 * Diese Methode ist fuer die Schnittstelle mit dem Google Login. Durch Aufruf wird der Login Prozess gestartet
-	 * @author Daniel Fink
+	 * @author Social Media Team
 	 * @return LoginInfo
 	 * @param String requestUri
 	 */
@@ -525,7 +525,7 @@ public class PinnwandVerwaltungImpl extends RemoteServiceServlet implements Pinn
 	  }
 	/**
 	 * Durch Aufruf dieser Methode erhaelt man den User mit der E Mail Adresse die der Methode in String Form uebergeben wurde. 
-	 * @author Daniel Fink
+	 * @author Social Media Team
 	 * @return User
 	 * @param String email
 	 */
@@ -537,8 +537,8 @@ public class PinnwandVerwaltungImpl extends RemoteServiceServlet implements Pinn
 	}
 	/**
 	 * Durch Aufruf dieser Methode erhaelt man einen Vector an Abos die der User mit der uebergebenen UserID abboniert hat.
-	 * @author Daniel Fink
-	 * @return User
+	 * @author Social Media Team
+	 * @return Vector<Abo>
 	 * @param Integer
 	 */
 	public Vector<Abo> getAboBySourceUser(int sourceUserID) throws IllegalArgumentException{

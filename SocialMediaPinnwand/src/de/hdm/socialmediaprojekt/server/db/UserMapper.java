@@ -10,16 +10,28 @@ import de.hdm.socialmediaprojekt.shared.smo.Pinnwand;
 import de.hdm.socialmediaprojekt.shared.smo.User;
 
 
-
+/**
+ * Dies ist die Mapperklasse zum User. Sie stellt die Verbindung zur Pinnwand-Tabelle in der Datenbank her.
+ * @mapper User
+ * @author Social Media Team
+ *
+ */
 public class UserMapper {
-
+//Variablendeklaration
 private static UserMapper userMapper = null;
 
-  
+/**
+ * Konstruktor des UserMappers
+ * @author Social Media Team
+ */
   	protected UserMapper() {
   	}
 
-
+  	/**
+     * erweiterter Konstruktor der eine neue Instanz anlegt, sofern es noch keine gibt
+     * @return UserMapper
+     * @author Social Media Team
+     */
   	public static UserMapper userMapper() {
     if (userMapper == null) {
       userMapper = new UserMapper();
@@ -28,7 +40,12 @@ private static UserMapper userMapper = null;
     return userMapper;
   	}
 
- 
+  	/**
+     * Diese Methode findet den User nach zugehöriger ID. Der User wird anschließend nach der Struktur des SMO-Objects gebaut und zurückgegeben.
+     * @author Social Media Team
+     * @param Integer
+     * @return User
+     */
   public User
   	findByKey(int id) {
 
@@ -64,7 +81,11 @@ private static UserMapper userMapper = null;
     return null;
   }
 
- 
+  /**
+   * Diese Methode gibt alle User aus, die in der Datenbank hinterlegt sind
+   * @return Vector<User>
+   * @author Social Media Team
+   */
   public Vector<User> findAll() {
     Connection con = LocalDBConnection.connection();
     Vector<User> result = new Vector<User>();
@@ -90,7 +111,12 @@ private static UserMapper userMapper = null;
     return result;
   }
 
- 
+  /**
+   * Diese Methode gibt die User Objekte die den Nachnamen haben, welcher der Methode übergeben wird.
+   * @return Vector<User>
+   * @author Social Media Team
+   * @param String
+   */
   public Vector<User> findByNachname(String name) {
     Connection con = LocalDBConnection.connection();
     Vector<User> result = new Vector<User>();
@@ -114,7 +140,12 @@ private static UserMapper userMapper = null;
     return result;
   }
 
- 
+  /**
+   * Diese Methode erstellt einen User in der Datenbank. Selbige wird nach Struktur der SMO-Objekts gebaut und zurückgegeben.
+   * @return User
+   * @author Social Media Team
+   * @param User
+   */
   public User insert(User u) {
     Connection con = LocalDBConnection.connection();
     try {
@@ -139,7 +170,12 @@ private static UserMapper userMapper = null;
     return u;
     }
 
-  
+  /**
+   * Diese Methode aktualisiert einen User mit den Eigenschaften die im Parameter-User-Objekt übergeben werden in der Datenbank. Selbiger wird nach Struktur der SMO-Objekts gebaut und zurückgegeben.
+   * @return User
+   * @author Social Media Team
+   * @param User
+   */
   public User update(User u) {
     Connection con = LocalDBConnection.connection();
 
@@ -156,7 +192,12 @@ private static UserMapper userMapper = null;
     return u;
   }
 
-  
+  /**
+   * Diese Methode löscht einen User aus der Datenbank.
+   * @return void
+   * @author Social Media Team
+   * @param User
+   */
   public void delete(User u) {
     Connection con = LocalDBConnection.connection();
     try {
@@ -167,12 +208,22 @@ private static UserMapper userMapper = null;
       e.printStackTrace();
     }
   }
-
+  /**
+   * Diese Methode gibt die Pinnwand jenes Users zurück, welcher der Methode übergeben wird.
+   * @return void
+   * @author Social Media Team
+   * @param User
+   */
   public Pinnwand getPinnwandOf(User u) {
 	   
 	    return PinnwandMapper.pinnwandMapper().findBySourceUser(u);
 	  }
-  
+  /**
+   * Diese Methode gibt jenen User zurück, welcher die entsprechende E-Mail enthält, welche der Methode übergeben wird.
+   * @return void
+   * @author Social Media Team
+   * @param String
+   */
   public User findByEmail(String email) {
 	  
 	  Connection con = LocalDBConnection.connection();
@@ -205,7 +256,12 @@ private static UserMapper userMapper = null;
 	    
 	  }
 
-
+  /**
+   * Diese Methode gibt jenen User zurück, welcher den entsprechenden Nickname enthält, welcher der Methode übergeben wird.
+   * @return void
+   * @author Social Media Team
+   * @param String
+   */
 public User findByNickname(String nickname) {
     Connection con = LocalDBConnection.connection();
 

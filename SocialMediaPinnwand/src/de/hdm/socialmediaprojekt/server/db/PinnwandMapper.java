@@ -9,16 +9,29 @@ import java.util.Vector;
 import de.hdm.socialmediaprojekt.shared.smo.Pinnwand;
 import de.hdm.socialmediaprojekt.shared.smo.User;
 
-
+/**
+ * Dies ist die Mapperklasse zur Pinnwand. Sie stellt die Verbindung zur Pinnwand-Tabelle in der Datenbank her.
+ * @mapper Beitrag
+ * @author Social Media Team
+ *
+ */
 public class PinnwandMapper {
-
+	
+  // Variablendeklaration
   private static PinnwandMapper pinnwandMapper = null;
 
-
+  /**
+   * Konstruktor des LikeMappers
+   * @author Social Media Team
+   */
   protected PinnwandMapper() {
   }
 
-  
+  /**
+   * erweiterter Konstruktor der eine neue Instanz anlegt, sofern es noch keine gibt
+   * @return PinnwandMapper
+   * @author Social Media Team
+   */
   public static PinnwandMapper pinnwandMapper() {
     if (pinnwandMapper == null) {
       pinnwandMapper = new PinnwandMapper();
@@ -27,7 +40,12 @@ public class PinnwandMapper {
     return pinnwandMapper;
   }
 
-  
+  /**
+   * Diese Methode findet die Pinnwand nach zugehöriger ID. Die Pinnwand wird anschließend nach der Struktur des SMO-Objects gebaut und zurückgegeben.
+   * @author Social Media Team
+   * @param Integer
+   * @return Pinnwand
+   */
   public Pinnwand findByKey(int id) {
   
     Connection con = LocalDBConnection.connection();
@@ -57,7 +75,11 @@ public class PinnwandMapper {
     return null;
   }
 
-  
+  /**
+   * Diese Methode gibt alle Pinnwände aus, die in der Datenbank hinterlegt sind
+   * @return Vector<Pinnwand>
+   * @author Social Media Team
+   */
   public Vector<Pinnwand> findAll() {
     Connection con = LocalDBConnection.connection();
 
@@ -87,7 +109,12 @@ public class PinnwandMapper {
     return result;
   }
 
-  
+  /**
+   * Diese Methode gibt die Pinnwand jenes SourceUsers zurück, dessen Integer ID der Methode übergeben wird.
+   * @return Pinnwand
+   * @author Social Media Team
+   * @param Integer
+   */
   public Pinnwand findBySourceUser(int sourceID) {
     Connection con = LocalDBConnection.connection();
  
@@ -115,14 +142,24 @@ public class PinnwandMapper {
     return null;
   }
 
-  
+  /**
+   * Diese Methode gibt die Pinnwand jenes SourceUsers zurück, dessen User Objekt der Methode übergeben wird.
+   * @return Pinnwand
+   * @author Social Media Team
+   * @param User
+   */
   public Pinnwand findBySourceUser(User sourceUser) {
 
     
     return findBySourceUser(sourceUser.getId());
   }
 
- 
+  /**
+   * Diese Methode erstellt eine Pinnwand in der Datenbank. Selbige wird nach Struktur der SMO-Objekts gebaut und zurückgegeben.
+   * @return Pinnwand
+   * @author Social Media Team
+   * @param Pinnwand
+   */
   public Pinnwand insert(Pinnwand p) {
     Connection con = LocalDBConnection.connection();
 
@@ -153,7 +190,12 @@ public class PinnwandMapper {
     return p;
   }
 
- 
+  /**
+   * Diese Methode aktualisiert eine Pinnwand mit den Eigenschaften die im Parameter-Pinnwand-Objekt übergeben werden in der Datenbank. Selbiger wird nach Struktur der SMO-Objekts gebaut und zurückgegeben.
+   * @return Pinnwand
+   * @author Social Media Team
+   * @param Pinnwand
+   */
   public Pinnwand update(Pinnwand p) {
     Connection con = LocalDBConnection.connection();
 
@@ -171,7 +213,12 @@ public class PinnwandMapper {
    
     return p;
   }
-
+  /**
+   * Diese Methode löscht eine Pinnwand aus der Datenbank.
+   * @return void
+   * @author Social Media Team
+   * @param Pinnwand
+   */
   public void delete(Pinnwand p) {
     Connection con = LocalDBConnection.connection();
 
@@ -186,7 +233,12 @@ public class PinnwandMapper {
     }
   }
 
-  
+  /**
+   * Diese Methode löscht die Pinnwand jenes User, welcher der Methode übergeben wird, aus der Datenbank.
+   * @return void
+   * @author Social Media Team
+   * @param User
+   */
   public void deletePinnwandOf(User u) {
     Connection con = LocalDBConnection.connection();
 
@@ -208,7 +260,12 @@ public class PinnwandMapper {
 //  return UserMapper.userMapper().findByKey(u.getId());
 
 //  }
-  
+  /**
+   * Diese gibt das komplette User-Objekt jener Pinnwand zurück, welcher der Methode übergeben wird.
+   * @return User
+   * @author Social Media Team
+   * @param Beitrag
+   */
 public User getSourceUser(Pinnwand p) {
 	 return UserMapper.userMapper().findByKey(p.getSourceUserID());
 
