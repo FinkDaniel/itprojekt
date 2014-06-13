@@ -1,15 +1,28 @@
 /** Aktuelle CSS Klassen und IDs */
-body {
-	background-color: grey;
-	color: black;
+html {
+	background: grey;
+}
+
+element.Style {
+	border-style: solid;
+}
+
+.body {
+	background: grey;
 	padding: 0.5em;
-	background: #fff;
 	direction: ltr;
 	min-width: 700px;
 }
 
 .start {
-	background-color: red;
+	background-color: rgb(190, 49, 49);
+	margin-top: 20em;
+	margin-left: 10em;
+	margin-right: 10em;
+	border-style: solid;
+	border-color: rgb(190, 49, 49);
+	border-radius: 0.5em;
+	padding: 2em;
 }
 
 .header {
@@ -88,6 +101,20 @@ body {
 
 #logoutButton:hover {
 	background: rgb(247, 150, 70);
+}
+
+#socialButton {
+	border-style: solid;
+	margin-left: 10em;
+	padding: 2em;
+	border-radius: 1.5em;
+}
+
+#reportButton {
+	border-style: solid;
+	margin-left: 10em;
+	padding: 2em;
+	border-radius: 1.5em;
 }
 
 #buttonAbonieren {
@@ -173,9 +200,11 @@ body {
 	padding: 0.5em;
 	margin: 0.5em;
 }
-.panelErsteller{
-	border-style:solid;
+
+.panelErsteller {
+	border-style: solid;
 }
+
 .beitragView {
 	border-style: solid;
 }
@@ -213,8 +242,9 @@ body {
 #labelFooter {
 	border-style: solid;
 }
-.labelVerfasser{
-	border-style:solid;
+
+.labelVerfasser {
+	border-style: solid;
 }
 
 .labelErstellungszeitpunkt {
@@ -249,4 +279,41 @@ body {
 
 .gwt-SuggestBox {
 	
+}
+
+.report {
+	border-style: solid;
+}
+
+.tabPanel {
+	border-style: solid;
+	overflow: absolute;
+	width: 500px;
+	height: 500px;
+}
+
+.reportHeader {
+	border-style: solid;
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+	background: white;
+}
+
+.userReport {
+	border-style: solid;
+	width: 50px;
+	height: 50px;
+}
+
+.beitragReport {
+	border-style: solid;
+	width: 50px;
+	height: 50px;
+}
+
+#reportInhalt {
+	padding: 0 0px;
+	position: fixed;
+	margin-left: 61em;
+	margin-top: 5em;
 }

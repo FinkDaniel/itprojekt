@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Vector;
 
 import de.hdm.socialmediaprojekt.shared.smo.Pinnwand;
@@ -32,7 +33,7 @@ private static UserMapper userMapper = null;
   public User
   	findByKey(int id) {
 
-    Connection con = LocalDBConnection.connection();
+    Connection con = DBConnection.connection();
 
     try {
     
@@ -66,7 +67,7 @@ private static UserMapper userMapper = null;
 
  
   public Vector<User> findAll() {
-    Connection con = LocalDBConnection.connection();
+    Connection con = DBConnection.connection();
     Vector<User> result = new Vector<User>();
     try {
       Statement stmt = con.createStatement();
@@ -92,7 +93,7 @@ private static UserMapper userMapper = null;
 
  
   public Vector<User> findByNachname(String name) {
-    Connection con = LocalDBConnection.connection();
+    Connection con = DBConnection.connection();
     Vector<User> result = new Vector<User>();
 
     try {
@@ -116,7 +117,7 @@ private static UserMapper userMapper = null;
 
  
   public User insert(User u) {
-    Connection con = LocalDBConnection.connection();
+    Connection con = DBConnection.connection();
     try {
       Statement stmt = con.createStatement();
 
@@ -141,7 +142,7 @@ private static UserMapper userMapper = null;
 
   
   public User update(User u) {
-    Connection con = LocalDBConnection.connection();
+    Connection con = DBConnection.connection();
 
     try {
       Statement stmt = con.createStatement();
@@ -158,7 +159,7 @@ private static UserMapper userMapper = null;
 
   
   public void delete(User u) {
-    Connection con = LocalDBConnection.connection();
+    Connection con = DBConnection.connection();
     try {
       Statement stmt = con.createStatement();
       stmt.executeUpdate("DELETE FROM users " + "WHERE id=" + u.getId());
@@ -175,7 +176,7 @@ private static UserMapper userMapper = null;
   
   public User findByEmail(String email) {
 	  
-	  Connection con = LocalDBConnection.connection();
+	  Connection con = DBConnection.connection();
 	  
 	  try {
 		    
@@ -207,7 +208,7 @@ private static UserMapper userMapper = null;
 
 
 public User findByNickname(String nickname) {
-    Connection con = LocalDBConnection.connection();
+    Connection con = DBConnection.connection();
 
     try {
     
@@ -242,5 +243,45 @@ public User findByNickname(String nickname) {
 
     return null;
   }
+
+public ArrayList<User> getAllNutzer(){
+	//Aufbau der DBVerbindung
+		Connection con = DBConnection.connection();
+		ArrayList <User> nutzerListe= new ArrayList<User>();
+
+		//Versuch der Abfrage
+		try{
+			Statement stmt = con.createStatement();
+			//Suche alle Nutzer
+			ResultSet rs = stmt.executeQuery("SELECT * FROM users");
+
+			while (rs.next()) {
+				// Ergebnis in Nutzer- Objekt umwandeln
+		        User u = new User();
+		        u.setId(rs.getInt("id"));
+		        u.setErstellungsdatum(rs.getDate("erstellungsdatum"));
+		        u.setVorname(rs.getString("vorname"));
+		        u.setNachname(rs.getString("nachname"));
+		        u.setEmail(rs.getString("email"));
+		        u.setNickname(rs.getString("nickname"));
+		        /*
+		        //Verweis auf PinnwandMapper um zugehörige Pinnwand herauszufinden
+		        n.setPinnwand(PinnwandMapper.pinnwandMapper().getPinnwandByNutzer(rs.getInt("nutzer_ID")));
+		        //Verweis auf AbonnementMapper um zugehörige Abos herauszufinden
+		        n.setAbonnementListe(AboMapper.aboMapper().getAboByNutzer(rs.getInt("nutzer_ID")));	
+		        */
+
+		        //NutzerObjekte der ArrayList hinzufügen
+		        nutzerListe.add(u);
+		      }
+			return nutzerListe;
+		}
+
+	    catch (SQLException e) {
+	    		e.printStackTrace();
+	    }
+	//Falls keines gefunden leeres Objekt
+	return nutzerListe;
+	}
 }
   

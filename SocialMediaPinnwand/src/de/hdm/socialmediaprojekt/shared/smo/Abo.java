@@ -1,7 +1,9 @@
 package de.hdm.socialmediaprojekt.shared.smo;
 
+import com.google.gwt.user.client.rpc.IsSerializable;
 
-public class Abo extends SMObject {
+
+public class Abo extends SMObject implements IsSerializable{
 
 private static final long serialVersionUID = 1L;
 

@@ -18,7 +18,7 @@ public class LocalDBConnection {
 				 con = DriverManager.getConnection(
 				"jdbc:mysql://localhost/socialmediapinnwand","demo","demo");
 				con.setReadOnly(false);
-				//con.close();
+				
 			}
 		catch(Exception e){
 				
@@ -27,5 +27,6 @@ public class LocalDBConnection {
 		return con;
 		
 	}
+	
 }
 

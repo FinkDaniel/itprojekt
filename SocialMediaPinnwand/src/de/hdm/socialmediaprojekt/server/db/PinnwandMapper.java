@@ -7,6 +7,7 @@ import java.sql.Statement;
 import java.util.Vector;
 
 import de.hdm.socialmediaprojekt.shared.smo.Pinnwand;
+import de.hdm.socialmediaprojekt.shared.smo.SMObject;
 import de.hdm.socialmediaprojekt.shared.smo.User;
 
 
@@ -30,7 +31,7 @@ public class PinnwandMapper {
   
   public Pinnwand findByKey(int id) {
   
-    Connection con = LocalDBConnection.connection();
+    Connection con = DBConnection.connection();
 
     try {
      
@@ -59,7 +60,7 @@ public class PinnwandMapper {
 
   
   public Vector<Pinnwand> findAll() {
-    Connection con = LocalDBConnection.connection();
+    Connection con = DBConnection.connection();
 
    
     Vector<Pinnwand> result = new Vector<Pinnwand>();
@@ -89,7 +90,7 @@ public class PinnwandMapper {
 
   
   public Pinnwand findBySourceUser(int sourceID) {
-    Connection con = LocalDBConnection.connection();
+    Connection con = DBConnection.connection();
  
     try {
       Statement stmt = con.createStatement();
@@ -124,7 +125,7 @@ public class PinnwandMapper {
 
  
   public Pinnwand insert(Pinnwand p) {
-    Connection con = LocalDBConnection.connection();
+    Connection con = DBConnection.connection();
 
     try {
       Statement stmt = con.createStatement();
@@ -155,7 +156,7 @@ public class PinnwandMapper {
 
  
   public Pinnwand update(Pinnwand p) {
-    Connection con = LocalDBConnection.connection();
+    Connection con = DBConnection.connection();
 
     try {
       Statement stmt = con.createStatement();
@@ -173,7 +174,7 @@ public class PinnwandMapper {
   }
 
   public void delete(Pinnwand p) {
-    Connection con = LocalDBConnection.connection();
+    Connection con = DBConnection.connection();
 
     try {
       Statement stmt = con.createStatement();
@@ -188,7 +189,7 @@ public class PinnwandMapper {
 
   
   public void deletePinnwandOf(User u) {
-    Connection con = LocalDBConnection.connection();
+    Connection con = DBConnection.connection();
 
     try {
       Statement stmt = con.createStatement();
@@ -210,10 +211,38 @@ public class PinnwandMapper {
 //  }
   
 public User getSourceUser(Pinnwand p) {
-	 return UserMapper.userMapper().findByKey(p.getSourceUserID());
-
-
-	  
-
+	 return UserMapper.userMapper().findByKey(p.getSourceUserID()); 
 }
+
+
+public Pinnwand getPinnwandByNutzer(User user){
+
+	//Aufbau der DBVerbindung
+	Connection con = DBConnection.connection();
+
+	//Versuch der Abfrage
+	try{
+		Statement stmt = con.createStatement();
+		//Suche alle Felder der Pinnwandtabelle anhand von ID
+		ResultSet rs = stmt.executeQuery("SELECT * FROM pinnwand " + "WHERE sourceUser=" + user.getId());
+
+		 //Maximal ein Rückgabewert da Id Primärschlüssel
+		if (rs.next()) {
+			// Ergebnis in Pinnwandobjekt umwandeln
+			Pinnwand p = new Pinnwand();
+			p.setId(rs.getInt("id"));
+			p.setErstellungsdatum(rs.getDate("erstellungsdatum"));
+			p.setSourceUserID(rs.getInt("sourceUser"));
+			return p;
+			}
+		}
+
+		catch (SQLException e) {
+		   e.printStackTrace();
+		   return null;
+		  }
+	//Falls keines gefunden leeres Objekt
+	return null;
+	}
+
 }

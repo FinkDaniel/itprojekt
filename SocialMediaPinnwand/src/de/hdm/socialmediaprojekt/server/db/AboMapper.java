@@ -4,10 +4,12 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Vector;
 
 import de.hdm.socialmediaprojekt.shared.smo.Abo;
 import de.hdm.socialmediaprojekt.shared.smo.Pinnwand;
+import de.hdm.socialmediaprojekt.shared.smo.User;
 
 
 public class AboMapper {
@@ -31,7 +33,7 @@ public class AboMapper {
  
   public Abo findByKey(int id) {
  
-    Connection con = LocalDBConnection.connection();
+    Connection con = DBConnection.connection();
 
     try {
       
@@ -62,7 +64,7 @@ public class AboMapper {
 
  
   public Vector<Abo> findAll() {
-    Connection con = LocalDBConnection.connection();
+    Connection con = DBConnection.connection();
 
     
     Vector<Abo> result = new Vector<Abo>();
@@ -92,7 +94,7 @@ public class AboMapper {
 
  
   public Vector<Abo> findBySourcePinnwand(int pinnwandID) {
-    Connection con = LocalDBConnection.connection();
+    Connection con = DBConnection.connection();
     Vector<Abo> result = new Vector<Abo>();
 
     try {
@@ -121,7 +123,7 @@ public class AboMapper {
 
   
   public Vector<Abo> findByTargetPinnwand(int pinnwandID) {
-    Connection con = LocalDBConnection.connection();
+    Connection con = DBConnection.connection();
     Vector<Abo> result = new Vector<Abo>();
 
     try {
@@ -148,7 +150,7 @@ public class AboMapper {
   }
 
   public Abo insert(Abo a) {
-    Connection con = LocalDBConnection.connection();
+    Connection con = DBConnection.connection();
 
     try {
       Statement stmt = con.createStatement();
@@ -179,7 +181,7 @@ public class AboMapper {
   }
 
   public void delete(Abo a) {
-    Connection con = LocalDBConnection.connection();
+    Connection con = DBConnection.connection();
 
     try {
       Statement stmt = con.createStatement();
@@ -194,7 +196,7 @@ public class AboMapper {
 
  
   public void deleteAbosOf(Pinnwand a) {
-    Connection con = LocalDBConnection.connection();
+    Connection con = DBConnection.connection();
 
     try {
       Statement stmt = con.createStatement();
@@ -221,6 +223,38 @@ public class AboMapper {
     
     return PinnwandMapper.pinnwandMapper().findByKey(a.getTargetPinnwandID());
   }
+
+
+  public ArrayList<Abo> getAboBetweenTwoDates (String datumVon, String datumBis, User u){
+		//Aufbau der DBVerbindung
+		Connection con = DBConnection.connection();
+		ArrayList <Abo> aboListe= new ArrayList<Abo>();
+		//Versuch der Abfrage
+		try{
+			Statement stmt = con.createStatement();
+			String sql = "SELECT * from abo WHERE sourcePinnwand = " + u.getId() + " AND erstellungsdatum between '" 
+					+ datumVon + "' AND '" + datumBis + "'";
+			ResultSet rs = stmt.executeQuery
+					(sql);
+
+			while (rs.next()) {
+				Abo a = new Abo();
+		        a.setId(rs.getInt("id"));
+		        a.setErstellungsdatum(rs.getDate("erstellungsdatum"));
+		        a.setSourcePinnwandID(rs.getInt("sourcePinnwand"));
+		        a.setTargetPinnwandID(rs.getInt("targetPinnwand"));
+
+		        //LikeObjekt zu LikeListe hinzuf�gen
+		        aboListe.add(a);
+			}
+			return aboListe;		
+		}
+		   catch (SQLException e) {
+	    		e.printStackTrace();
+	    		return null;
+		    }				
+	}
+
 
 
 

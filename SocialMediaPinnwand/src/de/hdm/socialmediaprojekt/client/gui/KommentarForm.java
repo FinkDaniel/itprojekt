@@ -9,6 +9,7 @@ import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import de.hdm.socialmediaprojekt.client.ClientSideSettings;
 import de.hdm.socialmediaprojekt.client.SocialMediaProjekt;
+import de.hdm.socialmediaprojekt.client.gui.SocialMediaPinnwand;
 import de.hdm.socialmediaprojekt.shared.PinnwandVerwaltungAsync;
 import de.hdm.socialmediaprojekt.shared.smo.Kommentar;
 
@@ -16,18 +17,16 @@ public class KommentarForm extends VerticalPanel {
 
 	PinnwandVerwaltungAsync pinnwandVerwaltung = ClientSideSettings
 			.getPinnwandVerwaltung();
-	Button kommentarButton = new Button("Kommentar absenden");
-	final TextArea kommentarBox = new TextArea();
 
 	// SocialMediaProjekt smp = new SocialMediaProjekt.aktuellerUser();
 
 	public KommentarForm() {
 
-		
-		
+		final TextArea kommentarBox = new TextArea();
+		Button kommentarButton = new Button("Kommenatar absenden");
 
-		kommentarButton.setStyleName("buttonKommentarAbsenden");
-		kommentarBox.getElement().setId("kommentarBox");
+		kommentarButton.setStyleName("Button");
+
 		kommentarBox.setVisibleLines(3);
 		kommentarBox.setText("Bitte Text eingeben");
 
@@ -62,7 +61,7 @@ public class KommentarForm extends VerticalPanel {
 
 									Window.alert("Kommentar wurde angelegt");
 									kommentarBox.setText("Bitte Text eingeben");
-									SocialMediaProjekt smp = new SocialMediaProjekt();
+									SocialMediaPinnwand smp = new SocialMediaPinnwand();
 									smp.clearContent();
 									smp.addPinnwandToContent();
 								}

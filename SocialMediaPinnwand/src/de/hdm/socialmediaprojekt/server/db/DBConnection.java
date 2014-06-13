@@ -1,8 +1,6 @@
 package de.hdm.socialmediaprojekt.server.db;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 
 import com.google.appengine.api.rdbms.AppEngineDriver;
 
@@ -40,7 +38,7 @@ public class DBConnection {
 	 * mitgegeben, um bei einer Ver�nderung dieser URL nicht die gesamte 
 	 * Software neu komilieren zu m�ssen.
 	 */
-	private static String url = "jdbc:google:rdbms://prof-thies.de:thies-bankproject:thies-bankproject/bankproject?user=demo&password=demo";
+	private static String url = "jdbc:google:rdbms://social-media-projekt:itprojekt/socialmediapinnwand?user=root";
 	
 	/**
 	 * Diese statische Methode kann aufgrufen werden durch 
@@ -61,9 +59,10 @@ public class DBConnection {
 	 * sprengen.
 	 * 
 	 * @return DAS <code>DBConncetion</code>-Objekt.
+	 * @throws SQLException 
 	 * @see con
 	 */
-	public static Connection connection() {
+	public static Connection connection(){
 		// Wenn es bisher keine Conncetion zur DB gab, ... 
 		if ( con == null ) {
 			try {
@@ -78,15 +77,19 @@ public class DBConnection {
 				 * abgespeichert und fortan verwendet.
 				 */
 				con = DriverManager.getConnection(url);
+				
 			} 
 			catch (SQLException e1) {
 				con = null;
 				e1.printStackTrace();
 			}
+			
 		}
-		
+				
 		// Zur�ckgegeben der Verbindung
 		return con;
+		
+	}
+	
 	}
 
-}

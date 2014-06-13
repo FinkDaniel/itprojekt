@@ -1,91 +1,313 @@
 package de.hdm.socialmediaprojekt.client.gui;
 
+import java.util.Date;
+import java.util.Vector;
+
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.logical.shared.CloseEvent;
+import com.google.gwt.event.logical.shared.CloseHandler;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.DialogBox;
+import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.PopupPanel;
+import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
-
 import de.hdm.socialmediaprojekt.client.ClientSideSettings;
+import de.hdm.socialmediaprojekt.client.gui.SocialMediaPinnwand;
+import de.hdm.socialmediaprojekt.client.SocialMediaProjekt;
 import de.hdm.socialmediaprojekt.shared.PinnwandVerwaltungAsync;
+import de.hdm.socialmediaprojekt.shared.smo.Beitrag;
+import de.hdm.socialmediaprojekt.shared.smo.Kommentar;
+import de.hdm.socialmediaprojekt.shared.smo.Like;
 import de.hdm.socialmediaprojekt.shared.smo.User;
-
-/**
- * Die Klasse <code>BeitragCell</code> stellt die einzelne Beitrag Zelle dar, 
- * diese enthält die vertikal angeordneten Elemente:<p>
- * <code>ersteller</code> zur Anzeige der Informationen über Ersteller<p>
- * <code>text</code> zur Anzeige des Beitraginhaltes<p>
- * <code>buttons</code> Panel zur Anzeige der <code>like</code> und <code>kommentieren</code> Buttons <p>
- *  
- * 
- * @author Team Gui (Prell, Feininger)
- *
- */
-
 
 public class BeitragCell extends VerticalPanel {
 
-	HorizontalPanel ersteller = new HorizontalPanel();
 	HorizontalPanel text = new HorizontalPanel();
-	HorizontalPanel buttons = new HorizontalPanel();
-	Label beitragText = new Label();
-	Label erstellungszeitpunkt = new Label();
-	Button like = new Button("Dufte");
-	Button kommentieren = new Button("kommentieren");
-	
 	final PinnwandVerwaltungAsync pinnwandVerwaltung = ClientSideSettings
 			.getPinnwandVerwaltung();
-	/**
-	 * Der Standart Konstruktur fügt dem instanziierten Objekt die CSS Klasse <code>beitragCell</code> hinzu
-	 */
+
 	public BeitragCell() {
 
-		this.addStyleName("beitragCell");
+		this.addStyleName("BeitragCell");
 
 	}
-	/**
-	 * Die Methode <code>setText</code> fügt dem Objekt den übergebenen Text <code>inhalt</code> 
-	 * mittels des Labels <code>beitragText</code> hinzu
-	 * @param inhalt
-	 */
+
 	public void setText(String inhalt) {
 
-		beitragText.setText(inhalt);
-		text.add(beitragText);
+		Label i = new Label(inhalt);
+		i.setStyleName("beitrag-text-style");
+		text.add(i);
 		this.add(text);
 	}
-	
-	/**
-	 * Die Methode <code>addButtons</code> fügt dem Objekt das Button Panel <code>buttons</code>
-	 * inklusive der Buttons <code>like</code> und <code>kommentieren</code> hinzu und 
-	 * weist den Buttons die CSS Klassen <code>like</code> bzw. <code>kommentieren</code> hinzu <p>
-	 * Nach erfolgreicher Abarbeitung wird das aktualisierte Objekt zurück gegeben. 
-	 * @return this
-	 */
-	public BeitragCell addButtons() {
 
-		like.setStyleName("like");
-		kommentieren.setStyleName("kommentieren");
+	public BeitragCell addButtons(Beitrag beitrag) {
+		HorizontalPanel buttons = new HorizontalPanel();
 
+		final Beitrag btrag = beitrag;
+		final Button like = new Button("Dufte");
+		final TextBox kommenttext = new TextBox();
+		Button kommentieren = new Button("kommentieren");
+		final Label anzahllikes = new Label();
+		Button deleteBeitrag = new Button("x");
+		Button editBeitrag = new Button("E");
+
+		editBeitrag.setStyleName("Button");
+		like.setStyleName("Button");
+		kommentieren.setStyleName("Button");
+		deleteBeitrag.setStyleName("Button");
+
+		buttons.add(editBeitrag);
 		buttons.add(like);
+		buttons.add(kommenttext);
 		buttons.add(kommentieren);
+
+		final DialogBox db = new DialogBox();
+		final FlowPanel panel = new FlowPanel();
+		final TextBox text = new TextBox();
+		text.setText(btrag.getBeitrag());
+		db.setTitle("Beitrag ändern");
+		panel.add(text);
+		final Button ok = new Button("speichern");
+		panel.add(ok);
+
+		ok.addClickHandler(new ClickHandler() {
+
+			@Override
+			public void onClick(ClickEvent event) {
+				btrag.setBeitrag(text.getText());
+				db.hide();
+				pinnwandVerwaltung.editBeitrag(btrag,
+						new AsyncCallback<Void>() {
+
+							@Override
+							public void onFailure(Throwable caught) {
+								// TODO Auto-generated method stub
+
+							}
+
+							@Override
+							public void onSuccess(Void result) {
+								Window.alert("Beitrag wurde geändert");
+								SocialMediaPinnwand smp = new SocialMediaPinnwand();
+								smp.clearContent();
+								smp.addPinnwandToContent();
+
+							}
+						});
+
+			}
+
+		});
+
+		db.add(panel);
+
+		editBeitrag.addClickHandler(new ClickHandler() {
+
+			@Override
+			public void onClick(ClickEvent event) {
+				if (btrag.getSourceUserID() == SocialMediaProjekt
+						.getAktuellerNutzer().getId()) {
+					db.show();
+					db.center();
+
+				} else if (btrag.getSourceUserID() != SocialMediaProjekt
+						.getAktuellerNutzer().getId()) {
+					Window.alert("Du kannst nur deine eigenen Beiträge editieren");
+
+				}
+
+			}
+		});
+
+		deleteBeitrag.addClickHandler(new ClickHandler() {
+
+			@Override
+			public void onClick(ClickEvent event) {
+				if (SocialMediaProjekt.getAktuellerNutzer().getId() == btrag
+						.getSourceUserID()) {
+					pinnwandVerwaltung.deleteBeitrag(btrag,
+							new AsyncCallback<Void>() {
+
+								@Override
+								public void onFailure(Throwable caught) {
+									// TODO Auto-generated method stub
+
+								}
+
+								@Override
+								public void onSuccess(Void result) {
+
+									Window.alert("Der Beitrag wurde gelöscht.");
+									SocialMediaPinnwand smp = new SocialMediaPinnwand();
+									smp.clearContent();
+									smp.addPinnwandToContent();
+
+								}
+							});
+				} else {
+					Window.alert("Du kannst nur deine eigenen Beiträge löschen");
+				}
+
+			}
+		});
+		buttons.add(deleteBeitrag);
+
+		pinnwandVerwaltung.getLikeByTargetBeitrag(beitrag.getId(),
+				new AsyncCallback<Vector<Like>>() {
+
+					@Override
+					public void onFailure(Throwable caught) {
+						// TODO Auto-generated method stub
+
+					}
+
+					@Override
+					public void onSuccess(Vector<Like> result) {
+						if (result.size() == 0) {
+							anzahllikes
+									.setText("Aktuell findet das keiner dufte.");
+						} else if (result.size() == 1) {
+							anzahllikes.setText("1 Person findet das dufte.");
+						} else if (result.size() > 1) {
+							anzahllikes.setText(result.size()
+									+ " Personen finden das dufte.");
+						}
+					}
+
+				});
+
+		buttons.add(anzahllikes);
+
+		like.addClickHandler(new ClickHandler() {
+
+			@Override
+			public void onClick(ClickEvent event) {
+				// überprüfen ob schon geliket, wenn nicht machen, ansonsten
+				// like löschen.
+				pinnwandVerwaltung.getLikeByTargetBeitrag(btrag.getId(),
+						new AsyncCallback<Vector<Like>>() {
+
+							@Override
+							public void onFailure(Throwable caught) {
+								// TODO Auto-generated method stub
+
+							}
+
+							@Override
+							public void onSuccess(Vector<Like> result) {
+								boolean flag = false;
+								Like l = new Like();
+								for (int i = 0; i < result.size(); i++) {
+
+									if (result.get(i).getSourceUserID() == SocialMediaProjekt
+											.getAktuellerNutzer().getId()) {
+										flag = true;
+										l = result.get(i);
+									} else {
+										flag = false;
+									}
+
+								}
+								if (flag == true) {
+									// like loeschen
+									pinnwandVerwaltung.deleteLike(l,
+											new AsyncCallback<Void>() {
+
+												@Override
+												public void onFailure(
+														Throwable caught) {
+													// TODO Auto-generated
+													// method stub
+
+												}
+
+												@Override
+												public void onSuccess(
+														Void result) {
+													Window.alert("Du findest das nicht mehr dufte.");
+													SocialMediaPinnwand smp = new SocialMediaPinnwand();
+													smp.clearContent();
+													smp.addPinnwandToContent();
+
+												}
+											});
+								} else if (flag == false) {
+									// like setzen
+									pinnwandVerwaltung.createLike(
+											SocialMediaProjekt
+													.getAktuellerNutzer()
+													.getId(), btrag.getId(),
+											new AsyncCallback<Like>() {
+
+												@Override
+												public void onFailure(
+														Throwable caught) {
+													// TODO Auto-generated
+													// method stub
+
+												}
+
+												@Override
+												public void onSuccess(
+														Like result) {
+													Window.alert("Ihnen gefällt dieser Beitrag!");
+													like.setText("Entduften");
+													SocialMediaPinnwand smp = new SocialMediaPinnwand();
+													smp.clearContent();
+													smp.addPinnwandToContent();
+
+												}
+											});
+								}
+
+							}
+						});
+				// fertig
+
+			}
+		});
+
+		kommentieren.addClickHandler(new ClickHandler() {
+
+			@Override
+			public void onClick(ClickEvent event) {
+				pinnwandVerwaltung.createKommentar(kommenttext.getText(),
+						SocialMediaProjekt.getAktuellerNutzer().getId(),
+						btrag.getId(), new AsyncCallback<Kommentar>() {
+
+							@Override
+							public void onFailure(Throwable caught) {
+								// TODO Auto-generated method stub
+
+							}
+
+							@Override
+							public void onSuccess(Kommentar result) {
+								Window.alert("Kommentar wurde gespeichert");
+								SocialMediaPinnwand smp = new SocialMediaPinnwand();
+								smp.clearContent();
+								smp.addPinnwandToContent();
+
+							}
+						});
+
+			}
+		});
 
 		this.add(buttons);
 
 		return this;
 	}
-	/**
-	 * Die Methode <code>setErsteller</code> fragt die Userdaten der übergebenen User Id <code>derErsteller</code>
-	 * per Datenbankzugriff ab, und fügt diese dem Label <code>l</code> hinzu.<p>
-	 * Nach erfolgreicher Datenbankabfrage <code>getUserById</code> und erfolgreicher Zuweisung der Userdaten 
-	 * wird das Label <code>l</code> dem HorizontalPanel <code>ersteller</code> hinzugefügt
-	 * @param derErsteller
-	 */
-	public void setErsteller(int derErsteller) {
 
-		ersteller.setStyleName("panelErsteller");
+	public void setErsteller(int dersteller) {
 
-		pinnwandVerwaltung.getUserById(derErsteller, new AsyncCallback<User>() {
+		pinnwandVerwaltung.getUserById(dersteller, new AsyncCallback<User>() {
 
 			@Override
 			public void onFailure(Throwable caught) {
@@ -97,47 +319,21 @@ public class BeitragCell extends VerticalPanel {
 			public void onSuccess(User result) {
 				String dername = new String();
 				dername = result.getNickname();
-				Label l = new Label(dername +" schrieb");
-				l.setStyleName("labelVerfasser");
-				ersteller.add(l);
+				Label l = new Label("geschrieben von:" + dername);
+				l.setStyleName("geschrieben-von");
+				text.add(l);
 			}
 		});
-		
+		this.add(text);
 	}
-	/**
-	 * Die Methode <code>addErsteller()</code> weist dem Objekt das aktuelle HorizontalPanel <code>ersteller</code> zu
-	 * und gibt das Objekt zurück. 
-	 * @return this
-	 */
-	public BeitragCell addErsteller(){
-		this.add(ersteller);
-		return this;
-	}
-	/**
-	 * Die Methode <code>setErstellungszeitpunkt</code> fügt dem Objekt die übergebenen Parameter: <p>
-	 * <code>hour</code>, <code>minute</code>, <code>day</code>, <code>month</code>, <code>year</code> <p>
-	 * als, in das Label <code>erstellungsZeitpunkt</code> gespeicherten Text, hinzu.
-	 * @param hour
-	 * @param minute
-	 * @param day
-	 * @param month
-	 * @param year
-	 */
+
 	public void setErstellungszeitpunkt(int hour, int minute, int day,
 			int month, int year) {
-		erstellungszeitpunkt.setStyleName("labelErstellungszeitpunkt");
-		erstellungszeitpunkt.setText("am "+ day +"." +month +"." +year +",um " + hour + ":" +minute);
-		
-	
-	}
-	/**
-	 * Die Methode <code>addErstellungszeitpunkt</code> weist dem Panel <code>ersteller<code> das Label <code>erstellungszeitpunkt</code> zu, 
-	 * und fügt diese dem Objekt hinzu und gibt dieses anschließend zurück. 
-	 * @return
-	 */
-	public BeitragCell addErstellungszeitpunkt(){
-		ersteller.add(erstellungszeitpunkt);
-		this.add(ersteller);
-		return this;
+		Label i = new Label("um " + hour + ":" + minute + "Uhr, am " + day
+				+ "." + month + "." + year);
+		i.setStyleName("geschrieben-von");
+		text.add(i);
+		this.add(text);
+
 	}
 }

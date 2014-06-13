@@ -1,8 +1,10 @@
 package de.hdm.socialmediaprojekt.shared.smo;
 
+import com.google.gwt.user.client.rpc.IsSerializable;
 
 
-public class Pinnwand extends SMObject {
+
+public class Pinnwand extends SMObject implements IsSerializable{
 
 private static final long serialVersionUID = 1L;
 

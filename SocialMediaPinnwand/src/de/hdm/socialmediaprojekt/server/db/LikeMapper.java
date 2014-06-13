@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Vector;
 
 import de.hdm.socialmediaprojekt.shared.smo.Beitrag;
@@ -32,7 +33,7 @@ public class LikeMapper {
  
   public Like findByKey(int id) {
  
-    Connection con = LocalDBConnection.connection();
+    Connection con = DBConnection.connection();
 
     try {
       
@@ -63,7 +64,7 @@ public class LikeMapper {
 
  
   public Vector<Like> findAll() {
-    Connection con = LocalDBConnection.connection();
+    Connection con = DBConnection.connection();
 
     
     Vector<Like> result = new Vector<Like>();
@@ -93,7 +94,7 @@ public class LikeMapper {
 
  
   public Vector<Like> findBySourceUser(int userID) {
-    Connection con = LocalDBConnection.connection();
+    Connection con = DBConnection.connection();
     Vector<Like> result = new Vector<Like>();
 
     try {
@@ -122,7 +123,7 @@ public class LikeMapper {
 
   
   public Vector<Like> findByTargetBeitrag(int beitragID) {
-    Connection con = LocalDBConnection.connection();
+    Connection con = DBConnection.connection();
     Vector<Like> result = new Vector<Like>();
 
     try {
@@ -149,7 +150,7 @@ public class LikeMapper {
   }
 
   public Like insert(Like l) {
-    Connection con = LocalDBConnection.connection();
+    Connection con = DBConnection.connection();
 
     try {
       Statement stmt = con.createStatement();
@@ -181,7 +182,7 @@ public class LikeMapper {
   }
 
   public void delete(Like l) {
-    Connection con = LocalDBConnection.connection();
+    Connection con = DBConnection.connection();
 
     try {
       Statement stmt = con.createStatement();
@@ -196,7 +197,7 @@ public class LikeMapper {
 
  
   public void deleteLikeOf(Beitrag l) {
-    Connection con = LocalDBConnection.connection();
+    Connection con = DBConnection.connection();
 
     try {
       Statement stmt = con.createStatement();
@@ -223,7 +224,60 @@ public class LikeMapper {
     
     return BeitragMapper.beitragMapper().findByKey(l.getTargetBeitragID());
   }
+
+
+public ArrayList<Like> getLikeByBeitrag(Beitrag b) {
+	Connection con = DBConnection.connection();
+	ArrayList <Like> likeListe= new ArrayList<Like>();
+
+	//Versuch der Abfrage
+	try{
+		Statement stmt = con.createStatement();
+		//Suche alle Likes zu einem Beitrag
+		ResultSet rs = stmt.executeQuery("SELECT * FROM `gelikt` WHERE sourceUser="+ b.getSourceUserID());
+
+		while (rs.next()) {
+	        // Ergebnis in Like- Objekt umwandeln
+	        Like l = new Like();
+	        l.setId(rs.getInt("id"));
+	        l.setErstellungsdatum(rs.getDate("erstellungsdatum"));
+	        l.setSourceUserID(rs.getInt("sourceUser"));
+	        l.setTargetBeitragID(rs.getInt("targetBeitrag")); 
+
+	        //LikeObjekt zu LikeListe hinzufügen
+	        likeListe.add(l);
+
+	      }
+		return likeListe;
+	}
+
+    catch (SQLException e) {
+    		e.printStackTrace();
+    }
+	//Falls keines gefunden leere Liste
+	return likeListe;
+ }
+
+
+public int getLikeCountByNutzer(User u, String datumVon, String datumBis) {
+	Connection con = DBConnection.connection();
+	int anzahl = 0;
+	try {
+		Statement stmt = con.createStatement();
+		ResultSet rs = stmt.executeQuery("SELECT COUNT(`id`) FROM `gelikt` WHERE `sourceUser` = " + u.getId()
+				+ " AND erstellungsdatum between '" + datumVon + "' AND '" + datumBis + "'");
+		if(rs.next()) {
+			anzahl = rs.getInt(1);
+		}
+			return anzahl;
+	}
+	catch  (SQLException e) {
+		e.printStackTrace();
+
+	}
+	return anzahl;
+}
+}
   
 
 
-}

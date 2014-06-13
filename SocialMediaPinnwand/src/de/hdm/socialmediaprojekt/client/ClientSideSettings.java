@@ -2,9 +2,7 @@ package de.hdm.socialmediaprojekt.client;
 
 // Imports vgl BankProjekt
 import java.util.logging.Logger;
-
 import com.google.gwt.core.client.GWT;
-
 import de.hdm.socialmediaprojekt.shared.CommonSettings;
 import de.hdm.socialmediaprojekt.shared.PinnwandVerwaltung;
 import de.hdm.socialmediaprojekt.shared.PinnwandVerwaltungAsync;

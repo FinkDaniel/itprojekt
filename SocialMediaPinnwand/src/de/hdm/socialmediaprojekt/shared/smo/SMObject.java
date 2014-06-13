@@ -4,7 +4,9 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Date;
 
-public abstract class SMObject implements Serializable {
+import com.google.gwt.user.client.rpc.IsSerializable;
+
+public abstract class SMObject implements IsSerializable {
 
 	  private static final long serialVersionUID = 1L;
 

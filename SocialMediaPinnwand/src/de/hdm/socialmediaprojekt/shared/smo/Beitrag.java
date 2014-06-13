@@ -1,17 +1,24 @@
 package de.hdm.socialmediaprojekt.shared.smo;
 
 import java.sql.Date;
+import java.util.ArrayList;
+
+import com.google.gwt.user.client.rpc.IsSerializable;
 
 
 
-public class Beitrag extends SMObject {
+public class Beitrag extends SMObject implements IsSerializable{
 
 private static final long serialVersionUID = 1L;
 
   
   private String text = "";
+  private ArrayList<Like> likeList;
+  private ArrayList<Beitrag> beitragList;
   
-  private int sourceUserID = 0;
+  
+  
+private int sourceUserID = 0;
   private int day = 0;
   private int month = 0;
   private int year = 0;
@@ -90,6 +97,22 @@ public void setMinutes(int int1) {
 	this.minute = int1;
 }
 
+public void setLikeList(ArrayList<Like> likeList) {
+	this.likeList = likeList;
+	
+}
+public ArrayList<Like> getLikeList() {
+	return likeList;
+}
+
+public ArrayList<Beitrag> getKommentarListe() {
+	// TODO Auto-generated method stub
+	return beitragList;
+}
+public void setKommentarListe(ArrayList<Beitrag> beitragList) {
+	// TODO Auto-generated method stub
+	this.beitragList = beitragList;
+}
 
 
 }

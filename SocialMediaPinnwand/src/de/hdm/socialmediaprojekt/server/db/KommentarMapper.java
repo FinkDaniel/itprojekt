@@ -32,7 +32,7 @@ public class KommentarMapper {
 
   public Kommentar findByKey(int id) {
    
-    Connection con = LocalDBConnection.connection();
+    Connection con = DBConnection.connection();
 
     try {
       
@@ -62,7 +62,7 @@ public class KommentarMapper {
   }
 
   public Vector<Kommentar> findAll() {
-    Connection con = LocalDBConnection.connection();
+    Connection con = DBConnection.connection();
    
     Vector<Kommentar> result = new Vector<Kommentar>();
 
@@ -90,7 +90,7 @@ public class KommentarMapper {
 
 
   public Vector<Kommentar> findBySourceUser(int sourceID) {
-    Connection con = LocalDBConnection.connection();
+    Connection con = DBConnection.connection();
     Vector<Kommentar> result = new Vector<Kommentar>();
 
     try {
@@ -119,7 +119,7 @@ public class KommentarMapper {
   }
 
   public Kommentar insert(Kommentar k) {
-    Connection con = LocalDBConnection.connection();
+    Connection con = DBConnection.connection();
 
     try {
       Statement stmt = con.createStatement();
@@ -147,15 +147,12 @@ public class KommentarMapper {
   }
 
   public Kommentar update(Kommentar k) {
-    Connection con = LocalDBConnection.connection();
+    Connection con = DBConnection.connection();
 
     try {
       Statement stmt = con.createStatement();
 
-      stmt.executeUpdate("UPDATE kommentar " + "SET kommentar=\""
-          + k.getKommentar() + "\", " + "sourceID=\"" + k.getSourceUserID() + "\" "+ "targetID=\"" + k.getTargetBeitragID() + "\" "
-          + "WHERE id=" + k.getId());
-
+      stmt.executeUpdate("UPDATE kommentar SET kommentar =\"" + k.getKommentar() + "\" WHERE id= " + k.getId());
     }
     catch (SQLException e) {
       e.printStackTrace();
@@ -165,7 +162,7 @@ public class KommentarMapper {
   }
 
   public void delete(Kommentar k) {
-    Connection con = LocalDBConnection.connection();
+    Connection con = DBConnection.connection();
 
     try {
       Statement stmt = con.createStatement();
@@ -189,7 +186,32 @@ public class KommentarMapper {
 
 
 public Vector<Kommentar> findByTargetBeitrag(int beitragId) {
-	// TODO Auto-generated method stub
-	return null;
+
+    Connection con = DBConnection.connection();
+    Vector<Kommentar> result = new Vector<Kommentar>();
+
+    try {
+      Statement stmt = con.createStatement();
+
+      ResultSet rs = stmt.executeQuery("SELECT *"
+          + "FROM kommentar " + "WHERE targetBeitrag = '" + beitragId
+          + "' ORDER BY erstellungsdatum ASC");
+
+      
+      while (rs.next()) {
+        Kommentar k = new Kommentar();
+        k.setId(rs.getInt("id"));
+        k.setKommentar(rs.getString("kommentar"));
+        k.setSourceUserID(rs.getInt("sourceUser"));
+        k.setTargetBeitragID(rs.getInt("targetBeitrag"));
+      
+        result.addElement(k);
+      }
+    }
+    catch (SQLException e) {
+      e.printStackTrace();
+    }
+
+    return result;
 }
 }
