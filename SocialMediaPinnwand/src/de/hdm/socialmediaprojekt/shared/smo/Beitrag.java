@@ -1,118 +1,107 @@
 package de.hdm.socialmediaprojekt.shared.smo;
 
-import java.sql.Date;
 import java.util.ArrayList;
 
 import com.google.gwt.user.client.rpc.IsSerializable;
 
+public class Beitrag extends SMObject implements IsSerializable {
 
+	private static final long serialVersionUID = 1L;
 
-public class Beitrag extends SMObject implements IsSerializable{
+	private String text = "";
+	private ArrayList<Like> likeList;
+	private ArrayList<Kommentar> kommentarList;
 
-private static final long serialVersionUID = 1L;
+	private int sourceUserID = 0;
+	private int day = 0;
+	private int month = 0;
+	private int year = 0;
+	private int hour = 0;
+	private int minute = 0;
 
-  
-  private String text = "";
-  private ArrayList<Like> likeList;
-  private ArrayList<Beitrag> beitragList;
-  
-  
-  
-private int sourceUserID = 0;
-  private int day = 0;
-  private int month = 0;
-  private int year = 0;
-  private int hour = 0;
-  private int minute = 0;
-  
-  
-  public int getDay() {
-	return day;
-}
+	public int getDay() {
+		return day;
+	}
 
-public int getMonth() {
-	return month;
-}
+	public int getMonth() {
+		return month;
+	}
 
-public int getYear() {
-	return year;
-}
+	public int getYear() {
+		return year;
+	}
 
-public int getHour() {
-	return hour;
-}
+	public int getHour() {
+		return hour;
+	}
 
-public int getMinute() {
-	return minute;
-}
+	public int getMinute() {
+		return minute;
+	}
 
-public String getBeitrag() {
-    return this.text;
-  }
+	public String getBeitrag() {
+		return this.text;
+	}
 
-  public void setBeitrag(String beitrag) {
-    this.text = beitrag;
-  }
+	public void setBeitrag(String beitrag) {
+		this.text = beitrag;
+	}
 
-  public int getSourceUserID() {
-	    return this.sourceUserID;
-	  }
+	public int getSourceUserID() {
+		return this.sourceUserID;
+	}
 
-		   
-  public void setSourceUserID(int sourceID) {
-	    this.sourceUserID = sourceID;
-	  }
-  
-  
-  
-  public String toString() {
+	public void setSourceUserID(int sourceID) {
+		this.sourceUserID = sourceID;
+	}
 
-	  return super.toString()+ " " + this.text+ " " + this.sourceUserID
-	  	+"Der Nutzer mit der User-ID: #" + this.sourceUserID 
-	   	+ "hat den Beitrag mit der Beitrags-ID: #" + this.text + "verfasst";  			
+	public String toString() {
 
-	  	
+		return super.toString() + " " + this.text + " " + this.sourceUserID
+				+ "Der Nutzer mit der User-ID: #" + this.sourceUserID
+				+ "hat den Beitrag mit der Beitrags-ID: #" + this.text
+				+ "verfasst";
 
+	}
 
-  }
+	public void setDay(int i) {
+		this.day = i;
+	}
 
-public void setDay(int i) {
-	this.day= i;
-}
+	public void setMonth(int int1) {
+		this.month = int1;
+	}
 
-public void setMonth(int int1) {
-	this.month = int1;
-}
+	public void setYear(int int1) {
+		this.year = int1;
+	}
 
-public void setYear(int int1) {
-	this.year = int1;
-}
+	public void setHours(int int1) {
+		this.hour = int1;
 
-public void setHours(int int1) {
-	this.hour = int1;
-	
-}
+	}
 
-public void setMinutes(int int1) {
-	this.minute = int1;
-}
+	public void setMinutes(int int1) {
+		this.minute = int1;
+	}
 
-public void setLikeList(ArrayList<Like> likeList) {
-	this.likeList = likeList;
-	
-}
-public ArrayList<Like> getLikeList() {
-	return likeList;
-}
+	public void setLikeList(ArrayList<Like> likeList) {
+		this.likeList = likeList;
 
-public ArrayList<Beitrag> getKommentarListe() {
-	// TODO Auto-generated method stub
-	return beitragList;
-}
-public void setKommentarListe(ArrayList<Beitrag> beitragList) {
-	// TODO Auto-generated method stub
-	this.beitragList = beitragList;
-}
+	}
 
+	public ArrayList<Like> getLikeList() {
+		return likeList;
+	}
+
+	public ArrayList<Kommentar> getKommentarListe() {
+		
+		return kommentarList;
+	}
+
+	public void setKommentarListe(ArrayList<Kommentar> kommentarList) {
+		
+		this.kommentarList = kommentarList;
+	}
 
 }

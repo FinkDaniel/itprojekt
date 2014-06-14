@@ -56,12 +56,4 @@ import java.io.Serializable;
 	    this.nickname = nickname;
 	  }}
 	  
-	/*  public LoginInfo(String niname, String mail) {
-			this.nickname = niname;
-			this.emailAddress = mail;}
-	  
-	  public String toString() {
-		    return super.toString() + " " + this.nickname + " " + this.emailAddress; //+ " " + this.nickname+ " " + this.email;
-		  }
-	}
-*/
+	

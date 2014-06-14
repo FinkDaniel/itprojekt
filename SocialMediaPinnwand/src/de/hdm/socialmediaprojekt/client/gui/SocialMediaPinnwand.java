@@ -10,6 +10,7 @@ public class SocialMediaPinnwand {
 	public Navigation navigation = new Navigation();
 	public Content content = new Content();
 	public Footer footer = new Footer();
+	private boolean aboViewStatus = false;
 	
 	
 	
@@ -40,13 +41,21 @@ public class SocialMediaPinnwand {
 		}
 
 		public void addPinnwandToContent() {
+			this.setAboViewStatus(false);
 			content.addPinnwand();
 			RootPanel.get("content").add(content);
 		}
 
 		public void addAbosToContent() {
+			this.setAboViewStatus(true);
 			content.addMeineAbos();
 			RootPanel.get("content").add(content);
-
+		}
+		
+		public boolean getAboViewStatus(){
+			return this.aboViewStatus;
+		}
+		public void setAboViewStatus(boolean status){
+			aboViewStatus = status;
 		}
 }

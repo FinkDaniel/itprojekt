@@ -46,6 +46,9 @@ public class AboCell extends HorizontalPanel {
 					@Override
 					public void onSuccess(Void result) {
 						Window.alert("Abo wurde beendet.");
+						SocialMediaPinnwand smp = new SocialMediaPinnwand();
+						smp.clearContent();
+						smp.addAbosToContent();
 						
 					}});
 				

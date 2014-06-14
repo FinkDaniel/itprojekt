@@ -273,8 +273,7 @@ public Vector<Beitrag> findByUniqueSourceUser(int uniqueUserId){
 
 
   public ArrayList<Beitrag> getBeitraegeBetweenTwoDates (String datumVon, String datumBis){
-	  Window.alert(datumVon);
-	  Window.alert(datumBis);
+	 
 		//Aufbau der DBVerbindung
 		Connection con = DBConnection.connection();
 		ArrayList <Beitrag> beitragListe= new ArrayList<Beitrag>();
@@ -291,9 +290,9 @@ public Vector<Beitrag> findByUniqueSourceUser(int uniqueUserId){
 		        b.setId(rs.getInt("id"));
 		        b.setErstellungsdatum(rs.getDate("erstellungsdatum"));
 		        b.setBeitrag(rs.getString("beitrag"));
-		        b.setSourceUserID(rs.getInt("souceUser"));
+		        b.setSourceUserID(rs.getInt("sourceUser"));
 				b.setLikeList(LikeMapper.likeMapper().getLikeByBeitrag(b));
-				//b.setKommentarListe(KommentarMapper.kommentarMapper().getKommentarByBeitrag(b));
+				b.setKommentarListe(KommentarMapper.kommentarMapper().getKommentarByBeitrag(b));
 		        beitragListe.add(b);
 			}
 			return beitragListe;		
@@ -330,9 +329,9 @@ public Vector<Beitrag> findByUniqueSourceUser(int uniqueUserId){
 		        b.setId(rs.getInt("id"));
 		        b.setErstellungsdatum(rs.getDate("erstellungsdatum"));
 		        b.setBeitrag(rs.getString("beitrag"));
-		        b.setSourceUserID(rs.getInt("souceUser"));
+		        b.setSourceUserID(rs.getInt("sourceUser"));
 				b.setLikeList(LikeMapper.likeMapper().getLikeByBeitrag(b));
-				//b.setKommentarListe(KommentarMapper.kommentarMapper().getKommentarByBeitrag(b));
+				b.setKommentarListe(KommentarMapper.kommentarMapper().getKommentarByBeitrag(b));
 		        beitragListe.add(b);
 			}
 			return beitragListe;		

@@ -60,12 +60,12 @@ public class HTMLReportWriter extends ReportWriter{
 	 * Produziert einen HTML-Text Header
 	 */
 	public String getHeader() {
-		String test = new String();
+		
 		StringBuffer ergebnis = new StringBuffer();
 	    ergebnis.append("<html><head><title></title></head><body>");
 	   
 	    
-	    test = ergebnis.toString() ;
+	   
 	    return ergebnis.toString();
 	  }
 
@@ -90,8 +90,7 @@ public class HTMLReportWriter extends ReportWriter{
 	    ergebnis.append("<table><tr>");
 	    ergebnis.append("<td valign=\"top\"><b>" + paragraph2HTML(r.getKopfdaten())
 	        + "</b></td>");
-	    /*ergebnis.append("<td valign=\"top\">" + paragraph2HTML(r.getImpressum())
-	        + "</td>");*/
+	   
 	    ergebnis.append("</tr><tr><td></td><td>" + r.getErstellungsdatum().toString()
 	        + "</td></tr></table>");
 

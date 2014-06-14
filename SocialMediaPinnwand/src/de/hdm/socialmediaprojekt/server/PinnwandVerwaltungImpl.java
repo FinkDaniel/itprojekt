@@ -488,7 +488,10 @@ public class PinnwandVerwaltungImpl extends RemoteServiceServlet implements
 
 			// Erste Spalte: Nachname und Vorname hinzufügen
 			// TODO AKTUELL ID --> muss angepasst werden
-			accountRow.addSpalte(new Spalte(beitrag.getSourceUserID() + " "));
+			int sourceUser = beitrag.getSourceUserID();
+			User u = getUserById(sourceUser);
+			
+			accountRow.addSpalte(new Spalte(u.getNickname() + " "));
 
 			// Zweite Spalte: Inhalt hinzufügen
 
@@ -519,11 +522,8 @@ public class PinnwandVerwaltungImpl extends RemoteServiceServlet implements
 		return writer.getReportText();
 	}
 	public String createUserReport(User u, String datumVon, String datumBis) throws IllegalArgumentException {
-		//Window.alert("createUserReport Aufruf");
 		
-		/*if (this.getPinnwandVerwaltung() == null)
-		      return null;
-		 */
+		
 		    /**
 		     * Zunächst legen wir uns einen leeren Report an.
 		     */
@@ -584,14 +584,14 @@ public class PinnwandVerwaltungImpl extends RemoteServiceServlet implements
 		    /**
 		     * Berechne die Abonnentenanzahl
 		     */
-		    //Window.alert("vor erstem Mapperzugriff");
+		   
 		    ArrayList<Abo> aboListe = AboMapper.aboMapper().getAboBetweenTwoDates(datumVon, datumBis, u);  
 		    if (aboListe != null){
 		    	accountRow.addSpalte(new Spalte(String.valueOf(aboListe.size())));
 		    }else{
 		    	accountRow.addSpalte(new Spalte("0"));
 		    }
-		    //Window.alert("nach erstem Mapperzugriff");
+		    
 		    /**
 		     * Berechne die Beitragsanzahl
 		     */

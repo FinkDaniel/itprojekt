@@ -30,6 +30,7 @@ public class AboView extends ScrollPanel {
 		this.add(aboView);
 
 	}
+	
 
 	private VerticalPanel createPinnwand() {
 

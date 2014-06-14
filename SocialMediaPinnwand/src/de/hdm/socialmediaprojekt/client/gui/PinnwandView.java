@@ -60,7 +60,7 @@ public class PinnwandView extends ScrollPanel {
 
 						for (int i = 1; i < result.size(); i++) {
 							abos[i] = result.get(i).getTargetPinnwandID();
-							// System.out.print(result.get(i).getTargetPinnwandID());
+							
 							System.out.print(abos[i]);
 						}
 						pinnwandVerwaltung.getBeitragBySourceUser(abos,
