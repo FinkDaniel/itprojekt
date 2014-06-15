@@ -21,12 +21,7 @@ pre {
   font-size: small;
 }
 body {
-  color: black;
-  margin: 10px;
-  border: 0px;
-  padding: 0px;
-  background: #fff;
-  direction: ltr;
+  
 }
 a, a:visited {
   color: #0066cc;

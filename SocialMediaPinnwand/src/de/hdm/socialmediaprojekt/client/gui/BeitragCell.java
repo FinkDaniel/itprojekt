@@ -57,10 +57,10 @@ public class BeitragCell extends VerticalPanel {
 		Button deleteBeitrag = new Button("x");
 		Button editBeitrag = new Button("E");
 
-		editBeitrag.setStyleName("Button");
-		like.setStyleName("Button");
-		kommentieren.setStyleName("Button");
-		deleteBeitrag.setStyleName("Button");
+		editBeitrag.setStyleName("Button edit");
+		like.setStyleName("Button like");
+		kommentieren.setStyleName("Button add");
+		deleteBeitrag.setStyleName("Button delete");
 
 		buttons.add(editBeitrag);
 		buttons.add(like);

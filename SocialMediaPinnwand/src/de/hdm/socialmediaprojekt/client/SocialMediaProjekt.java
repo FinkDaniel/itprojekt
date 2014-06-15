@@ -34,13 +34,16 @@ public class SocialMediaProjekt implements EntryPoint {
 	// Klassenvariablen für Google Login
 	private LoginInfo loginInfo = null;
 	private static User aktuellerNutzer = null;
-	HorizontalPanel loginSeite = new HorizontalPanel();
+	static HorizontalPanel loginSeite = new HorizontalPanel();
 	public SocialMediaPinnwand smPinnwand = new SocialMediaPinnwand();
 	public ReportGenerator rG = new ReportGenerator();
-	Button social = new Button("Social Media Pinnwand");
-	Button report = new Button("Report Generator");
+	static Button social = new Button("Social Media Pinnwand");
+	static Button report = new Button("Report Generator");
 	boolean nicknameVorhanden = false;
-
+	
+	public SocialMediaProjekt(){
+		
+	}
 
 	public void onModuleLoad() {
 
@@ -132,76 +135,12 @@ public class SocialMediaProjekt implements EntryPoint {
 	}
 
 	public void createUser(final LoginInfo googleNutzer) {
-		final User user = new User();
-		user.setEmail(googleNutzer.getEmailAddress());
-		user.setErstellungsdatum(new Date());
-
-		/**
-		 * Fordert den Nutzer auf Vor-, Nachname und Nickname einzugeben, da
-		 * diese Information nicht über die Google API bezogen werden kann bzw.
-		 * geändert werden soll
-		 * 
-		 * @author Daniel Fink
-		 */
-		final LoginCustomDialog dialog = new LoginCustomDialog(
-				googleNutzer.getNickname());
-		DialogBox dlb = dialog;
-		dlb.center();
-
-		dlb.addCloseHandler(new CloseHandler<PopupPanel>() {
-
-			public void onClose(CloseEvent<PopupPanel> event) {
-				
-				
-				pinnwandVerwaltung.getAllUser(new AsyncCallback<Vector<User>>(){
-
-					@Override
-					public void onFailure(Throwable caught) {
-						// TODO Auto-generated method stub
-						
-					}
-
-					@Override
-					public void onSuccess(Vector<User> result) {
-						for (int i = 0; i < result.size(); i++){
-							if(result.get(i).getNickname() == dialog.getNickname()){
-								nicknameVorhanden = true;
-							}
-						}
-						
-					}});
-				if (nicknameVorhanden== false || dialog.getNickname()== "" || dialog.getNachname()== "" 
-						|| dialog.getVorname()== "" || dialog.getNickname()== "Nickname" || dialog.getNachname()== "Nachname" 
-						|| dialog.getVorname()== "Vorname"){
-					
-				user.setNickname(dialog.getNickname());
-				user.setVorname(dialog.getVorname());
-				user.setNachname(dialog.getNachname());
-				pinnwandVerwaltung.createUser(user.getVorname(),
-						user.getNachname(), user.getNickname(),
-						user.getEmail(), new AsyncCallback<User>() {
-							@Override
-							public void onFailure(Throwable caught) {
-							}
-
-							public void onSuccess(User result) {
-								setAktuellerNutzer(result);
-
-								starteSocialMediaProjekt();
-
-							}
-
-						});
-				}
-				else {
-					Window.alert("Nickname schon vorhanden oder Angaben fehlen - bitte überprüfen Sie ihre Angaben");
-				}
-			}
-		});
-
+		
+		LoginDialog loginDialog = new LoginDialog(googleNutzer);
+//		loginDialog.show();
 	}
 
-	private void starteSocialMediaProjekt() {
+	public static void starteSocialMediaProjekt() {
 
 		RootPanel.get().clear();
 

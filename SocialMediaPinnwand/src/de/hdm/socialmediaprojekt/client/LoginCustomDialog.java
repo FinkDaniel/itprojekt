@@ -16,11 +16,12 @@ import com.google.gwt.user.client.ui.Widget;
  */
 
 public class LoginCustomDialog extends DialogBox {
-	
+
 	private String vorname, nachname, nickname;
 	private TextBox nachnameTextBox, vornameTextBox, nicknameTextBox;
 
 	public LoginCustomDialog(String nickname) {
+
 		setText("Sie starten die Applikation zum ersten Mal");
 		Button erstelleNutzerButton = new Button("Erstelle einen Account");
 		HTML msg = new HTML(
@@ -50,17 +51,20 @@ public class LoginCustomDialog extends DialogBox {
 		dock.add(nachnameTextBox, DockPanel.NORTH);
 		dock.add(nicknameLabel, DockPanel.NORTH);
 		dock.add(nicknameTextBox, DockPanel.NORTH);
-		dock.setCellHorizontalAlignment(erstelleNutzerButton, DockPanel.ALIGN_RIGHT);
+		dock.setCellHorizontalAlignment(erstelleNutzerButton,
+				DockPanel.ALIGN_RIGHT);
 		dock.setWidth("100%");
 		setWidget(dock);
 	}
 
-	/*public void onClick(Widget sender) {
+	public void onClick(Widget sender) {
+
 		nachname = nachnameTextBox.getText();
 		vorname = vornameTextBox.getText();
 		nickname = nicknameTextBox.getText();
+
 		hide();
-	}*/
+	}
 
 	public String getVorname() {
 		return vorname;
@@ -73,4 +77,5 @@ public class LoginCustomDialog extends DialogBox {
 	public String getNickname() {
 		return nickname;
 	}
+
 }

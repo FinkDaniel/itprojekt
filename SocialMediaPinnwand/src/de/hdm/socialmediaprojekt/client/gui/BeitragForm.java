@@ -26,7 +26,7 @@ public class BeitragForm extends VerticalPanel {
 		final TextArea beitragBox = new TextArea();
 		Button beitragButton = new Button("Beitrag absenden");
 
-		beitragButton.setStyleName("Button");
+		beitragButton.setStyleName("buttonBeitragSenden");
 
 		beitragBox.setVisibleLines(5);
 		beitragBox.setText("Dein Beitrag");
@@ -44,13 +44,7 @@ public class BeitragForm extends VerticalPanel {
 
 				Beitrag beitrag = new Beitrag();
 				beitrag.setBeitrag(beitragBox.getText());
-				//pinnwandVerwaltung.createBeitrag(beitrag, new AsyncCallback<Void>() {
-
-					//public void onFailure(Throwable caught) {
-					//	Window.alert("Failure1");
-					//}
-
-					//public void onSuccess(Void result) {
+				
 
 						pinnwandVerwaltung.createBeitrag(
 								beitragBox.getText(),
