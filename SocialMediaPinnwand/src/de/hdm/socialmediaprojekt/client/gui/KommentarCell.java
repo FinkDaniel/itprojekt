@@ -32,7 +32,7 @@ import de.hdm.socialmediaprojekt.shared.smo.User;
 		
 		public KommentarCell() {
 
-			this.addStyleName("KommentarCell");
+			this.addStyleName("kommentarCell");
 		
 			
 
@@ -42,6 +42,7 @@ import de.hdm.socialmediaprojekt.shared.smo.User;
 		public void setText(String inhalt) {
 			
 			Label i = new Label(inhalt);
+			i.setStyleName("kommentarText");
 			text.add(i);
 			this.add(text);
 		}
@@ -82,15 +83,18 @@ import de.hdm.socialmediaprojekt.shared.smo.User;
 
 		public void addEditButton(Kommentar kommentar){
 			final Button editKommentar = new Button("E");
+			editKommentar.setStyleName("Button edit");
 			
 			final Kommentar kmtr = kommentar;
 			final DialogBox db = new DialogBox();
 			final FlowPanel panel = new FlowPanel();
 			final TextBox text1 = new TextBox();
+			text1.setStyleName("kommentarBox");
 			text1.setText(kmtr.getKommentar());
 			db.setTitle("Kommentar ändern");
 			panel.add(text1);
 			final Button ok = new Button("speichern");
+			ok.setStyleName("Button edit");
 			panel.add(ok);
 			
 			db.add(panel);
@@ -154,7 +158,8 @@ import de.hdm.socialmediaprojekt.shared.smo.User;
 		
 		public void addDeleteButton(Kommentar kommentar) {
 			final Kommentar kmntar = kommentar;
-			Button deleteButton = new Button("x");
+			Button deleteButton = new Button("löschen");
+			deleteButton.setStyleName("Button delete");
 			deleteButton.addClickHandler(new ClickHandler(){
 
 				@Override

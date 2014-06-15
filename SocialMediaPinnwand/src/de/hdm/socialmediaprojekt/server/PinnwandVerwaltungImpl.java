@@ -173,7 +173,7 @@ public class PinnwandVerwaltungImpl extends RemoteServiceServlet implements
 		u.setNickname(nickname);
 		u.setEmail(email);
 		u.setId(1);
-		System.out.println("PinnwandVerwaltungImpl Test");
+	
 
 		this.uMapper.insert(u);
 
@@ -488,10 +488,8 @@ public class PinnwandVerwaltungImpl extends RemoteServiceServlet implements
 
 			// Erste Spalte: Nachname und Vorname hinzufügen
 			// TODO AKTUELL ID --> muss angepasst werden
-			int sourceUser = beitrag.getSourceUserID();
-			User u = getUserById(sourceUser);
 			
-			accountRow.addSpalte(new Spalte(u.getNickname() + " "));
+			accountRow.addSpalte(new Spalte(beitrag.getSourceUserID() + " "));
 
 			// Zweite Spalte: Inhalt hinzufügen
 
@@ -519,7 +517,9 @@ public class PinnwandVerwaltungImpl extends RemoteServiceServlet implements
 		/**
 		 * Zum Schluss müssen wir noch den fertigen HTML-Report zurückgeben.
 		 */
+		System.out.print(writer.getReportText());
 		return writer.getReportText();
+		
 	}
 	public String createUserReport(User u, String datumVon, String datumBis) throws IllegalArgumentException {
 		

@@ -122,14 +122,6 @@ public interface PinnwandVerwaltungAsync {
 			AsyncCallback<String> callback);
 
 	
-	
-
-	// void login(String hostPageBaseURL, AsyncCallback<LoginInfo> callback);
-
-
-
-	
-
 
 	}
 

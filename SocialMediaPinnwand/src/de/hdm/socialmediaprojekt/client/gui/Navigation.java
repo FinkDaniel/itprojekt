@@ -80,7 +80,7 @@ public class Navigation extends VerticalPanel {
 
 			@Override
 			public void onClick(ClickEvent event) {
-
+				
 				loadLogout();
 
 			}
@@ -132,7 +132,7 @@ public class Navigation extends VerticalPanel {
 
 		this.add(box);
 
-		Button abbonieren = new Button("User abbonieren");
+		Button abbonieren = new Button("User abonnieren");
 		abbonieren.setStyleName("Button");
 		this.add(abbonieren);
 
@@ -160,7 +160,7 @@ public class Navigation extends VerticalPanel {
 
 								if (SocialMediaProjekt.getAktuellerNutzer()
 										.getId() == result.getId()) {
-									Window.alert("Du kannst dich nicht selbst abbonieren!");
+									Window.alert("Du kannst dich nicht selbst abonnieren!");
 								} else if (SocialMediaProjekt
 										.getAktuellerNutzer().getId() != result
 										.getId()) {
@@ -199,10 +199,10 @@ public class Navigation extends VerticalPanel {
 	}
 
 	private void loadLogout() {
-		// Window.Location.assign(loginInfo.getLogoutUrl());
+		
 		Window.Location
 				.assign(GWT.getHostPageBaseURL());
-	}//("http://127.0.0.1:8888/_ah/login?continue=http%3A%2F%2F127.0.0.1%3A8888%2FSocialMediaProjekt.html%3Fgwt.codesvr%3D127.0.0.1%3A9997")
+	}
 
 	public static void setEingeloggtAls(User u) {
 		eingeloggtals.setText("Eingeloggt als: " + u.getNickname());

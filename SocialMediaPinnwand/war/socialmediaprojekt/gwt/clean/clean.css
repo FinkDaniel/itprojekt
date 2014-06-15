@@ -15,13 +15,27 @@
 body, table td, select, button {
   font-family: Arial Unicode MS, Arial, sans-serif;
   font-size: small;
+  padding: 0.5em;
 }
 pre {
   font-family: "courier new", courier;
   font-size: small;
 }
 body {
-  
+	
+	
+	width:101em;
+	
+	margin: 1em;
+	border-top-color: white;
+	border-top: 3em;
+	border-radius: 5em;
+	border-style: solid;
+	border-color: white;
+	padding-top: 1em;
+	background: #F3F30E;
+	direction: ltr;
+	
 }
 a, a:visited {
   color: #0066cc;

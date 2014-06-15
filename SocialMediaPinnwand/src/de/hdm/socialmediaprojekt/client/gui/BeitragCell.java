@@ -41,7 +41,7 @@ public class BeitragCell extends VerticalPanel {
 	public void setText(String inhalt) {
 
 		Label i = new Label(inhalt);
-		i.setStyleName("beitrag-text-style");
+		i.setStyleName("beitragText");
 		text.add(i);
 		this.add(text);
 	}
@@ -54,7 +54,7 @@ public class BeitragCell extends VerticalPanel {
 		final TextBox kommenttext = new TextBox();
 		Button kommentieren = new Button("kommentieren");
 		final Label anzahllikes = new Label();
-		Button deleteBeitrag = new Button("x");
+		Button deleteBeitrag = new Button("Löschen");
 		Button editBeitrag = new Button("E");
 
 		editBeitrag.setStyleName("Button edit");
