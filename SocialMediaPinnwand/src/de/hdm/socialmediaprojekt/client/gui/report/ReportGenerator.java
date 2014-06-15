@@ -7,7 +7,8 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 /**
  * Dies Klasse dient zur grafischen Bereitsstellung der benötigten Pannels
  * 
- * @author Social Media Team
+ * @author Team GUI
+ * @author Team Applikationsschicht
  * @extends VerticalPanel
  * 
  * 
@@ -27,6 +28,7 @@ public class ReportGenerator extends VerticalPanel {
 		RootPanel.get("report").clear();
 		this.add(reportHeader);
 		this.add(tabPanel);
+		this.add(reportInhalt);
 
 		RootPanel.get("start").setVisible(false);
 		RootPanel.get("report").setVisible(true);
@@ -39,7 +41,7 @@ public class ReportGenerator extends VerticalPanel {
 		HTML inhalt = new HTML(report);
 		reportInhalt.setStyleName("reportInhalt");
 		reportInhalt.add(inhalt);
-		this.add(reportInhalt);
+		
 		reportSeitenaufbau();
 
 	}

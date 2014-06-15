@@ -17,7 +17,7 @@ import de.hdm.socialmediaprojekt.shared.smo.User;
  * DialogBox die prüfen soll, ob der aktuelle Nutzer seinen Account wirklich
  * löschen möchte.
  * 
- * @author T420
+ * @author Team GUI
  * 
  */
 public class DeleteUser extends DialogBox {

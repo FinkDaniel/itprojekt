@@ -8,7 +8,7 @@ import com.google.gwt.user.client.rpc.IsSerializable;
  * Like einen Beitrag dem er zugeordnet wird. Dieser wird ebenfalls über seine
  * ID festgelegt.
  * 
- * @author Paul Titze
+ * @author Team Datenbank
  */
 public class Like extends SMObject implements IsSerializable {
 

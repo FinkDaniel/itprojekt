@@ -13,7 +13,7 @@ package de.hdm.socialmediaprojekt.shared.report;
 * Prozessierung der Quellinformation zuständig sind.
 * </p>
 *
-* @author Thies
+* @author Team Applikationsschicht
 */
 
 public abstract class ReportWriter {

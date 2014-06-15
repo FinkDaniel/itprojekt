@@ -5,7 +5,8 @@ import com.google.gwt.user.client.ui.HTML;
 /**
  * Dies Klasse dient der Erstellungs und Ausgabe des Reports.
  * 
- * @author Social Media Team
+ * @author Team GUI
+ * @author Team Applikationsschicht
  * @extends FlowPanel
  * 
  * 

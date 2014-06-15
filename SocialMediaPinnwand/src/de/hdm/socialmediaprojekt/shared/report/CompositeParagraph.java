@@ -6,7 +6,7 @@ import java.util.ArrayList;
 /**
  * Zusammengsetzter Pragraph, der sich aus mehreren SimpleParagraph-Objekten zusammensetzt
  * 
- * @author Paul
+ * @author Team Applikationsschicht
  */
 public class CompositeParagraph extends Paragraph implements Serializable{
 

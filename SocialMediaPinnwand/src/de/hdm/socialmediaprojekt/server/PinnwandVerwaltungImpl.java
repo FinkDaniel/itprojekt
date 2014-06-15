@@ -36,7 +36,8 @@ import de.hdm.socialmediaprojekt.shared.smo.User;
  * werden. Diese Klasse enthält die entsprechende Applikationslogik und greift
  * auf die verschiedenen Mapper zu.
  * 
- * @author Social Media Team
+ * @author Team Datenbank
+ * @author Team Applikationsschicht
  * @extends
  * 
  * 

@@ -25,7 +25,11 @@ import de.hdm.socialmediaprojekt.shared.smo.User;
  * Die EntryPoint-Klasse der Applikation. Startet und prüft den Google Login und
  * öffnet eine Auswahl, ob der Nutzer zur SocialMediaPinnwand oder zum
  * ReportGenerator wechseln möchte.
+ * @author Team GUI
+ * @author Team Applikationsschicht
+ * @author Team Datenbank
  */
+
 
 public class SocialMediaProjekt implements EntryPoint {
 
@@ -67,7 +71,7 @@ public class SocialMediaProjekt implements EntryPoint {
 						loginInfo = result;
 						if (loginInfo.isLoggedIn()) {
 							nutzerInDatenbank(result);
-							// header.addUserStatus(aktuellerNutzer);
+						
 
 							starteSocialMediaProjekt();
 						} else {
@@ -185,14 +189,11 @@ public class SocialMediaProjekt implements EntryPoint {
 
 							public void onSuccess(User result) {
 								setAktuellerNutzer(result);
-								// Navigation.setEingeloggtAls(result);
+								
 
 								starteSocialMediaProjekt();
 
-								/*
-								 * Update die SuggestBox mit neuen Nutzer
-								 */
-								// fillSuggestenBox();
+								
 							}
 
 						});

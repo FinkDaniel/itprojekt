@@ -18,7 +18,9 @@ import com.google.appengine.api.rdbms.AppEngineDriver;
  * allerdings den Rahmen dieses Projekts sprengen bzw. die Software unn�tig
  * verkomplizieren, da dies f�r diesen Anwendungsfall nicht erforderlich ist.
  * 
- * @author T420
+ * @author Team Datenbank
+ * 
+ * 
  */
 public class DBConnection {
 

@@ -5,7 +5,8 @@ import com.google.gwt.user.client.ui.HorizontalPanel;
 /**
  * Dies Klasse erstell den ReportHeader und deren vordefinierten Textinhalt.
  * 
- * @author Social Media Team
+ * @author Team GUI
+ * @author Team Applikationsschicht
  * @extends HorizontalPanel
  * 
  * 

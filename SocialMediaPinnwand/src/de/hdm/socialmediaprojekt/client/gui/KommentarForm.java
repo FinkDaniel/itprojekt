@@ -12,7 +12,13 @@ import de.hdm.socialmediaprojekt.client.ClientSideSettings;
 import de.hdm.socialmediaprojekt.client.SocialMediaProjekt;
 import de.hdm.socialmediaprojekt.shared.PinnwandVerwaltungAsync;
 import de.hdm.socialmediaprojekt.shared.smo.Kommentar;
-
+/**
+ * Erszeugt ein Textfeld, durch welches der aktuelle Nutzer einen Kommentar
+ * schreiben und abschicken kann.
+ * 
+ * @author Team GUI
+ * 
+ */
 public class KommentarForm extends VerticalPanel {
 
 	PinnwandVerwaltungAsync pinnwandVerwaltung = ClientSideSettings
@@ -20,8 +26,6 @@ public class KommentarForm extends VerticalPanel {
 
 	/**
 	 * Ein Panel mit einer Textbox zum schreiben eines Kommentars
-	 * 
-	 * @author Paul
 	 * 
 	 */
 	public KommentarForm() {

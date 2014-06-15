@@ -16,7 +16,7 @@ import de.hdm.socialmediaprojekt.shared.smo.Kommentar;
  * Nutzer oder seinen abonnierten Nutzeren geschrieben wurden und sortiert diese
  * nach Erstellungszeitpunkt mit dem neusten Beitrag oben.
  * 
- * @author T420
+ * @author Team GUI
  * 
  */
 
@@ -35,7 +35,7 @@ public class BeitragView extends VerticalPanel {
 	 * @return
 	 */
 	public BeitragView(Beitrag beitrag) {
-		this.addStyleName("BeitragView");
+		this.setStyleName("beitragView");
 		addBeitrag(beitrag);
 		addKommentarList(beitrag);
 	}
@@ -70,6 +70,7 @@ public class BeitragView extends VerticalPanel {
 	public VerticalPanel addKommentarList(Beitrag beitrag) {
 
 		kommentarView.clear();
+		kommentarView.setStyleName("kommentarView");
 		pinnwandVerwaltung.getKommentarByTargetBeitrag(beitrag.getId(),
 				new AsyncCallback<Vector<Kommentar>>() {
 
@@ -88,6 +89,7 @@ public class BeitragView extends VerticalPanel {
 
 								KommentarCell kommentarCell = new KommentarCell();
 								kommentarCell.clear();
+								kommentarCell.setStyleName("kommentarCell");
 								kommentarCell.setText(result.get(b)
 										.getKommentar());
 								kommentarCell.setErsteller(result.get(b)

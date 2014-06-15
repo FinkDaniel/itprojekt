@@ -11,7 +11,7 @@ import de.hdm.socialmediaprojekt.shared.PinnwandVerwaltungAsync;
 /**
  * Anlegen und Auslesen der applikationsweit eindeutigen PinnwandVerwaltung.
  * 
- * @author Patrick
+ * @author Team GUI
  * 
  */
 public class ClientSideSettings extends CommonSettings {

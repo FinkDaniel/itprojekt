@@ -10,7 +10,7 @@ import de.hdm.socialmediaprojekt.client.SocialMediaProjekt;
  * Conent-Panel in welchem entweder die Pinnwand oder die Abo-Liste angezeigt
  * wird.
  * 
- * @author T420
+ * @author Team GUI
  * 
  */
 

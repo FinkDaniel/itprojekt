@@ -6,7 +6,7 @@ import com.google.gwt.user.client.rpc.IsSerializable;
  * Realisierung einer exemplarischen Pinnwand. Eine Pinnwand besitzt einen User,
  * von dem sie abhängig ist. Dieser wird über seine ID festgelegt.
  * 
- * @author Paul Titze
+ * @author Team Datenbank
  */
 
 public class Pinnwand extends SMObject implements IsSerializable {

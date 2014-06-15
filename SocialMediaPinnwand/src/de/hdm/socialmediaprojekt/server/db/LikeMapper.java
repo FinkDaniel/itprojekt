@@ -16,7 +16,7 @@ import de.hdm.socialmediaprojekt.shared.smo.User;
  * Like-Tabelle in der Datenbank her.
  * 
  * @mapper Like
- * @author Social Media Team
+ * @author Team Datenbank
  * 
  */
 public class LikeMapper {

@@ -7,7 +7,7 @@ import java.util.Date;
  * Die Basisklasse aller Reports gibt an welche elemente jeder Report
  * haben sollte.
  * 
- * @author Paul
+ * @author Team Applikationsschicht
  */
 public abstract class Report implements Serializable {
 

@@ -8,7 +8,7 @@ import com.google.gwt.user.client.rpc.IsSerializable;
  * Realisierung eines exemplarischen Beitrags. Ein Beitrag besitzt einen User,
  * von dem er gesetz wird. Dieser wird über seine ID festgelegt.
  * 
- * @author Paul Titze
+ * @author Team Datenbank
  */
 public class Beitrag extends SMObject implements IsSerializable {
 

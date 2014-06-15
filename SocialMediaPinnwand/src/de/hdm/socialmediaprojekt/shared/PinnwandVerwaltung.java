@@ -93,9 +93,7 @@ public interface PinnwandVerwaltung extends RemoteService {
 	public void editKommentar(Kommentar k) throws IllegalArgumentException;
 	public Vector<Beitrag> getBeitragByUniqueSourceUser(int id) throws IllegalArgumentException;
 
-	/**
-	 * Report Shit
-	 */
+//	report Methoden
 	public String createUserReport(User u, String datumVon, String datumBis) throws IllegalArgumentException;
 
 	public String createBeitragReport(String datumVon, String datumBis) throws IllegalArgumentException;

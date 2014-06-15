@@ -16,7 +16,7 @@ import de.hdm.socialmediaprojekt.shared.smo.User;
  * in der Datenbank her.
  * 
  * @mapper Abo
- * @author Social Media Team
+ * @author Team Datenbank
  * 
  */
 public class AboMapper {

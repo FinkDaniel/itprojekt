@@ -22,7 +22,7 @@ import de.hdm.socialmediaprojekt.shared.smo.User;
  * Eine Kommentar Cell enthält den Text eines Kommentarobjektes und Buttons um
  * diesen zu editieren oder zu löschen.
  * 
- * @author T420
+ * @author Team GUI
  * 
  */
 public class KommentarCell extends VerticalPanel {
@@ -30,12 +30,13 @@ public class KommentarCell extends VerticalPanel {
 	HorizontalPanel text = new HorizontalPanel();
 	final PinnwandVerwaltungAsync pinnwandVerwaltung = ClientSideSettings
 			.getPinnwandVerwaltung();
-	Button deleteKommentar = new Button("x");
+	Button deleteKommentar = new Button("löschen");
+	
+	
 
 	public KommentarCell() {
 
-		this.addStyleName("KommentarCell");
-
+		
 	}
 
 	/**
@@ -105,8 +106,9 @@ public class KommentarCell extends VerticalPanel {
 	 * @param kommentar
 	 */
 	public void addEditButton(Kommentar kommentar) {
-		final Button editKommentar = new Button("E");
-
+		final Button editKommentar = new Button("Edit");
+		editKommentar.setStyleName("Button edit");
+		deleteKommentar.setStyleName("Button delete");
 		final Kommentar kmtr = kommentar;
 		final DialogBox db = new DialogBox();
 		final FlowPanel panel = new FlowPanel();
@@ -179,7 +181,8 @@ public class KommentarCell extends VerticalPanel {
 	 */
 	public void addDeleteButton(Kommentar kommentar) {
 		final Kommentar kmntar = kommentar;
-		Button deleteButton = new Button("x");
+		Button deleteButton = new Button("löschen");
+		deleteButton.setStyleName("Button delete");
 		deleteButton.addClickHandler(new ClickHandler() {
 
 			@Override

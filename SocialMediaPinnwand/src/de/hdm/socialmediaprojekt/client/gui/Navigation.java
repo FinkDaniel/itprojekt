@@ -25,7 +25,7 @@ import de.hdm.socialmediaprojekt.shared.smo.User;
  * Nutzer über eine SuggestBox suchen und diese Aboonieren. Er kann sich
  * ausloggen oder seinen Account komplett löschen.
  * 
- * @author Paul
+ * @author Team GUI
  * 
  */
 public class Navigation extends VerticalPanel {
@@ -36,6 +36,7 @@ public class Navigation extends VerticalPanel {
 	Button meineAbos = new Button("Meine Abos");
 	Button logout = new Button("Logout");
 	Button deleteUser = new Button("Account löschen");
+	Button abbonieren = new Button("User abbonieren");
 
 	final MultiWordSuggestOracle suggestBox = new MultiWordSuggestOracle();
 	final SuggestBox box = new SuggestBox(suggestBox);
@@ -46,7 +47,10 @@ public class Navigation extends VerticalPanel {
 
 		meinePinnwand.addStyleName("Button");
 		meineAbos.addStyleName("Button");
+		abbonieren.setStyleName("Button");
 		logout.addStyleName("Button");
+		logout.setStyleName("Button");
+		logout.getElement().setId("logoutButton");
 		deleteUser.addStyleName("Button");
 		/**
 		 * Öffnet die DialogBox welche den Nutzer fragt ob er sich sicher ist ob
@@ -67,6 +71,8 @@ public class Navigation extends VerticalPanel {
 
 		this.add(meinePinnwand);
 		this.add(meineAbos);
+		this.add(box);
+		this.add(abbonieren);
 		this.add(logout);
 		this.add(deleteUser);
 		this.add(eingeloggtals);
@@ -110,8 +116,7 @@ public class Navigation extends VerticalPanel {
 			}
 		});
 
-		final PinnwandVerwaltungAsync pinnwandVerwaltung = ClientSideSettings
-				.getPinnwandVerwaltung();
+		
 		/**
 		 * Füllt die SuggestBox mit den Nicknames aller angemeldeten Nutzer
 		 */
@@ -134,11 +139,7 @@ public class Navigation extends VerticalPanel {
 			}
 		});
 
-		this.add(box);
-
-		Button abbonieren = new Button("User abbonieren");
-		abbonieren.setStyleName("Button");
-		this.add(abbonieren);
+		
 		/**
 		 * Prüft ob die SuggestBox gefüllt ist und liest sie aus.
 		 */

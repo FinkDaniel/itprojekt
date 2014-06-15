@@ -6,7 +6,7 @@ import java.io.Serializable;
  * Die von Google vorgegebene Klasse zum GoogleLogin. Sie setzt alle für den
  * Login relevanten Attribute, wie die Mail-Adresse und den Nickname.
  * 
- * @author Patrick
+ * @author Team GUI
  * 
  */
 public class LoginInfo implements Serializable {

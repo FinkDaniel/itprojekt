@@ -13,7 +13,7 @@ import com.google.gwt.user.client.ui.Widget;
  * noch nicht in der Datenbank eingetragen ist. Sie gibt dem Nutzer die
  * Möglichkeit die gewünschten Daten einzutragen.
  * 
- * @author Patrick
+ * @author Team GUI
  * 
  */
 

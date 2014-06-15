@@ -18,7 +18,7 @@ import de.hdm.socialmediaprojekt.shared.smo.User;
  * Erzeugt eine Liste aus Abo-Cells, die alle Abonnierten Nutzer des aktuellen
  * Nutzers beinhaltet und ihm die Mölichkeit gibt diese zu verwalten.
  * 
- * @author T420
+ * @author Team GUI
  * 
  */
 

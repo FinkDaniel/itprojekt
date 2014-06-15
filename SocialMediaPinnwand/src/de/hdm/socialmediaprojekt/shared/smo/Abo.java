@@ -7,7 +7,7 @@ import com.google.gwt.user.client.rpc.IsSerializable;
  * des abonnierenden Users als auch von der zu abonnierenden Pinnwand abhängig.
  * Diese werden beide durch ihre ID festgelegt.
  * 
- * @author Paul Titze
+ * @author Team Datenbank
  */
 public class Abo extends SMObject implements IsSerializable {
 

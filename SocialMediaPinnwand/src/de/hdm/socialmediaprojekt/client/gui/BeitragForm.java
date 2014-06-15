@@ -17,7 +17,7 @@ import de.hdm.socialmediaprojekt.shared.smo.Beitrag;
  * Erszeugt ein Textfeld, durch welches der aktuelle Nutzer einen Beitrag
  * schreiben und abschicken kann.
  * 
- * @author T420
+ * @author Team GUI
  * 
  */
 

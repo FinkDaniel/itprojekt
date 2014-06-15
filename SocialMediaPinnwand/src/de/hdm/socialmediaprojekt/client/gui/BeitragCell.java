@@ -26,7 +26,7 @@ import de.hdm.socialmediaprojekt.shared.smo.User;
  * Eine Beitrag-Cell enthält einen Beitrag des Nutzers oder eines abonnierten
  * Nutzers.
  * 
- * @author T420
+ * @author Team GUI
  * 
  */
 
@@ -38,7 +38,7 @@ public class BeitragCell extends VerticalPanel {
 
 	public BeitragCell() {
 
-		this.addStyleName("BeitragCell");
+		this.addStyleName("beitragCell");
 
 	}
 
@@ -70,16 +70,19 @@ public class BeitragCell extends VerticalPanel {
 
 		final Beitrag btrag = beitrag;
 		final Button like = new Button("Dufte");
+		like.setStyleName("Button like");
 		final TextBox kommenttext = new TextBox();
+		kommenttext.getElement().setId("kommentarBox");
 		Button kommentieren = new Button("kommentieren");
 		final Label anzahllikes = new Label();
-		Button deleteBeitrag = new Button("x");
+		Button deleteBeitrag = new Button("löschen");
+
 		Button editBeitrag = new Button("E");
 
-		editBeitrag.setStyleName("Button");
-		like.setStyleName("Button");
-		kommentieren.setStyleName("Button");
-		deleteBeitrag.setStyleName("Button");
+		editBeitrag.setStyleName("Button edit");
+		like.setStyleName("Button like");
+		kommentieren.setStyleName("Button add");
+		deleteBeitrag.setStyleName("Button delete");
 
 		buttons.add(editBeitrag);
 		buttons.add(like);
@@ -89,6 +92,7 @@ public class BeitragCell extends VerticalPanel {
 		 * Dialogbox zum editieren des Beitrags
 		 */
 		final DialogBox db = new DialogBox();
+		db.getElement().setId("beitragEditBox");
 		final FlowPanel panel = new FlowPanel();
 		final TextBox text = new TextBox();
 		text.setText(btrag.getBeitrag());

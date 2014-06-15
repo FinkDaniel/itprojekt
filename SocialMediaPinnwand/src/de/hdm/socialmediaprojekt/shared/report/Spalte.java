@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * Ein Spalten-Objekt gibt den Inhalt eines einzelnen Feldes einer Tabelle an.
  * 
- * @author Paul Titze
+ * @author Team Applikationsschicht
  * 
  */
 public class Spalte implements Serializable {

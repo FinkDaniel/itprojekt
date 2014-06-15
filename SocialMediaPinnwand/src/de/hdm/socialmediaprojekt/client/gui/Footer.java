@@ -7,7 +7,7 @@ import com.google.gwt.user.client.ui.HorizontalPanel;
 /**
  * Footer der Pinnwand
  * 
- * @author T420
+ * @author Team GUI
  * 
  */
 public class Footer extends Composite {

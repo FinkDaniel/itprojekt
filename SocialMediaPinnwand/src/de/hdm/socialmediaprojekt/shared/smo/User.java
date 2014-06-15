@@ -1,7 +1,10 @@
 package de.hdm.socialmediaprojekt.shared.smo;
 
 import com.google.gwt.user.client.rpc.IsSerializable;
-
+/**
+ * Realisierung einer exemplarischen Userklasse.
+ * @author Team Datenbank
+ */
 public class User extends SMObject implements IsSerializable{
 
 	

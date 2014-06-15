@@ -6,7 +6,7 @@ import java.util.Vector;
  * Ein einfacher Report, der neben den Informationen der Superklasse eine
  * Tabelle mit den beiden Hilfskallen Zeile und Spalte erzeugt.
  * 
- * @author Paul
+ * @author Team Applikationsschicht
  */
 public abstract class SimpleReport extends Report {
 

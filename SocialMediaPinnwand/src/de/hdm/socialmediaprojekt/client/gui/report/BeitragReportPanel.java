@@ -15,7 +15,8 @@ import de.hdm.socialmediaprojekt.shared.PinnwandVerwaltungAsync;
 /**
  * Dies Klasse erstellt die Dateboxen für den zugehörigen Beitragreport.
  * 
- * @author Social Media Team
+ * @author Team GUI
+ * @author Team Applikationsschicht
  * @extends VerticalPanel
  * 
  * 

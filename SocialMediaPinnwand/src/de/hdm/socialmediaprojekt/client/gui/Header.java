@@ -9,7 +9,7 @@ import de.hdm.socialmediaprojekt.shared.smo.User;
 /**
  * Header der Pinnwand
  * 
- * @author T420
+ * @author Team GUI
  * 
  */
 public class Header extends HorizontalPanel {

@@ -10,7 +10,8 @@ import com.google.gwt.user.client.ui.VerticalPanel;
  * Dies Klasse erstell die Navigationsleiste zur Reportauswahl. Hier kann
  * zwischen User- und Beitragreport gewählt werden.
  * 
- * @author Social Media Team
+ * @author Team GUI
+ * @author Team Applikationsschicht
  * @extends VerticalPanel
  * 
  * 

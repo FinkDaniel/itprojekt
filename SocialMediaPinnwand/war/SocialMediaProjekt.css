@@ -1,48 +1,62 @@
 /** Aktuelle CSS Klassen und IDs */
 html {
-	background: grey;
+	background: green;
+	opacity: 0.79;
+	position: static;
 }
 
-element.Style {
+body {
+	margin: 10px;
+	border-top-color: white;
+	border-top: 3em;
+	border-radius: 20em;
 	border-style: solid;
-}
-
-.body {
-	background: grey;
-	padding: 0.5em;
+	border-color: -moz-linear-gradient(bottom, #b3b3b3, #f1f1f1);
+	padding-top: 1em;
+	padding-bottom: 38em;
+	background: #F3F30E;
 	direction: ltr;
-	min-width: 700px;
 }
 
 .start {
 	background-color: rgb(190, 49, 49);
-	margin-top: 20em;
+	margin-top: 9em;
+	margin-bottom: 9em;
 	margin-left: 10em;
 	margin-right: 10em;
 	border-style: solid;
-	border-color: rgb(190, 49, 49);
-	border-radius: 0.5em;
-	padding: 2em;
+	border-color: rgb(255, 255, 255);
+	border-top-width: 2em;
+	border-right-width: 2em;
+	border-radius: 2.5em;
+	padding-top: 5em;
+	padding-bottom: 5em;
+	padding-left: 10em;
+	padding-right: 10em;
 }
 
 .header {
-	border-style: solid;
-	border-radius: 0.5em;
-	border-color: rgb(247, 150, 70);
+	text-align: center;
 	padding: 2em;
+	top: 2em;
+	width: 100%;
 }
 
 #h1 {
 	font-size: 40px;
+	font-
 }
 
 .navigation {
-	margin-top: 0.5em;
-	margin-bottom: 0.5em;
-	padding: 1em;
-	border-style: solid;
-	border-radius: 0.5em;
-	border-color: rgb(247, 150, 70);
+	width: 25em;
+	margin-top: 1em;
+	margin-bottom: 0em;
+	background-color: green;
+	border: 1em solid rgb(190, 49, 49);
+	border-radius: 24%;
+	padding-top: 7em;
+	padding-left: 0.5em;
+	padding-bottom: 7em;
 	float: left;
 }
 
@@ -56,6 +70,10 @@ element.Style {
 	-webkit-border-radius: 10px;
 	-webkit-box-shadow: 0px 0px 0px 0px #F6923F, 0px -7px 17px 0px #f6923f
 		inset;
+}
+
+.editKommentarButton:before {
+	content: "\270E";
 }
 
 .buttonNavigation:hover {
@@ -86,21 +104,12 @@ element.Style {
 	border-style: solid;
 }
 
-#logoutButton {
-	width: 120px;
-	height: 40px;
-	margin: 5%;
-	box-sizing: border-box;
-	opacity: 1;
-	border: 1px solid #f6923f;
-	-webkit-border-radius: 10px;
-	-webkit-box-shadow: 0px 0px 0px 0px #F6923F, 0px -7px 17px 0px #f6923f
-		inset;
-	margin-top: 4em;
+#beitragEditBox {
+	border-style: solid;
 }
 
-#logoutButton:hover {
-	background: rgb(247, 150, 70);
+#logoutButton {
+	margin-top: 4em;
 }
 
 #socialButton {
@@ -110,11 +119,21 @@ element.Style {
 	border-radius: 1.5em;
 }
 
+#socialButton:hover {
+	background: green;
+	opacity: 0.4;
+}
+
 #reportButton {
 	border-style: solid;
 	margin-left: 10em;
 	padding: 2em;
 	border-radius: 1.5em;
+}
+
+#reportButton:hover {
+	background: green;
+	opacity: 0.4;
 }
 
 #buttonAbonieren {
@@ -129,7 +148,7 @@ element.Style {
 		inset;
 }
 
-#buttonAbonieren: hover {
+#buttonAbonieren:hover {
 	background: rgb(247, 150, 70);
 }
 
@@ -153,6 +172,10 @@ element.Style {
 		inset;
 	-ms-box-shadow: 0px 0px 0px 0px #F6923F, 0px -7px 17px 0px #f6923f inset;
 	-o-box-shadow: 0px 0px 0px 0px #F6923F, 0px -7px 17px 0px #f6923f inset;
+}
+
+.buttonBeitragSenden:hover {
+	cursor: pointer;
 }
 
 .buttonKommentarSenden: hover {
@@ -186,19 +209,37 @@ element.Style {
 }
 
 .content {
-	border-style: solid;
-	border-radius: 0.5em;
-	border-color: rgb(247, 150, 70);
-	margin-left: 15em;
-	margin-top: 0.5em;
+	border-radius: 9em;
+	border-top-style: solid;
+	border-top-width: 1.1em;
+	border-top-color: black;
+	border-left-style: solid;
+	background: beige;
+	margin-left: 29em;
+	margin-top: 1em;
+	padding-top: 6em;
+	padding-left: 8em;
 }
 
 .beitragCell {
 	border-style: solid;
+	border: 2em;
 	border-color: rgb(247, 150, 70);
 	border-radius: 0.25em;
 	padding: 0.5em;
 	margin: 0.5em;
+}
+
+.kommentarCell {
+	float: right;
+}
+
+.beitragText {
+	font-size: 10px;
+}
+
+.kommentarText {
+	font-size: 18px;
 }
 
 .panelErsteller {
@@ -207,6 +248,11 @@ element.Style {
 
 .beitragView {
 	border-style: solid;
+	border-radius: 2em;
+}
+
+.kommentarView {
+	float: right;
 }
 
 .like {
@@ -252,9 +298,7 @@ element.Style {
 }
 
 .pinnwand {
-	margin: 5px;
-	height: 550px;
-	padding: 10px;
+	padding: 2em;
 	border-style: solid;
 	border-color: rgb(247, 150, 70);
 }
@@ -269,40 +313,39 @@ element.Style {
 .footer {
 	clear: both;
 	border-style: solid;
-	border-radius: 0.5em;
-	border-color: rgb(247, 150, 70);
+	border-radius: 0.5em 0.5em 0.5em 0.5em;
+	border-color: green;
 	background-color: white;
 	margin-top: 0.5em;
-	padding: 50px;
+	padding: 10px;
 	display: block;
+	bottom: 0px;
 }
 
 .gwt-SuggestBox {
-
+	
 }
 
 .report {
-	border-style: solid;
+	
 }
 
 .tabPanel {
 	border-style: solid;
-	overflow: absolute;
-	width: 500px;
-	height: 500px;
+	border-radius: 1em;
 }
 
 .reportHeader {
-	border-style: solid;
+	background-color: yellow;
 	margin-top: 0.5em;
 	margin-bottom: 0.5em;
 	background: white;
+	margin-left: 2em;
 }
 
 .userReport {
 	border-style: solid;
-	width: 50px;
-	height: 50px;
+	border-radius: 1em;
 }
 
 .beitragReport {
@@ -312,10 +355,92 @@ element.Style {
 }
 
 .reportInhalt {
-	padding: 0 0px;
-	position: fixed;
 	height: 25em;
-	width: 50em;
-	margin-left: 61em;
-	margin-top: 5em;
+	margin-left: 20em;
+	margin-top: -5em;
+}
+
+.button {
+	display: inline-block;
+	white-space: nowrap;
+	background-color: #ccc;
+	background-image: linear-gradient(top, #eee, #ccc);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#eeeeee',
+		EndColorStr='#cccccc');
+	border: 1px solid #777;
+	padding: 0 1.5em;
+	margin: 0.5em;
+	font: bold 1em/2em Arial, Helvetica;
+	text-decoration: none;
+	color: #333;
+	text-shadow: 0 1px 0 rgba(255, 255, 255, .8);
+	border-radius: .2em;
+	box-shadow: 0 0 1px 1px rgba(255, 255, 255, .8) inset, 0 1px 0
+		rgba(0, 0, 0, .3);
+}
+
+.button:active {
+	box-shadow: 0 0 4px 2px rgba(0, 0, 0, .3) inset;
+	position: relative;
+	top: 1px;
+}
+
+.button:focus {
+	outline: 0;
+	background: #fafafa;
+}
+
+.button:before {
+	background: #ccc;
+	background: rgba(0, 0, 0, .1);
+	float: left;
+	width: 1em;
+	text-align: center;
+	font-size: 1.5em;
+	margin: 0 1em 0 -1em;
+	padding: 0 .2em;
+	box-shadow: 1px 0 0 rgba(0, 0, 0, .5), 2px 0 0 rgba(255, 255, 255, .5);
+	border-radius: .15em 0 0 .15em;
+	pointer-events: none;
+}
+
+/* Hexadecimal entities for the icons */
+.add:before {
+	content: "\271A";
+}
+
+.edit:before {
+	content: "\270E";
+}
+
+.delete:before {
+	content: "\2718";
+}
+
+.save:before {
+	content: "\2714";
+}
+
+.email:before {
+	content: "\2709";
+}
+
+.like:before {
+	content: "\2764";
+}
+
+.next:before {
+	content: "\279C";
+}
+
+.star:before {
+	content: "\2605";
+}
+
+.spark:before {
+	content: "\2737";
+}
+
+.play:before {
+	content: "\25B6";
 }

@@ -9,7 +9,7 @@ import com.google.gwt.user.client.rpc.IsSerializable;
  * fest, die für alle Social-Media-Objekte gelten, wie der ID und dem
  * Erstellungsdatum.
  * 
- * @author Paul Titze
+ * @author Team Datenbank
  */
 public abstract class SMObject implements IsSerializable {
 

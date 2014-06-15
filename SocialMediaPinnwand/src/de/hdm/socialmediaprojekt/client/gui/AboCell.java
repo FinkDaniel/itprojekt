@@ -16,7 +16,7 @@ import de.hdm.socialmediaprojekt.shared.smo.Abo;
  * Gibt ein Abonnement des Aktuellen Nutzers in Form des Nicknames an und gibt
  * ihm die Möglichkeit dieses wieder zu beenden.
  * 
- * @author T420
+ * @author Team GUI
  * 
  */
 public class AboCell extends HorizontalPanel {

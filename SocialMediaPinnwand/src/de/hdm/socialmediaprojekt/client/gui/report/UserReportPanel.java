@@ -20,7 +20,8 @@ import de.hdm.socialmediaprojekt.shared.smo.User;
 /**
  * Dies Klasse erstellt die Dateboxen für den zugehörigen Userreport.
  * 
- * @author Social Media Team
+ * @author Team GUI
+ * @author Team Applikationsschicht
  * @extends VerticalPanel
  * 
  * 

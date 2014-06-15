@@ -6,7 +6,7 @@ import java.io.Serializable;
  * Ein Paragraph gibt einem Report die MÃ¶glichkeit Text strukturiert zu speichern.
  * Dieser Text wird als String gespeichert.
  * 
- * @author Paul
+ * @author Team Applikationsschicht
  *
  */
 public abstract class Paragraph implements Serializable {

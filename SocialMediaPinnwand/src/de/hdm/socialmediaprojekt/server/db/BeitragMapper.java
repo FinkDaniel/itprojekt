@@ -15,7 +15,7 @@ import de.hdm.socialmediaprojekt.shared.smo.User;
  * Abo-Tabelle in der Datenbank her.
  * 
  * @mapper Beitrag
- * @author Social Media Team
+ * @author Team Datenbank
  * 
  */
 public class BeitragMapper {

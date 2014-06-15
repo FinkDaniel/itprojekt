@@ -8,7 +8,7 @@ import com.google.gwt.user.client.rpc.IsSerializable;
  * Zusätzlich besitzt ein Like einen Beitrag dem er zugeordnet wird. Dieser wird
  * ebenfalls über seine ID festgelegt.
  * 
- * @author Paul Titze
+ * @author Team Datenbank
  */
 
 public class Kommentar extends SMObject implements IsSerializable {

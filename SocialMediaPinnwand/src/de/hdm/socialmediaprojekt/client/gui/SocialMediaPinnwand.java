@@ -5,7 +5,7 @@ import com.google.gwt.user.client.ui.RootPanel;
 /**
  * Erzeugt das Grundgerüst der SocialMediaPinnwand
  * 
- * @author Paul
+ * @author Team GUI
  * 
  */
 public class SocialMediaPinnwand {

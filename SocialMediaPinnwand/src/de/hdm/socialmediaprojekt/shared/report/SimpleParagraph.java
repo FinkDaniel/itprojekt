@@ -6,7 +6,7 @@ import java.io.Serializable;
  * Ein SimpleParagraph stellt einen Absatz dar. 
  * Der Inhalt des Absatzes wird als String gespeichert
  * 
- * @author Paul Titze
+ * @author Team Applikationsschicht
  */
 
 public class SimpleParagraph extends Paragraph implements Serializable{

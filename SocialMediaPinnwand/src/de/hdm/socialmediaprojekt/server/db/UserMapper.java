@@ -15,7 +15,7 @@ import de.hdm.socialmediaprojekt.shared.smo.User;
  * Pinnwand-Tabelle in der Datenbank her.
  * 
  * @mapper User
- * @author Social Media Team
+ * @author Team Datenbank
  * 
  */
 public class UserMapper {

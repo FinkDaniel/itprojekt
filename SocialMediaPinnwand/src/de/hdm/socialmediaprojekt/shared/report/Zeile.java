@@ -7,7 +7,7 @@ import java.util.ArrayList;
  * Ein Zeilen-Objekt setzt einen Array aus mehreren 
  * Spalten-Objekten zusammen.
  * 
- * @author Paul Titze
+ * @author Team Applikationsschicht
  */
 public class Zeile implements Serializable {
 

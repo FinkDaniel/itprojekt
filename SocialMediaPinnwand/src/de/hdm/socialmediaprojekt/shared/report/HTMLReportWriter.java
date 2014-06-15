@@ -6,7 +6,7 @@ import java.util.Vector;
  * Formatiert Report mittels HTML und legt den HTML-Code dann in der Variable
  * reportText ab.
  * 
- * @author Paul
+ * @author Team Applikationsschicht
  */
 public class HTMLReportWriter extends ReportWriter {
 

@@ -4,7 +4,6 @@ import java.util.Vector;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.ScrollPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 
@@ -19,10 +18,10 @@ import de.hdm.socialmediaprojekt.shared.smo.Beitrag;
  * und der BeitragView, die sämtliche Beiträge des Nutzers oder abonnierter
  * Nutzer anzeigt
  * 
- * @author Paul
+ * @author Team GUI
  * 
  */
-public class PinnwandView extends ScrollPanel {
+public class PinnwandView extends VerticalPanel {
 
 	VerticalPanel pinnwandView = new VerticalPanel();
 
@@ -30,7 +29,6 @@ public class PinnwandView extends ScrollPanel {
 
 		this.clear();
 		this.getElement().setId("pinnwand");
-		this.setAlwaysShowScrollBars(true);
 
 		createPinnwand();
 		this.add(pinnwandView);
