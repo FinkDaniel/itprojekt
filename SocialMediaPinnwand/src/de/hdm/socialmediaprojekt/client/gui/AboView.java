@@ -3,8 +3,6 @@ package de.hdm.socialmediaprojekt.client.gui;
 import java.util.Vector;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
-import com.google.gwt.user.client.ui.HTML;
-import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ScrollPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
@@ -15,6 +13,14 @@ import de.hdm.socialmediaprojekt.client.SocialMediaProjekt;
 import de.hdm.socialmediaprojekt.shared.PinnwandVerwaltungAsync;
 import de.hdm.socialmediaprojekt.shared.smo.Abo;
 import de.hdm.socialmediaprojekt.shared.smo.User;
+
+/**
+ * Erzeugt eine Liste aus Abo-Cells, die alle Abonnierten Nutzer des aktuellen
+ * Nutzers beinhaltet und ihm die Mölichkeit gibt diese zu verwalten.
+ * 
+ * @author T420
+ * 
+ */
 
 public class AboView extends ScrollPanel {
 
@@ -30,6 +36,13 @@ public class AboView extends ScrollPanel {
 		this.add(aboView);
 
 	}
+
+	/**
+	 * Erzeugt ein Vertical Panel, in das sämtliche Abo-Cell Panels geladen
+	 * werden.
+	 * 
+	 * @return
+	 */
 
 	private VerticalPanel createPinnwand() {
 
@@ -50,34 +63,35 @@ public class AboView extends ScrollPanel {
 					public void onSuccess(Vector<Abo> result) {
 						Widget[] objectList = new Widget[result.size()];
 
-
-
 						for (int i = 0; i < result.size(); i++) {
 
 							final AboCell aboCell = new AboCell();
 							aboCell.clear();
-							pinnwandVerwaltung.getUserById(result.get(i).getTargetPinnwandID(), new AsyncCallback<User>(){
+							pinnwandVerwaltung.getUserById(result.get(i)
+									.getTargetPinnwandID(),
+									new AsyncCallback<User>() {
 
-								@Override
-								public void onFailure(Throwable caught) {
-									// TODO Auto-generated method stub
-									
-								}
+										@Override
+										public void onFailure(Throwable caught) {
+											// TODO Auto-generated method stub
 
-								@Override
-								public void onSuccess(User result) {
-									// TODO Auto-generated method stub
-									aboCell.setText(result.getNickname());
-								}});
+										}
+
+										@Override
+										public void onSuccess(User result) {
+											// TODO Auto-generated method stub
+											aboCell.setText(result
+													.getNickname());
+										}
+									});
 							aboCell.addButton(result.get(i));
-							
+
 							objectList[i] = aboCell;
 
-							//System.out.print(objectList[i]);
+							// System.out.print(objectList[i]);
 							aboView.add(objectList[i]);
 						}
 					}
-
 
 				});
 		return aboView;

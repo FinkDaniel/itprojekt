@@ -9,211 +9,304 @@ import java.util.Vector;
 import de.hdm.socialmediaprojekt.shared.smo.Pinnwand;
 import de.hdm.socialmediaprojekt.shared.smo.User;
 
-
+/**
+ * Dies ist die Mapperklasse zur Pinnwand. Sie stellt die Verbindung zur
+ * Pinnwand-Tabelle in der Datenbank her.
+ * 
+ * @mapper Beitrag
+ * @author Social Media Team
+ * 
+ */
 public class PinnwandMapper {
 
-  private static PinnwandMapper pinnwandMapper = null;
+	private static PinnwandMapper pinnwandMapper = null;
 
+	/**
+	 * Konstruktor des LikeMappers
+	 * 
+	 * @author Social Media Team
+	 */
+	protected PinnwandMapper() {
+	}
 
-  protected PinnwandMapper() {
-  }
+	/**
+	 * erweiterter Konstruktor der eine neue Instanz anlegt, sofern es noch
+	 * keine gibt
+	 * 
+	 * @return PinnwandMapper
+	 * @author Social Media Team
+	 */
+	public static PinnwandMapper pinnwandMapper() {
+		if (pinnwandMapper == null) {
+			pinnwandMapper = new PinnwandMapper();
+		}
 
-  
-  public static PinnwandMapper pinnwandMapper() {
-    if (pinnwandMapper == null) {
-      pinnwandMapper = new PinnwandMapper();
-    }
+		return pinnwandMapper;
+	}
 
-    return pinnwandMapper;
-  }
+	/**
+	 * Diese Methode findet die Pinnwand nach zugehöriger ID. Die Pinnwand wird
+	 * anschließend nach der Struktur des SMO-Objects gebaut und zurückgegeben.
+	 * 
+	 * @author Social Media Team
+	 * @param Integer
+	 * @return Pinnwand
+	 */
+	public Pinnwand findByKey(int id) {
 
-  
-  public Pinnwand findByKey(int id) {
-  
-    Connection con = LocalDBConnection.connection();
+		Connection con = DBConnection.connection();
 
-    try {
-     
-      Statement stmt = con.createStatement();
+		try {
 
-   
-      ResultSet rs = stmt.executeQuery("SELECT id, sourceUser FROM pinnwand "
-          + "WHERE id=" + id + " ORDER BY sourceUser");
+			Statement stmt = con.createStatement();
 
-      
-      if (rs.next()) {
-      
-        Pinnwand a = new Pinnwand();
-        a.setId(rs.getInt("id"));
-        a.setSourceUserID(rs.getInt("sourceUser"));
-        return a;
-      }
-    }
-    catch (SQLException e2) {
-    	 e2.printStackTrace();
-      return null;
-    }
+			ResultSet rs = stmt
+					.executeQuery("SELECT id, sourceUser FROM pinnwand "
+							+ "WHERE id=" + id + " ORDER BY sourceUser");
 
-    return null;
-  }
+			if (rs.next()) {
 
-  
-  public Vector<Pinnwand> findAll() {
-    Connection con = LocalDBConnection.connection();
+				Pinnwand a = new Pinnwand();
+				a.setId(rs.getInt("id"));
+				a.setSourceUserID(rs.getInt("sourceUser"));
+				return a;
+			}
+		} catch (SQLException e2) {
+			e2.printStackTrace();
+			return null;
+		}
 
-   
-    Vector<Pinnwand> result = new Vector<Pinnwand>();
+		return null;
+	}
 
-    try {
-      Statement stmt = con.createStatement();
+	/**
+	 * Diese Methode gibt alle Pinnwände aus, die in der Datenbank hinterlegt
+	 * sind
+	 * 
+	 * @return Vector<Pinnwand>
+	 * @author Social Media Team
+	 */
+	public Vector<Pinnwand> findAll() {
+		Connection con = DBConnection.connection();
 
-      ResultSet rs = stmt.executeQuery("SELECT id, sourceUser FROM pinnwand "
-          + " ORDER BY id");
+		Vector<Pinnwand> result = new Vector<Pinnwand>();
 
-            while (rs.next()) {
-        Pinnwand p = new Pinnwand();
-        p.setId(rs.getInt("id"));
-        p.setSourceUserID(rs.getInt("sourceUser"));
+		try {
+			Statement stmt = con.createStatement();
 
-       
-        result.addElement(p);
-      }
-    }
-    catch (SQLException e2) {
-      e2.printStackTrace();
-    }
+			ResultSet rs = stmt
+					.executeQuery("SELECT id, sourceUser FROM pinnwand "
+							+ " ORDER BY id");
 
-   
-    return result;
-  }
+			while (rs.next()) {
+				Pinnwand p = new Pinnwand();
+				p.setId(rs.getInt("id"));
+				p.setSourceUserID(rs.getInt("sourceUser"));
 
-  
-  public Pinnwand findBySourceUser(int sourceID) {
-    Connection con = LocalDBConnection.connection();
- 
-    try {
-      Statement stmt = con.createStatement();
+				result.addElement(p);
+			}
+		} catch (SQLException e2) {
+			e2.printStackTrace();
+		}
 
-      ResultSet rs = stmt.executeQuery("SELECT id, sourceUser FROM pinnwand "
-          + "WHERE sourceUser=" + sourceID + " ORDER BY id");
+		return result;
+	}
 
-      
-      while (rs.next()) {
-    	Pinnwand p = new Pinnwand();
-        p.setId(rs.getInt("id"));
-        p.setSourceUserID(rs.getInt("sourceUser"));
+	/**
+	 * Diese Methode gibt die Pinnwand jenes SourceUsers zurück, dessen Integer
+	 * ID der Methode übergeben wird.
+	 * 
+	 * @return Pinnwand
+	 * @author Social Media Team
+	 * @param Integer
+	 */
 
-        
-        return p;
-      }
-    }
-    catch (SQLException e2) {
-      e2.printStackTrace();
-    }
+	public Pinnwand findBySourceUser(int sourceID) {
+		Connection con = DBConnection.connection();
 
-    
-    return null;
-  }
+		try {
+			Statement stmt = con.createStatement();
 
-  
-  public Pinnwand findBySourceUser(User sourceUser) {
+			ResultSet rs = stmt
+					.executeQuery("SELECT id, sourceUser FROM pinnwand "
+							+ "WHERE sourceUser=" + sourceID + " ORDER BY id");
 
-    
-    return findBySourceUser(sourceUser.getId());
-  }
+			while (rs.next()) {
+				Pinnwand p = new Pinnwand();
+				p.setId(rs.getInt("id"));
+				p.setSourceUserID(rs.getInt("sourceUser"));
 
- 
-  public Pinnwand insert(Pinnwand p) {
-    Connection con = LocalDBConnection.connection();
+				return p;
+			}
+		} catch (SQLException e2) {
+			e2.printStackTrace();
+		}
 
-    try {
-      Statement stmt = con.createStatement();
+		return null;
+	}
 
-      
-      ResultSet rs = stmt.executeQuery("SELECT MAX(id) AS maxid "
-          + "FROM pinnwand ");
+	/**
+	 * Diese Methode gibt die Pinnwand jenes SourceUsers zurück, dessen User
+	 * Objekt der Methode übergeben wird.
+	 * 
+	 * @return Pinnwand
+	 * @author Social Media Team
+	 * @param User
+	 */
+	public Pinnwand findBySourceUser(User sourceUser) {
 
-    
-      if (rs.next()) {
-       
-        p.setId(rs.getInt("maxid") + 1);
+		return findBySourceUser(sourceUser.getId());
+	}
 
-        stmt = con.createStatement();
+	/**
+	 * Diese Methode erstellt eine Pinnwand in der Datenbank. Selbige wird nach
+	 * Struktur der SMO-Objekts gebaut und zurückgegeben.
+	 * 
+	 * @return Pinnwand
+	 * @author Social Media Team
+	 * @param Pinnwand
+	 */
+	public Pinnwand insert(Pinnwand p) {
+		Connection con = DBConnection.connection();
 
-        
-        stmt.executeUpdate("INSERT INTO pinnwand (id, sourceUser) " + "VALUES ("
-            + p.getId()+ "," + p.getSourceUserID() + ")");
-      }
-    }
-    catch (SQLException e2) {
-      e2.printStackTrace();
-    }
+		try {
+			Statement stmt = con.createStatement();
 
-   
-    return p;
-  }
+			ResultSet rs = stmt.executeQuery("SELECT MAX(id) AS maxid "
+					+ "FROM pinnwand ");
 
- 
-  public Pinnwand update(Pinnwand p) {
-    Connection con = LocalDBConnection.connection();
+			if (rs.next()) {
 
-    try {
-      Statement stmt = con.createStatement();
+				p.setId(rs.getInt("maxid") + 1);
 
-      stmt.executeUpdate("UPDATE pinnwand " + "SET sourceUser=\"" + p.getSourceUserID()
-          + "\" " + "WHERE id=" + p.getId());
+				stmt = con.createStatement();
 
-    }
-    catch (SQLException e2) {
-      e2.printStackTrace();
-    }
+				stmt.executeUpdate("INSERT INTO pinnwand (id, sourceUser) "
+						+ "VALUES (" + p.getId() + "," + p.getSourceUserID()
+						+ ")");
+			}
+		} catch (SQLException e2) {
+			e2.printStackTrace();
+		}
 
-   
-    return p;
-  }
+		return p;
+	}
 
-  public void delete(Pinnwand p) {
-    Connection con = LocalDBConnection.connection();
+	/**
+	 * Diese Methode aktualisiert eine Pinnwand mit den Eigenschaften die im
+	 * Parameter-Pinnwand-Objekt übergeben werden in der Datenbank. Selbiger
+	 * wird nach Struktur der SMO-Objekts gebaut und zurückgegeben.
+	 * 
+	 * @return Pinnwand
+	 * @author Social Media Team
+	 * @param Pinnwand
+	 */
 
-    try {
-      Statement stmt = con.createStatement();
+	public Pinnwand update(Pinnwand p) {
+		Connection con = DBConnection.connection();
 
-      stmt.executeUpdate("DELETE FROM pinnwand " + "WHERE id=" + p.getId());
+		try {
+			Statement stmt = con.createStatement();
 
-    }
-    catch (SQLException e2) {
-      e2.printStackTrace();
-    }
-  }
+			stmt.executeUpdate("UPDATE pinnwand " + "SET sourceUser=\""
+					+ p.getSourceUserID() + "\" " + "WHERE id=" + p.getId());
 
-  
-  public void deletePinnwandOf(User u) {
-    Connection con = LocalDBConnection.connection();
+		} catch (SQLException e2) {
+			e2.printStackTrace();
+		}
 
-    try {
-      Statement stmt = con.createStatement();
+		return p;
+	}
 
-      stmt.executeUpdate("DELETE FROM pinnwand " + "WHERE sourceUser=" + u.getId());
+	/**
+	 * Diese Methode löscht eine Pinnwand aus der Datenbank.
+	 * 
+	 * @return void
+	 * @author Social Media Team
+	 * @param Pinnwand
+	 */
+	public void delete(Pinnwand p) {
+		Connection con = DBConnection.connection();
 
-    }
-    catch (SQLException e2) {
-      e2.printStackTrace();
-    }
-  }
+		try {
+			Statement stmt = con.createStatement();
 
- 
+			stmt.executeUpdate("DELETE FROM pinnwand " + "WHERE id="
+					+ p.getId());
 
-// public User getOwner(Pinnwand u) {
-   
-//  return UserMapper.userMapper().findByKey(u.getId());
+		} catch (SQLException e2) {
+			e2.printStackTrace();
+		}
+	}
 
-//  }
-  
-public User getSourceUser(Pinnwand p) {
-	 return UserMapper.userMapper().findByKey(p.getSourceUserID());
+	/**
+	 * Diese Methode löscht die Pinnwand jenes User, welcher der Methode
+	 * übergeben wird, aus der Datenbank.
+	 * 
+	 * @return void
+	 * @author Social Media Team
+	 * @param User
+	 */
+	public void deletePinnwandOf(User u) {
+		Connection con = DBConnection.connection();
 
+		try {
+			Statement stmt = con.createStatement();
 
-	  
+			stmt.executeUpdate("DELETE FROM pinnwand " + "WHERE sourceUser="
+					+ u.getId());
 
-}
+		} catch (SQLException e2) {
+			e2.printStackTrace();
+		}
+	}
+
+	/**
+	 * Diese gibt das komplette User-Objekt jener Pinnwand zurück, welcher der
+	 * Methode übergeben wird.
+	 * 
+	 * @return User
+	 * @author Social Media Team
+	 * @param Beitrag
+	 */
+
+	public User getSourceUser(Pinnwand p) {
+		return UserMapper.userMapper().findByKey(p.getSourceUserID());
+	}
+
+	/**
+	 * Diese Methode findet die Pinnwand nach zugehöriger User.
+	 * 
+	 * @author Social Media Team
+	 * @param User
+	 * @return Pinnwand
+	 */
+	public Pinnwand getPinnwandByNutzer(User user) {
+
+		Connection con = DBConnection.connection();
+
+		try {
+			Statement stmt = con.createStatement();
+
+			ResultSet rs = stmt.executeQuery("SELECT * FROM pinnwand "
+					+ "WHERE sourceUser=" + user.getId());
+
+			if (rs.next()) {
+
+				Pinnwand p = new Pinnwand();
+				p.setId(rs.getInt("id"));
+				p.setErstellungsdatum(rs.getDate("erstellungsdatum"));
+				p.setSourceUserID(rs.getInt("sourceUser"));
+				return p;
+			}
+		}
+
+		catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+
+		return null;
+	}
+
 }

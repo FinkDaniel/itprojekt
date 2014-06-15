@@ -7,17 +7,33 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.VerticalPanel;
 
 import de.hdm.socialmediaprojekt.client.ClientSideSettings;
 import de.hdm.socialmediaprojekt.shared.PinnwandVerwaltungAsync;
 import de.hdm.socialmediaprojekt.shared.smo.Abo;
 
+/**
+ * Gibt ein Abonnement des Aktuellen Nutzers in Form des Nicknames an und gibt
+ * ihm die Möglichkeit dieses wieder zu beenden.
+ * 
+ * @author T420
+ * 
+ */
 public class AboCell extends HorizontalPanel {
+	/**
+	 * No-Arguments-Konstruktor
+	 */
 
 	public AboCell() {
 		this.setStyleName("BeitragCell");
 	}
+
+	/**
+	 * Setzt den Text einer Abo-Cell, in diesem Fall der Nickname des
+	 * Abonnierten
+	 * 
+	 * @param inhalt
+	 */
 
 	public void setText(String inhalt) {
 		HorizontalPanel text = new HorizontalPanel();
@@ -26,31 +42,43 @@ public class AboCell extends HorizontalPanel {
 		this.add(text);
 	}
 
+	/**
+	 * Erzeugt einen Button, welcher beim Klick das Abonnement beendet
+	 * 
+	 * @param abo
+	 * @return
+	 */
+
 	public AboCell addButton(final Abo abo) {
 
 		Button loeschen = new Button("X");
 		loeschen.setStyleName("Button");
-		loeschen.addClickHandler(new ClickHandler(){
+		loeschen.addClickHandler(new ClickHandler() {
 
 			@Override
 			public void onClick(ClickEvent event) {
-				final PinnwandVerwaltungAsync pinnwandVerwaltung = ClientSideSettings.getPinnwandVerwaltung();
-				pinnwandVerwaltung.deleteAbo(abo, new AsyncCallback<Void>(){
+				final PinnwandVerwaltungAsync pinnwandVerwaltung = ClientSideSettings
+						.getPinnwandVerwaltung();
+				pinnwandVerwaltung.deleteAbo(abo, new AsyncCallback<Void>() {
 
 					@Override
 					public void onFailure(Throwable caught) {
 						// TODO Auto-generated method stub
-						
+
 					}
 
 					@Override
 					public void onSuccess(Void result) {
 						Window.alert("Abo wurde beendet.");
-						
-					}});
-				
-				
-			}});
+						SocialMediaPinnwand smp = new SocialMediaPinnwand();
+						smp.clearContent();
+						smp.addAbosToContent();
+
+					}
+				});
+
+			}
+		});
 		this.add(loeschen);
 		return this;
 	}

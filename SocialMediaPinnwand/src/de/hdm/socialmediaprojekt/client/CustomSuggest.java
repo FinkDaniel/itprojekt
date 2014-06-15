@@ -4,11 +4,7 @@ import java.io.Serializable;
 import com.google.gwt.user.client.ui.SuggestOracle.Suggestion;
 import de.hdm.socialmediaprojekt.shared.smo.*;
 
-/**
- * Custome Suggest um Nutzer Objekte anzuzeigen
- * 
- * @author Eric Schmidt
- */
+
 public class CustomSuggest implements Suggestion, Serializable {
 
 	private static final long serialVersionUID = 1L;

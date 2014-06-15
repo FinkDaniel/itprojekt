@@ -1,41 +1,60 @@
 package de.hdm.socialmediaprojekt.shared.smo;
 
+import com.google.gwt.user.client.rpc.IsSerializable;
 
+/**
+ * Realisierung einer exemplarischen Pinnwand. Eine Pinnwand besitzt einen User,
+ * von dem sie abhängig ist. Dieser wird über seine ID festgelegt.
+ * 
+ * @author Paul Titze
+ */
 
-public class Pinnwand extends SMObject {
+public class Pinnwand extends SMObject implements IsSerializable {
 
-private static final long serialVersionUID = 1L;
+	/**
+	 * Die ID des zugehörigen Users.
+	 */
+	private int sourceUserID = 0;
 
-  private int sourceUserID = 0;
+	/**
+	 * Methode zum auslesen der SourceUserID
+	 */
 
- 
-  public int getSourceUserID() {
-    return this.sourceUserID;
-  }
+	public int getSourceUserID() {
+		return this.sourceUserID;
+	}
 
- 
-  public void setSourceUserID(int sourceID) {
-    this.sourceUserID = sourceID;
-  }
+	/**
+	 * Methode zum setzen der SourceUserID
+	 */
+	public void setSourceUserID(int sourceID) {
+		this.sourceUserID = sourceID;
+	}
 
-  public String toString() {
-    return super.toString() + " inhaber, User-ID: #" + this.sourceUserID;
-  }
+	/**
+	 * Methode zum erzeugen einer einfachen textuellen Ausgabe aller Attribute
+	 * eines Pinnwand-Objektes. Erweitertt die
+	 * <code>toString()<code>-Methode der Superklasse.
+	 */
+	public String toString() {
+		return super.toString() + " inhaber, User-ID: #" + this.sourceUserID;
+	}
 
+	/**
+	 * Equals Methode zum Vergleichen zweier Pinnwände
+	 */
 
-  public boolean equals(Object o) {
-   
-    if (o != null && o instanceof Pinnwand) {
-      Pinnwand c = (Pinnwand) o;
-      try {
-        return super.equals(c);
-      }
-      catch (IllegalArgumentException e) {
-        return false;
-      }
-    }
-    return false;
-  }
+	public boolean equals(Object o) {
+
+		if (o != null && o instanceof Pinnwand) {
+			Pinnwand c = (Pinnwand) o;
+			try {
+				return super.equals(c);
+			} catch (IllegalArgumentException e) {
+				return false;
+			}
+		}
+		return false;
+	}
 
 }
-

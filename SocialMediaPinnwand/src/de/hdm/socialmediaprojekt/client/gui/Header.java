@@ -6,7 +6,15 @@ import com.google.gwt.user.client.ui.Label;
 
 import de.hdm.socialmediaprojekt.shared.smo.User;
 
+/**
+ * Header der Pinnwand
+ * 
+ * @author T420
+ * 
+ */
 public class Header extends HorizontalPanel {
+
+	Label userEingeloggtAls = new Label();
 
 	public Header() {
 
@@ -16,25 +24,15 @@ public class Header extends HorizontalPanel {
 		h1.getElement().setId("h1");
 
 		this.add(h1);
-		Label userEingeloggtAls = new Label("User eingeloggt als ");
+
 		userEingeloggtAls.getElement().setId("userEingeloggtAls");
 		this.add(userEingeloggtAls);
-		
-		
-
 		this.add(h1);
-
 
 	}
 
-	/*public void addUserStatus(User user) {
+	public void setUserEingeloggtAnzeige(User user) {
+		userEingeloggtAls.setText("Eingeloggt als: " + user.getNickname());
+	}
 
-		Label userEingeloggtAls = new Label("User eingeloggt als"
-				+ user.getVorname() + "" + user.getNachname() 
-				+ "alias" + user.getNickname());
-
-		userEingeloggtAls.getElement().setId("userEingeloggtAls");
-		this.add(userEingeloggtAls);
-
-	}*/
 }

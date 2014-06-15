@@ -1,65 +1,55 @@
 package de.hdm.socialmediaprojekt.shared.smo;
 
+import com.google.gwt.user.client.rpc.IsSerializable;
 
-import java.sql.Date;
+public class User extends SMObject implements IsSerializable{
 
-import javax.jdo.annotations.IdGeneratorStrategy;
-import javax.jdo.annotations.Persistent;
-import javax.jdo.annotations.PrimaryKey;
-
-import de.hdm.socialmediaprojekt.shared.smo.SMObject;
+	
 
 
-
-
-public class User extends SMObject {
-
-	 private static final long serialVersionUID = 1L;
-
-	 
 	  private String vorname = "";
-	  
-	 
+
+
 	  private String nachname = "";
-	  
-	  
+
+
 	  private String nickname = "";
-	  
+
 	  private String email = "";
-	  
-	  
+
+
 	  public String getVorname() {
 	    return this.vorname;
 	  }
 
-	  
+
 	  public void setVorname(String name) {
 	    this.vorname = name;
 	  }
 
-	 
+
 	  public String getNachname() {
 	    return this.nachname;
 	  }
 
-	 
+
 	  public void setNachname(String name) {
 	    this.nachname = name;
 	  }
-	  
-	  
+
+
 	  public void setNickname(String name) {
 	    this.nickname = name;
 	  }
 
-	 
+
 	  public String getNickname() {
 	    return this.nickname;
 	  }
 
-	  
+
 	public User() {
-		
+
 	}
 
 	  public User(String vname, String nname, String niname, String mail) {
@@ -67,7 +57,7 @@ public class User extends SMObject {
 		this.nachname = nname;
 		this.nickname = niname;
 		this.email = mail;
-		
+
 	}
 
 
@@ -88,4 +78,3 @@ public class User extends SMObject {
 
 }
 
-	

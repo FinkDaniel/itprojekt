@@ -4,225 +4,333 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Vector;
 
 import de.hdm.socialmediaprojekt.shared.smo.Abo;
 import de.hdm.socialmediaprojekt.shared.smo.Pinnwand;
+import de.hdm.socialmediaprojekt.shared.smo.User;
 
-
+/**
+ * Dies ist die Mapperklasse zum Abo. Sie stellt die Verbindung zur Abo-Tabelle
+ * in der Datenbank her.
+ * 
+ * @mapper Abo
+ * @author Social Media Team
+ * 
+ */
 public class AboMapper {
+	// Variablendeklaration
+	private static AboMapper aboMapper = null;
 
+	/**
+	 * Konstruktor des AboMappers
+	 */
+	protected AboMapper() {
+	}
 
-  private static AboMapper aboMapper = null;
+	/**
+	 * erweiterter Konstruktor der eine neue Instanz anlegt, sofern es noch
+	 * keine gibt
+	 * 
+	 * @return AboMapper
+	 * @author Social Media Team
+	 */
+	public static AboMapper aboMapper() {
+		if (aboMapper == null) {
+			aboMapper = new AboMapper();
+		}
 
- 
-  protected AboMapper() {
-  }
+		return aboMapper;
+	}
 
+	/**
+	 * Diese Methode findet das Abo nach zugehöriger ID. Das Abo wird
+	 * anschließend nach der Struktur des SMO-Objects gebaut und zurückgegeben.
+	 * 
+	 * @author Social Media Team
+	 * @param Integer
+	 * @return Abo
+	 */
+	public Abo findByKey(int id) {
 
-  public static AboMapper aboMapper() {
-    if (aboMapper == null) {
-      aboMapper = new AboMapper();
-    }
+		Connection con = DBConnection.connection();
 
-    return aboMapper;
-  }
+		try {
 
- 
-  public Abo findByKey(int id) {
- 
-    Connection con = LocalDBConnection.connection();
+			Statement stmt = con.createStatement();
 
-    try {
-      
-      Statement stmt = con.createStatement();
+			ResultSet rs = stmt
+					.executeQuery("SELECT id, sourcePinnwand, targetPinnwand FROM abo "
+							+ "WHERE id=" + id + " ORDER BY sourcePinnwand");
 
-      
-      ResultSet rs = stmt
-          .executeQuery("SELECT id, sourcePinnwand, targetPinnwand FROM abo "
-              + "WHERE id=" + id + " ORDER BY sourcePinnwand");
+			if (rs.next()) {
 
-      
-      if (rs.next()) {
-       
-        Abo a = new Abo();
-        a.setId(rs.getInt("id"));
-        a.setSourcePinnwandID(rs.getInt("sourcePinnwand"));
-        a.setTargetPinnwandID(rs.getInt("targetPinnwand"));
-        return a;
-      }
-    }
-    catch (SQLException e2) {
-      e2.printStackTrace();
-      return null;
-    }
+				Abo a = new Abo();
+				a.setId(rs.getInt("id"));
+				a.setSourcePinnwandID(rs.getInt("sourcePinnwand"));
+				a.setTargetPinnwandID(rs.getInt("targetPinnwand"));
+				return a;
+			}
+		} catch (SQLException e2) {
+			e2.printStackTrace();
+			return null;
+		}
 
-    return null;
-  }
+		return null;
+	}
 
- 
-  public Vector<Abo> findAll() {
-    Connection con = LocalDBConnection.connection();
+	/**
+	 * Diese Methode gibt alle Abos aus, die in der Datenbank hinterlegt sind
+	 * 
+	 * @return Vector<Abo>
+	 * @author Social Media Team
+	 */
+	public Vector<Abo> findAll() {
+		Connection con = DBConnection.connection();
 
-    
-    Vector<Abo> result = new Vector<Abo>();
+		Vector<Abo> result = new Vector<Abo>();
 
-    try {
-      Statement stmt = con.createStatement();
+		try {
+			Statement stmt = con.createStatement();
 
-      ResultSet rs = stmt
-          .executeQuery("SELECT id, sourcePinnwand, targetPinnwand FROM abo "
-              + " ORDER BY sourcePinnwand");
+			ResultSet rs = stmt
+					.executeQuery("SELECT id, sourcePinnwand, targetPinnwand FROM abo "
+							+ " ORDER BY sourcePinnwand");
 
-        while (rs.next()) {
-        Abo a = new Abo();
-        a.setId(rs.getInt("id"));
-        a.setSourcePinnwandID(rs.getInt("sourcePinnwandt"));
-        a.setTargetPinnwandID(rs.getInt("targetPinnwand"));
-        
-        result.addElement(a);
-      }
-    }
-    catch (SQLException e2) {
-      e2.printStackTrace();
-    }
+			while (rs.next()) {
+				Abo a = new Abo();
+				a.setId(rs.getInt("id"));
+				a.setSourcePinnwandID(rs.getInt("sourcePinnwand"));
+				a.setTargetPinnwandID(rs.getInt("targetPinnwand"));
 
-    return result;
-  }
+				result.addElement(a);
+			}
+		} catch (SQLException e2) {
+			e2.printStackTrace();
+		}
 
- 
-  public Vector<Abo> findBySourcePinnwand(int pinnwandID) {
-    Connection con = LocalDBConnection.connection();
-    Vector<Abo> result = new Vector<Abo>();
+		return result;
+	}
 
-    try {
-      Statement stmt = con.createStatement();
+	/**
+	 * Diese Methode gibt alle Abos aus einer SourcePinnwand aus, die in der
+	 * Datenbank hinterlegt sind
+	 * 
+	 * @return Vector<Abo>
+	 * @author Social Media Team
+	 * @param Integer
+	 */
+	public Vector<Abo> findBySourcePinnwand(int pinnwandID) {
+		Connection con = DBConnection.connection();
+		Vector<Abo> result = new Vector<Abo>();
 
-      ResultSet rs = stmt
-          .executeQuery("SELECT id, sourcePinnwand, targetPinnwand FROM abo "
-              + "WHERE sourcePinnwand=" + pinnwandID + " ORDER BY id");
+		try {
+			Statement stmt = con.createStatement();
 
-      
-      while (rs.next()) {
-        Abo a = new Abo();
-        a.setId(rs.getInt("id"));
-        a.setSourcePinnwandID(rs.getInt("sourcePinnwand"));
-        a.setTargetPinnwandID(rs.getInt("targetPinnwand"));
-        
-        result.addElement(a);
-      }
-    }
-    catch (SQLException e2) {
-      e2.printStackTrace();
-    }
+			ResultSet rs = stmt
+					.executeQuery("SELECT id, sourcePinnwand, targetPinnwand FROM abo "
+							+ "WHERE sourcePinnwand="
+							+ pinnwandID
+							+ " ORDER BY id");
 
-    return result;
-  }
+			while (rs.next()) {
+				Abo a = new Abo();
+				a.setId(rs.getInt("id"));
+				a.setSourcePinnwandID(rs.getInt("sourcePinnwand"));
+				a.setTargetPinnwandID(rs.getInt("targetPinnwand"));
 
-  
-  public Vector<Abo> findByTargetPinnwand(int pinnwandID) {
-    Connection con = LocalDBConnection.connection();
-    Vector<Abo> result = new Vector<Abo>();
+				result.addElement(a);
+			}
+		} catch (SQLException e2) {
+			e2.printStackTrace();
+		}
 
-    try {
-      Statement stmt = con.createStatement();
+		return result;
+	}
 
-      ResultSet rs = stmt
-          .executeQuery("SELECT id, sourcePinnwand, targetPinnwand FROM abo "
-              + "WHERE targetPinnwand=" + pinnwandID + " ORDER BY id");
+	/**
+	 * Diese Methode gibt alle Abos aus einer TargetPinnwand aus, die in der
+	 * Datenbank hinterlegt sind
+	 * 
+	 * @return Vector<Abo>
+	 * @author Social Media Team
+	 * @param Integer
+	 */
+	public Vector<Abo> findByTargetPinnwand(int pinnwandID) {
+		Connection con = DBConnection.connection();
+		Vector<Abo> result = new Vector<Abo>();
 
-        while (rs.next()) {
-        Abo a = new Abo();
-        a.setId(rs.getInt("id"));
-        a.setSourcePinnwandID(rs.getInt("sourcePinnwand"));
-        a.setTargetPinnwandID(rs.getInt("targetPinnwand"));
-       
-        result.addElement(a);
-      }
-    }
-    catch (SQLException e2) {
-      e2.printStackTrace();
-    }
+		try {
+			Statement stmt = con.createStatement();
 
-    return result;
-  }
+			ResultSet rs = stmt
+					.executeQuery("SELECT id, sourcePinnwand, targetPinnwand FROM abo "
+							+ "WHERE targetPinnwand="
+							+ pinnwandID
+							+ " ORDER BY id");
 
-  public Abo insert(Abo a) {
-    Connection con = LocalDBConnection.connection();
+			while (rs.next()) {
+				Abo a = new Abo();
+				a.setId(rs.getInt("id"));
+				a.setSourcePinnwandID(rs.getInt("sourcePinnwand"));
+				a.setTargetPinnwandID(rs.getInt("targetPinnwand"));
 
-    try {
-      Statement stmt = con.createStatement();
+				result.addElement(a);
+			}
+		} catch (SQLException e2) {
+			e2.printStackTrace();
+		}
 
-      ResultSet rs = stmt.executeQuery("SELECT MAX(id) AS maxid "
-          + "FROM abo ");
+		return result;
+	}
 
-      if (rs.next()) {
-       
-        a.setId(rs.getInt("maxid") + 1);
+	/**
+	 * Diese Methode erstellt ein Abo in der Datenbank. Selbiges wird nach
+	 * Struktur der SMO-Objekts gebaut und zurückgegeben.
+	 * 
+	 * @return Abo
+	 * @author Social Media Team
+	 * @param Abo
+	 */
+	public Abo insert(Abo a) {
+		Connection con = DBConnection.connection();
 
-        stmt = con.createStatement();
+		try {
+			Statement stmt = con.createStatement();
 
-        stmt.executeUpdate("INSERT INTO `socialmediapinnwand`.`abo` (`id`, `sourcePinnwand`, `targetPinnwand`, `erstellungsdatum`) VALUES ('"+a.getId()+"', '"+a.getSourcePinnwandID()+"', '"+a.getTargetPinnwandID()+"', CURRENT_TIMESTAMP);");
-        
-        
-        
-        
-        
-       
-      }
-    }
-    catch (SQLException e2) {
-      e2.printStackTrace();
-    }
+			ResultSet rs = stmt.executeQuery("SELECT MAX(id) AS maxid "
+					+ "FROM abo ");
 
-    return a;
-  }
+			if (rs.next()) {
 
-  public void delete(Abo a) {
-    Connection con = LocalDBConnection.connection();
+				a.setId(rs.getInt("maxid") + 1);
 
-    try {
-      Statement stmt = con.createStatement();
+				stmt = con.createStatement();
 
-      stmt.executeUpdate("DELETE FROM abo " + "WHERE id=" + a.getId());
+				stmt.executeUpdate("INSERT INTO `socialmediapinnwand`.`abo` (`id`, `sourcePinnwand`, `targetPinnwand`, `erstellungsdatum`) VALUES ('"
+						+ a.getId()
+						+ "', '"
+						+ a.getSourcePinnwandID()
+						+ "', '"
+						+ a.getTargetPinnwandID() + "', CURRENT_TIMESTAMP);");
 
-    }
-    catch (SQLException e2) {
-      e2.printStackTrace();
-    }
-  }
+			}
+		} catch (SQLException e2) {
+			e2.printStackTrace();
+		}
 
- 
-  public void deleteAbosOf(Pinnwand a) {
-    Connection con = LocalDBConnection.connection();
+		return a;
+	}
 
-    try {
-      Statement stmt = con.createStatement();
+	/**
+	 * Diese Methode löscht ein Abo aus der Datenbank.
+	 * 
+	 * @return void
+	 * @author Social Media Team
+	 * @param Abo
+	 */
+	public void delete(Abo a) {
+		Connection con = DBConnection.connection();
 
-      stmt.executeUpdate("DELETE FROM abo " + "WHERE sourcePinnwand="
-          + a.getId());
-      stmt.executeUpdate("DELETE FROM abo " + "WHERE targetPinnwand="
-          + a.getId());
+		try {
+			Statement stmt = con.createStatement();
 
-    }
-    catch (SQLException e2) {
-      e2.printStackTrace();
-    }
-  }
+			stmt.executeUpdate("DELETE FROM abo " + "WHERE id=" + a.getId());
 
- 
-  public Pinnwand getSourcePinnwand(Abo a) {
-    
-    return PinnwandMapper.pinnwandMapper().findByKey(a.getSourcePinnwandID());
-  }
+		} catch (SQLException e2) {
+			e2.printStackTrace();
+		}
+	}
 
- 
-  public Pinnwand getTargetPinnwand(Abo a) {
-    
-    return PinnwandMapper.pinnwandMapper().findByKey(a.getTargetPinnwandID());
-  }
+	/**
+	 * Diese Methode löscht alle Abos in der Datenbank die einer Pinnwand
+	 * zugeordnet sind. Selbiges wird nach Struktur der SMO-Objekts gebaut und
+	 * zurückgegeben.
+	 * 
+	 * @return void
+	 * @author Social Media Team
+	 * @param Pinnwand
+	 */
+	public void deleteAbosOf(Pinnwand a) {
+		Connection con = DBConnection.connection();
 
+		try {
+			Statement stmt = con.createStatement();
 
+			stmt.executeUpdate("DELETE FROM abo " + "WHERE sourcePinnwand="
+					+ a.getId());
+			stmt.executeUpdate("DELETE FROM abo " + "WHERE targetPinnwand="
+					+ a.getId());
 
+		} catch (SQLException e2) {
+			e2.printStackTrace();
+		}
+	}
+
+	/**
+	 * Diese Methode gibt die SourcePinnwand anhand eines Abos zurück. Die
+	 * Pinnwand wird nach Struktur der SMO-Objekts gebaut und zurückgegeben.
+	 * 
+	 * @return Pinnwand
+	 * @author Social Media Team
+	 * @param Abo
+	 */
+	public Pinnwand getSourcePinnwand(Abo a) {
+
+		return PinnwandMapper.pinnwandMapper().findByKey(
+				a.getSourcePinnwandID());
+	}
+
+	/**
+	 * Diese Methode gibt die TargetPinnwand anhand eines Abos zurück. Die
+	 * Pinnwand wird nach Struktur der SMO-Objekts gebaut und zurückgegeben.
+	 * 
+	 * @return Pinnwand
+	 * @author Social Media Team
+	 * @param Abo
+	 */
+	public Pinnwand getTargetPinnwand(Abo a) {
+
+		return PinnwandMapper.pinnwandMapper().findByKey(
+				a.getTargetPinnwandID());
+	}
+
+	/**
+	 * Diese Methode gibt erstellt ein Array über die Abos in einem
+	 * vordefinierten Zeitraum. Diese Informationen werden beim ReportGenerator
+	 * benötigt.
+	 * 
+	 * @return Aboliste
+	 * @author Social Media Team
+	 * @param Abo
+	 */
+	public ArrayList<Abo> getAboBetweenTwoDates(String datumVon,
+			String datumBis, User u) {
+		Connection con = DBConnection.connection();
+		ArrayList<Abo> aboListe = new ArrayList<Abo>();
+
+		try {
+			Statement stmt = con.createStatement();
+			String sql = "SELECT * from abo WHERE sourcePinnwand = "
+					+ u.getId() + " AND erstellungsdatum between '" + datumVon
+					+ "' AND '" + datumBis + "'";
+			ResultSet rs = stmt.executeQuery(sql);
+
+			while (rs.next()) {
+				Abo a = new Abo();
+				a.setId(rs.getInt("id"));
+				a.setErstellungsdatum(rs.getDate("erstellungsdatum"));
+				a.setSourcePinnwandID(rs.getInt("sourcePinnwand"));
+				a.setTargetPinnwandID(rs.getInt("targetPinnwand"));
+
+				aboListe.add(a);
+			}
+			return aboListe;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 
 }

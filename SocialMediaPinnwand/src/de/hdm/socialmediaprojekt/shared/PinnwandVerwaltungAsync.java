@@ -28,8 +28,8 @@ public interface PinnwandVerwaltungAsync {
 
 	void createPinnwand(int sourceUser, AsyncCallback<Pinnwand> callback);
 
-	void createUser(String vorname, String nachname, String nickname, String email,
-			 AsyncCallback<User> callback);
+	void createUser(String vorname, String nachname, String nickname,
+			String email, AsyncCallback<User> callback);
 
 	void deleteAbo(Abo a, AsyncCallback<Void> callback);
 
@@ -41,7 +41,7 @@ public interface PinnwandVerwaltungAsync {
 
 	void deletePinnwand(Pinnwand p, AsyncCallback<Void> callback);
 
-	void deleteUser(User u, AsyncCallback<User> callback);
+	void deleteUser(User u, AsyncCallback<Void> callback);
 
 	void getAboById(int id, AsyncCallback<Abo> callback);
 
@@ -105,19 +105,20 @@ public interface PinnwandVerwaltungAsync {
 
 	void getUserByNickname(String nickname, AsyncCallback<User> callback);
 
-	void getAboBySourceUser(int sourceUserID, AsyncCallback<Vector<Abo>> callback);
-	
+	void getAboBySourceUser(int sourceUserID,
+			AsyncCallback<Vector<Abo>> callback);
 
-	// void login(String hostPageBaseURL, AsyncCallback<LoginInfo> callback);
+	void editBeitrag(Beitrag b, AsyncCallback<Void> callback);
 
+	void editKommentar(Kommentar k, AsyncCallback<Void> callback);
 
+	void getBeitragByUniqueSourceUser(int id,
+			AsyncCallback<Vector<Beitrag>> callback);
 
-	
+	void createUserReport(User u, String datumVon, String datumBis,
+			AsyncCallback<String> callback);
 
+	void createBeitragReport(String datumVon, String datumBis,
+			AsyncCallback<String> callback);
 
-	}
-
-
-
-
-
+}

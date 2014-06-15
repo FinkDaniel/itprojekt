@@ -12,6 +12,7 @@
   </welcome-file-list>
   
   <!-- Servlets -->
+  
   <servlet>
     <servlet-name>pinnwandVerwaltungServlet</servlet-name>
     <servlet-class>de.hdm.socialmediaprojekt.server.PinnwandVerwaltungImpl</servlet-class>
@@ -21,6 +22,9 @@
     <servlet-name>pinnwandVerwaltungServlet</servlet-name>
     <url-pattern>/socialmediaprojekt/pinnwandVerwaltung</url-pattern>
   </servlet-mapping>
+  
+
+    
   
   <!-- Default page to serve -->
   <welcome-file-list>
@@ -53,6 +57,15 @@
     <servlet-name>loginService</servlet-name>
     <url-pattern>/socialmediaprojekt/login</url-pattern>
   </servlet-mapping>
+  <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>profile</web-resource-name>
+            <url-pattern>/profile/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>*</role-name>
+        </auth-constraint>
+</security-constraint>
 
  
     

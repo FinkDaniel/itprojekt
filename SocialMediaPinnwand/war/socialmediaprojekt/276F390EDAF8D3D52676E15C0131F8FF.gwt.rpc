@@ -5,12 +5,13 @@ com.google.gwt.user.client.rpc.XsrfToken, false, false, true, true, com.google.g
 de.hdm.socialmediaprojekt.client.LoginInfo, true, true, false, false, de.hdm.socialmediaprojekt.client.LoginInfo/142920914, 142920914
 de.hdm.socialmediaprojekt.shared.PinnwandVerwaltung, false, false, false, false, _, 4048425671
 de.hdm.socialmediaprojekt.shared.smo.Abo, true, true, true, true, de.hdm.socialmediaprojekt.shared.smo.Abo/4264466944, 4264466944
-de.hdm.socialmediaprojekt.shared.smo.Beitrag, true, true, true, true, de.hdm.socialmediaprojekt.shared.smo.Beitrag/830336876, 830336876
-de.hdm.socialmediaprojekt.shared.smo.Kommentar, true, true, true, true, de.hdm.socialmediaprojekt.shared.smo.Kommentar/3239482975, 3239482975
+de.hdm.socialmediaprojekt.shared.smo.Beitrag, true, true, true, true, de.hdm.socialmediaprojekt.shared.smo.Beitrag/285908187, 285908187
+de.hdm.socialmediaprojekt.shared.smo.Kommentar, true, true, true, true, de.hdm.socialmediaprojekt.shared.smo.Kommentar/277942616, 277942616
 de.hdm.socialmediaprojekt.shared.smo.Like, true, true, true, true, de.hdm.socialmediaprojekt.shared.smo.Like/1958852223, 1958852223
 de.hdm.socialmediaprojekt.shared.smo.Pinnwand, true, true, true, true, de.hdm.socialmediaprojekt.shared.smo.Pinnwand/1342429581, 1342429581
 de.hdm.socialmediaprojekt.shared.smo.SMObject, true, false, true, false, de.hdm.socialmediaprojekt.shared.smo.SMObject/566547258, 566547258
 de.hdm.socialmediaprojekt.shared.smo.User, true, true, true, true, de.hdm.socialmediaprojekt.shared.smo.User/3491325633, 3491325633
+[I, false, false, true, true, [I/2970817851, 2970817851
 java.lang.Exception, true, false, true, false, java.lang.Exception/1920171873, 1920171873
 java.lang.IllegalArgumentException, true, true, false, false, java.lang.IllegalArgumentException/1755012560, 1755012560
 java.lang.NumberFormatException, true, true, false, false, java.lang.NumberFormatException/3305228476, 3305228476
@@ -20,6 +21,7 @@ java.lang.Throwable, true, false, true, false, java.lang.Throwable/2953622131, 2
 java.sql.Date, true, true, true, true, java.sql.Date/730999118, 730999118
 java.sql.Time, true, true, true, true, java.sql.Time/1816797103, 1816797103
 java.sql.Timestamp, true, true, true, true, java.sql.Timestamp/3040052672, 3040052672
+java.util.ArrayList, true, true, true, true, java.util.ArrayList/4159755760, 4159755760
 java.util.Date, true, true, true, true, java.util.Date/3385151746, 3385151746
 java.util.Stack, true, true, false, false, java.util.Stack/1346942793, 1346942793
 java.util.Vector, true, true, false, false, java.util.Vector/3057315478, 3057315478
